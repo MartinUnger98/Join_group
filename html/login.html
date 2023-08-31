@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Join</title>
     <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="icon" type="image/x-icon" href="../img/join_logo.png">
     <script src="../js/login.js"></script>
     <!-- Bootstrap -->
@@ -21,16 +22,33 @@
     </script>
   </head>
   <body>
-    <img class="logo"
-      id="animatedImage"
-      src="../img/join_logo.png"
-      alt="Bild"
-    />
+    <header>
+      <img class="logo" id="animatedImage" src="../img/join_logo.png" alt="Bild"/>      
+    </header>
+    
     <div class="loginBackground d-flex justify-content-center align-items-center">
-      <div class="loginBox d-flex justify-content-center align-items-center flex-column ">
+      <div class="loginBox d-flex justify-content-center align-items-center flex-column gap-3">
         <h1>Log In</h1>
-        <input type="email" />
-        <input type="password" />
+        <div class="separator"></div>
+        <div class="inputFields">
+          <input type="email" placeholder="Email"/>
+          <img src="../img/mail.svg" alt="">
+        </div>
+        <div class="inputFields">
+          <input type="password" placeholder="Password"/>
+          <img src="../img/lock.svg" alt="">
+        </div>
+        <div class="d-flex justify-content-center align-items-center gap-2">
+          <img src="../img/Check button.svg" alt="">
+          <p>Remember me</p>
+          <p>I forgot my password</p>
+        </div>
+        <div>
+          <button class="loginBtn">Log in</button>
+          <button class="guestLoginBtn">Guest Log in</button>
+        </div>
+            
+
       </div>
     </div>
   </body>
