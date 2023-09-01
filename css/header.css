@@ -3,7 +3,9 @@ body {
 }
 header {
     position: absolute;
-    width: 1440px;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 96px;
     padding: 20px 40px 20px 348px;
     display: flex;
@@ -35,29 +37,79 @@ header {
     width: 20px;
     height: 20px;
 }
+.help:hover {
+    width: 24px;
+    height: 24px;
+}
+
 .user-profile-initials {
     width: 56px;
     height: 56px;
-    gap: 16px;
+    cursor: pointer;
+    
 }
 .ellipse {
     width: 56px;
     height: 56px;
 }
 
-.frame31 {
+#frame31 {
     position: absolute;
     width: 48px;
+    display: flex;
     height: 48px;
-    top: 25px;
+    align-items: center;
+    top: 24px;
+    justify-content: center;
     padding: 10px;
-    border-radius: 559px;
+    border-radius: 23px;
     gap: 10px;
-    right: 39px
-
+    right: 44px;
 }
+#frame31:hover {
+    background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12)),
+    linear-gradient(0deg, #FFFFFF, #FFFFFF);
+}
+
+.bg-upI {
+    background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12)),
+    linear-gradient(0deg, #FFFFFF, #FFFFFF);
+}
+
 .header-user {
     width: 17.61406707763672px;
     height: 20px;
 }
+#submenu {
+    position: absolute;
+    top: 97px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 20px 0px 20px 20px;
+    background-color: #2A3647;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.submenu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
+.submenu-sections {
+    padding: 8px 16px 8px 16px;
+    text-decoration: none;
+    color: #CDCDCD;
+}
+.submenu-sections:hover {
+    background-color: #2A3D59;
+    animation-name: hover;
+    animation-timing-function: ease-in ;
+    animation-duration: 100ms ;
+}
+
+@keyframes hover {
+    from {background-color: #2A3647;}
+    to { background-color: #2A3D59;}
+}
