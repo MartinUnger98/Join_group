@@ -1,3 +1,20 @@
-body{
-    margin: 0;
+.headlineSummary{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+}
+
+.borderHead{
+    height: 100%;
+    width: 5px;
+    background-color: aqua;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.summaryPage{
+    margin-left: 300px;
+    margin-top: 96px;
 }
