@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/menu.css">
+    <link rel="stylesheet" href="../css/summary.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+        </script>
+    <script src="../js/script.js"></script>
+    <script src="../js/header.js"></script>
+
+</head>
+
+<body onload="init()">
+    <div w3-include-html="templates/header.html"></div>
+    <div w3-include-html="templates/menu.html"></div>
+    <div class="summaryPage">
+        <div class="headlineSummary">
+            <h1>Summary</h1>
+            <div class="borderHead"></div>
+            <h2>Everything in a nutshell</h2>
+        </div>
+        <div class="allSummaryContent">
+            <div class="summaryTaskContent">
+                <div class="taskOrder">
+                    <div class="taskInBoard"></div>
+                    <div class="taskInProgress"></div>
+                    <div class="awaitingFeedback"></div>
+                </div>
+                <div class="urgentAndDate">
+                    <div class="urgentCount"></div>
+                    <div class="date"></div>
+                </div>
+                <div class="toDOANdDone">
+                    <div class="toDO"></div>
+                    <div class="toDO"></div>
+                </div>
+            </div>
+            <div>
+                <h2>Good Morning</h2>
+                <h3>Sofia Müller</h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
