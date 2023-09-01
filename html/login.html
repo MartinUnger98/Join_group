@@ -23,33 +23,47 @@
   </head>
   <body>
     <header>
-      <img class="logo" id="animatedImage" src="../img/join_logo.png" alt="Bild"/>      
+      <img class="logo" id="animatedImage" src="../img/join_logo.png" alt="Bild"/>  
     </header>
-    
-    <div class="loginBackground d-flex justify-content-center align-items-center">
-      <div class="loginBox d-flex justify-content-center align-items-center flex-column gap-3">
+    <form onsubmit="loggedIn()"></form>
+    <div class="loginBackground d-flex justify-content-center align-items-center flex-column">
+      <div id="loginBox" class="loginBox showAfter2s d-flex justify-content-center align-items-center flex-column m-32">
         <h1>Log In</h1>
-        <div class="separator"></div>
-        <div class="inputFields">
-          <input type="email" placeholder="Email"/>
-          <img src="../img/mail.svg" alt="">
+        <div class="separator m-32"></div>
+        <div class="inputFields m-32 d-flex justify-content-between align-items-center">
+          <input required type="email" placeholder="Email"/>
+          <div class="imgBox d-flex justify-content-center align-items-center">
+            <img src="../img/mail.svg" alt="">
+          </div>          
         </div>
-        <div class="inputFields">
-          <input type="password" placeholder="Password"/>
-          <img src="../img/lock.svg" alt="">
+        <div class="inputFields m-32 d-flex justify-content-between align-items-center">
+          <input required type="password" placeholder="Password"/>
+          <div class="imgBox d-flex justify-content-center align-items-center">
+            <img src="../img/lock.svg" alt="">
+          </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center gap-2">
-          <img src="../img/Check button.svg" alt="">
-          <p>Remember me</p>
-          <p>I forgot my password</p>
+        <div class="rememberForgot m-32 d-flex justify-content-evenly align-items-center">
+          <div class="d-flex">
+            <img src="../img/Check button.svg" alt="">
+            <p>Remember me</p>
+          </div>          
+          <p onclick="forgotPasswordTemplate()" class="blueFont">I forgot my password</p>
         </div>
-        <div>
-          <button class="loginBtn">Log in</button>
-          <button class="guestLoginBtn">Guest Log in</button>
+        <div class="btnRow d-flex m-32">
+          <button onclick="loggedIn()" class="btnDark">Log in</button>
+          <button onclick="loggedIn()" class="btnLight">Guest Log in</button>
         </div>
-            
-
       </div>
+      <div class="signUp showAfter2s d-flex justify-content-center align-items-center">
+        <p class="noUserTxt">Not a Join user?</p>
+        <button class="btnDark" onclick="signInTemplate()">Sign Up</button>
+      </div>
+      <footer class="footer m-32 d-flex gap-3 showAfter2s">
+        <a href="">Privacy Policy</a>
+        <a href="">Legal notice</a>
+      </footer>
     </div>
+    
+  </form>
   </body>
 </html>
