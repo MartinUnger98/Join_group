@@ -23,10 +23,9 @@
   </head>
   <body>
     <header>
-      <img class="logo" id="animatedImage" src="../img/join_logo.png" alt="Bild"/>  
+      <img onclick="backToLogin()" class="logo curserPointer" id="animatedImage" src="../img/join_logo.png" alt="Bild"/>  
     </header>
-    <form onsubmit="loggedIn()"></form>
-    <div class="loginBackground d-flex justify-content-center align-items-center flex-column">
+    <div class="loginBackground d-flex align-items-center flex-column">
       <div id="loginBox" class="loginBox showAfter2s d-flex justify-content-center align-items-center flex-column m-32">
         <h1>Log In</h1>
         <div class="separator m-32"></div>
@@ -44,26 +43,24 @@
         </div>
         <div class="rememberForgot m-32 d-flex justify-content-evenly align-items-center">
           <div class="d-flex">
-            <img src="../img/Check button.svg" alt="">
-            <p>Remember me</p>
+            <img class="curserPointer" src="../img/Check button.svg" alt="">
+            <span>Remember me</span>
           </div>          
-          <p onclick="forgotPasswordTemplate()" class="blueFont">I forgot my password</p>
+          <span onclick="forgotPasswordTemplate()" class="blueFont">I forgot my password</span>
         </div>
         <div class="btnRow d-flex m-32">
           <button onclick="loggedIn()" class="btnDark">Log in</button>
           <button onclick="loggedIn()" class="btnLight">Guest Log in</button>
         </div>
       </div>
-      <div class="signUp showAfter2s d-flex justify-content-center align-items-center">
+      <div id="signUp" class="signUp showAfter2s d-flex justify-content-center align-items-center">
         <p class="noUserTxt">Not a Join user?</p>
         <button class="btnDark" onclick="signInTemplate()">Sign Up</button>
       </div>
-      <footer class="footer m-32 d-flex gap-3 showAfter2s">
+      <footer id="footer" class="footer m-32 d-flex gap-3 showAfter2s">
         <a href="">Privacy Policy</a>
         <a href="">Legal notice</a>
       </footer>
     </div>
-    
-  </form>
   </body>
 </html>

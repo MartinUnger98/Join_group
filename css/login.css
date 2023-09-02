@@ -1,9 +1,15 @@
 :root {
-  --height: 334.07px; 
+  --heightBig: 334.07px;
+  --heightSmall: 121.97px;
+  --heightMobile: 78.03px; 
+  --widthBig: 274px;
+  --widthSmall: 100.03px;
+  --widthMobile: 64px; 
 }
 
 body {
   font-family: 'Inter', sans-serif !important;
+  text-align: center !important;
 }
 
 input {
@@ -12,9 +18,13 @@ input {
   outline: none;
 }
 
+.curserPointer {
+  cursor: pointer;
+}
+
 .showAfter2s {
   visibility: hidden;
-  animation: hide 0s ease-in 2s;
+  animation: hide 0s ease-in 1s;
   animation-fill-mode: forwards;
 }
 
@@ -36,11 +46,10 @@ h1 {
   font-size: 61px !important;
   margin-block-end: 0;
   margin: 32px 0px 16px 0px !important;
-
 }
 
-p {
-  margin: 0px !important;
+.h1WithBack {
+  margin: -40px 0px 16px 0px !important;
 }
 
 ::placeholder {
@@ -50,7 +59,7 @@ p {
 .logo {
   position: absolute;
   animation-name: zoom;
-  animation-duration: 2s;
+  animation-duration: 1.3s;
   animation-timing-function: ease-in-out;
   height: 121.97px;
   width: 100.03px;
@@ -72,12 +81,11 @@ p {
 
 .loginBackground {
   height: 100vh;
-  
+  justify-content: center;
 }
 
 .loginBox {
   width: 652px;
-  top: 259px;
   box-shadow: 0px 0px 17px 5px rgba(0, 0, 0, 0.08);
   border-radius: 30px;
 }
@@ -93,7 +101,7 @@ p {
   border: 1px solid #D1D1D1;
   border-radius: 10px;
   padding: 5px;
-  width: 422px;  
+  width: 65%;  
 }
 
 .imgBox {
@@ -115,8 +123,7 @@ p {
   font-weight: 700;
   font-size: 21px;
   border-radius: 10px;
-  padding: 8px;
-  height: 48px;
+  padding: 10px 20px;
   border: none;
 }
 
@@ -131,9 +138,9 @@ p {
   background-color: white;
   font-weight: 700;
   font-size: 21px;
+  padding: 10px 20px;
   border-radius: 10px;
   width: 177px;
-  height: 48px;
 }
 
 .btnLight:hover {
@@ -157,22 +164,34 @@ footer a:hover {
   color: #29ABE2;
 }
 
+.backImg {
+  padding: 32px 0px 0px 32px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.backImg img:hover {
+  scale: 1.3;
+  cursor: pointer;
+}
+
 @keyframes zoom {
   0% {
-    height: var(--height);
-    width: 274px;
-    left: calc(50vw - (274px / 2));
-    top: calc(50vh - (var(--height) / 2));
+    height: var(--heightBig);
+    width: var(--widthBig);
+    left: calc(50vw - (var(--widthBig) / 2));
+    top: calc(50vh - (var(--heightBig) / 2));
   }
   50% {
-    height: 334.07px;
-    width: 274px;
-    left: calc(50vw - (274px / 2));
-    top: calc(50vh - (334.07px / 2));
+    height: var(--heightBig);
+    width: var(--widthBig);
+    left: calc(50vw - (var(--widthBig) / 2));
+    top: calc(50vh - (var(--heightBig) / 2));
   }
   100% {
-    height: 121.97px;
-    width: 100.03px;
+    height: var(--heightSmall);
+    width: var(--widthSmall);
     left: 77px;
     top: 80px;
   }
@@ -188,11 +207,35 @@ footer a:hover {
   .signUp {
     position: static;
   }
+
+  @keyframes zoom {
+    0% {
+      height: var(--heightBig);
+      width: var(--widthBig);
+      left: calc(50vw - (var(--widthBig) / 2));
+      top: calc(50vh - (var(--heightBig) / 2));
+    }
+    50% {
+      height: var(--heightBig);
+      width: var(--widthBig);
+      left: calc(50vw - (var(--widthBig) / 2));
+      top: calc(50vh - (var(--heightBig) / 2));
+    }
+    100% {
+      height: var(--heightMobile);
+      width: var(--widthMobile);
+    }    
+  }
+
   .logo {
-    width: 64px;
-    height: 78.03px;
+    width: var(--widthMobile);
+    height: var(--heightMobile);
     left: 38px;
     top: 37px;
+  }
+
+  .loginBox {
+    margin-top: 64px;
   }
 }
 
@@ -200,8 +243,36 @@ footer a:hover {
   .signUp {
     position: static;
   }
-  .logo {
-    width: 64px;
-    height: 78.03px;
+
+  .loginBox {
+    width: 440px;
   }
+}
+
+
+@media (max-width: 470px) {
+  .signUp {
+    position: static;
+  }
+
+  .loginBox {
+    width: 320px;
+  }
+
+  .inputFields {
+    width: 95%;  
+  }
+
+  .m-32 {
+    margin-bottom: 16px;
+  }
+
+  .rememberForgot {
+    flex-direction: column-reverse;
+  }
+
+  /* .loginBackground {
+    justify-content: flex-start;
+  } */
+  
 }
