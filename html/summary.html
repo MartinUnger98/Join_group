@@ -19,21 +19,21 @@
 
 </head>
 
-<body onload="init()">
+<body class="summaryBody" onload="init()">
     <div w3-include-html="templates/header.html"></div>
     <div w3-include-html="templates/menu.html"></div>
     <div class="summaryPage">
         <div class="headlineSummary">
-            <h1>Summary</h1>
+            <h1 class="headlineSummary">Summary</h1>
             <div class="borderHead"></div>
-            <h2>Everything in a nutshell</h2>
+            <h2 class="headlineSummar2">Everything in a nutshell</h2>
         </div>
         <div class="allSummaryContent">
             <div class="summaryTaskContent">
                 <div class="taskOrder">
-                    <div class="taskInBoard"></div>
-                    <div class="taskInProgress"></div>
-                    <div class="awaitingFeedback"></div>
+                    <div class="taskSummary"><div id="numberOftaskInBoard" class="bigNumber">5</div><span class="spanSummary">Tasks in Board</span></div>
+                    <div class="taskSummary"><div id="numberOftaskInProgress" class="bigNumber">3</div><span class="spanSummary">Tasks in Progress</span></div>
+                    <div class="taskSummary"><div id="numberOftaskFeedback" class="bigNumber">2</div><span class="spanSummary">Awaiting Feedback</span></div>
                 </div>
                 <div class="urgentAndDate">
                     <div class="urgentCount"></div>
@@ -44,7 +44,7 @@
                     <div class="toDO"></div>
                 </div>
             </div>
-            <div>
+            <div class="morningContainer">
                 <h2>Good Morning</h2>
                 <h3>Sofia Müller</h3>
             </div>
