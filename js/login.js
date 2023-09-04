@@ -72,7 +72,8 @@ function validatePassword(event) {
         confirmPasswordInput.setCustomValidity("Passwort stimmt nicht überein");
     } else {
         confirmPasswordInput.setCustomValidity("");
-        setUserInfo();
+        checkUserExist();
+        register();
     }
 
     confirmPasswordInput.addEventListener("input", function () {
@@ -81,8 +82,25 @@ function validatePassword(event) {
 }
 
 
+let users = [];
+
+
+async function loadUsers(){
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch(e){
+        console.error('Loading error:', e);
+    }
+}
+
+
+async function register() {
+    users.push(setUserInfo());
+    await setItem('users', JSON.stringify(users));
+}
+
+
 function setUserInfo() {
-    let key = 'userInfo' + usermail;
     let username = document.getElementById("signUpName").value;
     let usermail = document.getElementById("signUpEmail").value;
     let userpassword = document.getElementById("signUpPassword").value;
@@ -91,13 +109,30 @@ function setUserInfo() {
         email: usermail,
         password: userpassword
     };
-    setItem(key, JSON.stringify(userInfo));
+    return userInfo;
 }
 
 
-async function checkUserExist() {
+/* async function checkUserExist() {
+    let usermailInput = document.getElementById("signUpEmail");
+    let usermail = document.getElementById("signUpEmail").value;
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i].email;
+        if(usermail === user) {
+            usermailInput.setCustomValidity("Email already exist!");
+        }
+    }
+    usermailInput.addEventListener("input", function () {
+        usermailInput.setCustomValidity(""); // Zurücksetzen der benutzerdefinierten Validierungsnachricht bei Änderung
+    });
+} */
+
+/* async function checkUserExist() {
     let usermail = document.getElementById("signUpEmail").value;
     let userInfo = await getItem('userInfo' + usermail);
-    let userInfoMail = JSON.parse(userInfo.data.value).email;
+        
+    
 
+    let userInfoMail = JSON.parse(userInfo.data.value).email;
 }
+ */
