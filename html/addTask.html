@@ -21,31 +21,91 @@
     </script>
     <script src="../js/script.js"></script>
     <script src="../js/header.js"></script>
+    <script src="../js/addTask.js"></script>
 </head>
 <body onload="init()">
     <div w3-include-html="templates/header.html"></div>
     <div w3-include-html="templates/menu.html"></div>
-    <section class="addTask-section">
+
+    <form class="addTask-section" onsubmit=";return false">
       <h1>Add Task</h1>
       <div class="task-creation-container">
+
         <div class="task-content-box-left">
           <div class="input-container">
-            <span class="fs-20">Title</span>
-            <input id="input" type="text" placeholder="Enter a title">
+            <label for="input" class="input-headlines">Title</label>
+            <input required id="input" type="text" placeholder="Enter a title">
           </div>
+          
           <div class="input-container">   
-            <span class="fs-20">Description</span>
-            <textarea id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
+            <label for="textarea" class="input-headlines">Description</label>
+            <textarea required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
           </div>  
           <div class="input-container">
-            <span class="fs-20">Assigned To</span>
-            <select name="" id=""></select>
+            <label for="contacts" class="input-headlines">Assigned To</label>
+            <select name="" id="contacts" class="fs-20">
+              <option value="">Select contacts to assign</option>
+            </select>
           </div>
         </div>
+
         <div class="separator"></div>
-        <div class="task-content-box-right"></div>
+
+        <div class="task-content-box-right">
+          <div class="input-container">
+            <label for="date" class="input-headlines">Due date</label>
+            <div class="date-input">
+              <input required id="date" type="text" placeholder="dd/mm/yyyy">
+              <img class="calender" src="../img/calender_small.png" alt="calender">
+            </div>
+          </div>
+          <div class="input-container">
+            <span class="input-headlines">Prio</span>
+            <div class="priority">
+              <div class="priority-boxes bg-white" id="urgent" onclick="togglePriority('urgent')">
+                <span class="fs-20 priority-sublines">Urgent</span>
+                <img src="../img/urgent_red.png" alt="urgent" id="urgent-img">
+              </div>
+              <div class="priority-boxes bg-white" id="medium" onclick="togglePriority('medium')">
+                <span class="fs-20">Medium</span>
+                <img class="medium-img" src="../img/medium_yellow.png" alt="medium" id="medium-img">
+              </div>
+              <div class="priority-boxes bg-white" id="low" onclick="togglePriority('low')">
+                <span class="fs-20">Low</span>
+                <img src="../img/low_green.png" alt="low" id="low-img">
+              </div>
+            </div>
+          </div>
+
+          <div class="input-container mb-32">
+            <label for="task_category" class="input-headlines">Category</label>
+            <select class="fs-20" name="task_category" id="task_category">
+              <option class="bg" value="">Select task category</option>
+              <option value="technical_task">Technical Task</option>
+              <option value="user_story">User Story</option>
+            </select>
+          </div>
+          <div class="input-container">
+            <label for="subtask" class="input-headlines">Subtasks</label>
+            <div class="subtask-add">
+            <input type="text" placeholder="Add new subtask" id="subtask">
+            <img src="../img/add.png" alt="plus" class="add">
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
-    
+
+      <div class="form-buttons" >
+        <button class="clear-button">
+          <span class="fs-20">Clear</span>
+          <img src="../img/clear.png" alt="clear" class="clear">
+        </button>
+        <button class="create-button">
+          <span>Create Task</span>
+          <img src="../img/check.png" alt="">
+        </button>
+      </div>
+    </form>
+
 </body>
 </html>
