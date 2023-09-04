@@ -1,6 +1,12 @@
+body {
+    background-color: #F6F7F8 !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
 .addTask-section {
     margin-top: 206px;
     margin-left: 328px;
+    margin-bottom: 52px;
 }
 h1 {
     font-size: 61px !important;
@@ -12,16 +18,20 @@ h1 {
 }
 .task-content-box-left {
     width: 440px;
-    padding-right: 56px;
+    margin-right: 56px;
 }
 .input-container {
     display: flex;
     flex-direction: column;
 }
-.fs-20 {
+.input-headlines {
     font-size: 20px;
     margin-bottom: 4px;
 }
+.fs-20 {
+    font-size: 20px;
+}
+
 #input {
     padding: 12px 21px;
     border-radius: 10px;
@@ -33,6 +43,7 @@ h1 {
     color: #D1D1D1;
     font-size: 20px;
 }
+
 #textarea {
     padding: 18px 16px;
     border-radius: 10px;
@@ -40,12 +51,177 @@ h1 {
     outline: none;
     border: 1px solid #D1D1D1;
     margin-bottom: 28px;
+    resize: none;
+    background-image: url('../img/resize.png');
+    background-repeat: no-repeat;
+    background-position: right 4px bottom 4px;
+  
 }
 #textarea::placeholder {
     color: #D1D1D1;
     font-size: 20px;
 }
+
 .separator {
     height: 424px;
     border: 1px solid #D1D1D1;
+}
+.task-content-box-right {
+    width: 440px;
+    margin-left: 56px;
+}
+.date-input {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #D1D1D1;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 24px;
+}
+#date {
+    width: 144px;
+    border: 0;
+    outline: none;
+    height: 24px;
+}
+#date::placeholder {
+    color: #D1D1D1;
+    font-size: 20px;
+}
+.calender {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+.priority {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.priority-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    border-radius: 10px;
+    width: 136px;
+    cursor: pointer;
+}
+.bg-white {
+    background-color: white;
+}
+.bg-urgent {
+    background-color: #FF3D00;
+}
+.bg-medium {
+    background-color: #FFA800;
+}
+.bg-low {
+    background-color: #7AE229;
+}
+.priority-boxes:hover {
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+.medium-img {
+    margin-bottom: 4px;
+}
+select {
+    cursor: pointer;
+    padding: 12px 16px;
+    outline: none;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    appearance: none; 
+    -webkit-appearance: none;
+    background-image: url('../img/arrow_drop_down.png');
+    background-size: 8px; 
+    background-repeat: no-repeat;
+    background-position: right 20px center; 
+    transition: background-color 0.3s;
+}
+.mb-32 {
+    margin-bottom: 32px;
+}
+
+select option:first-child {
+    display: none;
+}
+#task_category option {
+    padding: 10px !important;
+}
+
+.subtask-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    cursor: pointer;
+}
+#subtask {
+    border: 0;
+    outline: none;
+    
+}
+#subtask::placeholder {
+    color: #D1D1D1;
+    font-size: 20px;
+}
+.add {
+    width: 14px;
+    height: 14px;
+}
+.add:hover {
+    background-color: #D9D9D9;
+    ;
+    border-radius: 20px;
+}
+.form-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 100px;
+    margin-left: 700px;
+}
+.clear-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid black;
+    gap: 4px;
+    cursor: pointer;
+    background-color: white;
+}
+.clear-button:hover {
+    border-color: #29ABE2;
+    color: #29ABE2;
+}
+.clear {
+    margin-top: 2px;
+}
+.create-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    border-radius: 10px;
+    padding: 12px 16px;
+    gap: 4px;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 0;
+}
+.create-button:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
