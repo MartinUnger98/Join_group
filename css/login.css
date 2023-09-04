@@ -14,8 +14,16 @@ body {
 
 input {
   border: none;
-  color: #D1D1D1;
+  
   outline: none;
+}
+
+::placeholder {
+  color: #D1D1D1;
+}
+
+.positionAbsolute {
+  position: absolute;
 }
 
 .curserPointer {
@@ -45,11 +53,7 @@ input {
 h1 {
   font-size: 61px !important;
   margin-block-end: 0;
-  margin: 32px 16px 16px 16px !important;
-}
-
-.h1WithBack {
-  margin: -48px 0px 16px 0px !important;
+  margin: 16px 16px 16px 16px !important;
 }
 
 ::placeholder {
@@ -57,7 +61,6 @@ h1 {
 }
 
 .logo {
-  position: absolute;
   animation-name: zoom;
   animation-duration: 1.3s;
   animation-timing-function: ease-in-out;
@@ -68,7 +71,6 @@ h1 {
 }
 
 .signUp {
-  position: absolute;
   top: 67px;
   right: 67px;
   gap: 35px;
@@ -88,6 +90,7 @@ h1 {
   width: 652px;
   box-shadow: 0px 0px 17px 5px rgba(0, 0, 0, 0.08);
   border-radius: 30px;
+  position: relative;
 }
 
 .widthLoginbox {
@@ -99,6 +102,7 @@ h1 {
   box-shadow: 0px 0px 17px 5px rgba(0, 0, 0, 0.08);
   border-radius: 30px;
   margin-top: 50px;
+  position: relative;
 }
 
 
@@ -121,10 +125,6 @@ h1 {
   height: 25px;
 }
 
-.rememberForgot {
-  width: 422px;
-}
-
 .btnRow {
   gap: 35px;
 }
@@ -139,9 +139,13 @@ h1 {
   border: none;
 }
 
+.btnDark:disabled, .btnDark:disabled:hover  {
+  background-color: gray;
+  color: black;
+}
+
 .btnDark:hover {
   background-color: #29ABE2;
-  
 }
 
 .btnLight {
@@ -162,7 +166,6 @@ h1 {
 }
 
 footer {
-  position: absolute;
   bottom: 0; 
 }
 
@@ -176,11 +179,13 @@ footer a:hover {
 }
 
 .backImg {
-  padding: 30px 0px 0px 32px;
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  gap: 8px;
+  top: 40px;
+  left: 40px;
+}
+
+.rememberForgot {
+  align-items: center;
+  width: 95%;
 }
 
 .backImg img:hover {
@@ -189,18 +194,13 @@ footer a:hover {
 }
 
 @keyframes zoom {
-  0% {
+  0%, 50% {
     height: var(--heightBig);
     width: var(--widthBig);
     left: calc(50vw - (var(--widthBig) / 2));
     top: calc(50vh - (var(--heightBig) / 2));
   }
-  50% {
-    height: var(--heightBig);
-    width: var(--widthBig);
-    left: calc(50vw - (var(--widthBig) / 2));
-    top: calc(50vh - (var(--heightBig) / 2));
-  }
+  
   100% {
     height: var(--heightSmall);
     width: var(--widthSmall);
@@ -221,18 +221,13 @@ footer a:hover {
   }
 
   @keyframes zoom {
-    0% {
+    0%, 50% {
       height: var(--heightBig);
       width: var(--widthBig);
       left: calc(50vw - (var(--widthBig) / 2));
       top: calc(50vh - (var(--heightBig) / 2));
     }
-    50% {
-      height: var(--heightBig);
-      width: var(--widthBig);
-      left: calc(50vw - (var(--widthBig) / 2));
-      top: calc(50vh - (var(--heightBig) / 2));
-    }
+    
     100% {
       height: var(--heightMobile);
       width: var(--widthMobile);
@@ -249,10 +244,12 @@ footer a:hover {
   }
 
   .loginBox {
-    margin-top: 64px;
+    margin-top: 80px;
   }
 
-  
+  .loginBoxWide {
+    width: 600px;
+  }
 }
 
 @media (max-width: 670px) {
@@ -260,8 +257,16 @@ footer a:hover {
     position: static;
   }
 
+  .m-32 {
+    margin-bottom: 16px;
+  }
+
   .loginBox, .loginBoxWide, .widthLoginbox {
     width: 440px;
+  }
+
+  .backImg {
+    left: 20px;
   }
 
 }
@@ -272,7 +277,21 @@ footer a:hover {
     position: static;
   }
 
-  .h1WithBack {
+  h1 {
+    font-size: 47px !important;
+    margin-top: 0px !important;
+  }
+
+  .btnDark, .btnLight {
+    font-size: 16px;
+  }
+
+  .btnRow, .signUp {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .h1 {
     font-size: 40px !important;
   }
 
@@ -284,16 +303,15 @@ footer a:hover {
     width: 95%;  
   }
 
-  .m-32 {
-    margin-bottom: 16px;
-  }
-
+ 
   .rememberForgot {
     flex-direction: column-reverse;
+    align-items: flex-start;
   }
 
   .backImg {
-    padding: 30px 0px 0px 10px;
+    left: 12px;
+    top: 15px;
   }
   
 }
