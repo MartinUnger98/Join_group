@@ -18,6 +18,11 @@ input {
   outline: none;
 }
 
+.widthFit {
+  width: fit-content;
+  height: fit-content;
+}
+
 ::placeholder {
   color: #D1D1D1;
 }
@@ -26,7 +31,7 @@ input {
   position: absolute;
 }
 
-.curserPointer {
+.cursorPointer {
   cursor: pointer;
 }
 
@@ -123,6 +128,18 @@ h1 {
 .imgBox {
   width: 25px;
   height: 25px;
+}
+
+#popup {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  
 }
 
 .btnRow {

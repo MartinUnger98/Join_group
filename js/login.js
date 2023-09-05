@@ -1,3 +1,7 @@
+let users = [];
+let popup = "";
+
+
 function loggedIn() {
     window.location.href = "summary.html";
 }
@@ -63,26 +67,24 @@ function resetPasswordView() {
 
 function validatePassword(event) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars (Seitenneuladen)
-
-    const password = document.getElementById("signUpPassword").value;
-    const confirmPassword = document.getElementById("signUpConfirmPassword").value;
-    const confirmPasswordInput = document.getElementById("signUpConfirmPassword");
-
+    let password = document.getElementById("signUpPassword").value;
+    let confirmPassword = document.getElementById("signUpConfirmPassword").value;
+    let confirmPasswordInput = document.getElementById("signUpConfirmPassword");
     if (password !== confirmPassword) {
-        confirmPasswordInput.setCustomValidity("Passwort stimmt nicht überein");
+        confirmPasswordInput.setCustomValidity("Passwords do not match");
     } else {
         confirmPasswordInput.setCustomValidity("");
-        checkUserExist();
-        register();
+        checkUserExistSignUp();
     }
-
-    confirmPasswordInput.addEventListener("input", function () {
-        confirmPasswordInput.setCustomValidity(""); // Zurücksetzen der benutzerdefinierten Validierungsnachricht bei Änderung
-    });
+    emptyCustomValidity(confirmPasswordInput);
 }
 
 
-let users = [];
+function emptyCustomValidity(input) {
+    input.addEventListener("input", function () {
+        input.setCustomValidity("");
+    });
+}
 
 
 async function loadUsers(){
@@ -113,26 +115,60 @@ function setUserInfo() {
 }
 
 
-/* async function checkUserExist() {
+async function checkUserExistSignUp() {
     let usermailInput = document.getElementById("signUpEmail");
-    let usermail = document.getElementById("signUpEmail").value;
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i].email;
-        if(usermail === user) {
-            usermailInput.setCustomValidity("Email already exist!");
-        }
+    let usermail = usermailInput.value;
+    let emailExists = users.some(user => user.email === usermail);
+    if (emailExists) {
+        usermailInput.setCustomValidity("Email already exists!");
+    } else {
+        usermailInput.setCustomValidity("");
+        popup = 'You Signed Up successfully';
+        await register();
+        showSuccessMessage();
     }
-    usermailInput.addEventListener("input", function () {
-        usermailInput.setCustomValidity(""); // Zurücksetzen der benutzerdefinierten Validierungsnachricht bei Änderung
-    });
-} */
-
-/* async function checkUserExist() {
-    let usermail = document.getElementById("signUpEmail").value;
-    let userInfo = await getItem('userInfo' + usermail);
-        
-    
-
-    let userInfoMail = JSON.parse(userInfo.data.value).email;
+    emptyCustomValidity(usermailInput);
 }
- */
+
+
+function userExistForgotPassword(event) {
+    event.preventDefault();
+    let usermailInput = document.getElementById("forgotPasswordEmail");
+    let usermail = usermailInput.value;
+    let emailExists = users.some(user => user.email === usermail);
+    if (!emailExists) {
+        usermailInput.setCustomValidity("Email doesn't exist");
+    } else {
+        popup = "An Email has been sent to you";
+        showSuccessMessage();
+    }
+    emptyCustomValidity(usermailInput);
+}
+
+
+function showSuccessMessage() {
+    let successDivContainer = document.createElement('div');
+    successDivContainer.id = 'popup';
+
+    let successDiv = document.createElement('div');
+    successDiv.textContent = popup;
+    successDiv.classList.add('btnDark');
+    successDiv.classList.add('widthFit');
+
+    successDivContainer.appendChild(successDiv);
+
+    document.body.appendChild(successDivContainer);
+    setTimeoutPopup(successDivContainer);
+}
+
+function setTimeoutPopup(successDivContainer) {
+    setTimeout(() => {
+        successDivContainer.remove();
+        if(popup === "An Email has been sent to you") {
+            resetPasswordView()
+        }
+        else{
+            backToLogin();            
+        }        
+    }, 1000);
+}
