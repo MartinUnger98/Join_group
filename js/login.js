@@ -1,9 +1,19 @@
 let users = [];
 let popup = "";
+let userPasswordChange = "";
 
+function loggedIn(user) {
+    if(user === 'guest'){
+        window.location.href = "summary.html";
+    }
+    else{
+        checkUserExist('logIn');
+    }
+}
 
-function loggedIn() {
-    window.location.href = "summary.html";
+function userLogin() {
+    
+    
 }
 
 
@@ -15,14 +25,9 @@ function backToLogin() {
 
 function changeCheckBox(id) {
     let box = document.getElementById(id);
-    if (box.getAttribute('src') === "../img/Check button.svg") {
-        box.src = "../img/checkButtenChecked.svg";
-        document.getElementById("signUpBtn").disabled = false;
-    }
-    else{
-        box.src = "../img/Check button.svg";
-        document.getElementById("signUpBtn").disabled = true;
-    }
+    let isChecked = box.getAttribute('src') === "../img/Check button.svg";
+    box.src = isChecked ? "../img/checkButtenChecked.svg" : "../img/Check button.svg";
+    document.getElementById("signUpBtn").disabled = !isChecked;
 }
 
 
@@ -65,18 +70,32 @@ function resetPasswordView() {
 }
 
 
-function validatePassword(event) {
-    event.preventDefault(); // Verhindert das Standardverhalten des Formulars (Seitenneuladen)
-    let password = document.getElementById("signUpPassword").value;
-    let confirmPassword = document.getElementById("signUpConfirmPassword").value;
-    let confirmPasswordInput = document.getElementById("signUpConfirmPassword");
+function validatePassword(view) {
+    let password = document.getElementById(view + "Password").value;
+    let confirmPassword = document.getElementById(view + "ConfirmPassword").value;
+    let confirmPasswordInput = document.getElementById(view + "ConfirmPassword");
+    passwordMatchOrNot(password, confirmPassword , confirmPasswordInput, view);
+    emptyCustomValidity(confirmPasswordInput);
+}
+
+
+function passwordMatchOrNot(password, confirmPassword , confirmPasswordInput, view) {
     if (password !== confirmPassword) {
         confirmPasswordInput.setCustomValidity("Passwords do not match");
     } else {
         confirmPasswordInput.setCustomValidity("");
-        checkUserExistSignUp();
+        validatePasswordPath(view);
     }
-    emptyCustomValidity(confirmPasswordInput);
+}
+
+
+function validatePasswordPath(view) {
+    if(view === "signUp") {
+        checkUserExist(view);
+    }
+    else {
+        resetPassword();
+    }
 }
 
 
@@ -115,34 +134,56 @@ function setUserInfo() {
 }
 
 
-async function checkUserExistSignUp() {
-    let usermailInput = document.getElementById("signUpEmail");
+function checkUserExist(view) {
+    let usermailInput = document.getElementById(view + "Email");
     let usermail = usermailInput.value;
     let emailExists = users.some(user => user.email === usermail);
-    if (emailExists) {
-        usermailInput.setCustomValidity("Email already exists!");
-    } else {
-        usermailInput.setCustomValidity("");
-        popup = 'You Signed Up successfully';
-        await register();
-        showSuccessMessage();
-    }
+    checkUserExistWhichView(emailExists, view, usermailInput, usermail);
     emptyCustomValidity(usermailInput);
 }
 
 
-function userExistForgotPassword(event) {
-    event.preventDefault();
-    let usermailInput = document.getElementById("forgotPasswordEmail");
-    let usermail = usermailInput.value;
-    let emailExists = users.some(user => user.email === usermail);
-    if (!emailExists) {
-        usermailInput.setCustomValidity("Email doesn't exist");
-    } else {
-        popup = "An Email has been sent to you";
+async function checkUserExistWhichView(emailExists, view, usermailInput, usermail) {
+    if (emailExists && view === "signUp") {
+        usermailInput.setCustomValidity("Email already exists!");
+    } 
+    else if(view === "signUp"){
+        popup = 'You Signed Up successfully';
+        await register();
         showSuccessMessage();
     }
-    emptyCustomValidity(usermailInput);
+    else if(!emailExists && (view === "forgotPassword" || view === "logIn")){     
+        usermailInput.setCustomValidity("Email doesn't exist");
+    }
+    else if(view === "forgotPassword"){
+        popup = "An Email has been sent to you";
+        userPasswordChange = usermail;
+        showSuccessMessage();
+    }
+    else {
+        checkEmailPasswordCompatibility(usermail);
+    }
+    
+}
+
+function checkEmailPasswordCompatibility(usermail) {
+    let logInPassword = document.getElementById("logInPassword").value;
+    for (let i = 0; i < users.length; i++) {
+        let user = users[i];
+        if(user === usermail) {
+            let userPassword = user.password
+            checkPassword(userPassword, logInPassword);
+        }
+    }
+}
+
+function checkPassword(userPassword, logInPassword) {
+    if (userPassword === logInPassword) {
+        window.location.href = "summary.html"
+    }
+    else {
+        //HIER WEITERMACHEN PASSWORD VALIDATION AUF PASSWORD IS FALSE
+    }
 }
 
 
@@ -171,4 +212,19 @@ function setTimeoutPopup(successDivContainer) {
             backToLogin();            
         }        
     }, 1000);
+}
+
+
+function resetPassword() {
+    let newPassword = document.getElementById("resetPassword").value;
+    for (let i = 0; i < users.length; i++) {
+        let user = users[i];
+        if(userPasswordChange === user.email) {
+            user.password = newPassword;
+            break;
+        }
+    }
+    setItem('users', JSON.stringify(users));
+    popup = "You reset your password";
+    showSuccessMessage();
 }

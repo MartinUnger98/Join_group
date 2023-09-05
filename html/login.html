@@ -30,11 +30,11 @@
     </header>
     <div class="loginBackground d-flex align-items-center flex-column gap-3">
       <div id="loginBox" class="loginBox showAfter2s">
-        <form class="d-flex justify-content-center align-items-center flex-column" action="../html/summary.html">
+        <form class="d-flex justify-content-center align-items-center flex-column" onsubmit="loggedIn('user'); return false;">
           <h1>Log In</h1>
           <div class="separator m-32"></div>
           <div class="inputFields m-32 d-flex justify-content-between align-items-center">
-            <input required type="email" placeholder="Email"/>
+            <input id="logInEmail" required type="email" placeholder="Email"/>
             <div class="imgBox d-flex justify-content-center align-items-center">
               <img src="../img/mail.svg" alt="">
             </div>          
@@ -56,7 +56,7 @@
           </div>
           <div class="btnRow d-flex m-32">
             <button class="btnDark">Log in</button>
-            <button onclick="loggedIn()" class="btnLight">Guest Log in</button>
+            <button onclick="loggedIn('guest')" class="btnLight">Guest Log in</button>
           </div>
         </form>
       </div>
