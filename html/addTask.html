@@ -23,7 +23,7 @@
     <script src="../js/header.js"></script>
     <script src="../js/addTask.js"></script>
 </head>
-<body onload="init()">
+<body onload="init(); loadDropdowns()">
     <div w3-include-html="templates/header.html"></div>
     <div w3-include-html="templates/menu.html"></div>
 
@@ -42,10 +42,12 @@
             <textarea required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
           </div>  
           <div class="input-container">
-            <label for="contacts" class="input-headlines">Assigned To</label>
-            <select name="" id="contacts" class="fs-20">
-              <option value="">Select contacts to assign</option>
-            </select>
+           <span class="input-headlines">Assigned to</span>
+            <div class="select-btn" id="assignTo" onclick="toggleDropdown('contact')">
+              <span class="fs-20">Select contacts to assign</span>
+              <img src="../img/arrow_drop_down.png" alt="arrow_drop_down" id="drop_1">
+            </div>
+            <div class="assign-content" id="contacts"></div>
           </div>
         </div>
 
@@ -77,19 +79,27 @@
             </div>
           </div>
 
-          <div class="input-container mb-32">
-            <label for="task_category" class="input-headlines">Category</label>
-            <select class="fs-20" name="task_category" id="task_category">
-              <option class="bg" value="">Select task category</option>
-              <option value="technical_task">Technical Task</option>
-              <option value="user_story">User Story</option>
-            </select>
+          <div class="input-container">
+            <span class="input-headlines">Categories</span>
+            <div class="select-btn" id="select" onclick="toggleDropdown('category')">
+              <span class="fs-20">Select Task Category</span>
+              <img src="../img/arrow_drop_down.png" alt="arrow_drop_down" id="drop_2">
+            </div>
+            <div class="category-content" id="content">
+              <ul class="options" id="options"></ul>
+            </div>
           </div>
+
           <div class="input-container">
             <label for="subtask" class="input-headlines">Subtasks</label>
-            <div class="subtask-add">
+            <div class="subtask-add" onclick="openNewSubtask()" id="subtask-creator">
             <input type="text" placeholder="Add new subtask" id="subtask">
-            <img src="../img/add.png" alt="plus" class="add">
+            <div id="new-subtask-field">
+              <img src="../img/add.png" alt="plus" class="add">
+            </div>
+            </div>
+            <div>
+              <ul id="subtask-content"></ul>
             </div>
           </div>
         </div>
@@ -106,6 +116,6 @@
         </button>
       </div>
     </form>
-
+   
 </body>
 </html>
