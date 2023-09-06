@@ -6,7 +6,6 @@ function loadDropdowns() {
 }
 
 
-
 function togglePriority(priority) {
     let urgent = document.getElementById('urgent');
     let medium = document.getElementById('medium');
@@ -14,6 +13,11 @@ function togglePriority(priority) {
     let urgentImg = document.getElementById('urgent-img');
     let mediumImg = document.getElementById('medium-img');
     let lowImg = document.getElementById('low-img');
+    toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg);
+}
+
+
+function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (priority === 'urgent') {
         toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg);   
     } else if (priority === 'medium') {
@@ -22,6 +26,7 @@ function togglePriority(priority) {
         toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg);
     }
 }
+
 
 function toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (urgent.classList.contains('bg-white')) {
@@ -37,6 +42,7 @@ function toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
+
 function toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (medium.classList.contains('bg-white')) {
         switchMedium(medium, mediumImg);
@@ -50,6 +56,7 @@ function toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg) {
         switchLowBack(low, lowImg);
     }
 }
+
 
 function toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (low.classList.contains('bg-white')) {
@@ -65,11 +72,13 @@ function toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
+
 function switchUrgent(urgent, urgentImg) {
     urgent.classList.remove('bg-white');
     urgent.classList.add('bg-urgent');
     urgentImg.src = '../img/urgent_white.png';
 }
+
 
 function switchUrgentBack(urgent,urgentImg) {
     urgent.classList.remove('bg-urgent');
@@ -77,11 +86,13 @@ function switchUrgentBack(urgent,urgentImg) {
     urgentImg.src = '../img/urgent_red.png';
 }
 
+
 function switchMedium(medium, mediumImg) {
     medium.classList.remove('bg-white');
     medium.classList.add('bg-medium');
     mediumImg.src = '../img/medium_white.png';
 }
+
 
 function switchMediumBack(medium, mediumImg) {
     medium.classList.remove('bg-medium');
@@ -89,11 +100,13 @@ function switchMediumBack(medium, mediumImg) {
     mediumImg.src = '../img/medium_yellow.png';
 }
 
+
 function switchLow(low, lowImg) {
     low.classList.remove('bg-white');
     low.classList.add('bg-low');
     lowImg.src = '../img/low_white.png';
 }
+
 
 function switchLowBack(low, lowImg) {
     low.classList.remove('bg-low');
@@ -101,18 +114,39 @@ function switchLowBack(low, lowImg) {
     lowImg.src = '../img/low_green.png';
 }
 
+
 function toggleDropdown(dropDown) {
-    let content = document.getElementById('content');
+    let category = document.getElementById('content');
     let assign = document.getElementById('contacts');
+    let borderContact = document.getElementById('contact_dropdown');
+    let borderCategory = document.getElementById('select');
+    showDropdowns(dropDown, category, assign, borderContact, borderCategory);
+}
+
+
+function showDropdowns(dropDown, category, assign, borderContact, borderCategory) {
     if(dropDown == 'contact') {
-        assign.classList.toggle('active');
+        toggleStatusAndBorderOfContact(assign, borderContact);
         switchDropDownArrow(dropDown);
     }
     if (dropDown == 'category') {
-        content.classList.toggle('active');
+        toggleStatusAndBorderOfCategory(category,borderCategory);
         switchDropDownArrow(dropDown);
     }  
 }
+
+
+function toggleStatusAndBorderOfContact(assign, borderContact) {
+    assign.classList.toggle('active');
+    borderContact.classList.toggle('border-color');
+}
+
+
+function toggleStatusAndBorderOfCategory(category,borderCategory) {
+    category.classList.toggle('active');
+    borderCategory.classList.toggle('border-color');
+}
+
 
 function switchDropDownArrow(dropDown) {
     let imgContact = document.getElementById('drop_1')
@@ -124,6 +158,16 @@ function switchDropDownArrow(dropDown) {
         imgCategory.classList.toggle('switch');
     }
 }
+
+
+function updateName(selectedLi) {
+    let select = document.getElementById('select');
+    let content = document.getElementById('content');
+    select.firstElementChild.innerText = selectedLi.innerText;
+    content.classList.remove('active');
+    addCategory(selectedLi.innerText);
+}
+
 
 function addCategory(selectedCategory) {
     let option = document.getElementById('options');
@@ -137,61 +181,76 @@ function addCategory(selectedCategory) {
     }
 }
 
-function updateName(selectedLi) {
-    let select = document.getElementById('select');
-    let content = document.getElementById('content');
-    let img = document.getElementById('drop');
-    select.firstElementChild.innerText = selectedLi.innerText;
-    content.classList.remove('active');
-    addCategory(selectedLi.innerText);
-}
 
-
-function openNewSubtask() {
+function openNewSubtask(subtaskContainerID) {
     let newField = document.getElementById('new-subtask-field');
     newField.innerHTML = '';
-    newField.innerHTML += /*html*/ `
-        <div class="newfield" id="newfield">
-            <div class="subtask-buttons" onclick="deleteInputValue()">
-                <img src="../img/clear.png" alt="clear">
-            </div>
-            <span class="mini-separator">|</span>
-            <div class="subtask-buttons" onclick="addSubtask()">
-                <img src="../img/check_darkblue.png" alt="check">
-            </div>
-        </div>    
-    `;
-    let input = document.getElementById('subtask-creator');
-    input.classList.add('border-color');
+    newField.innerHTML += showNewSubtask(subtaskContainerID);
+    document.getElementById('subtask').value = '';
+    addBorderColor(subtaskContainerID);
 }
 
-function deleteInputValue() {
-    let text = document.getElementById('subtask');
-    text.value = '';
- 
+
+function addBorderColor(border) {
+    let borderColor = document.getElementById(`${border}`);
+    borderColor.classList.add('border-color');
 }
+
+
+function deleteInput(subtaskContainerID) {
+    let oldSubtask = document.getElementById('new-subtask-field');
+    oldSubtask.innerHTML = '';
+    oldSubtask.innerHTML += /*html*/ `
+        <img src="../img/add.png" alt="plus" class="add" onclick="openNewSubtask('${subtaskContainerID}')">
+    `;
+    document.getElementById('subtask').value = '';
+    removeBorderColor(subtaskContainerID);
+}
+
+
+function removeBorderColor(border) {
+    let borderColor = document.getElementById(`${border}`);
+    borderColor.classList.remove('border-color');
+}
+
+// Eventlistener
+document.addEventListener('click', function(event) {
+    const dateContainer = document.getElementById('date_container');
+    if (event.target !== dateContainer && !dateContainer.contains(event.target)) {
+        removeBorderColor('date_container');
+    }
+});
+
 
 let subtaskcounter = 0;
 
-function addSubtask() {
+function addSubtask(subtaskContainerID) {
     let content = document.getElementById('subtask-content');
     let input = document.getElementById('subtask').value;
+    let subtaskID = `subtask-${subtaskcounter}`;
     if (input.length > 0) {
-        let subtaskID = `subtask-${subtaskcounter}`
-        content.innerHTML += /*html*/ `
-        <div id="${subtaskID}" class="added_subtask">
-            <li>${input}</li>
-            <div class="hidden">
-                <img src="../img/edit.png" alt="edit" onclick="">
-                <span class="mini_separator_2">|</span>
-                <img src="../img/delete_subtask.png" alt="delete" onclick="deleteSubtask('${subtaskID}')">
-            </div>
-        </div>
-    `;
-    subtaskcounter++;
+        content.innerHTML += showAddedSubtasks(subtaskID, input);
+        subtaskcounter++;
     }
     document.getElementById('subtask').value = '';
+    deleteInput(subtaskContainerID);
 }
+
+
+function openInputForEdit(subtask, input) {
+    let content = document.getElementById(`${subtask}`);
+    content.innerHTML = '';
+    content.innerHTML += showInputEditor(subtask, input);
+}
+
+
+function updateInputValue(subtask, input) {
+    const content = document.getElementById(`${subtask}`);
+    const newValue = document.getElementById(`${input}`).value;
+    content.innerHTML = '';
+    content.innerHTML += showUpdatedInputValue(newValue, subtask);
+}
+
 
 function deleteSubtask(subtaskID) {
     let subtaskElement = document.getElementById(subtaskID);
@@ -199,3 +258,14 @@ function deleteSubtask(subtaskID) {
         subtaskElement.remove();
     }
 }
+
+
+function setDate() {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+    const year = currentDate.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+    document.getElementById('date').value = formattedDate;
+}
+

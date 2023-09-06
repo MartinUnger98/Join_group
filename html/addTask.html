@@ -21,7 +21,8 @@
     </script>
     <script src="../js/script.js"></script>
     <script src="../js/header.js"></script>
-    <script src="../js/addTask.js"></script>
+    <script src="../js/addTask/addTask-templates.js"></script>
+    <script src="../js/addTask/addTask.js"></script>
 </head>
 <body onload="init(); loadDropdowns()">
     <div w3-include-html="templates/header.html"></div>
@@ -34,20 +35,36 @@
         <div class="task-content-box-left">
           <div class="input-container">
             <label for="input" class="input-headlines">Title</label>
-            <input required id="input" type="text" placeholder="Enter a title">
+            <input class="fs-20" required id="input" type="text" placeholder="Enter a title">
           </div>
           
           <div class="input-container">   
             <label for="textarea" class="input-headlines">Description</label>
-            <textarea required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
+            <textarea class="fs-20" required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
           </div>  
           <div class="input-container">
            <span class="input-headlines">Assigned to</span>
-            <div class="select-btn" id="assignTo" onclick="toggleDropdown('contact')">
+            <div class="select-btn" onclick="toggleDropdown('contact')" id="contact_dropdown">
               <span class="fs-20">Select contacts to assign</span>
               <img src="../img/arrow_drop_down.png" alt="arrow_drop_down" id="drop_1">
             </div>
-            <div class="assign-content" id="contacts"></div>
+            <div class="assign-content" id="contacts">
+              <div id="contact_content" class="contacts-box d-flex flex-column">
+                <span>Test</span>
+                <span>Test</span>
+                <span>Test</span>
+                <span>Test</span>
+                <span>Test</span>
+                <span>Test</span>
+                <span>Test</span>
+                <span>Test</span>
+                <span>Test</span>
+              </div>
+              <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3">
+                <span class="text-white fw-semibold">Add new contact</span>
+                <img src="../img/person_add.png" alt="">
+              </div>
+            </div>
           </div>
         </div>
 
@@ -56,9 +73,9 @@
         <div class="task-content-box-right">
           <div class="input-container">
             <label for="date" class="input-headlines">Due date</label>
-            <div class="date-input">
-              <input required id="date" type="text" placeholder="dd/mm/yyyy">
-              <img class="calender" src="../img/calender_small.png" alt="calender">
+            <div class="date-input" id="date_container" onclick="addBorderColor('date_container')">
+              <input required class="fs-20" id="date" type="text" placeholder="dd/mm/yyyy">
+              <img class="calender" src="../img/calender_small.png" alt="calender" onclick="setDate()">
             </div>
           </div>
           <div class="input-container">
@@ -92,24 +109,27 @@
 
           <div class="input-container">
             <label for="subtask" class="input-headlines">Subtasks</label>
-            <div class="subtask-add" onclick="openNewSubtask()" id="subtask-creator">
-            <input type="text" placeholder="Add new subtask" id="subtask">
-            <div id="new-subtask-field">
-              <img src="../img/add.png" alt="plus" class="add">
-            </div>
+            <div class="subtask-add" id="subtask-creator">
+              <input class="fs-20" type="text" placeholder="Add new subtask" id="subtask" onclick="openNewSubtask('subtask-creator')">
+              <div id="new-subtask-field">
+                <img src="../img/add.png" alt="plus" class="add" onclick="openNewSubtask('subtask-creator')">
+              </div>
             </div>
             <div>
               <ul id="subtask-content"></ul>
             </div>
           </div>
+
         </div>
       </div>
 
       <div class="form-buttons" >
-        <button class="clear-button">
+        <div class="clear-button">
           <span class="fs-20">Clear</span>
-          <img src="../img/clear.png" alt="clear" class="clear">
-        </button>
+          <svg class="clear" width="13" height="14" viewBox="0 0 13 14"  xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
         <button class="create-button">
           <span>Create Task</span>
           <img src="../img/check.png" alt="">
