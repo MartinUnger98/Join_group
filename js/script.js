@@ -1,5 +1,24 @@
+let users = [];
+
+
+
+
 async function init() {
     await includeHTML();
+    await loadUsers();
+}
+
+
+/**
+ * users being loaded form the server
+ * 
+ */
+async function loadUsers(){
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch(e){
+        console.error('Loading error:', e);
+    }
 }
 
 async function includeHTML() {

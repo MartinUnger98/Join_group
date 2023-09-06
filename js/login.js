@@ -1,4 +1,3 @@
-let users = [];
 let popup = "";
 let userPasswordChange = "";
 
@@ -139,19 +138,6 @@ function emptyCustomValidity(input) {
     input.addEventListener("input", function () {
         input.setCustomValidity("");
     });
-}
-
-
-/**
- * users being loaded form the server
- * 
- */
-async function loadUsers(){
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch(e){
-        console.error('Loading error:', e);
-    }
 }
 
 
