@@ -2,35 +2,46 @@ let users = [];
 let popup = "";
 let userPasswordChange = "";
 
+/**
+ * this is where it is checked whether a user or a guest wants to log in.
+ * 
+ * @param {string} user - it specifies either 'user' or 'guest' to determine who wants to log in
+ */
 function loggedIn(user) {
-    if(user === 'guest'){
-        window.location.href = "summary.html";
-    }
-    else{
-        checkUserExist('logIn');
-    }
-}
-
-function userLogin() {
-    
-    
+    user === 'guest' ? window.location.href = "summary.html" : checkUserExist('logIn');
 }
 
 
+/**
+ * it navigates back to the homepage
+ * 
+ */
 function backToLogin() {
     window.location.href = "login.html";
-    document.getElementById("signUp").classList.remove("d-none");
 }
 
 
+/**
+ * the image of the checkbox is being changed here 
+ * 
+ * @param {string} id - the ID of the image box that needs to be changed 
+ */
 function changeCheckBox(id) {
     let box = document.getElementById(id);
     let isChecked = box.getAttribute('src') === "../img/Check button.svg";
     box.src = isChecked ? "../img/checkButtenChecked.svg" : "../img/Check button.svg";
-    document.getElementById("signUpBtn").disabled = !isChecked;
+    if(id === "checkSignUp"){
+        document.getElementById("signUpBtn").disabled = !isChecked;
+    }
 }
 
 
+/**
+ * the image of the input field is being changed, and the type of input is being changed to either "text" or "password
+ * 
+ * @param {string} idImg - the ID of the image that is going to be changed
+ * @param {string} idInput - the ID of the input that is going to be changed
+ */
 function changeInputPasswordToTxt(idImg, idInput) {
     let imgBox = document.getElementById(idImg);
     let inputBox = document.getElementById(idInput);
@@ -50,12 +61,20 @@ function changeInputPasswordToTxt(idImg, idInput) {
 }
 
 
+/**
+ * the view is going to be changed to the Sign Up perspective
+ * 
+ */
 function signUp() {
     document.getElementById("signUp").classList.add("d-none");
     document.getElementById("loginBox").innerHTML = signUpTemplate();
 }
 
 
+/**
+ * the view is going to be changed to the Forgot Password perspective
+ * 
+ */
 function forgotPasswordView() {
     let loginBox = document.getElementById("loginBox");
     document.getElementById("signUp").classList.add("d-none");
@@ -65,11 +84,20 @@ function forgotPasswordView() {
 }
 
 
+/**
+ * the view is going to be changed to the Reset Password perspective
+ * 
+ */
 function resetPasswordView() {
     document.getElementById("loginBox").innerHTML = resetPasswordTemplate();
 }
 
 
+/**
+ * variables are created here to further check the inserted passwords if they match or not 
+ * 
+ * @param {string} view - the current view 
+ */
 function validatePassword(view) {
     let password = document.getElementById(view + "Password").value;
     let confirmPassword = document.getElementById(view + "ConfirmPassword").value;
@@ -79,26 +107,34 @@ function validatePassword(view) {
 }
 
 
+/**
+ * here it is checked whether the entered passwords match or not
+ * 
+ * @param {string} password - value of password which was inserted
+ * @param {string} confirmPassword - value of confirm password which was inserted
+ * @param {object} confirmPasswordInput - input field of the confirm password which was inserted
+ * @param {string} view - the current view 
+ */
 function passwordMatchOrNot(password, confirmPassword , confirmPasswordInput, view) {
-    if (password !== confirmPassword) {
-        confirmPasswordInput.setCustomValidity("Passwords do not match");
-    } else {
-        confirmPasswordInput.setCustomValidity("");
-        validatePasswordPath(view);
-    }
+    password !== confirmPassword ? confirmPasswordInput.setCustomValidity("Passwords do not match") : validatePasswordPath(view);
 }
 
 
+/**
+ * decides the path to take depending on the view
+ * 
+ * @param {string} view - the current view
+ */
 function validatePasswordPath(view) {
-    if(view === "signUp") {
-        checkUserExist(view);
-    }
-    else {
-        resetPassword();
-    }
+    view === "signUp" ? checkUserExist(view) : resetPassword();
 }
 
 
+/**
+ * resets the custum validity to empty
+ * 
+ * @param {object} input - the objekt where the custum validity is going to be cleared
+ */
 function emptyCustomValidity(input) {
     input.addEventListener("input", function () {
         input.setCustomValidity("");
@@ -106,6 +142,10 @@ function emptyCustomValidity(input) {
 }
 
 
+/**
+ * users being loaded form the server
+ * 
+ */
 async function loadUsers(){
     try {
         users = JSON.parse(await getItem('users'));
@@ -115,12 +155,21 @@ async function loadUsers(){
 }
 
 
+/**
+ * a new user is going to be registered
+ * 
+ */
 async function register() {
     users.push(setUserInfo());
     await setItem('users', JSON.stringify(users));
 }
 
 
+/**
+ * user infos are going to be collected and saved in an JSON-Object
+ * 
+ * @returns the user info which is going to be registered
+ */
 function setUserInfo() {
     let username = document.getElementById("signUpName").value;
     let usermail = document.getElementById("signUpEmail").value;
@@ -134,6 +183,11 @@ function setUserInfo() {
 }
 
 
+/**
+ * variables are created here to check the existence from the inserted user
+ * 
+ * @param {string} view - the current view 
+ */
 function checkUserExist(view) {
     let usermailInput = document.getElementById(view + "Email");
     let usermail = usermailInput.value;
@@ -142,7 +196,14 @@ function checkUserExist(view) {
     emptyCustomValidity(usermailInput);
 }
 
-
+/**
+ * checks with path i
+ * 
+ * @param {boolean} emailExists - email exist or not 
+ * @param {string} view - the cirrent view
+ * @param {object} usermailInput - input field of the email which was inserted
+ * @param {string} usermail - value of the email which was inserted
+ */
 async function checkUserExistWhichView(emailExists, view, usermailInput, usermail) {
     if (emailExists && view === "signUp") {
         usermailInput.setCustomValidity("Email already exists!");
@@ -193,15 +254,12 @@ function checkPassword(userPassword, logInPassword) {
 function showSuccessMessage() {
     let successDivContainer = document.createElement('div');
     successDivContainer.id = 'popup';
-
     let successDiv = document.createElement('div');
     successDiv.textContent = popup;
     successDiv.classList.add('btnDark');
     successDiv.classList.add('widthFit');
     successDiv.classList.add('popupAnimation');
-
     successDivContainer.appendChild(successDiv);
-
     document.body.appendChild(successDivContainer);
     setTimeoutPopup(successDivContainer);
 }
@@ -209,12 +267,7 @@ function showSuccessMessage() {
 function setTimeoutPopup(successDivContainer) {
     setTimeout(() => {
         successDivContainer.remove();
-        if(popup === "An Email has been sent to you") {
-            resetPasswordView()
-        }
-        else{
-            backToLogin();            
-        }        
+        popup === "An Email has been sent to you" ? resetPasswordView() : backToLogin();        
     }, 1000);
 }
 
