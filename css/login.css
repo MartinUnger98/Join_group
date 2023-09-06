@@ -5,6 +5,7 @@
   --widthBig: 274px;
   --widthSmall: 100.03px;
   --widthMobile: 64px; 
+  --heightPopup: 55px;
 }
 
 body {
@@ -20,7 +21,7 @@ input {
 
 .widthFit {
   width: fit-content;
-  height: fit-content;
+  height: var(--heightPopup) ;
 }
 
 ::placeholder {
@@ -139,7 +140,14 @@ h1 {
   justify-content: center;
   align-items: center;
   background: rgba(0,0,0,0.5);
-  
+}
+
+.popupAnimation {
+  position: fixed;
+  animation-name: popup;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  pointer-events: none;
 }
 
 .btnRow {
@@ -230,6 +238,17 @@ footer a:hover {
   to {
     visibility: visible;
   }
+}
+
+@keyframes popup {
+  0% {
+    bottom: 0;
+  }
+  
+  100% {
+    bottom: calc(50vh - (var(--heightPopup) / 2));
+  }
+  
 }
 
 @media (max-width: 1030px) {

@@ -170,7 +170,7 @@ function checkEmailPasswordCompatibility(usermail) {
     let logInPassword = document.getElementById("logInPassword").value;
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
-        if(user === usermail) {
+        if(user.email === usermail) {
             let userPassword = user.password
             checkPassword(userPassword, logInPassword);
         }
@@ -182,8 +182,11 @@ function checkPassword(userPassword, logInPassword) {
         window.location.href = "summary.html"
     }
     else {
-        //HIER WEITERMACHEN PASSWORD VALIDATION AUF PASSWORD IS FALSE
+        let logInPasswordInput = document.getElementById("logInPassword");
+        logInPasswordInput.setCustomValidity("Wrong password Ups! Try again.");
+        emptyCustomValidity(logInPasswordInput);
     }
+    
 }
 
 
@@ -195,6 +198,7 @@ function showSuccessMessage() {
     successDiv.textContent = popup;
     successDiv.classList.add('btnDark');
     successDiv.classList.add('widthFit');
+    successDiv.classList.add('popupAnimation');
 
     successDivContainer.appendChild(successDiv);
 
