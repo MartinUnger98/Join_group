@@ -17,3 +17,14 @@ async function getItem(key) {
         } throw `No users found. Please Sign Up or Guest Login".`;
     });
 }
+
+function clearUsers() {
+    users = []; 
+    setItem('users', JSON.stringify(users))
+        .then(() => {
+            console.log('Users data cleared successfully.');
+        })
+        .catch(error => {
+            console.error('Error clearing users data:', error);
+        });
+}

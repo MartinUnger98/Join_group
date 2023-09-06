@@ -26,15 +26,15 @@
   </head>
   <body onload="loadUsers()">
     <header>
-      <img onclick="backToLogin()" class="logo curserPointer positionAbsolute" id="animatedImage" src="../img/join_logo.png" alt="Bild"/>  
+      <img onclick="backToLogin()" class="logo cursorPointer positionAbsolute" id="animatedImage" src="../img/join_logo.png" alt="Bild"/>  
     </header>
     <div class="loginBackground d-flex align-items-center flex-column gap-3">
       <div id="loginBox" class="loginBox showAfter2s">
-        <form class="d-flex justify-content-center align-items-center flex-column" action="../html/summary.html">
+        <form class="d-flex justify-content-center align-items-center flex-column" onsubmit="loggedIn('user'); return false;">
           <h1>Log In</h1>
           <div class="separator m-32"></div>
           <div class="inputFields m-32 d-flex justify-content-between align-items-center">
-            <input required type="email" placeholder="Email"/>
+            <input id="logInEmail" required type="email" placeholder="Email"/>
             <div class="imgBox d-flex justify-content-center align-items-center">
               <img src="../img/mail.svg" alt="">
             </div>          
@@ -42,21 +42,21 @@
           <div class="inputFields m-32 d-flex justify-content-between align-items-center">
             <input id="logInPassword" required type="password" placeholder="Password"/>
             <div class="imgBox d-flex justify-content-center align-items-center">
-              <img id="logInPasswordImg" class="curserPointer" onclick="changeInputPasswordToTxt('logInPasswordImg', 'logInPassword')" src="../img/lock.svg" alt="">
+              <img id="logInPasswordImg" class="cursorPointer" onclick="changeInputPasswordToTxt('logInPasswordImg', 'logInPassword')" src="../img/lock.svg" alt="">
             </div>
           </div>
           <div class="rememberForgot m-32 d-flex justify-content-evenly">
             <div class="d-flex gap-3">
               <div class="imgBox">
-                <img id="checkLogIn" onclick="changeCheckBox('checkLogIn')" class="curserPointer" src="../img/Check button.svg" alt="">
+                <img id="checkLogIn" onclick="changeCheckBox('checkLogIn')" class="cursorPointer" src="../img/Check button.svg" alt="">
               </div>            
               <span>Remember me</span>
             </div>          
-            <span onclick="forgotPasswordView()" class="blueFont curserPointer">I forgot my password</span>
+            <span onclick="forgotPasswordView()" class="blueFont cursorPointer">I forgot my password</span>
           </div>
           <div class="btnRow d-flex m-32">
-            <button class="btnDark">Log in</button>
-            <button onclick="loggedIn()" class="btnLight">Guest Log in</button>
+            <button type="submit" class="btnDark">Log in</button>
+            <button onclick="loggedIn('guest')" class="btnLight">Guest Log in</button>
           </div>
         </form>
       </div>
@@ -69,6 +69,5 @@
         <a href="">Legal notice</a>
       </footer>
     </div>
-    
   </body>
 </html>
