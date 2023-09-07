@@ -115,7 +115,13 @@ function validatePassword(view) {
  * @param {string} view - the current view 
  */
 function passwordMatchOrNot(password, confirmPassword , confirmPasswordInput, view) {
-    password !== confirmPassword ? confirmPasswordInput.setCustomValidity("Passwords do not match") : validatePasswordPath(view);
+    if(password !== confirmPassword){
+        confirmPasswordInput.setCustomValidity("Passwords do not match");
+        confirmPasswordInput.reportValidity();
+    }
+    else{
+        validatePasswordPath(view);
+    } 
 }
 
 
@@ -137,6 +143,7 @@ function validatePasswordPath(view) {
 function emptyCustomValidity(input) {
     input.addEventListener("input", function () {
         input.setCustomValidity("");
+        input.reportValidity();
     });
 }
 
@@ -193,6 +200,7 @@ function checkUserExist(view) {
 async function checkUserExistWhichView(emailExists, view, usermailInput, usermail) {
     if (emailExists && view === "signUp") {
         usermailInput.setCustomValidity("Email already exists!");
+        usermailInput.reportValidity();
     } 
     else if(view === "signUp"){
         popup = 'You Signed Up successfully';
@@ -201,6 +209,7 @@ async function checkUserExistWhichView(emailExists, view, usermailInput, usermai
     }
     else if(!emailExists && (view === "forgotPassword" || view === "logIn")){     
         usermailInput.setCustomValidity("Email doesn't exist");
+        usermailInput.reportValidity();
     }
     else if(view === "forgotPassword"){
         popup = "An Email has been sent to you";
@@ -244,6 +253,7 @@ function checkPassword(userPassword, logInPassword) {
     else {
         let logInPasswordInput = document.getElementById("logInPassword");
         logInPasswordInput.setCustomValidity("Wrong password Ups! Try again.");
+        logInPasswordInput.reportValidity();
         emptyCustomValidity(logInPasswordInput);
     }
     
