@@ -183,10 +183,10 @@ function checkUserExist(view) {
 }
 
 /**
- * checks with path i
+ * variables are checked and then it is decided which other functions are to be executed 
  * 
  * @param {boolean} emailExists - email exist or not 
- * @param {string} view - the cirrent view
+ * @param {string} view - the current view
  * @param {object} usermailInput - input field of the email which was inserted
  * @param {string} usermail - value of the email which was inserted
  */
@@ -208,12 +208,18 @@ async function checkUserExistWhichView(emailExists, view, usermailInput, usermai
         showSuccessMessage();
     }
     else {
-        checkEmailPasswordCompatibility(usermail);
+        checkEmailExistence(usermail);
     }
     
 }
 
-function checkEmailPasswordCompatibility(usermail) {
+
+/**
+ * checks if the mail which was inserted is created
+ * 
+ * @param {string} usermail - value of the email which was inserted
+ */
+function checkEmailExistence(usermail) {
     let logInPassword = document.getElementById("logInPassword").value;
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
@@ -224,6 +230,13 @@ function checkEmailPasswordCompatibility(usermail) {
     }
 }
 
+
+/**
+ * checks if booth passwords are the same
+ * 
+ * @param {string} userPassword - password form server to the inserted email
+ * @param {string} logInPassword - password which was inserted
+ */
 function checkPassword(userPassword, logInPassword) {
     if (userPassword === logInPassword) {
         window.location.href = "summary.html"
@@ -237,6 +250,10 @@ function checkPassword(userPassword, logInPassword) {
 }
 
 
+/**
+ * creates a popup message
+ * 
+ */
 function showSuccessMessage() {
     let successDivContainer = document.createElement('div');
     successDivContainer.id = 'popup';
@@ -250,6 +267,12 @@ function showSuccessMessage() {
     setTimeoutPopup(successDivContainer);
 }
 
+
+/**
+ * delete the popup and continues to the next page
+ *  
+ * @param {object} successDivContainer 
+ */
 function setTimeoutPopup(successDivContainer) {
     setTimeout(() => {
         successDivContainer.remove();
@@ -258,6 +281,10 @@ function setTimeoutPopup(successDivContainer) {
 }
 
 
+/**
+ * changes the user password to a new value which was inserted
+ * 
+ */
 function resetPassword() {
     let newPassword = document.getElementById("resetPassword").value;
     for (let i = 0; i < users.length; i++) {

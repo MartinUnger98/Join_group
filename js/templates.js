@@ -1,3 +1,8 @@
+/**
+ * html code for sign up view
+ * 
+ * @returns html code for sign up view
+ */
 function signUpTemplate() {
     return /*html*/ `
     <div class="backImg positionAbsolute">
@@ -44,6 +49,11 @@ function signUpTemplate() {
 }
 
 
+/**
+ * html code for forgot password view
+ * 
+ * @returns html code for forgot password view
+ */
 function forgotPasswordTemplate() {
     return /*html*/ `
     <div class="backImg positionAbsolute">
@@ -64,7 +74,11 @@ function forgotPasswordTemplate() {
     `;
 }
 
-
+/**
+ * html code for reset password view
+ * 
+ * @returns html code for reset password view
+ */
 function resetPasswordTemplate() {
     return /*html*/ `
     <div class="backImg positionAbsolute">
