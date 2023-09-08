@@ -1,11 +1,17 @@
 let categories = ['Technical Task', 'User Story']
 let user = [];
 
+/**
+ * This functions loads the category options at the beginning
+ */
 function loadDropdowns() {
     addCategory();
 }
 
-
+/**
+ *  This function creates vars for elements and and executes the toggle-function
+ * @param {*} priority - contains ID of the respective priority box
+ */
 function togglePriority(priority) {
     let urgent = document.getElementById('urgent');
     let medium = document.getElementById('medium');
@@ -16,18 +22,33 @@ function togglePriority(priority) {
     toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg);
 }
 
+/**
+ * This function starts the toggle for the specififc priority
+ * @param {*} priority - refers to togglePriority
+ * @param {*} urgent - ID of urgent-priority
+ * @param {*} medium - ID of medium-priority 
+ * @param {*} urgentImg - ID of urgent-image
+ * @param {*} mediumImg - ID of medium-image 
+ * @param {*} low - ID of low-priority 
+ * @param {*} lowImg - ID of low-image 
+ */
 
 function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (priority === 'urgent') {
         toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg);   
-    } else if (priority === 'medium') {
+    }
+    if (priority === 'medium') {
         toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg);
-    } else if (priority === 'low') {
+    } 
+    if (priority === 'low') {
         toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg);
     }
 }
 
-
+/**
+ * This function toggles the urgent-priority and switch the other priorities back, 
+ * if they have been already selected.
+ */
 function toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (urgent.classList.contains('bg-white')) {
         switchUrgent(urgent, urgentImg);
@@ -42,7 +63,10 @@ function toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
-
+/**
+ * This function toggles the medium-priority and switch the other priorities back, 
+ * if they have been already selected.
+ */
 function toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (medium.classList.contains('bg-white')) {
         switchMedium(medium, mediumImg);
@@ -57,7 +81,10 @@ function toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
-
+/**
+ * This function toggles the low-priority and switch the other priorities back, 
+ * if they have been already selected.
+ */
 function toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (low.classList.contains('bg-white')) {
         switchLow(low, lowImg);
@@ -72,48 +99,70 @@ function toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
-
+/**
+ * This function switches the backgroundcolors and the img of the urgent-priority
+ */
 function switchUrgent(urgent, urgentImg) {
     urgent.classList.remove('bg-white');
     urgent.classList.add('bg-urgent');
     urgentImg.src = '../img/urgent_white.png';
+    urgent.classList.add('prio');
 }
 
-
+/**
+ * This function switches the backgroundcolors and the img of the urgent-priority back
+ */
 function switchUrgentBack(urgent,urgentImg) {
     urgent.classList.remove('bg-urgent');
     urgent.classList.add('bg-white');
     urgentImg.src = '../img/urgent_red.png';
+    urgent.classList.remove('prio');
 }
 
-
+/**
+ * This function switches the backgroundcolors and the img of the urgent-priority
+ */
 function switchMedium(medium, mediumImg) {
     medium.classList.remove('bg-white');
     medium.classList.add('bg-medium');
     mediumImg.src = '../img/medium_white.png';
+    medium.classList.add('prio');
 }
 
-
+/**
+ * This function switches the backgroundcolors and the img of the medium-priority back
+ */
 function switchMediumBack(medium, mediumImg) {
     medium.classList.remove('bg-medium');
     medium.classList.add('bg-white');
     mediumImg.src = '../img/medium_yellow.png';
+    medium.classList.remove('prio');
 }
 
-
+/**
+ * This function switches the backgroundcolors and the img of the urgent-priority
+ */
 function switchLow(low, lowImg) {
     low.classList.remove('bg-white');
     low.classList.add('bg-low');
     lowImg.src = '../img/low_white.png';
+    low.classList.add('prio');
 }
 
-
+/**
+ * This function switches the backgroundcolors and the img of the low-priority back
+ */
 function switchLowBack(low, lowImg) {
     low.classList.remove('bg-low');
     low.classList.add('bg-white');
     lowImg.src = '../img/low_green.png';
+    low.classList.remove('prio');
 }
 
+/**
+ * This function sets the vars of the two dropdowns.
+ * @param {*} dropDown - specific value for the dropdown; referred to function showDrowns
+ */
 
 function toggleDropdown(dropDown) {
     let category = document.getElementById('content');
@@ -123,6 +172,14 @@ function toggleDropdown(dropDown) {
     showDropdowns(dropDown, category, assign, borderContact, borderCategory);
 }
 
+
+/**
+ * This function execute the toggle for the specific 
+ * @param {*} category - ID of dropdown content of category
+ * @param {*} assign - ID of dropdown content of contacts
+ * @param {*} borderContact - ID of contact-div; used to switch border-color
+ * @param {*} borderCategory - ID of category - div; used to switch border-color
+ */
 
 function showDropdowns(dropDown, category, assign, borderContact, borderCategory) {
     if(dropDown == 'contact') {
@@ -135,19 +192,29 @@ function showDropdowns(dropDown, category, assign, borderContact, borderCategory
     }  
 }
 
+/**
+ * This function toggles the visibility of the dropdown-content of contacts (active)
+ * and the border-color of the contact-div
+ */
 
 function toggleStatusAndBorderOfContact(assign, borderContact) {
     assign.classList.toggle('active');
     borderContact.classList.toggle('border-color');
 }
 
-
+/**
+ * This function toggles the visibility of the dropdown-content of category (active)
+ * and the border-color of the category-div
+ */
 function toggleStatusAndBorderOfCategory(category,borderCategory) {
     category.classList.toggle('active');
     borderCategory.classList.toggle('border-color');
 }
 
-
+/**
+ * This function scales the arrow-image the specific dropDown
+ * @param {*} dropDown - referred to function toggleDropdown
+ */
 function switchDropDownArrow(dropDown) {
     let imgContact = document.getElementById('drop_1')
     let imgCategory = document.getElementById('drop_2');
@@ -159,7 +226,26 @@ function switchDropDownArrow(dropDown) {
     }
 }
 
+/**
+ * This function loads the categories of the categories-array
+ * @param {*} selectedCategory - selected "li"-text of the specific category; referred to updateName();
+ */
+function addCategory(selectedCategory) {
+    let option = document.getElementById('options');
+    option.innerHTML = '';
+    for (let i = 0; i < categories.length; i++) {
+        const category = categories[i];
+        let isSelected = category == selectedCategory ? 'selected' : '';
+        option.innerHTML += /*html*/`
+            <li class="rounded-3 fs-20 d-flex align-items-center ${isSelected}" id="category-${i}" onclick="updateName(this)">${category}</li>
+        `;
+    }
+}
 
+/**
+ * This function gets the innerText of the li-item and removes the 'active'-class
+ * @param {*} selectedLi - "li" of specific category;
+ */
 function updateName(selectedLi) {
     let select = document.getElementById('select');
     let content = document.getElementById('content');
@@ -168,63 +254,55 @@ function updateName(selectedLi) {
     addCategory(selectedLi.innerText);
 }
 
+/**
+ * This function creates a new subtask-input-field
+ * showNewSubtask -> addTask-templates.js
+ */
 
-function addCategory(selectedCategory) {
-    let option = document.getElementById('options');
-    option.innerHTML = '';
-    for (let i = 0; i < categories.length; i++) {
-        const category = categories[i];
-        let isSelected = category == selectedCategory ? 'selected' : '';
-        option.innerHTML += /*html*/`
-            <li id="category-${i}" onclick="updateName(this)" class="${isSelected}">${category}</li>
-        `;
-    }
-}
-
-
-function openNewSubtask(subtaskContainerID) {
+function openNewSubtask() {
     let newField = document.getElementById('new-subtask-field');
     newField.innerHTML = '';
-    newField.innerHTML += showNewSubtask(subtaskContainerID);
+    newField.innerHTML += showNewSubtask();
     document.getElementById('subtask').value = '';
-    addBorderColor(subtaskContainerID);
+    addBorderColor();
 }
 
-
-function addBorderColor(border) {
-    let borderColor = document.getElementById(`${border}`);
+/**
+ * This functions adds a new border-color to the subtask-div
+ */
+function addBorderColor() {
+    let borderColor = document.getElementById('subtask-creator');
     borderColor.classList.add('border-color');
 }
 
-
-function deleteInput(subtaskContainerID) {
+/**
+ * This function restores the previous subtask-input-field
+ */
+function restoreOldSubtask() {
     let oldSubtask = document.getElementById('new-subtask-field');
     oldSubtask.innerHTML = '';
     oldSubtask.innerHTML += /*html*/ `
-        <img src="../img/add.png" alt="plus" class="add" onclick="openNewSubtask('${subtaskContainerID}')">
+        <img src="../img/add.png" alt="plus" class="add" onclick="openNewSubtask()">
     `;
     document.getElementById('subtask').value = '';
-    removeBorderColor(subtaskContainerID);
+    removeBorderColor();
 }
 
-
-function removeBorderColor(border) {
-    let borderColor = document.getElementById(`${border}`);
+/**
+ * This function removes the border-color of the subtask-div
+ */
+function removeBorderColor() {
+    let borderColor = document.getElementById('subtask-creator');
     borderColor.classList.remove('border-color');
 }
 
-// Eventlistener
-document.addEventListener('click', function(event) {
-    const dateContainer = document.getElementById('date_container');
-    if (event.target !== dateContainer && !dateContainer.contains(event.target)) {
-        removeBorderColor('date_container');
-    }
-});
-
-
+/**
+ * This function creates the added subtask
+ * showAddedSubtasks -> addTask-templates.js
+ */
 let subtaskcounter = 0;
 
-function addSubtask(subtaskContainerID) {
+function addSubtask() {
     let content = document.getElementById('subtask-content');
     let input = document.getElementById('subtask').value;
     let subtaskID = `subtask-${subtaskcounter}`;
@@ -233,39 +311,75 @@ function addSubtask(subtaskContainerID) {
         subtaskcounter++;
     }
     document.getElementById('subtask').value = '';
-    deleteInput(subtaskContainerID);
+    restoreOldSubtask();
+    pushSubtaskInArray();
 }
 
 
-function openInputForEdit(subtask, input) {
-    let content = document.getElementById(`${subtask}`);
+
+/**
+ * This function creates an edit-section for the specific subtask
+ * @param {*} subtaskID - ID of specific added subtask
+ * @param {*} input - value of old subtask
+ * showInputEditor() -> addTask-templates.js
+ */
+function openInputForEdit(subtaskID, input) {
+    let content = document.getElementById(`${subtaskID}`);
     content.innerHTML = '';
-    content.innerHTML += showInputEditor(subtask, input);
+    content.innerHTML += showInputEditor(subtaskID, input);
 }
 
-
-function updateInputValue(subtask, input) {
-    const content = document.getElementById(`${subtask}`);
-    const newValue = document.getElementById(`${input}`).value;
+/**
+ * This function updates the new input value.
+ * @param {*} subtaskID - ID of new subtask-div 
+ * @param {*} inputID - ID of new input
+ */
+function updateInputValue(subtaskID, inputID) {
+    const content = document.getElementById(`${subtaskID}`);
+    const newValue = document.getElementById(`${inputID}`).value;
     content.innerHTML = '';
-    content.innerHTML += showUpdatedInputValue(newValue, subtask);
+    content.innerHTML += showUpdatedInputValue(newValue, subtaskID);
 }
 
-
+/**
+ * This functions deletes the added subtask permanently
+ * @param {*} subtaskID 
+ */
 function deleteSubtask(subtaskID) {
     let subtaskElement = document.getElementById(subtaskID);
     if (subtaskElement) {
         subtaskElement.remove();
     }
 }
+let tasks = [];
 
+function addTask() {
+    let title = document.getElementById('input').value;
+    let description = document.getElementById('textarea').value;
+    let selectedCategory = document.querySelector('.selected').innerText;
+    let date = document.getElementById('date').value;
+    let subtasks = [];
+    let subtaskElements = document.querySelectorAll('.added_subtask');
 
-function setDate() {
-    const currentDate = new Date();
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
-    const year = currentDate.getFullYear();
-    const formattedDate = `${day}/${month}/${year}`;
-    document.getElementById('date').value = formattedDate;
+    subtaskElements.forEach(subtaskElement => {
+        subtasks.push(subtaskElement.innerText);
+    });
+
+    let task = {
+        'title': title,
+        'description': description,
+        'date': date,
+        'priority': priority,
+        'category': selectedCategory,
+        'subtask': subtasks,
+    };
+    saveTasks(task);
 }
 
+
+
+function saveTasks(task) {
+    tasks.push(task);
+    let tasksAsString = JSON.stringify(tasks);
+    localStorage.setItem('task', tasksAsString);
+}

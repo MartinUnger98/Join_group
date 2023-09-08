@@ -2,7 +2,6 @@ body {
     background-color: #F6F7F8 !important;
     font-family: 'Inter', sans-serif !important;
 }
-
 .addTask-section {
     margin-top: 206px;
     margin-left: 328px;
@@ -15,28 +14,20 @@ h1 {
     margin-bottom: 48px !important;
 }
 .task-creation-container {
-    display: flex;
     margin-bottom: 100px;
 }
 .task-content-box-left {
     width: 440px;
     margin-right: 56px;
 }
-.input-container {
-    display: flex;
-    flex-direction: column;
-}
 .input-headlines {
-    font-size: 20px;
     margin-bottom: 4px;
 }
 .fs-20 {
     font-size: 20px;
 }
-
 #input {
     padding: 12px 21px;
-    border-radius: 10px;
     border: 1px solid #D1D1D1;
     margin-bottom: 28px;
     outline: none;
@@ -51,7 +42,6 @@ h1 {
 
 #textarea {
     padding: 18px 16px;
-    border-radius: 10px;
     height: 120px;
     outline: none;
     border: 1px solid #D1D1D1;
@@ -60,7 +50,6 @@ h1 {
     background-image: url('../img/resize.png');
     background-repeat: no-repeat;
     background-position: right 4px bottom 4px;
-  
 }
 #textarea::placeholder {
     color: #D1D1D1;
@@ -77,51 +66,29 @@ h1 {
     width: 440px;
     margin-left: 56px;
 }
-.date-input {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #D1D1D1;
-    align-items: center;
-    padding: 12px 16px;
-    border-radius: 10px;
-    background-color: white;
-    margin-bottom: 24px;
-}
 #date {
-    width: 144px;
-    border: 0;
+    border: 1px solid #D1D1D1;
+    padding: 12px 16px;
     outline: none;
     height: 24px;
-}
-#date::placeholder {
+    margin-bottom: 24px;
     color: #D1D1D1;
-    font-size: 20px;
-}
-
-.calender {
-    height: 20px;
-    width: 20px;
+    height: 55px;
     cursor: pointer;
 }
+#date:focus {
+    border-color: #29ABE2;
+}
 .priority {
-    display: flex;
-    justify-content: space-between;
     gap: 16px;
     margin-bottom: 24px;
 }
 .priority-boxes {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 8px;
     padding: 10px 16px;
     box-shadow: 0px 0px 4px 0px #0000001A;
-    border-radius: 10px;
     width: 136px;
     cursor: pointer;
-}
-.bg-white {
-    background-color: white;
 }
 .bg-urgent {
     background-color: #FF3D00;
@@ -139,20 +106,14 @@ h1 {
     margin-bottom: 4px;
 }
 .select-btn, .options li {
-    display: flex;
-    align-items: center;
     cursor: pointer;
 }
 .select-btn {
-    background: white;
-    border-radius: 10px;
     padding: 12px 16px;
     border: 1px solid #D1D1D1;
-    justify-content: space-between;
     margin-bottom: 32px;
     z-index: 1;
 }
-
 .select-btn img {
     padding: 4px 2px;
 }
@@ -162,9 +123,6 @@ h1 {
 }
 .category-content {
     display: none;
-    background: white;
-    border-radius: 10px;
-    position: absolute;
     top: 620px;
     width: 440px;
     height: 120px;
@@ -180,9 +138,7 @@ h1 {
     padding: 0;
 }
 .options li {
-    font-size: 20px;
     padding: 12px 16px;
-    border-radius: 10px;
 }
 .options li:hover {
     background: #f2f2f2;
@@ -192,28 +148,20 @@ h1 {
 }
 .assign-content {
     display: none;
-    background: white;
-    border-radius: 10px;
-    position: absolute;
     height: 270px;
     width: 440px;
     top: 700px;
     box-shadow: 0px 0px 14px 3px #0000000A;
-    
 }
 .assign-content.active {
     display: block;
- 
 }
 .contacts-box {
-    position: relative;
     max-height: 175px; 
     overflow-y: auto; 
     margin-top: 19px;
 }
-
 .new-contact-btn {
-    position: relative;
     background: #2A3647;
     font-size: 21px;
     padding: 12px 16px;
@@ -224,18 +172,11 @@ h1 {
     background: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
 }
-
 .mb-32 {
     margin-bottom: 32px;
 }
-
 .subtask-add {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
     padding: 2px 16px;
-    border-radius: 10px;
     border: 1px solid #D1D1D1;
     cursor: pointer;
 }
@@ -244,18 +185,11 @@ h1 {
     outline: none;
     flex: 1;
     height: 45px;
-    
 }
 #subtask::placeholder {
     color: #D1D1D1;
     font-size: 20px;
 }
-.newfield {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .mini-separator {
     color: #D1D1D1;
     font-size: 14px;
@@ -266,10 +200,6 @@ h1 {
     height: 24px;
     width: 24px;
     border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   
 }
 .subtask-buttons:hover {
     background: #D9D9D9;
@@ -291,12 +221,8 @@ h1 {
     margin-top: 8px;
 }
 .added_subtask {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 6px 16px 6px 48px;
     cursor: pointer;
-    border-radius: 10px; 
 }
 .added_subtask:hover .hidden {
     visibility: visible;
@@ -310,7 +236,6 @@ h1 {
 .added_subtask:hover {
     background: #D9D9D9
 }
-
 .added_subtask img {
     width: 18px;
     height: 18px;
@@ -328,48 +253,31 @@ h1 {
   padding-right: 16px;
   border-bottom: 1px solid #29ABE2;  
 }
-
 .edit-input {
     height: 35px;
     outline: none;
     border: 0;
-    
 }
 .border-color {
     border-color: #29ABE2;
 }
 .form-buttons {
-    display: flex;
     gap: 16px;
-    justify-content: flex-end;
 }
 .clear-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 12px 16px;
-    border-radius: 10px;
     border: 1px solid black;
     gap: 4px;
     cursor: pointer;
-    background-color: white;
 }
 .clear-button:hover {
     border-color: #29ABE2;
     color: #29ABE2;
 }
-.clear {
-    margin-top: 2px;
-}
 .create-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #2A3647;
-    border-radius: 10px;
     padding: 12px 16px;
     gap: 4px;
-    color: white;
     font-size: 21px;
     font-weight: 700;
     cursor: pointer;
