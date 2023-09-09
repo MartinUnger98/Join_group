@@ -3,7 +3,6 @@ let tasks = [];
 /**
  * This function gets creates the array task by getting all specific values.
  */
-
 function addTask() {
     let title = document.getElementById('input').value;
     let description = document.getElementById('textarea').value;
@@ -23,13 +22,13 @@ function addTask() {
     };
     tasks.push(task);
     saveTasks();
+    window.location.href = "board.html";
 }
 
 /**
  * This function gets the selected category
  * @returns selected category or '' in case, no category is selected;
  */
-
 function getCategory() {
     let category = document.querySelector('.selected');
     return category ? category.innerText : '';
@@ -50,10 +49,9 @@ function getSubtasks() {
 }
 
 /**
- * This function gets the selected priority
+ * This function gets the selected priority-img
  * @returns img of selected priority
  */
-
 function getPrioImage() {
     let urgent = document.getElementById('urgent');
     let medium = document.getElementById('medium');
@@ -69,6 +67,10 @@ function getPrioImage() {
     return img;
 }
 
+/**
+ * This function gets the specific priority.innerText
+ * @returns 
+ */
 function getPriority() {
     let urgent = document.getElementById('urgent');
     let medium = document.getElementById('medium');
@@ -84,20 +86,18 @@ function getPriority() {
     return priority;
 }
 /**
- * This function pushes all elements of the JSON task in the array tasks
+ * This function pushes all elements of the array "tasks"
  * @param {*} task JSON task
  */
 function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);
     localStorage.setItem('task', tasksAsString);
 }
-
+/**
+ * This function loads all elements of the array "tasks"
+ */
 function loadTask() {
     let tasksAsString = localStorage.getItem('task');
     tasks = JSON.parse(tasksAsString);
     console.log('loaded tasks', tasks);
-}
-
-function allMightyRender() {
-    loadDropdowns();
 }

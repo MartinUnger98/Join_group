@@ -18,7 +18,7 @@ h1 {
     margin-bottom: 100px;
 }
 .task-content-box-left {
-    width: 440px;
+    width: 390px;
     margin-right: 56px;
 }
 .input-headlines {
@@ -64,7 +64,7 @@ h1 {
     border: 1px solid #D1D1D1;
 }
 .task-content-box-right {
-    width: 440px;
+    width: 390px;
     margin-left: 56px;
 }
 #date {
@@ -90,8 +90,12 @@ h1 {
     gap: 8px;
     padding: 10px 16px;
     box-shadow: 0px 0px 4px 0px #0000001A;
-    width: 136px;
+    width: 122px;
     cursor: pointer;
+}
+#urgent-img {
+    width: 21px;
+    height: 16px;
 }
 .bg-urgent {
     background-color: #FF3D00;
@@ -119,19 +123,16 @@ h1 {
     border: 1px solid #D1D1D1;
     margin-bottom: 32px;
     z-index: 1;
-    width: 440px;
+    width: 390px;
 }
 .select-btn img {
     padding: 4px 2px;
 }
-.select-btn img:hover {
-    background: #D1D1D1;
-    border-radius: 20px;
-}
+
 .category-content {
     display: none;
     top: 620px;
-    width: 440px;
+    width: 390px;
     height: 120px;
     box-shadow: 0px 0px 14px 3px #0000000A;
 }
@@ -156,7 +157,7 @@ h1 {
 .assign-content {
     display: none;
     height: 270px;
-    width: 440px;
+    width: 390px;
     top: 700px;
     box-shadow: 0px 0px 14px 3px #0000000A;
 }
@@ -264,6 +265,11 @@ h1 {
     height: 35px;
     outline: none;
     border: 0;
+}
+.trash-width {
+    width: 16px;
+    height: 18px;
+    margin-left: 1px;
 }
 .border-color {
     border-color: #29ABE2;

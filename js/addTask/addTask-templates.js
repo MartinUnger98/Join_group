@@ -9,7 +9,7 @@ function showNewSubtask() {
             </div>
             <span class="mini-separator">|</span>
             <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="addSubtask()">
-                <img src="../img/check_darkblue.png" alt="check">
+                <img src="../img/check_blue_addTask.svg" alt="check">
             </div>
         </div>  
     `;
@@ -48,11 +48,11 @@ function showInputEditor(subtaskID, input) {
             <input type="text" value="${input}" class="edit-input" id="input-${subtaskID}">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="subtask-buttons d-flex align-items-center justify-content-center">
-                    <img src="../img/check_darkblue.png" alt="check" onclick="updateInputValue('${subtaskID}','input-${subtaskID}')">
+                    <img class="trash-width" src="../img/delete.svg" alt="delete" onclick="deleteSubtask('${subtaskID}')">
                 </div>
                 <span class="mini-separator">|</span>
                 <div class="subtask-buttons d-flex align-items-center justify-content-center">
-                    <img src="../img/delete_subtask.png" alt="delete" onclick="deleteSubtask('${subtaskID}')">
+                    <img src="../img/check_blue_addTask.svg" alt="check" onclick="updateInputValue('${subtaskID}','input-${subtaskID}')">
                 </div>
             </div>
         </div>
@@ -71,9 +71,9 @@ function showUpdatedInputValue(newValue, subtask) {
     <div class="added_subtask d-flex justify-content-between align-items-center rounded-3">
         <li>${newValue}</li>
         <div class="hidden">
-            <img src="../img/edit.png" alt="edit" onclick="openInputForEdit('${subtask}','${newValue}')">
+            <img class="trash-width" src="../img/delete.svg" alt="delete" onclick="deleteSubtask('${subtask}')">
             <span class="mini_separator_2">|</span>
-            <img src="../img/delete_subtask.png" alt="delete" onclick="deleteSubtask('${subtask}')">
+            <img src="../img/edit.svg" alt="edit" onclick="openInputForEdit('${subtask}','${newValue}')">
         </div>
     </div>
 `;

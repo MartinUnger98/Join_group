@@ -246,6 +246,14 @@ function updateName(selectedLi) {
     select.firstElementChild.innerText = selectedLi.innerText;
     content.classList.remove('active');
     addCategory(selectedLi.innerText);
+    switchBorderandDropdown();
+}
+
+function switchBorderandDropdown() {
+    let border = document.getElementById('select');
+    let dropDown = document.getElementById('drop_2')
+    border.classList.remove('border-color');
+    dropDown.classList.remove('switch');
 }
 
 /**
@@ -276,7 +284,9 @@ function restoreOldSubtask() {
     let oldSubtask = document.getElementById('new-subtask-field');
     oldSubtask.innerHTML = '';
     oldSubtask.innerHTML += /*html*/ `
-        <img src="../img/add.png" alt="plus" class="add" onclick="openNewSubtask()">
+    <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="openNewSubtask()">
+        <img src="../img/add_addTask.svg" alt="plus" class="add">
+    </div>    
     `;
     document.getElementById('subtask').value = '';
     removeBorderColor();

@@ -1,24 +1,55 @@
+/**
+ * This function creates the specific task
+ * @param {*} title - 'title' of tasks
+ * @param {*} category - 'category' of tasks
+ * @param {*} description - 'description' of tasks
+ * @param {*} priority - 'priority-img' of tasks
+ * @param {*} i - number of task
+ * @returns - created task
+ */
 function showAddedSubtasks(title, category, description, priority, i) {
         return /*html*/ `
         <div id="task-${i}" class="testcard bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" onclick="openDetailedTask('${i}')">
-            <div id="cardPrio-${i}" class="card-priority rounded-3 text-white align-self-start">
-                <span>${category}</span>
-            </div>
+            ${category !== "" ? //Only displaying, if 'category' has at least one value
+                /*html*/`
+                <div id="cardPrio-${i}" class="card-priority rounded-3 text-white align-self-start">
+                    <span>${category}</span>
+                </div>`
+                :
+                /*html*/``
+            }
             <div class="d-flex flex-column row-gap-1">
-                <span class="fw-bold detail-color">${title}</span>
+                <span class="fw-bold detail-color title">${title}</span>
                 <span class="description-color">${description}</span>
             </div>
             <div class="subtask-container">
                 <span class="">Subtasks</span>
             </div>
-            <div class="d-flex justify-content-between align-items-center">
-                <div></div>
-                <img src="../${priority}" alt="priority">
-            </div>
+            ${priority !== "" ?
+                /*html*/ `
+                <div class="d-flex justify-content-between align-items-center">
+                    <div></div>
+                    <img src="../${priority}" alt="priority">
+                </div>`
+                :
+                /*html*/``
+            }
         </div>
     `;
 }
 
+/**
+ * This function creates the specific detailed task
+ * @param {*} title - 'title' of tasks
+ * @param {*} category - 'category' of tasks
+ * @param {*} description - 'description' of tasks
+ * @param {*} priority - 'priority' of tasks
+ * @param {*} prioImg - 'priority-img' of tasks
+ * @param {*} date - 'date' of tasks
+ * @param {*} i - number of task (detailed task)
+ * @param {*} subtask - subtask-array of task
+ * @returns - created detailed task
+ */
 function showDetailedTask(title, category, description, priority,prioImg, date, i, subtask) {
     return /*html */ `
         <div class="d-flex flex-column row-gap-4">
@@ -36,20 +67,25 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
                 <span class="detail-color">Due date:</span>
                 <span>${date}</span>
             </div>
-            <div class="d-flex align-items-center fs-20 column-gap-4">
-                <span>Priority:</span>
-                <div class="d-flex align-items-center column-gap-2">
-                    <span class="mb-12">${priority}</span>
-                    <img src="../${prioImg}" alt="priority">
-                </div> 
-            </div>
+            ${prioImg !== "" ?
+                /*html*/ `
+                <div class="d-flex align-items-center fs-20 column-gap-4">
+                    <span>Priority:</span>
+                    <div class="d-flex align-items-center column-gap-2">
+                        <span class="mb-12">${priority}</span>
+                        <img src="../${prioImg}" alt="priority">
+                    </div> 
+                </div>`
+                   :
+                /*html*/``
+            }   
             <div class="fs-20">
                 <div>
                     <span class="detail-color">Assigned to:</span>
                 </div>
                 <div></div>
             </div>
-            ${subtask.length > 0 ? // If there is an element inside the subtask-array execute the code. Otherwise don't render.
+            ${subtask.length > 0 ? 
                  /*html */ `
                <div class="d-flex flex-column row-gap-2">
                    <div>
@@ -82,6 +118,14 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
         </div>
     `;
 }
+
+/**
+ * This function creates all subtasks inside the array "subtask"
+ * @param {*} subtaskItem - subtask-array 
+ * @param {*} i - specific number of detailed task (task) -used as ID
+ * @param {*} j - specific number of subtask
+ * @returns created subtask
+ */
 
 function showSubtasksOfDetailedTask(subtaskItem, i, j) {
     return  /*html */`

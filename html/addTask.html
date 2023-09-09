@@ -49,7 +49,9 @@
            <span class="input-headlines fs-20">Assigned to</span>
             <div class="select-btn rounded-3 d-flex align-items-center justify-content-between bg-white" onclick="toggleDropdown('contact')" id="contact_dropdown">
               <span class="fs-20">Select contacts to assign</span>
-              <img src="../img/arrow_drop_down.png" alt="arrow_drop_down" id="drop_1">
+              <div class="subtask-buttons d-flex align-items-center justify-content-center">
+                <img src="../img/arrow_drop_down.svg" alt="arrow_drop_down" id="drop_1">
+              </div>
             </div>
             <div class="assign-content rounded-3 bg-white position-absolute" id="contacts">
               <div id="contact_content" class="contacts-box d-flex flex-column position-relative">
@@ -100,7 +102,9 @@
             <span class="input-headlines fs-20">Categories</span>
             <div class="select-btn rounded-3 d-flex align-items-center justify-content-between bg-white" id="select" onclick="toggleDropdown('category')">
               <span class="fs-20">Select Task Category</span>
-              <img src="../img/arrow_drop_down.png" alt="arrow_drop_down" id="drop_2">
+              <div class="subtask-buttons d-flex align-items-center justify-content-center">
+                <img src="../img/arrow_drop_down.svg" alt="arrow_drop_down" id="drop_2">
+              </div>
             </div>
             <div class="category-content rounded-3 bg-white position-absolute" id="content">
               <ul class="options" id="options"></ul>
@@ -112,7 +116,9 @@
             <div class="subtask-add rounded-3 d-flex align-items-center justify-content-between bg-white" id="subtask-creator">
               <input class="fs-20" type="text" placeholder="Add new subtask" id="subtask" onclick="openNewSubtask('subtask-creator')">
               <div id="new-subtask-field">
-                <img src="../img/add.png" alt="plus" class="add" onclick="openNewSubtask('subtask-creator')">
+                <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="openNewSubtask('subtask-creator')">
+                  <img src="../img/add_addTask.svg" alt="plus" class="add">
+                </div>
               </div>
             </div>
             <div>
@@ -132,7 +138,7 @@
         </div>
         <button type="submit" class="create-button rounded-3 d-flex justify-content-center align-items-center text-white">
           <span>Create Task</span>
-          <img src="../img/check.png" alt="">
+          <img src="../img/check_addTask.svg" alt="">
         </button>
       </div>
     </form>
