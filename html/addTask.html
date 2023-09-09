@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/menu.css">
     <link rel="stylesheet" href="../css/addTask.css">
+    <link rel="icon" href="../img/join_logo.png">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -20,8 +21,10 @@
       crossorigin="anonymous">
     </script>
     <script src="../js/script.js"></script>
+    <script src="../js/miniBackend.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/addTask/addTask-templates.js"></script>
+    <script src="../js/addTask/addTask-task-creation.js"></script>
     <script src="../js/addTask/addTask.js"></script>
 </head>
 <body onload="init(); loadDropdowns()">
@@ -80,15 +83,15 @@
             <div class="priority d-flex justify-content-between">
               <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="urgent" onclick="togglePriority('urgent')">
                 <span class="fs-20 priority-sublines">Urgent</span>
-                <img src="../img/urgent_red.png" alt="urgent" id="urgent-img">
+                <img src="../img/urgent_red.svg" alt="urgent" id="urgent-img">
               </div>
               <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="medium" onclick="togglePriority('medium')">
                 <span class="fs-20">Medium</span>
-                <img class="medium-img" src="../img/medium_yellow.png" alt="medium" id="medium-img">
+                <img src="../img/medium_yellow.svg" alt="medium" id="medium-img">
               </div>
               <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="low" onclick="togglePriority('low')">
                 <span class="fs-20">Low</span>
-                <img src="../img/low_green.png" alt="low" id="low-img">
+                <img src="../img/low_green.svg" alt="low" id="low-img">
               </div>
             </div>
           </div>
@@ -120,19 +123,18 @@
         </div>
       </div>
 
-      <div class="form-buttons d-flex justify-content-end" >
+      <div class="form-buttons d-flex justify-content-end"  >
         <div class="clear-button rounded-3 d-flex justify-content-center align-items-center bg-white">
           <span class="fs-20">Clear</span>
           <svg class="clear" width="13" height="14" viewBox="0 0 13 14"  xmlns="http://www.w3.org/2000/svg">
             <path d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
-        <button class="create-button rounded-3 d-flex justify-content-center align-items-center text-white">
+        <button type="submit" class="create-button rounded-3 d-flex justify-content-center align-items-center text-white">
           <span>Create Task</span>
           <img src="../img/check.png" alt="">
         </button>
       </div>
     </form>
-   
 </body>
 </html>

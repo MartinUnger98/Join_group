@@ -19,12 +19,14 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous">
     </script>
-     <script src="../js/script.js"></script>
-     <script src="../js/header.js"></script>
-     <script src="../js/board/board.js"></script>
-     <script src="../js/board/board.templates.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/miniBackend.js"></script>
+    <script src="../js/board/board.templates.js"></script>
+    <script src="../js/addTask/addTask-task-creation.js"></script>
+    <script src="../js/board/board.js"></script>
 </head>
-<body onload="init(); loadColumns()">
+<body onload="init(); loadBoard()">
     <div w3-include-html="templates/header.html"></div>
     <div w3-include-html="templates/menu.html"></div>
 
@@ -43,10 +45,14 @@
                     </svg> 
                 </div>
             </div>
-            <div id="toDo" class="d-flex flex-column flex-grow-1"></div>
+            <div id="toDo" class="d-flex flex-column flex-grow-1 row-gap-4"></div>
         </div>
-
     </section>
+
+    <section id="detailedTask" class="detailed-task position-absolute rounded-5" onclick="doNotClose(event)">
+    </section>
+
+    <section id="bg" class="dimmed-bg position-fixed d-none" onclick="hideDetailedTask()"></section>
 
     
 </body>

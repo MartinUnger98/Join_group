@@ -6,6 +6,7 @@ let user = [];
  */
 function loadDropdowns() {
     addCategory();
+    loadTask();
 }
 
 /**
@@ -105,8 +106,7 @@ function toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg) {
 function switchUrgent(urgent, urgentImg) {
     urgent.classList.remove('bg-white');
     urgent.classList.add('bg-urgent');
-    urgentImg.src = '../img/urgent_white.png';
-    urgent.classList.add('prio');
+    urgentImg.src = '../img/urgent_white.svg';
 }
 
 /**
@@ -115,8 +115,7 @@ function switchUrgent(urgent, urgentImg) {
 function switchUrgentBack(urgent,urgentImg) {
     urgent.classList.remove('bg-urgent');
     urgent.classList.add('bg-white');
-    urgentImg.src = '../img/urgent_red.png';
-    urgent.classList.remove('prio');
+    urgentImg.src = '../img/urgent_red.svg';
 }
 
 /**
@@ -125,8 +124,7 @@ function switchUrgentBack(urgent,urgentImg) {
 function switchMedium(medium, mediumImg) {
     medium.classList.remove('bg-white');
     medium.classList.add('bg-medium');
-    mediumImg.src = '../img/medium_white.png';
-    medium.classList.add('prio');
+    mediumImg.src = '../img/medium_white.svg';
 }
 
 /**
@@ -135,8 +133,7 @@ function switchMedium(medium, mediumImg) {
 function switchMediumBack(medium, mediumImg) {
     medium.classList.remove('bg-medium');
     medium.classList.add('bg-white');
-    mediumImg.src = '../img/medium_yellow.png';
-    medium.classList.remove('prio');
+    mediumImg.src = '../img/medium_yellow.svg';
 }
 
 /**
@@ -145,8 +142,7 @@ function switchMediumBack(medium, mediumImg) {
 function switchLow(low, lowImg) {
     low.classList.remove('bg-white');
     low.classList.add('bg-low');
-    lowImg.src = '../img/low_white.png';
-    low.classList.add('prio');
+    lowImg.src = '../img/low_white.svg';
 }
 
 /**
@@ -155,8 +151,7 @@ function switchLow(low, lowImg) {
 function switchLowBack(low, lowImg) {
     low.classList.remove('bg-low');
     low.classList.add('bg-white');
-    lowImg.src = '../img/low_green.png';
-    low.classList.remove('prio');
+    lowImg.src = '../img/low_green.svg';
 }
 
 /**
@@ -171,7 +166,6 @@ function toggleDropdown(dropDown) {
     let borderCategory = document.getElementById('select');
     showDropdowns(dropDown, category, assign, borderContact, borderCategory);
 }
-
 
 /**
  * This function execute the toggle for the specific 
@@ -312,10 +306,7 @@ function addSubtask() {
     }
     document.getElementById('subtask').value = '';
     restoreOldSubtask();
-    pushSubtaskInArray();
 }
-
-
 
 /**
  * This function creates an edit-section for the specific subtask
@@ -351,35 +342,8 @@ function deleteSubtask(subtaskID) {
         subtaskElement.remove();
     }
 }
-let tasks = [];
 
-function addTask() {
-    let title = document.getElementById('input').value;
-    let description = document.getElementById('textarea').value;
-    let selectedCategory = document.querySelector('.selected').innerText;
-    let date = document.getElementById('date').value;
-    let subtasks = [];
-    let subtaskElements = document.querySelectorAll('.added_subtask');
-
-    subtaskElements.forEach(subtaskElement => {
-        subtasks.push(subtaskElement.innerText);
-    });
-
-    let task = {
-        'title': title,
-        'description': description,
-        'date': date,
-        'priority': priority,
-        'category': selectedCategory,
-        'subtask': subtasks,
-    };
-    saveTasks(task);
-}
-
-
-
-function saveTasks(task) {
-    tasks.push(task);
-    let tasksAsString = JSON.stringify(tasks);
-    localStorage.setItem('task', tasksAsString);
+function clearAll() {
+    debugger;
+    document.getElementById('input').innerHTML = '';
 }

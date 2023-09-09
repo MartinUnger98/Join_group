@@ -5,7 +5,7 @@ function showNewSubtask() {
     return /*html*/ `
         <div class="d-flex align-items-center justify-content-between">
             <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick=" restoreOldSubtask()">
-                <img src="../img/clear.png" alt="clear">
+                <img src="../img/clear.svg" alt="clear">
             </div>
             <span class="mini-separator">|</span>
             <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="addSubtask()">
@@ -27,9 +27,9 @@ function showAddedSubtasks(subtaskID, input) {
             <div class="added_subtask rounded-3 d-flex align-items-center justify-content-between">
                 <li>${input}</li>
                 <div class="hidden">
-                    <img src="../img/edit.png" alt="edit" onclick="openInputForEdit('${subtaskID}','${input}')">
+                    <img src="../img/edit.svg" alt="edit" onclick="openInputForEdit('${subtaskID}','${input}')">
                     <span class="mini_separator_2">|</span>
-                    <img src="../img/delete_subtask.png" alt="delete" onclick="deleteSubtask('${subtaskID}')">
+                    <img src="../img/delete.svg" alt="delete" onclick="deleteSubtask('${subtaskID}')">
                 </div>
             </div>
         </div>
