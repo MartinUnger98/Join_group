@@ -43,8 +43,11 @@ function addTaskToTodo() {
         let category = task.category;
         let description = task.description;
         let priority = task.prio;
-        content.innerHTML += showAddedSubtasks(title, category, description, priority, i);
-        determineCategoryColor(category, `cardPrio-${i}`);    
+        let subtasks = task.subtask;
+        let amountOfSubtasks = subtasks.length
+        content.innerHTML += showAddedSubtasks(title, category, description, priority, i, amountOfSubtasks);
+        determineCategoryColor(category, `cardPrio-${i}`); 
+        renderDetailedTask(i); 
     }
 }
 
@@ -62,14 +65,6 @@ function determineCategoryColor(category, id) {
     } 
 }
 
-/**
- * This function executes two functions for rendering and for pushing
- * @param {*} i - speicfic number of task - used as id
- */
-function openDetailedTask(i) {
-    renderDetailedTask(i);
-    pushDetailedTaskToMiddle();
-}
 
 /**
  * This function renders the specifc detailed task for each rendered task
@@ -88,6 +83,7 @@ function renderDetailedTask(i) {
     let subtask = task.subtask;
     content.innerHTML += showDetailedTask(title, category, description, priority,prioImg, date, i, subtask);
     renderSubtasks(subtask, i); 
+    updateCheckedSubtasksCount(i);
     determineCategoryColor(category, `prio-detail-${i}`); 
 }
 
@@ -113,15 +109,51 @@ function renderSubtasks(subtask, i) {
     let subtaskContent = document.getElementById(`subtasks-${i}`);
     if (subtaskContent) {
         subtaskContent.innerHTML = '';
-        
+
         if (subtask && subtask.length > 0) {
             for (let j = 0; j < subtask.length; j++) {
                 const subtaskItem = subtask[j];
-                subtaskContent.innerHTML += showSubtasksOfDetailedTask(subtaskItem, i, j);
+                const subtaskStatus = tasks[i].subtaskStatus[j];
+                subtaskContent.innerHTML += showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus);
             }
+
+            // Füge Event-Listener zu den Checkboxen hinzu
+            const checkboxes = document.querySelectorAll(`#subtasks-${i} input[type="checkbox"]`);
+            checkboxes.forEach((checkbox, j) => {
+                checkbox.addEventListener('change', () => {
+                    tasks[i].subtaskStatus[j] = checkbox.checked;
+                    updateCheckedSubtasksCount(i); // Rufe die Funktion auf, um die Anzahl zu aktualisieren
+                });
+            });
         }
     }
 }
+
+function updateCheckedSubtasksCount(i) {
+    const checkboxes = document.querySelectorAll(`#subtasks-${i} input[type="checkbox"]`);
+    checkedCount = 0;
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked) {
+            checkedCount++;
+        }
+    });
+    // Aktualisiere den Wert des <span>-Elements mit der ID "checked_subtasks"
+    const checkedSubtasksSpan = document.getElementById('checked_subtasks');
+    if (checkedSubtasksSpan) {
+        checkedSubtasksSpan.textContent = checkedCount.toString();
+    }
+    updateProgressbar();
+    saveTasks();
+}
+function updateProgressbar() {
+    let checkedSubtask = document.getElementById('checked_subtasks').innerText;
+    let allSubtasks = document.getElementById('allSubtasks').innerText;
+    let percent = checkedSubtask / allSubtasks;
+    percent = Math.round(percent *100); 
+    document.getElementById('progress').style.width = `${percent}%`;
+}
+
+
 
 /**
  * This function pushes the detailed Task from right to the middle
@@ -185,3 +217,4 @@ function deleteNote(i) {
     saveTasks();
     loadBoard();
 }
+
