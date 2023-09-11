@@ -1,7 +1,8 @@
 /**
  * This function gets creates the array task by getting all specific values.
  */
-async function addTask() {
+
+function addTask() {
     let title = document.getElementById('input').value;
     let description = document.getElementById('textarea').value;
     let selectedCategory = getCategory();
@@ -20,7 +21,7 @@ async function addTask() {
         'subtaskStatus': Array(subtasks.length).fill(false), // Creates new Array "subtaskStatus" according to length of subtasks-Array and fills it with false;
     };
     tasks.push(task);
-    await saveTasks();
+    saveTasks();
     window.location.href = "board.html";
 }
 
