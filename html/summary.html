@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
+    <link rel="icon" href="../img/join_logo.png">
     <link rel="stylesheet" href="../../css/fonts.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/menu.css">
@@ -20,7 +21,7 @@
 
 </head>
 
-<body class="summaryBody" onload="init()">
+<body class="summaryBody" onload="updateGreeting()">
     <div w3-include-html="templates/header.html"></div>
     <div w3-include-html="templates/menu.html"></div>
     <div class="summaryPage">
@@ -72,7 +73,7 @@
                 </div>
             </div>
             <div class="morningContainer">
-                <h2>Good Morning,</h2>
+                <h2 id="greetingContainer">Good Morning,</h2>
                 <h3 class="greetingName">Sofia Müller</h3>
             </div>
         </div>

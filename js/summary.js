@@ -20,3 +20,19 @@ function changeIconBack(path){
         img.src = path;
     }
 }
+
+
+function updateGreeting() {
+    init();
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const greetingDiv = document.getElementById('greetingContainer');
+
+    if (currentHour >= 0 && currentHour < 12) {
+        greetingDiv.innerHTML = 'Good morning';
+    } else if (currentHour >= 12 && currentHour < 18) {
+        greetingDiv.innerHTML = 'Good afternoon';
+    } else {
+        greetingDiv.innerHTML = 'Good evening';
+    }
+}
