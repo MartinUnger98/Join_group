@@ -22,6 +22,7 @@ function showAddedSubtasks(title, category, description, priority, i, amountOfSu
                 <span class="fw-bold detail-color title">${title}</span>
                 <span class="description-color">${description}</span>
             </div>
+            
             <div class="subtask-container d-flex align-items-center justify-content-between">
             <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                 <div id="progress" class="progress-bar" style="width: 0%"></div>

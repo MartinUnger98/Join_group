@@ -145,13 +145,13 @@ function updateCheckedSubtasksCount(i) {
     updateProgressbar();
     saveTasks();
 }
- function updateProgressbar() {
+function updateProgressbar() {
     let checkedSubtask = document.getElementById('checked_subtasks').innerText;
     let allSubtasks = document.getElementById('allSubtasks').innerText;
     let percent = checkedSubtask / allSubtasks;
     percent = Math.round(percent *100); 
     document.getElementById('progress').style.width = `${percent}%`;
- }
+}
 
 
 
