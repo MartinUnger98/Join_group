@@ -16,6 +16,7 @@
         </script>
     <script src="../js/script.js"></script>
     <script src="../js/header.js"></script>
+    <script src="../js/summary.js"></script>
 
 </head>
 
@@ -54,15 +55,15 @@
                     <div class="date"><span class="spanDate">October 16, 2022</span><span>Upcoming Deadline</span></div>
                 </div>
                 <div class="toDOANdDoneContainer">
-                    <div class="toDOAndDone">
-                        <div class="urgentCount"><img class="iconBottom" src="../img/pencilIcon.png">
+                    <div onmouseover="changeIcon('../img/pencilWhite.png')" onmouseout="changeIconBack('../img/pencilIcon.png')" class="toDOAndDone">
+                        <div class="urgentCount"><img id="toDoImg" class="iconBottom" src="../img/pencilIcon.png">
                             <div class="explanationOrder">
                                 <div id="numberOfToDO" class="bigNumber">1</div><span class="spanSummary">To-Do</span>
                             </div>
                         </div>
                     </div>
-                    <div class="toDOAndDone">
-                        <div class="urgentCount"><img class="iconBottom" src="../img/checkIcon.png">
+                    <div onmouseover="changeIcon('../img/checkWhite.png')" onmouseout="changeIconBack('../img/checkIcon.png')" class="toDOAndDone">
+                        <div class="urgentCount"><img id="doneImg" class="iconBottom" src="../img/checkIcon.png">
                             <div class="explanationOrder">
                                 <div id="numberOfToDO" class="bigNumber">1</div><span class="spanSummary">Done</span>
                             </div>
