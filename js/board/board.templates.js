@@ -7,9 +7,9 @@
  * @param {*} i - number of task
  * @returns - created task
  */
-function showAddedSubtasks(title, category, description, priority, i) {
+function showAddedSubtasks(title, category, description, priority, i, amountOfSubtasks) {
         return /*html*/ `
-        <div id="task-${i}" class="testcard bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" onclick="openDetailedTask('${i}')">
+        <div id="task-${i}" class="testcard bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" onclick="pushDetailedTaskToMiddle()">
             ${category !== "" ? //Only displaying, if 'category' has at least one value
                 /*html*/`
                 <div id="cardPrio-${i}" class="card-priority rounded-3 text-white align-self-start">
@@ -22,8 +22,18 @@ function showAddedSubtasks(title, category, description, priority, i) {
                 <span class="fw-bold detail-color title">${title}</span>
                 <span class="description-color">${description}</span>
             </div>
-            <div class="subtask-container">
-                <span class="">Subtasks</span>
+            <div class="subtask-container d-flex align-items-center justify-content-between">
+            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                <div id="progress" class="progress-bar" style="width: 0%"></div>
+            </div>
+                <div class="d-flex column-gap-1">
+                    <div class="d-flex">
+                        <span id="checked_subtasks">0</span>
+                        <span>/</span>
+                        <span id="allSubtasks">${amountOfSubtasks}</span>
+                    </div>
+                    <span >Subtasks</span>
+                </div>    
             </div>
             ${priority !== "" ?
                 /*html*/ `
@@ -87,14 +97,12 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
             </div>
             ${subtask.length > 0 ? 
                  /*html */ `
-               <div class="d-flex flex-column row-gap-2">
+                <div class="d-flex flex-column row-gap-2">
                    <div>
                         <span class="detail-color fs-20">Subtasks:</span>
-                     </div>
-                     <div id="subtasks-${i}" class="d-flex flex-column row-gap-1">
-                   
-                     </div>
-                 </div>`
+                    </div>
+                    <div id="subtasks-${i}" class="d-flex flex-column row-gap-1"></div>
+                </div>`
                 :
                 /*html */ ``
             } 
@@ -124,13 +132,13 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
  * @param {*} subtaskItem - subtask-array 
  * @param {*} i - specific number of detailed task (task) -used as ID
  * @param {*} j - specific number of subtask
+ * @param {*} subtaskStatus - 
  * @returns created subtask
  */
-
-function showSubtasksOfDetailedTask(subtaskItem, i, j) {
+function showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus) {
     return  /*html */`
         <div class="d-flex align-items-center subtask-boxes column-gap-3 align-self-start rounded-3">
-            <input id="subtask-${i}-${j}" type="checkbox" name="subtask">
+            <input id="subtask-${i}-${j}" type="checkbox" name="subtask" ${subtaskStatus ? 'checked' : ''}>
             <label for="subtask-${i}-${j}">${subtaskItem}</label>
         </div>    
     `;
