@@ -6,7 +6,6 @@ let user = [];
  */
 function loadDropdowns() {
     addCategory();
-    loadTask();
 }
 
 /**

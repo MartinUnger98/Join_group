@@ -9,7 +9,7 @@
  */
 function showAddedSubtasks(title, category, description, priority, i, amountOfSubtasks) {
         return /*html*/ `
-        <div id="task-${i}" class="testcard bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" onclick="pushDetailedTaskToMiddle()">
+        <div id="task-${i}" class="testcard bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" onclick="openDetailedTask('${i}')">
             ${category !== "" ? //Only displaying, if 'category' has at least one value
                 /*html*/`
                 <div id="cardPrio-${i}" class="card-priority rounded-3 text-white align-self-start">
@@ -25,13 +25,13 @@ function showAddedSubtasks(title, category, description, priority, i, amountOfSu
             
             <div class="subtask-container d-flex align-items-center justify-content-between">
             <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                <div id="progress" class="progress-bar" style="width: 0%"></div>
+                <div id="progress-${i}" class="progress-bar" style="width: 0%"></div>
             </div>
                 <div class="d-flex column-gap-1">
                     <div class="d-flex">
-                        <span id="checked_subtasks">0</span>
+                        <span id="checked_subtasks-${i}">0</span>
                         <span>/</span>
-                        <span id="allSubtasks">${amountOfSubtasks}</span>
+                        <span id="allSubtasks-${i}">${amountOfSubtasks}</span>
                     </div>
                     <span >Subtasks</span>
                 </div>    
@@ -63,7 +63,7 @@ function showAddedSubtasks(title, category, description, priority, i, amountOfSu
  */
 function showDetailedTask(title, category, description, priority,prioImg, date, i, subtask) {
     return /*html */ `
-        <div class="d-flex flex-column row-gap-4">
+        <div id="detailed-card" class="d-flex flex-column row-gap-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div id="prio-detail-${i}" class="detailed-priority rounded-3 text-white">
                     <span>${category}</span>

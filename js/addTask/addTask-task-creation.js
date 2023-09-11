@@ -1,9 +1,7 @@
-let tasks = [];
-
 /**
  * This function gets creates the array task by getting all specific values.
  */
-function addTask() {
+async function addTask() {
     let title = document.getElementById('input').value;
     let description = document.getElementById('textarea').value;
     let selectedCategory = getCategory();
@@ -22,7 +20,7 @@ function addTask() {
         'subtaskStatus': Array(subtasks.length).fill(false), // Creates new Array "subtaskStatus" according to length of subtasks-Array and fills it with false;
     };
     tasks.push(task);
-    saveTasks();
+    await saveTasks();
     window.location.href = "board.html";
 }
 
@@ -90,15 +88,11 @@ function getPriority() {
  * This function pushes all elements of the array "tasks"
  * @param {*} task JSON task
  */
-function saveTasks() {
+async function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);
-    localStorage.setItem('task', tasksAsString);
+    await setItem('task', tasksAsString);
 }
 /**
  * This function loads all elements of the array "tasks"
  */
-function loadTask() {
-    let tasksAsString = localStorage.getItem('task');
-    tasks = JSON.parse(tasksAsString);
-    console.log('loaded tasks', tasks);
-}
+

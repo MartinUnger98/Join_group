@@ -1,8 +1,11 @@
 let users = [];
+let tasks = [];
 
 async function init() {
     await includeHTML();
     await loadUsers();
+    await loadTask();
+    loadBoard();
 }
 
 
@@ -17,6 +20,15 @@ async function loadUsers(){
         console.error('Loading error:', e);
     }
 }
+
+async function loadTask() {
+    try {
+        tasks = JSON.parse( await getItem('task'));
+    } catch (e) {
+        console.error('Loading error:', e);
+    }
+}
+
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]'); // Alle ELemente mit Attribute '[w3-include.html]' holen.

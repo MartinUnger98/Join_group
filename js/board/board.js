@@ -1,12 +1,9 @@
 
-loadTask();
-
-
 /**
  * This function is the render-function for board.html
  */
 function loadBoard() {
-    renderToDoColumn()
+    renderToDoColumn();
 }
 
 /**
@@ -37,6 +34,7 @@ function loadNoTask() {
  * This function creates tasks inside of the toDo-column
  */
 function addTaskToTodo() {
+    debugger;
     let content = document.getElementById('toDo');
     content.innerHTML = '';
     for (let i = 0; i < tasks.length; i++) {
@@ -49,8 +47,13 @@ function addTaskToTodo() {
         let amountOfSubtasks = subtasks.length
         content.innerHTML += showAddedSubtasks(title, category, description, priority, i, amountOfSubtasks);
         determineCategoryColor(category, `cardPrio-${i}`); 
-        renderDetailedTask(i); 
+        renderDetailedTask(i);
     }
+}
+
+function openDetailedTask(i) {
+    renderDetailedTask(i);
+    pushDetailedTaskToMiddle();
 }
 
 /**
@@ -140,19 +143,20 @@ function updateCheckedSubtasksCount(i) {
         }
     });
     // Aktualisiere den Wert des <span>-Elements mit der ID "checked_subtasks"
-    const checkedSubtasksSpan = document.getElementById('checked_subtasks');
+    const checkedSubtasksSpan = document.getElementById(`checked_subtasks-${i}`);
     if (checkedSubtasksSpan) {
         checkedSubtasksSpan.textContent = checkedCount.toString();
     }
-    updateProgressbar();
-
+    updateProgressbar(i);
+    saveTasks();
 }
-function updateProgressbar() {
-    let checkedSubtask = document.getElementById('checked_subtasks').innerText;
-    let allSubtasks = document.getElementById('allSubtasks').innerText;
+
+function updateProgressbar(i) {
+    let checkedSubtask = document.getElementById(`checked_subtasks-${i}`).innerText;
+    let allSubtasks = document.getElementById(`allSubtasks-${i}`).innerText;
     let percent = checkedSubtask / allSubtasks;
     percent = Math.round(percent *100); 
-    document.getElementById('progress').style.width = `${percent}%`;
+    document.getElementById(`progress-${i}`).style.width = `${percent}%`;
 }
 
 
