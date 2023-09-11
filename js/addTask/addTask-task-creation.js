@@ -1,8 +1,8 @@
 let tasks = [];
-
 /**
  * This function gets creates the array task by getting all specific values.
  */
+
 function addTask() {
     let title = document.getElementById('input').value;
     let description = document.getElementById('textarea').value;
