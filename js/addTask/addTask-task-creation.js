@@ -19,7 +19,7 @@ function addTask() {
         'priority': priority,
         'category': selectedCategory,
         'subtask': subtasks,
-        'subtaskStatus': Array(subtasks.length).fill(false), // Creates new Array "subtaskStatus" according to length of subtasks-Array and fills it with false; Needed for checkbox-status
+        'subtaskStatus': Array(subtasks.length).fill(false), // Creates new Array "subtaskStatus" according to length of subtasks-Array and fills it with false;
     };
     tasks.push(task);
     saveTasks();

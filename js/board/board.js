@@ -1,4 +1,6 @@
+
 loadTask();
+
 
 /**
  * This function is the render-function for board.html
@@ -12,7 +14,7 @@ function loadBoard() {
  */
 function renderToDoColumn() {
     if (tasks.length < 1) {
-        loadNoTask()
+        loadNoTask();
     } else {
         addTaskToTodo();
     }
@@ -143,7 +145,7 @@ function updateCheckedSubtasksCount(i) {
         checkedSubtasksSpan.textContent = checkedCount.toString();
     }
     updateProgressbar();
-    saveTasks();
+
 }
 function updateProgressbar() {
     let checkedSubtask = document.getElementById('checked_subtasks').innerText;
