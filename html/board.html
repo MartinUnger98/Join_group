@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/menu.css">
     <link rel="stylesheet" href="../css/board.css">
+    <link rel="icon" href="../img/join_logo.png">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -26,34 +27,96 @@
     <script src="../js/addTask/addTask-task-creation.js"></script>
     <script src="../js/board/board.js"></script>
 </head>
-<body onload="init(); loadBoard()">
-    <div w3-include-html="templates/header.html"></div>
-    <div w3-include-html="templates/menu.html"></div>
+    <body onload="init(); loadBoard()">
+        <div w3-include-html="templates/header.html"></div>
+        <div w3-include-html="templates/menu.html"></div>
 
-    <section class="headline">
-        <h1>Board</h1>
-    </section>
+        <section class="headline d-flex justify-content-between align-items-center">
+            <h1>Board</h1>
+            <div class="d-flex align-items-center column-gap-4">
 
-    <section class="taskboard d-flex">
-        <div class="board_column d-flex flex-column">
-            <div class="d-flex justify-content-between">
-                <span class="column-title fw-bold fs-20">To do</span>
-                <div class="plus-button rounded-3 d-flex justify-content-center align-items-center">
-                    <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                    </svg> 
+                <div class="d-flex justify-content-between align-items-center search-container bg-white">
+                    <input class="search-input" type="text" placeholder="Find task">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div class="search-separator"></div>
+                        
+                        <div class="d-flex justify-content-center align-items-center search-box">
+                            <img src="../img/search_board.svg" alt="search">
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-center align-items-center" onclick="">
+                    <span>Add Task</span>
+                    <img src="../img/add_board_white.svg" alt="add">
                 </div>
             </div>
-            <div id="toDo" class="d-flex flex-column flex-grow-1 row-gap-4 pb-3"></div>
-        </div>
-    </section>
+        </section>
 
-    <section id="detailedTask" class="detailed-task position-absolute rounded-5" onclick="doNotClose(event)">
-    </section>
+        <section class="taskboard d-flex justify-content-between">
+            <div class="board_column d-flex flex-column">
+                <div class="d-flex justify-content-between">
+                    <span class="column-title fw-bold fs-20">To do</span>
+                    <div class="plus-button rounded-3 d-flex justify-content-center align-items-center">
+                        <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                        </svg> 
+                    </div>
+                </div>
+                <div id="toDo" class="d-flex flex-column flex-grow-1 row-gap-4 pb-3"></div>
+            </div>
 
-    <section id="bg" class="dimmed-bg position-fixed d-none" onclick="hideDetailedTask()"></section>
+            <div class="board_column d-flex flex-column">
+                <div class="d-flex justify-content-between">
+                    <span class="column-title fw-bold fs-20">In progress</span>
+                    <div class="plus-button rounded-3 d-flex justify-content-center align-items-center">
+                        <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                        </svg> 
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-grow-1 row-gap-4 pb-3"></div>
+            </div>
 
-    
-</body>
+            <div class="board_column d-flex flex-column">
+                <div class="d-flex justify-content-between">
+                    <span class="column-title fw-bold fs-20">Await feedback</span>
+                    <div class="plus-button rounded-3 d-flex justify-content-center align-items-center">
+                        <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                        </svg> 
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-grow-1 row-gap-4 pb-3"></div>
+            </div>
+            
+            <div class="board_column d-flex flex-column">
+                <div class="d-flex justify-content-between">
+                    <span class="column-title fw-bold fs-20">Done</span>
+                    <div class="plus-button rounded-3 d-flex justify-content-center align-items-center">
+                        <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                        </svg> 
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-grow-1 row-gap-4 pb-3"></div>
+            </div>
+        </section>
+
+        
+
+        <section id="detailedTask" class="detailed-task position-absolute rounded-5" onclick="doNotClose(event)">
+        </section>
+
+        <section id="bg" class="dimmed-bg position-fixed d-none" onclick="hideDetailedTask()"></section>
+
+        
+    </body>
 </html>

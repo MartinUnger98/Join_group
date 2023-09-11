@@ -8,20 +8,18 @@ body {
 }
 .headline {
     margin-top: 206px;
-    margin-left: 328px;
+    margin-left: 280px;
     margin-bottom: 52px;
     max-width: 992px;
 }
 h1 {
     font-size: 61px !important;
     font-weight: 700 !important;
-    margin-bottom: 48px !important;
 }
 .taskboard {
-    margin-left: 328px;
-    max-width: 992px;
+    margin-left: 280px;
     height: 702px;
-    display: flex;
+    gap: 26px;
 }
 .plus-button {
     border: 2px solid #2A3647;
@@ -36,7 +34,7 @@ h1 {
     stroke: #29ABE2;
 }
 .board_column {
-    width: 264px;
+    width: 226px;
 }
 .column-title {
    color: #42526E;
@@ -144,4 +142,23 @@ h1 {
     left: 0;
     right: 0;
     height: 100%;
+}
+.search-container {
+    width: 312px;
+}
+.search-input {
+    outline: none;
+    border: 0;
+}
+.search-separator {
+    border: 1px solid #D1D1D1;
+    height: 31px;
+}
+.search-box {
+    height: 32px;
+    width: 32px;
+    border-radius: 50px;
+}
+.search-box:hover {
+    background-color: #D9D9D9;
 }
