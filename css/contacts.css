@@ -56,6 +56,9 @@
     margin-top: 32px;
     border: none;
     font-size: 24px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .addContactBtn:hover{
@@ -86,7 +89,7 @@
     width: 1200px;
     height: 600px;
     border-radius: 32px;
-    transition: all 325ms ease-in-out;
+    transition: all 325ms ease-in-out ;
 }
 
 .addContactLeft{
@@ -140,6 +143,10 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
+}
+
+.marginLeft{
+    margin-left: 10px;
 }
 
 .placeholderContact{
@@ -259,6 +266,43 @@
     margin-left: 16px;
   }
 
+  .allContacts{
+    width: 350px;
+  }
+
+  .initials{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    background-color: aqua;
+    color: white;
+    font-size: 16px;
+    border: 2px solid white;
+  }
+
+  .contactLayout{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 10px;
+    height: 80px;
+    cursor: pointer;
+  }
+
+  .contactLayout:hover{
+    background-color: #E8E8E8;
+  }
+
+  .infoOrder{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+  }
+
  
 
 
@@ -282,8 +326,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
-    width: 100px;
+    height: 40px;
+    width: 40px;
     border-radius: 100%;
     background-color: aqua;
     color: white;
