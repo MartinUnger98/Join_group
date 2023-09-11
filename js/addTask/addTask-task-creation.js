@@ -1,4 +1,3 @@
-let tasks = [];
 /**
  * This function gets creates the array task by getting all specific values.
  */
