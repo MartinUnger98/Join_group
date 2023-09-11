@@ -1,4 +1,9 @@
-function showContactEditor(){
+
+
+
+
+
+function showContactEditor() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
     overlay.style.opacity = '0.7';
@@ -6,7 +11,7 @@ function showContactEditor(){
     editor.style.right = '0px';
 }
 
-function closeEditorCtc(){
+function closeEditorCtc() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
     overlay.style.opacity = '0';
