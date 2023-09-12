@@ -1,11 +1,16 @@
 let users = [];
 let tasks = [];
+let categories = ['Technical Task', 'User Story'];
+let subtaskcounter = 0;
 
 async function init() {
     await includeHTML();
     await loadUsers();
     await loadTask();
-    loadBoard();
+    if (window.location.pathname === '/html/board.html') {
+        loadBoard();
+    }
+    loadDropdowns();
 }
 
 

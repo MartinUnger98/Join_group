@@ -1,5 +1,3 @@
-let categories = ['Technical Task', 'User Story']
-let user = [];
 
 /**
  * This functions loads the category options at the beginning
@@ -224,6 +222,7 @@ function switchDropDownArrow(dropDown) {
  * @param {*} selectedCategory - selected "li"-text of the specific category; referred to updateName();
  */
 function addCategory(selectedCategory) {
+    debugger;
     let option = document.getElementById('options');
     option.innerHTML = '';
     for (let i = 0; i < categories.length; i++) {
@@ -303,7 +302,7 @@ function removeBorderColor() {
  * This function creates the added subtask
  * showAddedSubtasks -> addTask-templates.js
  */
-let subtaskcounter = 0;
+
 
 function addSubtask() {
     let content = document.getElementById('subtask-content');
@@ -353,6 +352,5 @@ function deleteSubtask(subtaskID) {
 }
 
 function clearAll() {
-    debugger;
     document.getElementById('input').innerHTML = '';
 }

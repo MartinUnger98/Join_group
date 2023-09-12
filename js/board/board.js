@@ -1,3 +1,4 @@
+let currentDraggedElement;
 
 /**
  * This function is the render-function for board.html
@@ -13,7 +14,10 @@ function renderToDoColumn() {
     if (tasks.length < 1) {
         loadNoTask();
     } else {
-        addTaskToTodo();
+        renderTasks('toDo');
+        renderTasks('inProgress');
+        renderTasks('awaitFeedback');
+        renderTasks('taskDone');
     }
 }
 
@@ -33,26 +37,35 @@ function loadNoTask() {
 /**
  * This function creates tasks inside of the toDo-column
  */
-function addTaskToTodo() {
-    debugger;
-    let content = document.getElementById('toDo');
+function renderTasks(status) {
+    let taskStatus = tasks.filter(t => t['status'] == status);
+    let content = document.getElementById(status);
     content.innerHTML = '';
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
+    for (let i = 0; i < taskStatus.length; i++) {
+        const task = taskStatus[i];
         let title = task.title;
         let category = task.category;
         let description = task.description;
         let priority = task.prio;
         let subtasks = task.subtask;
-        let amountOfSubtasks = subtasks.length
-        content.innerHTML += showAddedSubtasks(title, category, description, priority, i, amountOfSubtasks);
-        determineCategoryColor(category, `cardPrio-${i}`); 
-        renderDetailedTask(i);
+        let amountOfSubtasks = subtasks.length;
+        let id = task.id;
+        content.innerHTML += showAddedSubtasks(title, category, description, priority, amountOfSubtasks, id);
+        determineCategoryColor(category, `cardPrio-${id}`); 
+        renderDetailedTask(i, id);
     }
 }
 
-function openDetailedTask(i) {
-    renderDetailedTask(i);
+function openDetailedTask(id) {
+    debugger;
+    let position;
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].id === id) {
+        position = i;
+        break;
+      }
+    }
+    renderDetailedTask(position, id);
     pushDetailedTaskToMiddle();
 }
 
@@ -70,12 +83,11 @@ function determineCategoryColor(category, id) {
     } 
 }
 
-
 /**
  * This function renders the specifc detailed task for each rendered task
  * @param {*} i - speicfic number of detailed task (task) - used as id
  */
-function renderDetailedTask(i) {
+function renderDetailedTask(i, id) {
     let content = document.getElementById('detailedTask');
     content.innerHTML = '';
     const task = tasks[i];
@@ -87,8 +99,8 @@ function renderDetailedTask(i) {
     let date = formatDate(task.date);
     let subtask = task.subtask;
     content.innerHTML += showDetailedTask(title, category, description, priority,prioImg, date, i, subtask);
-    renderSubtasks(subtask, i); 
-    updateCheckedSubtasksCount(i);
+    renderSubtasks(subtask, i, id); 
+    updateCheckedSubtasksCount(i, id);
     determineCategoryColor(category, `prio-detail-${i}`); 
 }
 
@@ -100,7 +112,7 @@ function renderDetailedTask(i) {
 function formatDate(dateString) {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Beachte, dass Monate 0-basiert sind, daher +1
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
 }
@@ -110,7 +122,7 @@ function formatDate(dateString) {
  * @param {*} subtask - array inside of the array ""tasks
  * @param {*} i - speicfic number of detailed task (task) - used as id
  */
-function renderSubtasks(subtask, i) {
+function renderSubtasks(subtask, i, id) {
     let subtaskContent = document.getElementById(`subtasks-${i}`);
     if (subtaskContent) {
         subtaskContent.innerHTML = '';
@@ -127,14 +139,14 @@ function renderSubtasks(subtask, i) {
             checkboxes.forEach((checkbox, j) => {
                 checkbox.addEventListener('change', () => {
                     tasks[i].subtaskStatus[j] = checkbox.checked;
-                    updateCheckedSubtasksCount(i); // Rufe die Funktion auf, um die Anzahl zu aktualisieren
+                    updateCheckedSubtasksCount(i, id); // Rufe die Funktion auf, um die Anzahl zu aktualisieren
                 });
             });
         }
     }
 }
 
-function updateCheckedSubtasksCount(i) {
+function updateCheckedSubtasksCount(i, id) {
     const checkboxes = document.querySelectorAll(`#subtasks-${i} input[type="checkbox"]`);
     checkedCount = 0;
     checkboxes.forEach((checkbox) => {
@@ -147,19 +159,17 @@ function updateCheckedSubtasksCount(i) {
     if (checkedSubtasksSpan) {
         checkedSubtasksSpan.textContent = checkedCount.toString();
     }
-    updateProgressbar(i);
+    updateProgressbar(id);
     saveTasks();
 }
 
-function updateProgressbar(i) {
-    let checkedSubtask = document.getElementById(`checked_subtasks-${i}`).innerText;
-    let allSubtasks = document.getElementById(`allSubtasks-${i}`).innerText;
+function updateProgressbar(id) {
+    let checkedSubtask = document.getElementById(`checked_subtasks-${id}`).innerText;
+    let allSubtasks = document.getElementById(`allSubtasks-${id}`).innerText;
     let percent = checkedSubtask / allSubtasks;
     percent = Math.round(percent *100); 
-    document.getElementById(`progress-${i}`).style.width = `${percent}%`;
+    document.getElementById(`progress-${id}`).style.width = `${percent}%`;
 }
-
-
 
 /**
  * This function pushes the detailed Task from right to the middle
@@ -190,10 +200,18 @@ function hideBackground() {
 /**
  * This function pushes the detailed Task back to the left
  */
+
 function hideDetailedTask() {
     let task = document.getElementById('detailedTask');
-    task.classList.remove('show-task');
-    hideBackground();
+    let boardAddTask = document.getElementById('board-addTask');
+    
+    if (task.classList.contains('show-task')) {
+        task.classList.remove('show-task');
+        hideBackground();
+    } else if (boardAddTask.classList.contains('show-task')) {
+        boardAddTask.classList.remove('show-task');
+        hideBackground();
+    }
 }
 
 /**
@@ -223,4 +241,60 @@ function deleteNote(i) {
     saveTasks();
     loadBoard();
 }
+
+function startDragging(id) {
+    currentDraggedElement = id;
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function moveTo(status) {
+    let position;
+    for (let i = 0; i < tasks.length; i++) {    
+        if (tasks[i].id === currentDraggedElement) {
+            position = i;
+            break;
+        }
+    }
+    tasks[position]['status'] = status;
+    renderTasks('toDo');
+    renderTasks('inProgress');
+    renderTasks('awaitFeedback');
+    renderTasks('taskDone');
+    saveTasks();
+}
+
+function showHiddenAddTask() {
+    let boardAddTask = document.getElementById('board-addTask');
+    boardAddTask.classList.add('show-task');
+    showHiddenBackground();
+    scrollToTop();
+}
+
+function openDetailedCardEditor(title, category, description, priority,prioImg, date, i, subtask) {
+    let editor = document.getElementById('detailedTask');
+    editor.innerHTML = '';
+    editor.innerHTML += /*html*/ `
+        <div class="d-flex flex-column row-gap-4">
+            <div class="d-flex justify-content-end">
+                <div class="clear-button d-flex align-items-center justify-content-center rounded-5 ms-auto" onclick="hideDetailedTask()">
+                    <img src="../img/clear.svg" alt="clear" class="clear-img">
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <label for="input" class="input-headlines fs-20">Title</label>
+                <input class="fs-20 rounded-3 input" required id="input-editor-${i}" type="text" placeholder="Enter a title" value="${title}">
+            </div>
+            <div class="d-flex flex-column">   
+                  <label for="textarea" class="input-headlines fs-20">Description</label>
+                  <textarea class="fs-20 rounded-3" required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
+            </div>  
+        </div>
+    `;
+
+}
+
+
 

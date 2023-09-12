@@ -1,8 +1,7 @@
 /**
  * This function gets creates the array task by getting all specific values.
  */
-
-function addTask() {
+ async function addTask(status) {
     let title = document.getElementById('input').value;
     let description = document.getElementById('textarea').value;
     let selectedCategory = getCategory();
@@ -19,10 +18,16 @@ function addTask() {
         'category': selectedCategory,
         'subtask': subtasks,
         'subtaskStatus': Array(subtasks.length).fill(false), // Creates new Array "subtaskStatus" according to length of subtasks-Array and fills it with false;
+        'status': status,
+        'id': tasks.length,
     };
     tasks.push(task);
-    saveTasks();
-    window.location.href = "board.html";
+    await saveTasks();
+    if (window.location.pathname !== '/html/board.html') {
+        window.location.href = '/html/board.html';
+    } else {
+        loadBoard();
+    }
 }
 
 /**

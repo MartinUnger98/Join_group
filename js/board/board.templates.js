@@ -7,12 +7,12 @@
  * @param {*} i - number of task
  * @returns - created task
  */
-function showAddedSubtasks(title, category, description, priority, i, amountOfSubtasks) {
+function showAddedSubtasks(title, category, description, priority, amountOfSubtasks, id) {
         return /*html*/ `
-        <div id="task-${i}" class="testcard bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" onclick="openDetailedTask('${i}')">
+        <div id="task-${id}" class="testcard bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" draggable ="true" ondragstart="startDragging(${id})" onclick="openDetailedTask(${id})">
             ${category !== "" ? //Only displaying, if 'category' has at least one value
                 /*html*/`
-                <div id="cardPrio-${i}" class="card-priority rounded-3 text-white align-self-start">
+                <div id="cardPrio-${id}" class="card-priority rounded-3 text-white align-self-start">
                     <span>${category}</span>
                 </div>`
                 :
@@ -25,13 +25,13 @@ function showAddedSubtasks(title, category, description, priority, i, amountOfSu
             
             <div class="subtask-container d-flex align-items-center justify-content-between">
             <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                <div id="progress-${i}" class="progress-bar" style="width: 0%"></div>
+                <div id="progress-${id}" class="progress-bar" style="width: 0%"></div>
             </div>
                 <div class="d-flex column-gap-1">
                     <div class="d-flex">
-                        <span id="checked_subtasks-${i}">0</span>
+                        <span id="checked_subtasks-${id}">0</span>
                         <span>/</span>
-                        <span id="allSubtasks-${i}">${amountOfSubtasks}</span>
+                        <span id="allSubtasks-${id}">${amountOfSubtasks}</span>
                     </div>
                     <span >Subtasks</span>
                 </div>    
@@ -70,7 +70,7 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
                 </div>
                 <div class="clear-button d-flex align-items-center justify-content-center rounded-5 ms-auto" onclick="hideDetailedTask()">
                     <img src="../img/clear.svg" alt="clear" class="clear-img">
-                </div> <div></div>
+                </div>
             </div>
             <span class="fw-bold fs-61">${title}</span>
             <span class="fs-20">${description}</span>
@@ -116,7 +116,7 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
                         <span>Delete</span>
                     </div>
                     <div class="separator"></div>
-                    <div class="d-flex align-items-center column-gap-2 edit-boxes">
+                    <div class="d-flex align-items-center column-gap-2 edit-boxes" onclick="openDetailedCardEditor('${title}', '${category}', '${description}', '${priority}', '${prioImg}', '${date}', '${i}', '${subtask}')">
                         <svg width="16" height="18" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>
                         </svg>
@@ -143,4 +143,63 @@ function showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus) {
             <label for="subtask-${i}-${j}">${subtaskItem}</label>
         </div>    
     `;
+}
+
+function showNewSubtaskInAddTaskCard() {
+    return /*html*/ `
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick=" restoreOldSubtaskInAddTaskCard()">
+                <img src="../img/clear.svg" alt="clear">
+            </div>
+            <span class="mini-separator">|</span>
+            <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="addSubtaskInAddTaskCard()">
+                <img src="../img/check_blue_addTask.svg" alt="check">
+            </div>
+        </div>  
+    `;
+}
+
+function showAddedSubtasksInAddTaskCard(subtaskID, input) {
+    return /*html*/ `
+        <div id="${subtaskID}" class="added-subtask-container">
+            <div class="added_subtask rounded-3 d-flex align-items-center justify-content-between">
+                <li>${input}</li>
+                <div class="hidden">
+                    <img src="../img/edit.svg" alt="edit" onclick="openInputForEditInAddTaskCard('${subtaskID}','${input}')">
+                    <span class="mini_separator_2">|</span>
+                    <img src="../img/delete.svg" alt="delete" onclick="deleteSubtaskInAddTaskCard('${subtaskID}')">
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function showInputEditorInAddTaskCard(subtaskID, input) {
+    return /*html*/ `
+        <div class="edit-box d-flex justify-content-between align-items-center bg-white" id="${subtaskID}">
+            <input type="text" value="${input}" class="edit-input" id="input-${subtaskID}">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="subtask-buttons d-flex align-items-center justify-content-center">
+                    <img class="trash-width" src="../img/delete.svg" alt="delete" onclick="deleteSubtaskInAddTaskCard('${subtaskID}')">
+                </div>
+                <span class="mini-separator">|</span>
+                <div class="subtask-buttons d-flex align-items-center justify-content-center">
+                    <img src="../img/check_blue_addTask.svg" alt="check" onclick="updateInputValueInAddTaskCard('${subtaskID}','input-${subtaskID}')">
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function showUpdatedInputValueInAddTaskCard(newValue, subtask) {
+    return /*html*/ `
+    <div class="added_subtask d-flex justify-content-between align-items-center rounded-3">
+        <li>${newValue}</li>
+        <div class="hidden">
+            <img class="trash-width" src="../img/delete.svg" alt="delete" onclick="deleteSubtaskInAddTaskCard('${subtask}')">
+            <span class="mini_separator_2">|</span>
+            <img src="../img/edit.svg" alt="edit" onclick="openInputForEditInAddTaskCard('${subtask}','${newValue}')">
+        </div>
+    </div>
+`;
 }

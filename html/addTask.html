@@ -31,14 +31,14 @@
     <div w3-include-html="templates/header.html"></div>
     <div w3-include-html="templates/menu.html"></div>
 
-    <form class="addTask-section" onsubmit="addTask();return false">
+    <form class="addTask-section" onsubmit="addTask('toDo');return false">
       <h1>Add Task</h1>
       <div class="task-creation-container d-flex">
 
         <div class="task-content-box-left">
           <div class="d-flex flex-column">
             <label for="input" class="input-headlines fs-20">Title</label>
-            <input class="fs-20 rounded-3" required id="input" type="text" placeholder="Enter a title">
+            <input class="fs-20 rounded-3 input" required id="input" type="text" placeholder="Enter a title">
           </div>
           
           <div class="d-flex flex-column">   
