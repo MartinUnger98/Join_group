@@ -19,7 +19,7 @@
         'subtask': subtasks,
         'subtaskStatus': Array(subtasks.length).fill(false), // Creates new Array "subtaskStatus" according to length of subtasks-Array and fills it with false;
         'status': status,
-        'id': tasks.length,
+        'id': creatId(),
     };
     tasks.push(task);
     await saveTasks();
@@ -28,6 +28,27 @@
     } else {
         loadBoard();
     }
+}
+
+function creatId() {
+    let id;
+    if(tasks.length === 0) {
+        id = 0;
+    }
+    else {
+        id = getHighestId() + 1;
+    }
+    return id;
+}
+
+function getHighestId() {
+    let highestId = -1;
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].id > highestId) {
+        highestId = tasks[i].id;
+      }
+    }
+    return highestId;
 }
 
 /**
