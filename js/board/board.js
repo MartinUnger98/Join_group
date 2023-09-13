@@ -50,23 +50,28 @@ function renderTasks(status) {
         let subtasks = task.subtask;
         let amountOfSubtasks = subtasks.length;
         let id = task.id;
+        let position = idToPosition(tasks, id);
         content.innerHTML += showAddedSubtasks(title, category, description, priority, amountOfSubtasks, id);
         determineCategoryColor(category, `cardPrio-${id}`); 
-        renderDetailedTask(i, id);
+        renderDetailedTask(position, id);
     }
 }
 
 function openDetailedTask(id) {
-    debugger;
+    let position = idToPosition(tasks, id);
+    renderDetailedTask(position, id);
+    pushDetailedTaskToMiddle();
+}
+
+function idToPosition(arr, id) {
     let position;
-    for (let i = 0; i < tasks.length; i++) {
-      if (tasks[i].id === id) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === id) {
         position = i;
         break;
       }
     }
-    renderDetailedTask(position, id);
-    pushDetailedTaskToMiddle();
+    return position;
 }
 
 /**
@@ -251,13 +256,7 @@ function allowDrop(event) {
 }
 
 function moveTo(status) {
-    let position;
-    for (let i = 0; i < tasks.length; i++) {    
-        if (tasks[i].id === currentDraggedElement) {
-            position = i;
-            break;
-        }
-    }
+    let position = idToPosition(tasks, currentDraggedElement);
     tasks[position]['status'] = status;
     renderTasks('toDo');
     renderTasks('inProgress');

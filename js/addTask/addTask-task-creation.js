@@ -1,7 +1,7 @@
 /**
  * This function gets creates the array task by getting all specific values.
  */
- async function addTask(status) {
+async function addTask(status) {
     let title = document.getElementById('input').value;
     let description = document.getElementById('textarea').value;
     let selectedCategory = getCategory();
@@ -30,6 +30,7 @@
     }
 }
 
+
 function creatId() {
     let id;
     if(tasks.length === 0) {
@@ -41,6 +42,7 @@ function creatId() {
     return id;
 }
 
+
 function getHighestId() {
     let highestId = -1;
     for (let i = 0; i < tasks.length; i++) {
@@ -50,6 +52,7 @@ function getHighestId() {
     }
     return highestId;
 }
+
 
 /**
  * This function gets the selected category
