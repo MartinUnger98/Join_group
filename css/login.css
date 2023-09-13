@@ -280,6 +280,12 @@ footer a:hover {
   }
 }
 
+@media (max-height: 720px) {
+  .signUp {
+    position: static;
+  }
+}
+
 @media (max-width: 670px) {
   .signUp {
     position: static;
