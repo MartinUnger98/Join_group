@@ -1,5 +1,6 @@
 let users = [];
 let tasks = [];
+let allContacts = [];
 let categories = ['Technical Task', 'User Story'];
 let subtaskcounter = 0;
 
@@ -32,6 +33,16 @@ async function loadTask() {
     } catch (e) {
         console.error('Loading error:', e);
     }
+}
+
+
+async function loadAllContacts(){
+    try {
+        allContacts = JSON.parse(await getItem('allContacts'));
+    } catch(e){
+        console.error('Loading error:', e);
+    }
+    loadContacts(); 
 }
 
 

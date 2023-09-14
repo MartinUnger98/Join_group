@@ -301,6 +301,7 @@
   margin-top: 5px;
   border: none;
   background-color: white;
+  width: 100%;
 }
 
 .contactLayout:hover {

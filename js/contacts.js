@@ -1,25 +1,3 @@
-let allContacts = [
-    {
-        name: 'Hans Meier',
-        email: 'hasnmeier@webkitURL.de',
-        number: '1234'
-    },
-    {
-        name: 'Andreas Müller',
-        email: 'hasnmeier@webkitURL.de',
-        number: '1234'
-    },
-    {
-        name: 'Franziska Engel',
-        email: 'hasnmeier@webkitURL.de',
-        number: '1234'
-    },
-    {
-        name: 'Friedrich König',
-        email: 'hasnmeier@webkitURL.de',
-        number: '1234'
-    },
-]
 
 let initialLetter = [];
 let bgColors = ['#FF7A00','#9327FF','#6E52FF','#FC71FF','#FFBB2B','#1FD7C1','#462F8A','#FF4646',]
@@ -102,7 +80,7 @@ function closeEditorCtc() {
 }
 
 
-function addContact() {
+async function addContact() {
     const nameInput = document.getElementById("name").value;
     const emailInput = document.getElementById("email").value;
     const numberInput = document.getElementById("phone").value;
@@ -112,9 +90,19 @@ function addContact() {
         number: numberInput
     };
     allContacts.push(contact);
-    closeEditorCtc();
-    loadContacts();
+    await saveNewContact();
     findNewPosition(nameInput);
+}
+
+async function saveNewContact(){
+    try {
+        const allContactsAsString = JSON.stringify(allContacts);
+        await setItem('allContacts', allContactsAsString); // Auf das Ergebnis warten
+        closeEditorCtc();
+        loadContacts();
+    } catch (error) {
+        console.error('Fehler beim Speichern des Kontakts:', error);
+    }
 }
 
 
@@ -234,16 +222,13 @@ function detailView(i) {
                 <a class="emailLinkWithHover emailLink" id="emailDetail" href="mailto:${allContacts[i]['email']}">${allContacts[i]['email']}</a>
                 <h3 class="h3DetailView">Phone</h3>
                 <span id="phoneDetail">${allContacts[i]['number']}</span>`
-
-
-
 }
 
-function deleteContact(i) {
+async function deleteContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
     allContacts.splice(i, 1);
     contactDetailContainer.style.left = '100vw';
-    loadContacts();
+    await saveNewContact();
 }
 
 
@@ -299,7 +284,7 @@ function showEditor(i) {
 }
 
 
-function saveContact(i) {
+async function saveContact(i) {
     const nameInput = document.getElementById("name").value;
     const emailInput = document.getElementById("email").value;
     const numberInput = document.getElementById("phone").value;
@@ -310,7 +295,8 @@ function saveContact(i) {
     };
     allContacts.splice(i, 1, contact);
     closeEditorCtc();
-    loadContacts();  
+    loadContacts();
+    await saveNewContact();  
     findNewPosition(nameInput);
 }
 

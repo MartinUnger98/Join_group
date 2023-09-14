@@ -16,11 +16,12 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
         </script>
     <script src="../js/script.js"></script>
+    <script src="../js/miniBackend.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/contacts.js"></script>
 </head>
 
-<body class="contactBody" onload="init(); loadContacts()">
+<body class="contactBody" onload="init(); loadAllContacts();">
     <div w3-include-html="templates/header.html"></div>
     <div w3-include-html="templates/menu.html"></div>
     <div id="contactOverlay" class="contactOverlay"></div>
