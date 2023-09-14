@@ -1,4 +1,3 @@
-
 /**
  * This functions loads the category options at the beginning
  */
@@ -222,7 +221,6 @@ function switchDropDownArrow(dropDown) {
  * @param {*} selectedCategory - selected "li"-text of the specific category; referred to updateName();
  */
 function addCategory(selectedCategory) {
-    debugger;
     let option = document.getElementById('options');
     option.innerHTML = '';
     for (let i = 0; i < categories.length; i++) {
@@ -258,7 +256,6 @@ function switchBorderandDropdown() {
  * This function creates a new subtask-input-field
  * showNewSubtask -> addTask-templates.js
  */
-
 function openNewSubtask() {
     let newField = document.getElementById('new-subtask-field');
     newField.innerHTML = '';
@@ -302,7 +299,6 @@ function removeBorderColor() {
  * This function creates the added subtask
  * showAddedSubtasks -> addTask-templates.js
  */
-
 
 function addSubtask() {
     let content = document.getElementById('subtask-content');
@@ -351,6 +347,39 @@ function deleteSubtask(subtaskID) {
     }
 }
 
-function clearAll() {
-    document.getElementById('input').innerHTML = '';
+function allMightyClear() {
+    document.getElementById('input').value = '';
+    document.getElementById('textarea').value = '';
+    document.getElementById('date').value = '';
+    clearPriorityButtons();
+    clearCategory();
+    document.getElementById('subtask').value = '';
+    document.getElementById('subtask-content').innerHTML = '';
+}
+
+function clearPriorityButtons() {
+    let urgent = document.getElementById('urgent');
+    let medium = document.getElementById('medium');
+    let low = document.getElementById('low');
+    let urgentImg = document.getElementById('urgent-img');
+    let mediumImg = document.getElementById('medium-img');
+    let lowImg = document.getElementById('low-img');
+
+    if (urgent.classList.contains('bg-urgent')) {
+        switchUrgentBack(urgent, urgentImg);
+    }
+    if (medium.classList.contains('bg-medium')) {
+        switchMediumBack(medium, mediumImg);
+    }
+    if (low.classList.contains('bg-low')) {
+        switchLowBack(low, lowImg);
+    }
+}
+
+function clearCategory() {
+    let select = document.getElementById('select');
+    let content = document.getElementById('content');
+    select.firstElementChild.innerText = "Select Task Category";
+    content.classList.remove('active');
+    addCategory('');
 }

@@ -24,8 +24,9 @@
     <script src="../js/header.js"></script>
     <script src="../js/miniBackend.js"></script>
     <script src="../js/board/board.templates.js"></script>
+    <script src="../js/addTask/addTask-templates.js"></script>
     <script src="../js/addTask/addTask-task-creation.js"></script>
-    <script src="../js/board/board-addTask.js"></script>
+    <script src="../js/board/board-editor.js"></script>
     <script src="../js/addTask/addTask.js"></script>
     <script src="../js/board/board.js"></script>
 </head>
@@ -130,7 +131,7 @@
                 
                 <div class="d-flex flex-column">   
                   <label for="textarea" class="input-headlines fs-20">Description</label>
-                  <textarea class="fs-20 rounded-3" required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
+                  <textarea class=" textarea fs-20 rounded-3" required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
                 </div>  
                 <div class="d-flex flex-column">
                  <span class="input-headlines fs-20">Assigned to</span>
@@ -165,14 +166,14 @@
               <div class="task-content-box-right">
                 <div class="d-flex flex-column">
                   <label for="date" class="input-headlines fs-20">Due date</label>
-                  <input required class="fs-20 rounded-3 bg-white" id="date" type="date">
+                  <input required class="date fs-20 rounded-3 bg-white" id="date" type="date">
                 </div>
                 <div class="d-flex flex-column">
                   <span class="input-headlines fs-20">Prio</span>
                   <div class="priority d-flex justify-content-between">
                     <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="urgent" onclick="togglePriority('urgent')">
                       <span class="fs-20 priority-sublines">Urgent</span>
-                      <img src="../img/urgent_red.svg" alt="urgent" id="urgent-img">
+                      <img src="../img/urgent_red.svg" alt="urgent" id="urgent-img" class="urgent-img">
                     </div>
                     <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="medium" onclick="togglePriority('medium')">
                       <span class="fs-20">Medium</span>
@@ -201,34 +202,32 @@
                 <div class="d-flex flex-column">
                   <label for="subtask" class="input-headlines fs-20">Subtasks</label>
                   <div class="subtask-add rounded-3 d-flex align-items-center justify-content-between bg-white" id="subtask-creator">
-                    <input class="fs-20" type="text" placeholder="Add new subtask" id="subtask" onclick="openNewSubtaskInAddTaskCard('subtask-creator')">
+                    <input class="subtask fs-20" type="text" placeholder="Add new subtask" id="subtask" onclick="openNewSubtask()">
                     <div id="new-subtask-field">
-                      <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="openNewSubtaskInAddTaskCard('subtask-creator')">
+                      <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="openNewSubtask()">
                         <img src="../img/add_addTask.svg" alt="plus" class="add">
                       </div>
                     </div>
                   </div>
                   <div>
-                    <ul id="subtask-content"></ul>
+                    <ul id="subtask-content" class="subtask-content"></ul>
                   </div>
                 </div>
-      
               </div>
             </div>
       
             <div class="form-buttons d-flex justify-content-end"  >
-              <div class="clear-button-addTask rounded-3 d-flex justify-content-center align-items-center bg-white">
+              <button class="clear-button-addTask rounded-3 d-flex justify-content-center align-items-center bg-white" onclick=" allMightyClear()">
                 <span class="fs-20">Clear</span>
                 <svg class="clear" width="13" height="14" viewBox="0 0 13 14"  xmlns="http://www.w3.org/2000/svg">
                   <path d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-              </div>
+              </button>
               <button type="submit" class="create-button rounded-3 d-flex justify-content-center align-items-center text-white">
                 <span>Create Task</span>
                 <img src="../img/check_addTask.svg" alt="">
               </button>
             </div>
         </form>
-        
     </body>
 </html>

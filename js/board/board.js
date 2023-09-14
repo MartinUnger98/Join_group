@@ -51,7 +51,7 @@ function renderTasks(status) {
         let amountOfSubtasks = subtasks.length;
         let id = task.id;
         let position = idToPosition(tasks, id);
-        content.innerHTML += showAddedSubtasks(title, category, description, priority, amountOfSubtasks, id);
+        content.innerHTML += showAddedTasks(title, category, description, priority, amountOfSubtasks, id);
         determineCategoryColor(category, `cardPrio-${id}`); 
         renderDetailedTask(position, id);
     }
@@ -103,7 +103,7 @@ function renderDetailedTask(i, id) {
     let prioImg = task.prio;
     let date = formatDate(task.date);
     let subtask = task.subtask;
-    content.innerHTML += showDetailedTask(title, category, description, priority,prioImg, date, i, subtask);
+    content.innerHTML += showDetailedTask(title, category, description, priority,prioImg, date, i, subtask, id);
     renderSubtasks(subtask, i, id); 
     updateCheckedSubtasksCount(i, id);
     determineCategoryColor(category, `prio-detail-${i}`); 
@@ -160,7 +160,7 @@ function updateCheckedSubtasksCount(i, id) {
         }
     });
     // Aktualisiere den Wert des <span>-Elements mit der ID "checked_subtasks"
-    const checkedSubtasksSpan = document.getElementById(`checked_subtasks-${i}`);
+    const checkedSubtasksSpan = document.getElementById(`checked_subtasks-${id}`);
     if (checkedSubtasksSpan) {
         checkedSubtasksSpan.textContent = checkedCount.toString();
     }
@@ -169,11 +169,17 @@ function updateCheckedSubtasksCount(i, id) {
 }
 
 function updateProgressbar(id) {
-    let checkedSubtask = document.getElementById(`checked_subtasks-${id}`).innerText;
-    let allSubtasks = document.getElementById(`allSubtasks-${id}`).innerText;
-    let percent = checkedSubtask / allSubtasks;
-    percent = Math.round(percent *100); 
-    document.getElementById(`progress-${id}`).style.width = `${percent}%`;
+    const checkedSubtasksSpan = document.getElementById(`checked_subtasks-${id}`);
+    const allSubtasksSpan = document.getElementById(`allSubtasks-${id}`);
+    const progressBar = document.getElementById(`progress-${id}`);
+    
+    if (checkedSubtasksSpan && allSubtasksSpan && progressBar) {
+        let checkedSubtask = checkedSubtasksSpan.innerText;
+        let allSubtasks = allSubtasksSpan.innerText;
+        let percent = checkedSubtask / allSubtasks;
+        percent = Math.round(percent * 100);
+        progressBar.style.width = `${percent}%`;
+    }
 }
 
 /**
@@ -241,6 +247,7 @@ function scrollToTop() {
  * @param {*} i - specific number of detailed task (task) - used as id
  */
 function deleteNote(i) {
+    debugger;
     hideDetailedTask();
     tasks.splice(i, 1);
     saveTasks();
@@ -272,27 +279,13 @@ function showHiddenAddTask() {
     scrollToTop();
 }
 
-function openDetailedCardEditor(title, category, description, priority,prioImg, date, i, subtask) {
+function openDetailedCardEditor(title, description, date, id, i) {
     let editor = document.getElementById('detailedTask');
+    let dateEditor = date.split('/');
+    let formattedDate = `${dateEditor[2]}-${dateEditor[1]}-${dateEditor[0]}`;
     editor.innerHTML = '';
-    editor.innerHTML += /*html*/ `
-        <div class="d-flex flex-column row-gap-4">
-            <div class="d-flex justify-content-end">
-                <div class="clear-button d-flex align-items-center justify-content-center rounded-5 ms-auto" onclick="hideDetailedTask()">
-                    <img src="../img/clear.svg" alt="clear" class="clear-img">
-                </div>
-            </div>
-            <div class="d-flex flex-column">
-                <label for="input" class="input-headlines fs-20">Title</label>
-                <input class="fs-20 rounded-3 input" required id="input-editor-${i}" type="text" placeholder="Enter a title" value="${title}">
-            </div>
-            <div class="d-flex flex-column">   
-                  <label for="textarea" class="input-headlines fs-20">Description</label>
-                  <textarea class="fs-20 rounded-3" required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
-            </div>  
-        </div>
-    `;
-
+    editor.innerHTML += showDetailedCardEditor(title, description, formattedDate, id, i);
+    renderSubtasksInEditor(id, i);
 }
 
 

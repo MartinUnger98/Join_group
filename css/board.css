@@ -102,7 +102,6 @@ h1 {
 .clear-img {
     width: 14px;
     height: 14px;
-    margin-left: 1px;
 }
 .fs-61 {
     font-size: 61px;
@@ -236,8 +235,7 @@ h1 {
     color: #D1D1D1;
     font-size: 20px;
 }
-
-#textarea {
+.textarea {
     padding: 18px 16px;
     height: 120px;
     outline: none;
@@ -248,11 +246,11 @@ h1 {
     background-repeat: no-repeat;
     background-position: right 4px bottom 4px;
 }
-#textarea::placeholder {
+.textarea::placeholder {
     color: #D1D1D1;
     font-size: 20px;
 }
-#textarea:focus {
+.textarea:focus {
     border-color: #29ABE2;
 }
 .separator-addTask {
@@ -263,7 +261,7 @@ h1 {
     width: 390px;
     margin-left: 56px;
 }
-#date {
+.date {
     border: 1px solid #D1D1D1;
     padding: 12px 16px;
     outline: none;
@@ -272,10 +270,10 @@ h1 {
     height: 55px;
     cursor: pointer;
 }
-#date:invalid::-webkit-datetime-edit {
+.date:invalid::-webkit-datetime-edit {
     color: #D1D1D1;
 }
-#date:focus {
+.date:focus {
     border-color: #29ABE2;
 }
 .priority {
@@ -289,7 +287,7 @@ h1 {
     width: 122px;
     cursor: pointer;
 }
-#urgent-img {
+.urgent-img {
     width: 21px;
     height: 16px;
 }
@@ -324,7 +322,6 @@ h1 {
 .select-btn img {
     padding: 4px 2px;
 }
-
 .category-content {
     display: none;
     top: 620px;
@@ -384,13 +381,13 @@ h1 {
     border: 1px solid #D1D1D1;
     cursor: pointer;
 }
-#subtask {
+.subtask {
     border: 0;
     outline: none;
     flex: 1;
     height: 45px;
 }
-#subtask::placeholder {
+.subtask::placeholder {
     color: #D1D1D1;
     font-size: 20px;
 }
@@ -418,7 +415,7 @@ h1 {
     background-color: #D9D9D9;
     border-radius: 20px;
 }
-#subtask-content {
+.subtask-content {
     padding: 0;
 }
 .added-subtask-container {
@@ -472,6 +469,7 @@ h1 {
 }
 .form-buttons {
     gap: 16px;
+    height: 60px;
 }
 .clear-button-addTask {
     padding: 12px 16px;
@@ -482,6 +480,19 @@ h1 {
 .clear-button-addTask:hover {
     border-color: #29ABE2;
     color: #29ABE2;
+    border-width: 2px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+.clear-button-addTask:active {
+    border: 1px solid black;
+    color: black;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+.clear-button-addTask:hover svg path {
+    stroke: #29ABE2;
+}
+.clear-button-addTask:active svg path {
+    stroke: black;
 }
 .create-button {
     background-color: #2A3647;
@@ -496,12 +507,53 @@ h1 {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
 }
-.clear-button-addTask:hover svg path {
-    stroke: #29ABE2;
+.create-button:active {
+    background: #091931;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
+
 .clear {
     margin-top: 1px;
 }
 .show-task {
     transform: translateX(0);
+}
+.ok-button {
+    background-color: #2A3647;
+    padding: 12px 16px;
+    gap: 4px;
+    font-size: 21px;
+    cursor: pointer;
+    border: 0;
+}
+.ok-button:hover {
+    background: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+.ok-button:active {
+    background: #091931;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+.editor-content {
+    overflow-y: scroll;
+    max-height: 600px;
+    padding: 10px;
+}
+.select-editor {
+    padding: 12px 16px;
+    border: 1px solid #D1D1D1;
+}
+.select-editor img {
+    padding: 4px 2px;
+}
+.assign-content-editor {
+    display: none;
+    height: 270px;
+}
+.assign-content-editor.active {
+    display: block;
+}
+.contacts-box-editor {
+    max-height: 175px; 
+    overflow-y: auto; 
 }
