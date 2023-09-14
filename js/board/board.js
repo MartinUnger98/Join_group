@@ -1,4 +1,5 @@
 let currentDraggedElement;
+let statusTasks = ["toDo", "inProgress", "awaitFeedback", "taskDone"];
 
 /**
  * This function is the render-function for board.html
@@ -60,6 +61,7 @@ function renderTasks(status) {
         determineCategoryColor(category, `cardPrio-${id}`); 
         renderDetailedTask(position, id);
     }
+    content.innerHTML += addEmptytask('emptyTask' + status);
 }
 
 function openDetailedTask(id) {
@@ -261,6 +263,27 @@ function deleteNote(i) {
 
 function startDragging(id) {
     currentDraggedElement = id;
+    rotateTask(id);
+    getCurrentdragObjektStatus(id);
+}
+
+function getCurrentdragObjektStatus(id) {
+    let position = idToPosition(tasks, id);
+    let currentDragObjektStatus = tasks[position]['status'];
+    showEmptyTasks(currentDragObjektStatus);
+}
+
+function showEmptyTasks(currentDragObjektStatus) {
+    statusTasks.forEach(sTask => {
+        if(currentDragObjektStatus !== sTask) {
+            document.getElementById("emptyTask" + sTask).classList.remove("d-none");
+        }
+    });
+    
+}
+
+function rotateTask(id) {
+    document.getElementById("task-" + id).classList.add("rotateTask");
 }
 
 function allowDrop(event) {

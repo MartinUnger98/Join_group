@@ -49,6 +49,12 @@ function showAddedTasks(title, category, description, priority, amountOfSubtasks
     `;
 }
 
+function addEmptytask(id) {
+    return /*html*/ `
+        <div id="${id}" class="rounded-5 emptyTask d-none"></div> 
+    `
+}
+
 // -------------------------- board - detailed task --------------------------------------------
 
 /**

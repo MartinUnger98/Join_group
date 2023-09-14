@@ -558,3 +558,13 @@ h1 {
     max-height: 175px; 
     overflow-y: auto; 
 }
+
+.emptyTask {
+    width: 226px; 
+    height: 214px; 
+    border: 2px dotted #9b9b9b;
+}
+
+.rotateTask {
+    transform: rotate(5deg);
+}
