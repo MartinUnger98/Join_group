@@ -18,8 +18,11 @@ let allContacts = [
         name: 'Friedrich König',
         email: 'hasnmeier@webkitURL.de',
         number: '1234'
-    }
+    },
+    
 ]
+
+let initialLetter = [];
 
 
 function sortByFirstName(allContacts) {
@@ -81,6 +84,19 @@ function loadContacts() {
     for (let i = 0; i < allContacts.length; i++) {
         const contact = allContacts[i];
         const initials = getInitials(contact['name']);
+        const firstInitial = initials[0][0];
+        if (!initialLetter.includes(firstInitial)) {
+            initialLetter.push(firstInitial);
+        }
+        else{
+            initialLetter.push('blank');
+        }
+        if (initialLetter[i] != 'blank') {
+            allContactsContainer.innerHTML += `
+            <span class="categoryHead">${initials[0][0]}</span>
+            <div class="categoryBorder"></div>
+            `
+        }
         allContactsContainer.innerHTML += `
         <div class="contactLayout">
             <div class="initials"><span>${initials}</span></div>        
@@ -93,4 +109,11 @@ function loadContacts() {
     }
 }
 
+
+function addCategoryLetter(){
+
+
+
+
+}
 
