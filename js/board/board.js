@@ -5,6 +5,14 @@ let currentDraggedElement;
  */
 function loadBoard() {
     renderToDoColumn();
+    loadDropdowns();
+}
+
+function allMightyRender() {
+    renderTasks('toDo');
+    renderTasks('inProgress');
+    renderTasks('awaitFeedback');
+    renderTasks('taskDone');
 }
 
 /**
@@ -14,10 +22,7 @@ function renderToDoColumn() {
     if (tasks.length < 1) {
         loadNoTask();
     } else {
-        renderTasks('toDo');
-        renderTasks('inProgress');
-        renderTasks('awaitFeedback');
-        renderTasks('taskDone');
+        allMightyRender();
     }
 }
 
@@ -265,10 +270,7 @@ function allowDrop(event) {
 function moveTo(status) {
     let position = idToPosition(tasks, currentDraggedElement);
     tasks[position]['status'] = status;
-    renderTasks('toDo');
-    renderTasks('inProgress');
-    renderTasks('awaitFeedback');
-    renderTasks('taskDone');
+    allMightyRender();
     saveTasks();
 }
 

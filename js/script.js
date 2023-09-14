@@ -11,7 +11,6 @@ async function init() {
     if (window.location.pathname === '/html/board.html') {
         loadBoard();
     }
-    loadDropdowns();
 }
 
 

@@ -151,7 +151,7 @@ function showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus) {
 
 function showDetailedCardEditor(title, description, formattedDate, id, i) {
     return /*html*/ `
-        <form id="detailedCardEditor-${id}" class="d-flex flex-column row-gap-4" onsubmit="return false">
+        <form id="detailedCardEditor-${id}" class="d-flex flex-column row-gap-4" onsubmit="savedEditedTask(); return false">
             <div class="d-flex justify-content-end">
                 <div class="clear-button d-flex align-items-center justify-content-center rounded-5 ms-auto" onclick="hideDetailedTask()">
                     <img src="../img/clear.svg" alt="clear" class="clear-img">

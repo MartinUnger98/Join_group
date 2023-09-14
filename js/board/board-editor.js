@@ -107,5 +107,8 @@ function renderSubtasksInEditor(id, i) {
     }
 }
 
-
+async function savedEditedTask() {
+    await saveTasks();
+    allMightyRender();
+}
 
