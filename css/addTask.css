@@ -371,12 +371,13 @@ h1 {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 16px;
   }
   
   ::-webkit-scrollbar-thumb {
     background-color: #A8A8A8;
     border-radius: 32px;
+    width: 10px;
   }
   
   ::-webkit-scrollbar-thumb:hover {

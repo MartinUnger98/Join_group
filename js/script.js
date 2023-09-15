@@ -3,7 +3,7 @@ let tasks = [];
 let allContacts = [];
 let categories = ['Technical Task', 'User Story'];
 let subtaskcounter = 0;
-let initialLetter = [];
+
 let bgColors = ['#FF7A00','#9327FF','#6E52FF','#FC71FF','#FFBB2B','#1FD7C1','#462F8A','#FF4646',]
 
 
