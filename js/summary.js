@@ -74,7 +74,6 @@ async function summaryInit(){
 function countTasksInBoard(){
     let taskInBoardContainer = document.getElementById('numberOftaskInBoard');
     numberOfTasks = tasks.length;
-    console.log(tasks)
     taskInBoardContainer.innerHTML = `${numberOfTasks}`;
 }
 
