@@ -34,12 +34,12 @@ header {
     height: 32px;
 }
 .help {
-    width: 20px;
-    height: 20px;
+    width: 45px;
+    height: 45px;
 }
 .help:hover {
-    width: 24px;
-    height: 24px;
+    width: 55px;
+    height: 55px;
 }
 
 .user-profile-initials {
