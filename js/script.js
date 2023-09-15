@@ -4,6 +4,7 @@ let allContacts = [];
 let categories = ['Technical Task', 'User Story'];
 let subtaskcounter = 0;
 let bgColors = ['#FF7A00','#9327FF','#6E52FF','#FC71FF','#FFBB2B','#1FD7C1','#462F8A','#FF4646',];
+let loggedInUser;
 
 
 async function init() {
@@ -11,6 +12,7 @@ async function init() {
     await loadUsers();
     await loadTask();
     await loadAllContacts();
+    await loadLoggedInUser();
     if (window.location.pathname === '/html/board.html') {
         loadBoard();
     }
@@ -41,6 +43,15 @@ async function loadTask() {
 async function loadAllContacts(){
     try {
         allContacts = JSON.parse(await getItem('allContacts'));
+    } catch(e){
+        console.error('Loading error:', e);
+    } 
+}
+
+
+async function loadLoggedInUser() {
+    try {
+        loggedInUser = await getItem('loggedInUser');
     } catch(e){
         console.error('Loading error:', e);
     } 
