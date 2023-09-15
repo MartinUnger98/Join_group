@@ -141,7 +141,9 @@ function loadContacts() {
 
 function changeBgColor(i, id){
     if (i > bgColors.length) {
-        newBgColorPosition = i - bgColors.length
+        const randomDecimal = Math.random();
+        const randomInteger = Math.floor(randomDecimal * 8);
+        newBgColorPosition = randomInteger;
         document.getElementById(id).style.backgroundColor = bgColors[newBgColorPosition];
     }
     document.getElementById(id).style.backgroundColor = bgColors[i];
