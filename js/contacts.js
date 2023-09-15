@@ -1,3 +1,4 @@
+let initialLetter = [];
 
 function sortByFirstName(allContacts) {
     return allContacts.sort(function (a, b) {
