@@ -41,8 +41,20 @@ async function loadAllContacts(){
         allContacts = JSON.parse(await getItem('allContacts'));
     } catch(e){
         console.error('Loading error:', e);
+    } 
+}
+
+
+function pushUsersToContacts(){
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        let newContact = {
+                email: user['email'],
+                name: user['name'],
+                number: ''
+        }
+        allContacts.push(newContact);
     }
-    pushUsersToContacts(); 
 }
 
 

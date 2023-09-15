@@ -318,17 +318,7 @@ function findNewPosition(nameInput) {
 }
 
 
-function pushUsersToContacts(){
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        let newContact = {
-                email: user['email'],
-                name: user['name'],
-                number: ''
-        }
-        allContacts.push(newContact);
-    }
-}
+
 
 
 
