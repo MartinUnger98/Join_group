@@ -233,8 +233,9 @@ function checkEmailExistence(usermail) {
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
         if(user.email === usermail) {
-            let userPassword = user.password
-            checkPassword(userPassword, logInPassword);
+            let userPassword = user.password;
+            let userName = user.name;
+            checkPassword(userPassword, logInPassword, userName);
         }
     }
 }
@@ -246,8 +247,9 @@ function checkEmailExistence(usermail) {
  * @param {string} userPassword - password form server to the inserted email
  * @param {string} logInPassword - password which was inserted
  */
-function checkPassword(userPassword, logInPassword) {
+async function checkPassword(userPassword, logInPassword, userName) {
     if (userPassword === logInPassword) {
+        loggedInUser = await setItem('loggedInUser', userName);
         window.location.href = "summary.html"
     }
     else {
