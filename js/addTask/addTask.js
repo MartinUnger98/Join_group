@@ -1,4 +1,4 @@
-
+let selectedContacts = [];
 /**
  * This functions loads the category options at the beginning
  */
@@ -390,41 +390,40 @@ function clearCategory() {
 function renderUser() {
     let content = document.getElementById('contact_content');
     content.innerHTML = '';
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
+    for (let i = 0; i < allContacts.length; i++) {
+        const user = allContacts[i];
         let username = user.name;
-        let firstInitial = username.charAt(0);
+        const initials = getInitials(username);
         content.innerHTML += /*html*/ `
-            <div id="user-selection-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3" onclick="activateCheckbox(${i})"> <!-- Klick-Event hinzufügen -->
-                <div class="d-flex align-items-center">
+            <div id="user-selection-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3"> <!-- Klick-Event hinzufügen -->
+                <div class="d-flex align-items-center contact-selection-box ">
                     <div id="contact-${i}" class="initials">
-                        <span>${firstInitial}</span>
+                        <span>${initials}</span>
                     </div>
-                    <label for="user-${i}">${username}</label>
+                    <label class="label-contact" for="user-${i}">${username}</label>
                 </div>
-                <input type="checkbox" id="user-${i}">
+                <input type="checkbox" id="user-${i}" onclick="toggleCheckbox(${i})">
             </div>
         `;
         changeBgColor(i, `contact-${i}`);
     }
 }
 
-function activateCheckbox(id) {
-    let checkbox = document.getElementById(`user-${id}`);
-    checkbox.checked = !checkbox.checked; // Toggle (Aktivieren/Deaktivieren) der Checkbox
-    
-    // Änderung des Hintergrunds basierend auf dem Checkbox-Status
-    let selection = document.getElementById(`user-selection-${id}`);
-    if (checkbox.checked) {
-        selection.style.background = '#2A3647';
-        selection.style.color = 'white';
-    } else {
-        selection.style.background = ''; // Zurücksetzen auf den Standard-Hintergrund
-        selection.style.color = ''; // Zurücksetzen auf die Standardfarbe
-    }
+function getInitials(name) {
+    const nameParts = name.split(' ');
+    const firstNameInitial = nameParts[0][0];
+    const lastNameInitial = nameParts.length > 1 ? nameParts[1][0] : '';
+    return `${firstNameInitial}${lastNameInitial}`;
 }
 
-
+function toggleCheckbox(id) {
+    let selection = document.getElementById(`user-selection-${id}`);
+    if (!selection.classList.contains('checked')) {
+        selection.classList.add('checked');
+    } else {
+        selection.classList.remove('checked');
+    }
+}
 
 function changeBgColor(i, id){
     if (i > bgColors.length) {
@@ -436,4 +435,23 @@ function changeBgColor(i, id){
     document.getElementById(id).style.backgroundColor = bgColors[i];
 }
 
+function moveSelectedContacts() {
+    let selectedContactsDiv = document.getElementById('selected_contacts');
+    selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
+
+    for (let i = 0; i < allContacts.length; i++) {
+        let selection = document.getElementById(`user-selection-${i}`);
+        let checkbox = document.getElementById(`user-${i}`);
+        
+        if (selection.classList.contains('checked') && checkbox.checked) {
+            const user = allContacts[i];
+            let username = user.name;
+            const initials = getInitials(username);
+            let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${i}`)).backgroundColor;
+            selectedContactsDiv.innerHTML += /*html*/ `
+                <div class="initials-selected" id="selected_contact-${i}" style="background-color: ${contactBgColor}">${initials}</div>
+            `;
+        }
+    }
+}
 
