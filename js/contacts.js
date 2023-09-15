@@ -114,6 +114,12 @@ function getInitials(name) {
 }
 
 
+async function initContacts(){
+    await init();
+    loadContacts();
+}
+
+
 function loadContacts() {
     let allContactsContainer = document.getElementById('allContacts');
     allContactsContainer.innerHTML = '';
@@ -309,6 +315,18 @@ function findNewPosition(nameInput) {
     }
 }
 
+
+function pushUsersToContacts(){
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        let newContact = {
+                email: user['email'],
+                name: user['name'],
+                number: ''
+        }
+        allContacts.push(newContact);
+    }
+}
 
 
 

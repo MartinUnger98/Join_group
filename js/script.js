@@ -8,6 +8,7 @@ async function init() {
     await includeHTML();
     await loadUsers();
     await loadTask();
+    await loadAllContacts();
     if (window.location.pathname === '/html/board.html') {
         loadBoard();
     }
@@ -41,7 +42,7 @@ async function loadAllContacts(){
     } catch(e){
         console.error('Loading error:', e);
     }
-    loadContacts(); 
+    pushUsersToContacts(); 
 }
 
 
