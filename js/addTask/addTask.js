@@ -1,8 +1,11 @@
+
 /**
  * This functions loads the category options at the beginning
  */
-function loadDropdowns() {
+async function loadAddTask() {
+    await init();
     addCategory();
+    renderUser();
 }
 
 /**
@@ -383,3 +386,54 @@ function clearCategory() {
     content.classList.remove('active');
     addCategory('');
 }
+
+function renderUser() {
+    let content = document.getElementById('contact_content');
+    content.innerHTML = '';
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        let username = user.name;
+        let firstInitial = username.charAt(0);
+        content.innerHTML += /*html*/ `
+            <div id="user-selection-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3" onclick="activateCheckbox(${i})"> <!-- Klick-Event hinzufügen -->
+                <div class="d-flex align-items-center">
+                    <div id="contact-${i}" class="initials">
+                        <span>${firstInitial}</span>
+                    </div>
+                    <label for="user-${i}">${username}</label>
+                </div>
+                <input type="checkbox" id="user-${i}">
+            </div>
+        `;
+        changeBgColor(i, `contact-${i}`);
+    }
+}
+
+function activateCheckbox(id) {
+    let checkbox = document.getElementById(`user-${id}`);
+    checkbox.checked = !checkbox.checked; // Toggle (Aktivieren/Deaktivieren) der Checkbox
+    
+    // Änderung des Hintergrunds basierend auf dem Checkbox-Status
+    let selection = document.getElementById(`user-selection-${id}`);
+    if (checkbox.checked) {
+        selection.style.background = '#2A3647';
+        selection.style.color = 'white';
+    } else {
+        selection.style.background = ''; // Zurücksetzen auf den Standard-Hintergrund
+        selection.style.color = ''; // Zurücksetzen auf die Standardfarbe
+    }
+}
+
+
+
+function changeBgColor(i, id){
+    if (i > bgColors.length) {
+        const randomDecimal = Math.random();
+        const randomInteger = Math.floor(randomDecimal * 8);
+        newBgColorPosition = randomInteger;
+        document.getElementById(id).style.backgroundColor = bgColors[newBgColorPosition];
+    }
+    document.getElementById(id).style.backgroundColor = bgColors[i];
+}
+
+

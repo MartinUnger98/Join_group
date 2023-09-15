@@ -168,6 +168,15 @@ h1 {
     max-height: 175px; 
     overflow-y: auto; 
     margin-top: 19px;
+    gap: 1px;
+}
+.contact-selection {
+    padding: 0 12px;
+    cursor: pointer;
+}
+.contact-selection:hover {
+    background-color: #EEEEEE;
+    
 }
 .new-contact-btn {
     background: #2A3647;
@@ -317,3 +326,15 @@ h1 {
 .clear {
     margin-top: 1px;
 }
+.initials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    color: white;
+    font-size: 16px;
+    border: 2px solid white;
+    margin-right: 12px;
+  }
