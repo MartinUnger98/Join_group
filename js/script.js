@@ -9,7 +9,10 @@ let loggedInUser;
 
 async function init() {
     await includeHTML();  
-    await loadData();      
+    await loadData(); 
+    if(window.location.pathname === '/html/board.html' || window.location.pathname === '/html/addTask.html'){
+        loadAddTask();
+    }    
     if (window.location.pathname === '/html/board.html') {
         loadBoard();
     }
