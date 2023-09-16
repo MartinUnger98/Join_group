@@ -257,17 +257,28 @@ function hideBackground() {
  * This function pushes the detailed Task back to the left
  */
 
-function hideDetailedTask() {
+function hideTasksOfBoard() {
     let task = document.getElementById('detailedTask');
     let boardAddTask = document.getElementById('board-addTask');
     
     if (task.classList.contains('show-task')) {
         task.classList.remove('show-task');
-        hideBackground();
+        hideDetailedTask();
     } else if (boardAddTask.classList.contains('show-task')) {
         boardAddTask.classList.remove('show-task');
-        hideBackground();
+        hideAddTask();
     }
+}
+function hideAddTask() {
+    let boardAddTask = document.getElementById('board-addTask');
+    boardAddTask.classList.remove('show-task');
+    hideBackground();
+    allMightyClear();
+}
+function hideDetailedTask() {
+    let task = document.getElementById('detailedTask');
+    task.classList.remove('show-task');
+    hideBackground();
 }
 
 /**

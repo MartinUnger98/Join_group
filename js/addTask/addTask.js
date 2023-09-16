@@ -363,6 +363,7 @@ function allMightyClear() {
     clearCategory();
     document.getElementById('subtask').value = '';
     document.getElementById('subtask-content').innerHTML = '';
+    clearContacts();
 }
 
 function clearPriorityButtons() {
@@ -391,6 +392,17 @@ function clearCategory() {
     content.classList.remove('active');
     addCategory('');
 }
+
+function clearContacts() {
+    let contacts = document.querySelectorAll('.checked');
+    contacts.forEach(contact => {
+        contact.classList.remove('checked');
+        let checkboxId = contact.querySelector('input[type="checkbox"]').id;
+        document.getElementById(checkboxId).checked = false;
+    });
+    moveSelectedContacts();
+}
+
 
 function renderUser() {
     let content = document.getElementById('contact_content');
