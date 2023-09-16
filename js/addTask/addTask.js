@@ -2,8 +2,7 @@ let selectedContacts = [];
 /**
  * This functions loads the category options at the beginning
  */
-async function loadAddTask() {
-    await init();
+function loadAddTask() {
     addCategory();
     renderUser();
 }
@@ -254,6 +253,12 @@ function switchBorderandDropdown() {
     border.classList.remove('border-color');
     dropDown.classList.remove('switch');
 }
+function switchBorderandDropdownOfContacts() {
+    let border = document.getElementById('contact_dropdown');
+    let dropDown = document.getElementById('drop_1')
+    border.classList.remove('border-color');
+    dropDown.classList.remove('switch');
+}
 
 /**
  * This function creates a new subtask-input-field
@@ -436,9 +441,10 @@ function changeBgColor(i, id){
 }
 
 function moveSelectedContacts() {
+    let dropdown = document.getElementById('contacts');
     let selectedContactsDiv = document.getElementById('selected_contacts');
     selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
-
+    
     for (let i = 0; i < allContacts.length; i++) {
         let selection = document.getElementById(`user-selection-${i}`);
         let checkbox = document.getElementById(`user-${i}`);
@@ -453,5 +459,7 @@ function moveSelectedContacts() {
             `;
         }
     }
+    dropdown.classList.remove('active');
+    switchBorderandDropdownOfContacts();
 }
 

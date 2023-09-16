@@ -568,3 +568,18 @@ h1 {
 .rotateTask {
     transform: rotate(5deg);
 }
+
+.initials-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    background-color: aqua;
+    border-radius: 100%;
+    color: white;
+    font-size: 16px;
+    border: 2px solid white;
+    cursor: pointer;
+    margin-left: -13px;
+}

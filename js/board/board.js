@@ -6,7 +6,6 @@ let statusTasks = ["toDo", "inProgress", "awaitFeedback", "taskDone"];
  */
 function loadBoard() {
     renderToDoColumn();
-    loadDropdowns();
 }
 
 function allMightyRender() {
@@ -56,10 +55,12 @@ function renderTasks(status) {
         let subtasks = task.subtask;
         let amountOfSubtasks = subtasks.length;
         let id = task.id;
+        let contact = task.contacts;
         let position = idToPosition(tasks, id);
-        content.innerHTML += showAddedTasks(title, category, description, priority, amountOfSubtasks, id);
+        content.innerHTML += showAddedTasks(title, category, description, priority, amountOfSubtasks, id, contact);
         determineCategoryColor(category, `cardPrio-${id}`); 
         renderDetailedTask(position, id);
+        renderSelectedContacts(task, contact, id);
     }
     content.innerHTML += addEmptytask('emptyTask' + status);
 }
@@ -95,6 +96,22 @@ function determineCategoryColor(category, id) {
     } 
 }
 
+function renderSelectedContacts(task, contact, id) {
+    let content = document.getElementById(`selected-contacts-box-${id}`);
+    let bgColor = task.contactsBg;
+    if (contact) {
+        content.innerHTML = '';
+        for (let i = 0; i < contact.length; i++) {
+            const selectedContact = contact[i];
+            const initials = getInitials(selectedContact);
+            const selectedContactsBg = bgColor[i];
+            content.innerHTML += /*html*/ `
+            <div class="initials-selected" style="background-color: ${selectedContactsBg}">${initials}</div>
+            `;
+        }
+    }
+}
+
 /**
  * This function renders the specifc detailed task for each rendered task
  * @param {*} i - speicfic number of detailed task (task) - used as id
@@ -107,13 +124,34 @@ function renderDetailedTask(i, id) {
     let category = task.category;
     let description = task.description;
     let priority = task.priority;
+    let contact = task.contacts;
     let prioImg = task.prio;
     let date = formatDate(task.date);
     let subtask = task.subtask;
-    content.innerHTML += showDetailedTask(title, category, description, priority,prioImg, date, i, subtask, id);
+    content.innerHTML += showDetailedTask(title, category, description, priority,prioImg, date, i, subtask, id, contact);
     renderSubtasks(subtask, i, id); 
     updateCheckedSubtasksCount(i, id);
     determineCategoryColor(category, `prio-detail-${i}`); 
+    renderSelectedContactsInDetailedTask(task, contact, id);
+}
+
+function renderSelectedContactsInDetailedTask(task, contact, id) {
+    let content = document.getElementById(`contacts-detailed-${id}`);
+    let bgColor = task.contactsBg;
+    if (contact) {
+        content.innerHTML = '';
+        for (let i = 0; i < contact.length; i++) {
+            const selectedContact = contact[i];
+            const initials = getInitials(selectedContact);
+            const selectedContactsBg = bgColor[i];
+            content.innerHTML += /*html*/ `
+                <div class="d-flex align-items-center column-gap-4">
+                    <div class="initials-selected" style="background-color: ${selectedContactsBg}">${initials}</div>
+                    <span>${selectedContact}</span>
+                </div>
+            `;
+        }
+    }
 }
 
 /**

@@ -6,12 +6,16 @@ async function addTask(status) {
     let description = document.getElementById('textarea').value;
     let selectedCategory = getCategory();
     let date = document.getElementById('date').value;
+    let contact = getContacts();
+    let contactBg = getBgofContact();
     let subtasks = getSubtasks();
     let img = getPrioImage();
     let priority = getPriority();
     let task = {
         'title': title,
         'description': description,
+        'contacts': contact,
+        'contactsBg': contactBg,
         'date': date,
         'prio': img,
         'priority': priority,
@@ -114,6 +118,34 @@ function getPriority() {
     }
     return priority;
 }
+
+function getContacts() {
+    let selectedContacts = [];
+    let checkedContact = document.querySelectorAll('.contact-selection.checked');
+    checkedContact.forEach(contact => {
+        let label = contact.querySelector('label.label-contact');
+        let username = label.textContent;
+        selectedContacts.push(username);
+    });
+    return selectedContacts;
+}
+
+
+function getBgofContact() {
+    let bgColorsOfContacts = [];
+    let checkedContact = document.querySelectorAll('.contact-selection.checked');
+    checkedContact.forEach(contact => {
+        let contactId = contact.id; // Die ID des ausgewählten Kontakt-Elements
+        let i = contactId.split('-')[2]; // Extrahieren der Indexnummer aus der ID
+
+        // Die Hintergrundfarbe von id="contact-${i}" abrufen und dem Array hinzufügen
+        let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${i}`)).backgroundColor;
+        bgColorsOfContacts.push(contactBgColor);
+    });
+
+    return bgColorsOfContacts;
+}
+
 /**
  * This function pushes all elements of the array "tasks"
  * @param {*} task JSON task

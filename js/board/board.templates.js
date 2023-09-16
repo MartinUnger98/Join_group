@@ -9,16 +9,14 @@
  * @param {*} i - number of task
  * @returns - created task
  */
-function showAddedTasks(title, category, description, priority, amountOfSubtasks, id) {
+function showAddedTasks(title, category, description, priority, amountOfSubtasks, id, contact) {
         return /*html*/ `
         <div id="task-${id}" class="testcard bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" draggable ="true" ondragstart="startDragging(${id})" onclick="openDetailedTask(${id})">
             ${category !== "" ? /*html*/ `
                 <div id="cardPrio-${id}" class="card-priority rounded-3 text-white align-self-start">
                     <span>${category}</span>
-                </div>`
-                :
-                /*html*/``
-            }
+                </div>
+            `: ''}
             <div class="d-flex flex-column row-gap-1">
                 <span class="fw-bold detail-color title">${title}</span>
                 <span class="description-color">${description}</span>
@@ -36,15 +34,16 @@ function showAddedTasks(title, category, description, priority, amountOfSubtasks
                         </div>
                         <span >Subtasks</span>
                     </div>    
-                </div>`:``
-            }
-            ${priority !== "" ? /*html*/ `
-                <div class="d-flex justify-content-between align-items-center">
-                    <div></div>
-                    <img src="../${priority}" alt="priority">
                 </div>
-                ` : ``
-            }
+            `: ''}
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="flex-grow-1 ps-2">
+                        <div id="selected-contacts-box-${id}" class="d-flex"></div>
+                    </div>
+                    ${priority !== "" ? /*html*/ `
+                        <img src="../${priority}" alt="priority" class="urgent-img">
+                    ` : ''}
+                </div>
         </div>
     `;
 }
@@ -69,7 +68,7 @@ function addEmptytask(id) {
  * @param {*} subtask - subtask-array of task
  * @returns - created detailed task
  */
-function showDetailedTask(title, category, description, priority,prioImg, date, i, subtask, id) {
+function showDetailedTask(title, category, description, priority,prioImg, date, i, subtask, id, contact) {
     return /*html */ `
         <div id="detailed-card-${id}" class="d-flex flex-column row-gap-4">
             <div class="d-flex justify-content-between align-items-center">
@@ -86,35 +85,29 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
                 <span class="detail-color">Due date:</span>
                 <span>${date}</span>
             </div>
-            ${prioImg !== "" ?
-                /*html*/ `
+            ${prioImg !== "" ? /*html*/ `
                 <div class="d-flex align-items-center fs-20 column-gap-4">
                     <span>Priority:</span>
                     <div class="d-flex align-items-center column-gap-2">
                         <span class="mb-12">${priority}</span>
                         <img src="../${prioImg}" alt="priority">
                     </div> 
-                </div>`
-                   :
-                /*html*/``
-            }   
-            <div class="fs-20">
-                <div>
-                    <span class="detail-color">Assigned to:</span>
                 </div>
-                <div></div>
-            </div>
-            ${subtask.length > 0 ? 
-                 /*html */ `
+            `: ''}
+                <div class="fs-20">
+                    <div>
+                        <span class="detail-color">Assigned to:</span>
+                    </div>
+                    <div id="contacts-detailed-${id}" class="ps-4 d-flex flex-column row-gap-3 mt-3"></div>
+                </div>
+            ${subtask.length > 0 ? /*html */ `
                 <div class="d-flex flex-column row-gap-2">
                    <div>
                         <span class="detail-color fs-20">Subtasks:</span>
                     </div>
                     <div id="subtasks-${i}" class="d-flex flex-column row-gap-1"></div>
-                </div>`
-                :
-                /*html */ ``
-            } 
+                </div>
+            `: ''} 
             <div class="d-flex justify-content-end">
                 <div class="d-flex align-items-center column-gap-2">
                     <div class="d-flex align-items-center column-gap-2 edit-boxes" onclick="deleteNote(${i})">
