@@ -305,6 +305,10 @@ function startDragging(id) {
     getCurrentdragObjektStatus(id);
 }
 
+function stopDragging(id) {
+    stopRotateTask(id);
+}
+
 function getCurrentdragObjektStatus(id) {
     let position = idToPosition(tasks, id);
     let currentDragObjektStatus = tasks[position]['status'];
@@ -322,6 +326,10 @@ function showEmptyTasks(currentDragObjektStatus) {
 
 function rotateTask(id) {
     document.getElementById("task-" + id).classList.add("rotateTask");
+}
+
+function stopRotateTask(id) {
+    document.getElementById("task-" + id).classList.remove("rotateTask");
 }
 
 function allowDrop(event) {
