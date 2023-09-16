@@ -119,7 +119,7 @@
 
         <section id="bg" class="dimmed-bg position-fixed d-none" onclick="hideDetailedTask()"></section>
       
-        <form id="board-addTask" class="addTask-section rounded-5" onsubmit="addTask('toDo');return false" onclick="doNotClose(event)">
+        <form id="board-addTask" class="addTask-section rounded-5" onsubmit="addTask('toDo'); hideAddTask();return false" onclick="doNotClose(event) ">
             <h1>Add Task</h1>
             <div class="task-creation-container d-flex">
       
