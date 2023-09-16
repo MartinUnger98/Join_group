@@ -321,7 +321,6 @@ function showEmptyTasks(currentDragObjektStatus) {
             document.getElementById("emptyTask" + sTask).classList.remove("d-none");
         }
     });
-    
 }
 
 function rotateTask(id) {
@@ -330,6 +329,9 @@ function rotateTask(id) {
 
 function stopRotateTask(id) {
     document.getElementById("task-" + id).classList.remove("rotateTask");
+    statusTasks.forEach(sTask => {
+        document.getElementById("emptyTask" + sTask).classList.add("d-none");
+    });
 }
 
 function allowDrop(event) {
