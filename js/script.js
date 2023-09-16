@@ -8,53 +8,22 @@ let loggedInUser;
 
 
 async function init() {
-    await includeHTML();
-    await loadUsers();
-    await loadTask();
-    await loadAllContacts();
-    await loadLoggedInUser();
+    await includeHTML();  
+    await loadData();      
     if (window.location.pathname === '/html/board.html') {
         loadBoard();
     }
 }
 
 
-/**
- * users being loaded form the server
- * 
- */
-async function loadUsers(){
+async function loadData() {
     try {
         users = JSON.parse(await getItem('users'));
-    } catch(e){
-        console.error('Loading error:', e);
-    }
-}
-
-async function loadTask() {
-    try {
-        tasks = JSON.parse( await getItem('task'));
+        tasks = JSON.parse(await getItem('task'));
+        allContacts = JSON.parse(await getItem('allContacts'));
     } catch (e) {
         console.error('Loading error:', e);
     }
-}
-
-
-async function loadAllContacts(){
-    try {
-        allContacts = JSON.parse(await getItem('allContacts'));
-    } catch(e){
-        console.error('Loading error:', e);
-    } 
-}
-
-
-async function loadLoggedInUser() {
-    try {
-        loggedInUser = await getItem('loggedInUser');
-    } catch(e){
-        console.error('Loading error:', e);
-    } 
 }
 
 
@@ -72,6 +41,7 @@ function pushUsersToContacts(){
 
 
 async function includeHTML() {
+    loggedInUser = await getItem('loggedInUser');
     let includeElements = document.querySelectorAll('[w3-include-html]'); // Alle ELemente mit Attribute '[w3-include.html]' holen.
     for (let i = 0; i < includeElements.length; i++) { // Durch Alle Elemente durchiterieren. In dem Fall nur ein Element (<div>).
         const element = includeElements[i];
@@ -83,5 +53,13 @@ async function includeHTML() {
         } else {
             element.innerHTML= 'Page not found';
         }
-    }
+    }    
+    showLoggedInUser();
+
+}
+
+function showLoggedInUser() {
+    let box = document.getElementById('loggedInUser');
+    let initials = getInitials(loggedInUser);
+    box.innerHTML = initials;
 }
