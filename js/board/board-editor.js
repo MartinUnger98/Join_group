@@ -64,7 +64,6 @@ function removeBorderColorInEditor(id) {
 }
 
 function addSubtaskInEditor(id) {
-    debugger;
     let content = document.getElementById(`subtask-content-${id}`);
     let input = document.getElementById(`subtask-${id}`).value;
     let subtaskID = `subtask-editor-${subtaskcounter}`;
@@ -107,8 +106,147 @@ function renderSubtasksInEditor(id, i) {
     }
 }
 
-async function savedEditedTask() {
-    await saveTasks();
+function savedEditedTask(id, i) {
+    const newTask = tasks[i];
+    let input = document.getElementById(`input-editor-${id}`).value;
+    let textarea = document.getElementById(`textarea-editor-${id}`).value;
+    let date = document.getElementById(`date-editor-${id}`).value;
+    let priorityImg = getPrioImageFromEditor(id);
+    let priority = getPriorityFromEditor(id);
+    let contacts = getContactsFromEditor();
+    debugger;
+    let subtasks = getSubtasksFromEditor();
+    let bgContacts = getBgofContactFromEditor(id);
+    newTask.title = input;
+    newTask.description = textarea;
+    newTask.date = date;
+    newTask.prio = priorityImg;
+    newTask.priority = priority;
+    newTask.contacts = contacts;
+    newTask.contactsBg = bgContacts;
+    newTask.subtask = subtasks;
+    hideDetailedTask();
     allMightyRender();
 }
 
+function getPrioImageFromEditor(id) {
+    let urgent = document.getElementById(`urgent-${id}`);
+    let medium = document.getElementById(`medium-${id}`);
+    let low = document.getElementById(`low-${id}`);
+    let img = '';
+    if (urgent.classList.contains('bg-urgent')) {
+        img = 'img/urgent_red.svg';
+    } else if (medium.classList.contains('bg-medium')) {
+        img = 'img/medium_yellow.svg';
+    } else if (low.classList.contains('bg-low')) {
+        img = 'img/low_green.svg';
+    }
+    return img;
+}
+
+function getPriorityFromEditor(id) {
+    let urgent = document.getElementById(`urgent-${id}`);
+    let medium = document.getElementById(`medium-${id}`);
+    let low = document.getElementById(`low-${id}`);
+    let priority = '';
+    if (urgent.classList.contains('bg-urgent')) {
+        priority = urgent.innerText;
+    } else if (medium.classList.contains('bg-medium')) {
+        priority = medium.innerText
+    } else if (low.classList.contains('bg-low')) {
+        priority = low.innerText;
+    }
+    return priority;
+}
+
+function getContactsFromEditor() {
+    let selectedContactsFromEditor = [];
+    let checkedContact = document.querySelectorAll('.contact-selection.checked-editor');
+    checkedContact.forEach(contact => {
+        let label = contact.querySelector('label.label-contact-editor');
+        let username = label.textContent;
+        selectedContactsFromEditor.push(username);
+    });
+    return selectedContactsFromEditor;
+}
+
+function getBgofContactFromEditor(id) {
+    let bgColorsOfContactsFromEditor = [];
+    let checkedContact = document.querySelectorAll('.contact-selection.checked-editor');
+    checkedContact.forEach(contact => {
+        let contactId = contact.id; 
+        let i = parseInt(contactId.slice(-1));
+        let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${id}-${i}`)).backgroundColor;
+        bgColorsOfContactsFromEditor.push(contactBgColor);
+    });
+    return bgColorsOfContactsFromEditor;
+}
+
+function getSubtasksFromEditor() {
+    let subtaskElements = document.querySelectorAll('.added-subtask-editor');
+    let subtasks = [];
+    subtaskElements.forEach(subtaskElement => {
+        subtasks.push(subtaskElement.innerText);
+    });
+    return subtasks;
+}
+
+function renderUserInEditor(id) {
+    let content = document.getElementById(`contact_content-editor${id}`);
+    content.innerHTML = '';
+    for (let i = 0; i < allContacts.length; i++) {
+        const user = allContacts[i];
+        let username = user.name;
+        const initials = getInitials(username);
+        content.innerHTML += /*html*/ `
+            <div id="user-selection-${id}-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3"> <!-- Klick-Event hinzufügen -->
+                <div class="d-flex align-items-center contact-selection-box ">
+                    <div id="contact-${id}-${i}" class="initials">
+                        <span>${initials}</span>
+                    </div>
+                    <label class="label-contact-editor" for="user-${id}-${i}">${username}</label>
+                </div>
+                <input type="checkbox" id="user-${id}-${i}" onclick="toggleCheckboxInEditor(${id}, ${i})">
+            </div>
+        `;
+        changeBgColor(i, `contact-${id}-${i}`);
+    }
+}
+
+function toggleCheckboxInEditor(id, i) {
+    let selection = document.getElementById(`user-selection-${id}-${i}`);
+    if (!selection.classList.contains('checked-editor')) {
+        selection.classList.add('checked-editor');
+    } else {
+        selection.classList.remove('checked-editor');
+    }
+}
+
+function moveSelectedContactsInEditor(id) {
+    let dropdown = document.getElementById(`contacts-${id}`);
+    let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
+    selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
+    for (let i = 0; i < allContacts.length; i++) {
+        let selection = document.getElementById(`user-selection-${id}-${i}`);
+        let checkbox = document.getElementById(`user-${id}-${i}`);
+        
+        if (selection.classList.contains('checked-editor') && checkbox.checked) {
+            const user = allContacts[i];
+            let username = user.name;
+            const initials = getInitials(username);
+            let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${id}-${i}`)).backgroundColor;
+            selectedContactsDiv.innerHTML += /*html*/ `
+                <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${contactBgColor}">${initials}</div>
+            `;
+        }
+    }
+    dropdown.classList.remove('active');
+    switchBorderandDropdownOfContacts(id);
+}
+
+function switchBorderandDropdownOfContacts(id) {
+    let border = document.getElementById(`contact_dropdown-${id}`);
+    let dropDown = document.getElementById(`drop_1-${id}`);
+    border.classList.remove('border-color');
+    dropDown.classList.remove('switch');
+}

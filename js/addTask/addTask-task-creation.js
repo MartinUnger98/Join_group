@@ -142,7 +142,6 @@ function getBgofContact() {
         let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${i}`)).backgroundColor;
         bgColorsOfContacts.push(contactBgColor);
     });
-
     return bgColorsOfContacts;
 }
 

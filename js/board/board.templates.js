@@ -150,7 +150,7 @@ function showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus) {
 
 function showDetailedCardEditor(title, description, formattedDate, id, i) {
     return /*html*/ `
-        <form id="detailedCardEditor-${id}" class="d-flex flex-column row-gap-4" onsubmit="savedEditedTask(); return false">
+        <form id="detailedCardEditor-${id}" class="d-flex flex-column row-gap-4" onsubmit="savedEditedTask(${id}, ${i}); return false">
             <div class="d-flex justify-content-end">
                 <div class="clear-button d-flex align-items-center justify-content-center rounded-5 ms-auto" onclick="hideDetailedTask()">
                     <img src="../img/clear.svg" alt="clear" class="clear-img">
@@ -158,31 +158,31 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
             </div>
             <div class="editor-content">
                 <div class="d-flex flex-column">
-                    <label for="input" class="input-headlines fs-20">Title</label>
-                    <input class="fs-20 rounded-3 input" required id="input-editor" type="text" placeholder="Enter a title" value="${title}">
+                    <label for="input-editor-${id}" class="input-headlines fs-20">Title</label>
+                    <input class="fs-20 rounded-3 input" required id="input-editor-${id}" type="text" placeholder="Enter a title" value="${title}">
                 </div>
                 <div class="d-flex flex-column">   
-                    <label for="textarea" class="input-headlines fs-20">Description</label>
-                    <textarea class="textarea fs-20 rounded-3" required id="textarea-editor" name="" cols="30" rows="10" placeholder="Enter a Description">${description}</textarea>
+                    <label for="textarea-editor-${id}" class="input-headlines fs-20">Description</label>
+                    <textarea class="textarea fs-20 rounded-3" required id="textarea-editor-${id}" name="" cols="30" rows="10" placeholder="Enter a Description">${description}</textarea>
                 </div>
                 <div class="d-flex flex-column">
-                    <label for="date" class="input-headlines fs-20">Due date</label>
-                    <input required class="date fs-20 rounded-3 bg-white" id="date" type="date" value="${formattedDate}">
+                    <label for="date-editor-${id}" class="input-headlines fs-20">Due date</label>
+                    <input required class="date fs-20 rounded-3 bg-white" id="date-editor-${id}" type="date" value="${formattedDate}">
                 </div>
                 <div class="d-flex flex-column">
                     <span class="input-headlines fs-20">Prio</span>
                     <div class="priority d-flex justify-content-between">
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="urgent-${id}" onclick="togglePriorityEditor('urgent', ${id})">
-                        <span class="fs-20 priority-sublines">Urgent</span>
-                        <img src="../img/urgent_red.svg" alt="urgent" id="urgent-img-${id}" class="urgent-img">
+                            <span class="fs-20 priority-sublines">Urgent</span>
+                            <img src="../img/urgent_red.svg" alt="urgent" id="urgent-img-${id}" class="urgent-img">
                         </div>
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="medium-${id}" onclick="togglePriorityEditor('medium', ${id})">
-                        <span class="fs-20">Medium</span>
-                        <img src="../img/medium_yellow.svg" alt="medium" id="medium-img-${id}">
+                            <span class="fs-20">Medium</span>
+                            <img src="../img/medium_yellow.svg" alt="medium" id="medium-img-${id}">
                         </div>
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="low-${id}" onclick="togglePriorityEditor('low', ${id})">
-                        <span class="fs-20">Low</span>
-                        <img src="../img/low_green.svg" alt="low" id="low-img-${id}">
+                            <span class="fs-20">Low</span>
+                            <img src="../img/low_green.svg" alt="low" id="low-img-${id}">
                         </div>
                     </div>
                 </div>
@@ -192,30 +192,21 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
                         <div id="contact_dropdown-${id}" class="select-editor rounded-3 d-flex align-items-center justify-content-between bg-white" onclick="toggleEditorDropdown(${id})">
                             <span class="fs-20">Select contacts to assign</span>
                             <div class="subtask-buttons d-flex align-items-center justify-content-center">
-                            <img src="../img/arrow_drop_down.svg" alt="arrow_drop_down" id="drop_1-${id}">
+                                <img src="../img/arrow_drop_down.svg" alt="arrow_drop_down" id="drop_1-${id}">
                             </div>
                         </div>
                         <div class="assign-content-editor rounded-3 bg-white" id="contacts-${id}">
-                            <div id="contact_content-editor${id}" class="contacts-box-editor d-flex flex-column">
-                                <span>Test</span>
-                                <span>Test</span>
-                                <span>Test</span>
-                                <span>Test</span>
-                                <span>Test</span>
-                                <span>Test</span>
-                                <span>Test</span>
-                                <span>Test</span>
-                                <span>Test</span>
-                            </div>
-                            <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3">
+                            <div id="contact_content-editor${id}" class="contacts-box-editor d-flex flex-column"></div>
+                            <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3" onclick="moveSelectedContactsInEditor(${id})">
                                 <span class="text-white fw-semibold">Add new contact</span>
                                 <img src="../img/person_add.png" alt="">
                             </div>
                         </div>
                     </div>
+                    <div id="selected_contacts_editor-${id}" class="d-flex px-3 mt-3"></div>
                 </div>
                 <div class="d-flex flex-column">
-                    <label for="subtask" class="input-headlines fs-20">Subtasks</label>
+                    <label for="subtask-${id}" class="input-headlines fs-20">Subtasks</label>
                     <div class="subtask-add rounded-3 d-flex align-items-center justify-content-between bg-white" id="subtask-creator-${id}">
                         <input class="subtask fs-20" type="text" placeholder="Add new subtask" id="subtask-${id}" onclick="openNewSubtaskInEditor(${id})">
                         <div id="new-subtask-field-${id}">
@@ -242,7 +233,7 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
 function showExistingSubtasksInEditor(sub, j) {
     return /*html*/ `
         <div id="subtask-edit-${j}" class="added-subtask-container">
-            <div class="added_subtask rounded-3 d-flex align-items-center justify-content-between">
+            <div class="added-subtask-editor rounded-3 d-flex align-items-center justify-content-between">
                 <li>${sub}</li>
                 <div class="hidden">
                     <img src="../img/edit.svg" alt="edit" onclick="openInputForEdit('subtask-edit-${j}','${sub}')">
@@ -273,7 +264,7 @@ function showNewSubtaskInEditor(id) {
 function showAddedSubtasksInEditor(subtaskID, input) {
     return /*html*/ `
         <div id="${subtaskID}" class="added-subtask-container">
-            <div class="added_subtask rounded-3 d-flex align-items-center justify-content-between">
+            <div class="added-subtask-editor rounded-3 d-flex align-items-center justify-content-between">
                 <li>${input}</li>
                 <div class="hidden">
                     <img src="../img/edit.svg" alt="edit" onclick="openInputForEditInEditor('${subtaskID}','${input}')">
