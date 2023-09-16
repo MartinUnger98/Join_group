@@ -42,6 +42,14 @@ header {
     height: 55px;
 }
 
+.colorBlue {
+    color: #29ABE2;
+}
+
+.font-size25 {
+    font-size: 20px;
+}
+
 .user-profile-initials {
     width: 56px;
     height: 56px;
@@ -76,10 +84,6 @@ header {
     linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
 
-.header-user {
-    width: 17.61406707763672px;
-    height: 20px;
-}
 #submenu {
     position: absolute;
     top: 97px;
