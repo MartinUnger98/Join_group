@@ -373,5 +373,50 @@ function openDetailedCardEditor(title, description, date, id, i) {
     renderUserInEditor(id);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    enableHorizontalScroll('scrollContainer1');
+    enableHorizontalScroll('scrollContainer2');
+    enableHorizontalScroll('scrollContainer3');
+    enableHorizontalScroll('scrollContainer4');
+   
+});
+
+function enableHorizontalScroll(containerId) {
+    const scrollContainer = document.getElementById(containerId);
+    if (!scrollContainer) {
+        console.error(`Element with ID '${containerId}' not found.`);
+        return;
+    }
+
+    let isDragging = false;
+    let startX;
+    let scrollLeft;
+
+    scrollContainer.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+        scrollContainer.style.cursor = 'grabbing';
+    });
+
+    scrollContainer.addEventListener('mouseleave', () => {
+        isDragging = false;
+        scrollContainer.style.cursor = 'grab';
+    });
+
+    scrollContainer.addEventListener('mouseup', () => {
+        isDragging = false;
+        scrollContainer.style.cursor = 'grab';
+    });
+
+    scrollContainer.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const x = e.pageX - scrollContainer.offsetLeft;
+        const scrollSpeed = 1; // Ändern Sie die Geschwindigkeit nach Ihren Wünschen
+        const walk = (x - startX) * scrollSpeed;
+        scrollContainer.scrollLeft = scrollLeft - walk;
+    });
+}
+
 
 
