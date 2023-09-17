@@ -113,6 +113,7 @@ function getInitials(name) {
 
 async function initContacts(){
     await init();
+    pushUsersToContacts();
     loadContacts();
 }
 
