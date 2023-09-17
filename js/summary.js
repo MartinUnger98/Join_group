@@ -55,17 +55,18 @@ function updateGreeting() {
     
 
     if (currentHour >= 0 && currentHour < 12) {
-        greetingDiv.innerHTML = 'Good morning';
+        greetingDiv.innerHTML = 'Good morning,';
     } else if (currentHour >= 12 && currentHour < 18) {
-        greetingDiv.innerHTML = 'Good afternoon';
+        greetingDiv.innerHTML = 'Good afternoon,';
     } else {
-        greetingDiv.innerHTML = 'Good evening';
+        greetingDiv.innerHTML = 'Good evening,';
     }
 }
 
 async function summaryInit(){
     await init();
     updateGreeting();
+    showUser();
     countTasksInBoard();
     countTasks('numberOftaskInProgress', 'inProgress', tasksInProgress, 'status');
     countTasks('numberOftaskFeedback', 'awaitFeedback', taskAwaitingFeedback, 'status');
@@ -79,6 +80,12 @@ function countTasksInBoard(){
     let taskInBoardContainer = document.getElementById('numberOftaskInBoard');
     numberOfTasks = tasks.length;
     taskInBoardContainer.innerHTML = `${numberOfTasks}`;
+}
+
+
+function showUser(){
+    let userBox = document.getElementById('greetLoggedInUser');
+    userBox.innerHTML = loggedInUser;
 }
 
 
