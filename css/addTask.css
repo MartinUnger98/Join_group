@@ -399,9 +399,7 @@ h1 {
         align-items: center;
     }
     .separator {
-        height: 1px;
-        width: 400px ;
-        border: 1px solid #D1D1D1;
+      display: none;
     }
     .task-content-box-right {
         display: flex;
