@@ -23,8 +23,10 @@ body {
     height: 121.96575164794922px;
 }
 
-.navbar {
-   gap: 15px;
+.navbar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .menu-sections {
@@ -42,6 +44,7 @@ body {
     animation-timing-function: ease-in ;
     animation-duration: 100ms ;
 }
+
 .menu-icons {
     width: 30px;
     height: 30px;
@@ -51,7 +54,6 @@ body {
     width: 30px;
     height: 30px;
     gap: 10px;
-
 }
 .nav-headlines {
     text-decoration: none;
@@ -62,6 +64,7 @@ body {
     text-align: left;
     color: #CDCDCD;
 }
+
 .frame21 {
     display: flex;
     flex-direction: column;
@@ -97,4 +100,67 @@ body {
 @keyframes hover {
     from {background-color: #2A3647;}
     to { background-color: #2A3D59;}
+}
+@keyframes mobile {
+    from {background-color: #2A3647;}
+    to { background-color: #091931;}
+}
+
+@media (max-width: 800px) {
+    .menu {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0;
+        width: auto;
+        top: auto;
+        height: 80px;
+        flex-direction: row;
+    }
+    .frame21 {
+        display: none;
+    }
+    .menu-join {
+        display: none;
+    }
+    .navbar-menu {
+        flex-direction: row;
+        flex: 1;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    .menu-sections {
+        border-radius: 10px;
+        justify-content: center;
+        flex-direction: column;
+        height: 75px;
+        width: 80px;
+        padding: 0;
+        gap: 4px;
+    }
+    .menu-sections:hover {
+        background-color: #091931;
+        animation-name: mobile;
+    }
+}
+@media (max-width: 415px) {
+    .navbar-menu {
+        padding: 0 10px;
+    }
+}
+@media (max-width: 395px) {
+    .menu {
+        height: 70px;
+    }
+    .menu-sections {
+        height: 66px;
+        width: 70px;
+    }
+    .nav-headlines {
+        font-size: 12px;
+    }
+    .menu-icons {
+        height: 26px;
+        width: 26px;
+    }
 }

@@ -114,7 +114,6 @@ function savedEditedTask(id, i) {
     let priorityImg = getPrioImageFromEditor(id);
     let priority = getPriorityFromEditor(id);
     let contacts = getContactsFromEditor();
-    debugger;
     let subtasks = getSubtasksFromEditor();
     let bgContacts = getBgofContactFromEditor(id);
     newTask.title = input;

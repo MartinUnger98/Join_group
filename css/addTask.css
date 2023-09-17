@@ -288,6 +288,7 @@ h1 {
     height: 60px;
 }
 .clear-button {
+    display: flex;
     padding: 12px 16px;
     border: 1px solid black;
     gap: 4px;
@@ -386,4 +387,71 @@ h1 {
 ::-webkit-scrollbar-track {
     background-color: white;
     width: 16px;
+}
+
+@media (max-width: 1000px) {
+    h1 {
+        text-align: center;
+        margin-right: 110px;
+    }
+    .task-creation-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .separator {
+        height: 1px;
+        width: 400px ;
+        border: 1px solid #D1D1D1;
+    }
+    .task-content-box-right {
+        display: flex;
+        flex-direction: column;
+        width: 390px;
+        margin: 0;
+    }
+    .task-content-box-left {
+        display: flex;
+        flex-direction: column;
+        width: 390px;
+        margin: 0;
+    }
+    .category-content {
+        top: 1040px;
+    }
+}
+@media (max-width: 800px) {
+    body {
+        padding: 0;
+    }
+    h1 {
+        text-align: left !important;
+    }
+    .addTask-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+        margin-top: 144px;
+        margin-bottom: 100px;
+    }
+    .category-content {
+        top: 980px;
+    }
+    .assign-content {
+        top: 637px;
+    }
+    .clear-button {
+        display: none !important;
+    }
+    .form-buttons {
+        width: 390px;
+    }
+    .task-creation-container {
+        overflow-y: scroll;
+        max-height: 500px;
+        margin-bottom: 50px;
+    }
+    .task-creation-container::-webkit-scrollbar {
+        display: none;
+    }     
 }
