@@ -10,7 +10,7 @@ body {
     margin-top: 206px;
     margin-left: 280px;
     margin-bottom: 52px;
-    max-width: 992px;
+
 }
 h1 {
     font-size: 61px !important;
@@ -720,9 +720,12 @@ h1 {
     .board-direction {   
         flex-direction: row; 
         flex: 1;
-        gap: 24px;
+        gap: 32px;
         min-height: 272px;
         padding: 10px;
+    }
+    .board-direction:hover {
+        background-color: #eaeaea;
     }
 }
 @media (max-width: 1000px) {
