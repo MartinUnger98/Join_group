@@ -6,8 +6,14 @@ let userPasswordChange = "";
  * 
  * @param {string} user - it specifies either 'user' or 'guest' to determine who wants to log in
  */
-function loggedIn(user) {
-    user === 'guest' ? window.location.href = "summary.html" : checkUserExist('logIn');
+async function loggedIn(user) {
+    if(user === 'Guest'){
+        loggedInUser = await setItem('loggedInUser', user);
+        window.location.href = "summary.html";
+    }
+    else{
+        checkUserExist('logIn');
+    }
 }
 
 

@@ -20,7 +20,7 @@ function showContactEditor() {
 
 function showNewContactEditor() {
     return `<div class="addContactLeft">
-    <img class="joinLogoAddContact" src="../img/menu-join.png">
+    <img class="joinLogoAddContact" src="../img/Join logo white.svg">
         <h2 class="headlineContactEditor">Add contact</h2>
         <h3 class="headlineContactEditor3">Tasks are better with a team!</h3>
     <div class="underline"></div>
@@ -252,7 +252,7 @@ function editContact(i) {
 
 function showEditor(i) {
     return `<div class="addContactLeft">
-    <img class="joinLogoAddContact" src="../img/menu-join.png">
+    <img class="joinLogoAddContact" src="../img/Join logo white.svg">
         <h2 class="headlineContactEditor">Edit contact</h2>
     <div class="underline"></div>
 </div>
