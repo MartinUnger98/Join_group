@@ -48,11 +48,7 @@ function changeIconBack(path){
 function updateGreeting() {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
-    const greetingDiv = document.getElementById('greetingContainer');
-    if(loggedInUser !== "Guest") {
-        document.getElementById("greetLoggedInUser").innerHTML = loggedInUser;
-    }
-    
+    const greetingDiv = document.getElementById('greetingContainer');   
 
     if (currentHour >= 0 && currentHour < 12) {
         greetingDiv.innerHTML = 'Good morning,';
