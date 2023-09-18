@@ -454,13 +454,15 @@ function changeBgColor(i, id){
 
 function moveSelectedContacts() {
     let dropdown = document.getElementById('contacts');
+    let category = document.getElementById('content');
     let selectedContactsDiv = document.getElementById('selected_contacts');
     selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
+    let contactsAdded = false; // Diese Variable wird verwendet, um zu überprüfen, ob Kontakte hinzugefügt wurden
     
     for (let i = 0; i < allContacts.length; i++) {
         let selection = document.getElementById(`user-selection-${i}`);
         let checkbox = document.getElementById(`user-${i}`);
-        
+
         if (selection.classList.contains('checked') && checkbox.checked) {
             const user = allContacts[i];
             let username = user.name;
@@ -469,7 +471,13 @@ function moveSelectedContacts() {
             selectedContactsDiv.innerHTML += /*html*/ `
                 <div class="initials-selected" id="selected_contact-${i}" style="background-color: ${contactBgColor}">${initials}</div>
             `;
+            contactsAdded = true;
+            category.classList.add('category-top');
         }
+    }
+   
+    if (!contactsAdded) {
+        category.classList.remove('category-top');
     }
     dropdown.classList.remove('active');
     switchBorderandDropdownOfContacts();

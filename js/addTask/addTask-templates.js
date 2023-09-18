@@ -5,11 +5,11 @@ function showNewSubtask() {
     return /*html*/ `
         <div class="d-flex align-items-center justify-content-between">
             <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick=" restoreOldSubtask()">
-                <img src="../img/clear.svg" alt="clear">
+                <img src="../img/clear.svg" alt="clear" class="clear-responsive">
             </div>
             <span class="mini-separator">|</span>
             <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="addSubtask()">
-                <img src="../img/check_blue_addTask.svg" alt="check">
+                <img src="../img/check_blue_addTask.svg" alt="check" class="check-responsive">
             </div>
         </div>  
     `;
@@ -27,9 +27,9 @@ function showAddedSubtasks(subtaskID, input) {
             <div class="added_subtask rounded-3 d-flex align-items-center justify-content-between">
                 <li>${input}</li>
                 <div class="hidden">
-                    <img src="../img/edit.svg" alt="edit" onclick="openInputForEdit('${subtaskID}','${input}')">
-                    <span class="mini_separator_2">|</span>
                     <img src="../img/delete.svg" alt="delete" onclick="deleteSubtask('${subtaskID}')">
+                    <span class="mini_separator_2">|</span>
+                    <img src="../img/edit.svg" alt="edit" onclick="openInputForEdit('${subtaskID}','${input}')">
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@ function showInputEditor(subtaskID, input) {
                 </div>
                 <span class="mini-separator">|</span>
                 <div class="subtask-buttons d-flex align-items-center justify-content-center">
-                    <img src="../img/check_blue_addTask.svg" alt="check" onclick="updateInputValue('${subtaskID}','input-${subtaskID}')">
+                    <img src="../img/check_blue_addTask.svg" alt="check" onclick="updateInputValue('${subtaskID}','input-${subtaskID}')" class="check-responsive">
                 </div>
             </div>
         </div>

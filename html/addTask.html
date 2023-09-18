@@ -57,11 +57,11 @@
               <div id="contact_content" class="contacts-box d-flex flex-column position-relative"></div>
               <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3 position-relative" onclick="moveSelectedContacts()">
                 <span class="text-white fw-semibold">Add new contact</span>
-                <img src="../img/person_add.png" alt="">
+                <img src="../img/person_add.svg" alt="" class="person_add-responsive">
               </div>
             </div>
           </div>
-          <div id="selected_contacts" class="d-flex px-3"></div>
+          <div id="selected_contacts" class="d-flex px-3 mb-responsive "></div>
         </div>
 
         <div class="separator"></div>
@@ -76,7 +76,7 @@
             <span class="input-headlines fs-20">Prio</span>
             <div class="priority d-flex justify-content-between">
               <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="urgent" onclick="togglePriority('urgent')">
-                <span class="fs-20 priority-sublines">Urgent</span>
+                <span class="fs-20 priority-sublines ">Urgent</span>
                 <img src="../img/urgent_red.svg" alt="urgent" id="urgent-img">
               </div>
               <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="medium" onclick="togglePriority('medium')">
@@ -130,7 +130,7 @@
         </button>
         <button type="submit" class="create-button rounded-3 d-flex justify-content-center align-items-center text-white">
           <span>Create Task</span>
-          <img src="../img/check_addTask.svg" alt="">
+          <img src="../img/check_addTask.svg" alt="" class="check-responsive">
         </button>
       </div>
 
