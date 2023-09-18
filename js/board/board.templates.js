@@ -80,13 +80,13 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
                 </div>
             </div>
             <span class="fw-bold fs-61">${title}</span>
-            <span class="fs-20">${description}</span>
-            <div class="d-flex fs-20 column-gap-3">
+            <span class="fs-20 fs-responsive">${description}</span>
+            <div class="d-flex fs-20 column-gap-3 fs-responsive">
                 <span class="detail-color">Due date:</span>
                 <span>${date}</span>
             </div>
             ${prioImg !== "" ? /*html*/ `
-                <div class="d-flex align-items-center fs-20 column-gap-4">
+                <div class="d-flex align-items-center fs-20 column-gap-4 fs-responsive">
                     <span>Priority:</span>
                     <div class="d-flex align-items-center column-gap-2">
                         <span class="mb-12">${priority}</span>
@@ -94,7 +94,7 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
                     </div> 
                 </div>
             `: ''}
-                <div class="fs-20">
+                <div class="fs-20 fs-responsive">
                     <div>
                         <span class="detail-color">Assigned to:</span>
                     </div>
@@ -103,7 +103,7 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
             ${subtask.length > 0 ? /*html */ `
                 <div class="d-flex flex-column row-gap-2">
                    <div>
-                        <span class="detail-color fs-20">Subtasks:</span>
+                        <span class="detail-color fs-20 fs-responsive">Subtasks:</span>
                     </div>
                     <div id="subtasks-${i}" class="d-flex flex-column row-gap-1"></div>
                 </div>
@@ -158,39 +158,39 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
             </div>
             <div class="editor-content">
                 <div class="d-flex flex-column">
-                    <label for="input-editor-${id}" class="input-headlines fs-20">Title</label>
-                    <input class="fs-20 rounded-3 input" required id="input-editor-${id}" type="text" placeholder="Enter a title" value="${title}">
+                    <label for="input-editor-${id}" class="input-headlines fs-20 fs-responsive">Title</label>
+                    <input class="fs-20 rounded-3 input fs-responsive" required id="input-editor-${id}" type="text" placeholder="Enter a title" value="${title}">
                 </div>
                 <div class="d-flex flex-column">   
-                    <label for="textarea-editor-${id}" class="input-headlines fs-20">Description</label>
-                    <textarea class="textarea fs-20 rounded-3" required id="textarea-editor-${id}" name="" cols="30" rows="10" placeholder="Enter a Description">${description}</textarea>
+                    <label for="textarea-editor-${id}" class="input-headlines fs-20 fs-responsive">Description</label>
+                    <textarea class="textarea fs-20 rounded-3 fs-responsive" required id="textarea-editor-${id}" name="" cols="30" rows="10" placeholder="Enter a Description">${description}</textarea>
                 </div>
                 <div class="d-flex flex-column">
-                    <label for="date-editor-${id}" class="input-headlines fs-20">Due date</label>
-                    <input required class="date fs-20 rounded-3 bg-white" id="date-editor-${id}" type="date" value="${formattedDate}">
+                    <label for="date-editor-${id}" class="input-headlines fs-20 fs-responsive">Due date</label>
+                    <input required class="date fs-20 rounded-3 bg-white fs-responsive" id="date-editor-${id}" type="date" value="${formattedDate}">
                 </div>
                 <div class="d-flex flex-column">
-                    <span class="input-headlines fs-20">Prio</span>
+                    <span class="input-headlines fs-20 fs-responsive">Prio</span>
                     <div class="priority d-flex justify-content-between">
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="urgent-${id}" onclick="togglePriorityEditor('urgent', ${id})">
-                            <span class="fs-20 priority-sublines">Urgent</span>
+                            <span class="fs-20 priority-sublines fs-responsive">Urgent</span>
                             <img src="../img/urgent_red.svg" alt="urgent" id="urgent-img-${id}" class="urgent-img">
                         </div>
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="medium-${id}" onclick="togglePriorityEditor('medium', ${id})">
-                            <span class="fs-20">Medium</span>
+                            <span class="fs-20 fs-responsive">Medium</span>
                             <img src="../img/medium_yellow.svg" alt="medium" id="medium-img-${id}">
                         </div>
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="low-${id}" onclick="togglePriorityEditor('low', ${id})">
-                            <span class="fs-20">Low</span>
+                            <span class="fs-20 fs-responsive">Low</span>
                             <img src="../img/low_green.svg" alt="low" id="low-img-${id}">
                         </div>
                     </div>
                 </div>
                 <div class="d-flex flex-column mb-4">
-                    <span class="input-headlines fs-20">Assigned to</span>
+                    <span class="input-headlines fs-20 fs-responsive">Assigned to</span>
                     <div>
                         <div id="contact_dropdown-${id}" class="select-editor rounded-3 d-flex align-items-center justify-content-between bg-white" onclick="toggleEditorDropdown(${id})">
-                            <span class="fs-20">Select contacts to assign</span>
+                            <span class="fs-20 fs-responsive">Select contacts to assign</span>
                             <div class="subtask-buttons d-flex align-items-center justify-content-center">
                                 <img src="../img/arrow_drop_down.svg" alt="arrow_drop_down" id="drop_1-${id}">
                             </div>
@@ -198,7 +198,7 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
                         <div class="assign-content-editor rounded-3 bg-white" id="contacts-${id}">
                             <div id="contact_content-editor${id}" class="contacts-box-editor d-flex flex-column"></div>
                             <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3" onclick="moveSelectedContactsInEditor(${id})">
-                                <span class="text-white fw-semibold">Add new contact</span>
+                                <span class="text-white fw-semibold fs-responsive">Add new contact</span>
                                 <img src="../img/person_add.png" alt="">
                             </div>
                         </div>
@@ -206,9 +206,9 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
                     <div id="selected_contacts_editor-${id}" class="d-flex px-3 mt-3"></div>
                 </div>
                 <div class="d-flex flex-column">
-                    <label for="subtask-${id}" class="input-headlines fs-20">Subtasks</label>
+                    <label for="subtask-${id}" class="input-headlines fs-20 fs-responsive">Subtasks</label>
                     <div class="subtask-add rounded-3 d-flex align-items-center justify-content-between bg-white" id="subtask-creator-${id}">
-                        <input class="subtask fs-20" type="text" placeholder="Add new subtask" id="subtask-${id}" onclick="openNewSubtaskInEditor(${id})">
+                        <input class="subtask fs-20 fs-responsive" type="text" placeholder="Add new subtask" id="subtask-${id}" onclick="openNewSubtaskInEditor(${id})">
                         <div id="new-subtask-field-${id}">
                         <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="openNewSubtaskInEditor(${id})">
                             <img src="../img/add_addTask.svg" alt="plus" class="add">

@@ -105,7 +105,7 @@ h1 {
     right: 55vh;
     box-shadow: 0px 0px 4px 0px #00000029;
     background-color: white;
-    padding: 48px 40px 48px 40px;
+    padding: 48px 40px;
     transform: translateX(6000px);
     transition: all ease-in 200ms;
 }
@@ -719,8 +719,8 @@ h1 {
     .board-direction {   
         flex-direction: row; 
         flex: 1;
-        gap: 32px;
-        min-height: 272px;
+        gap: 50px;
+        min-height: 260px;
         padding: 10px;
     }
     .board-direction:hover {
@@ -746,6 +746,18 @@ h1 {
         padding-right: 20px;
         justify-content: flex-end;
     }
+    .width-column {
+        width: auto;
+        padding-right: 26px;
+    }
+    .testcard {
+        min-width: 235px;
+    }
+    .detailed-task {
+        right: 20vw;
+    }
+
+   
 }
 @media (max-width: 800px) {
     .taskboard {
@@ -760,6 +772,9 @@ h1 {
     .new-headline {
         margin-bottom: 32px;
     }
+    .detailed-task {
+        right: 8vw;
+    }
 }
 @media (max-width: 600px){
     .search-container {
@@ -769,5 +784,47 @@ h1 {
     }
     .search-input {
         flex: 1;
+    }
+    .detailed-task {
+        right: 1vw;
+    }
+}
+@media (max-width: 550px) {
+    .detailed-task {
+        width: 328px;
+        right: 10vw;
+        padding: 40px 20px;
+    }
+    .fs-61 {
+        font-size: 47px;
+    }
+    .detailed-priority {
+        font-size: 18px;
+        padding: 4px 18px;
+    }
+    .fs-responsive {
+        font-size: 16px;
+    }
+    .subtask::placeholder {
+        font-size: 16px;
+    }
+    .subtask {
+        width: 175px;
+    }
+    .priority-boxes img {
+        width: 11px;
+    }
+}
+@media (max-width: 420px) {
+    .detailed-task {
+        right: 5vw;
+    }
+}
+@media (max-width: 380px) {
+    .new-headline-search {
+        padding-right: 15px;
+    }
+    .detailed-task {
+        right: 2vw;
     }
 }
