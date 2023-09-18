@@ -173,15 +173,15 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
                     <span class="input-headlines fs-20 fs-responsive">Prio</span>
                     <div class="priority d-flex justify-content-between">
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="urgent-${id}" onclick="togglePriorityEditor('urgent', ${id})">
-                            <span class="fs-20 priority-sublines fs-responsive">Urgent</span>
+                            <span class="fs-20 priority-sublines prio-fontsize-responsive">Urgent</span>
                             <img src="../img/urgent_red.svg" alt="urgent" id="urgent-img-${id}" class="urgent-img">
                         </div>
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="medium-${id}" onclick="togglePriorityEditor('medium', ${id})">
-                            <span class="fs-20 fs-responsive">Medium</span>
+                            <span class="fs-20 prio-fontsize-responsive">Medium</span>
                             <img src="../img/medium_yellow.svg" alt="medium" id="medium-img-${id}">
                         </div>
                         <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="low-${id}" onclick="togglePriorityEditor('low', ${id})">
-                            <span class="fs-20 fs-responsive">Low</span>
+                            <span class="fs-20 prio-fontsize-responsive">Low</span>
                             <img src="../img/low_green.svg" alt="low" id="low-img-${id}">
                         </div>
                     </div>
@@ -199,7 +199,7 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
                             <div id="contact_content-editor${id}" class="contacts-box-editor d-flex flex-column"></div>
                             <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3" onclick="moveSelectedContactsInEditor(${id})">
                                 <span class="text-white fw-semibold fs-responsive">Add new contact</span>
-                                <img src="../img/person_add.png" alt="">
+                                <img src="../img/person_add.svg" alt="" class="person_add-responsive">
                             </div>
                         </div>
                     </div>
@@ -230,15 +230,15 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
     `;
 }
 
-function showExistingSubtasksInEditor(sub, j) {
+function showExistingSubtasksInEditor(sub, id, j) {
     return /*html*/ `
-        <div id="subtask-edit-${j}" class="added-subtask-container">
+        <div id="subtask-edit-${id}-${j}" class="added-subtask-container">
             <div class="added-subtask-editor rounded-3 d-flex align-items-center justify-content-between">
                 <li>${sub}</li>
                 <div class="hidden">
-                    <img src="../img/edit.svg" alt="edit" onclick="openInputForEdit('subtask-edit-${j}','${sub}')">
+                    <img src="../img/delete.svg" alt="delete" onclick="deleteSubtaskInEditor('subtask-edit-${id}-${j}')">
                     <span class="mini_separator_2">|</span>
-                    <img src="../img/delete.svg" alt="delete" onclick="deleteSubtask('subtask-edit-${j}')">
+                    <img src="../img/edit.svg" alt="edit" onclick="openInputForEditInEditor('subtask-edit-${id}-${j}','${sub}')">
                 </div>
             </div>
         </div>
@@ -251,11 +251,11 @@ function showNewSubtaskInEditor(id) {
     return /*html*/ `
         <div class="d-flex align-items-center justify-content-between">
             <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="restoreOldSubtaskInEditor(${id})">
-                <img src="../img/clear.svg" alt="clear">
+                <img src="../img/clear.svg" alt="clear" class="button-responsive">
             </div>
             <span class="mini-separator">|</span>
             <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="addSubtaskInEditor(${id})">
-                <img src="../img/check_blue_addTask.svg" alt="check">
+                <img src="../img/check_blue_addTask.svg" alt="check" class="check-responsive">
             </div>
         </div>  
     `;
@@ -267,9 +267,9 @@ function showAddedSubtasksInEditor(subtaskID, input) {
             <div class="added-subtask-editor rounded-3 d-flex align-items-center justify-content-between">
                 <li>${input}</li>
                 <div class="hidden">
-                    <img src="../img/edit.svg" alt="edit" onclick="openInputForEditInEditor('${subtaskID}','${input}')">
-                    <span class="mini_separator_2">|</span>
                     <img src="../img/delete.svg" alt="delete" onclick="deleteSubtaskInEditor('${subtaskID}')">
+                    <span class="mini_separator_2">|</span>
+                    <img src="../img/edit.svg" alt="edit" onclick="openInputForEditInEditor('${subtaskID}','${input}')">
                 </div>
             </div>
         </div>
@@ -281,12 +281,12 @@ function showInputEditorInEditor(subtaskID, input) {
         <div class="edit-box d-flex justify-content-between align-items-center bg-white" id="${subtaskID}">
             <input type="text" value="${input}" class="edit-input" id="input-${subtaskID}">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="subtask-buttons d-flex align-items-center justify-content-center">
-                    <img class="trash-width" src="../img/delete.svg" alt="delete" onclick="deleteSubtaskInEditor('${subtaskID}')">
+                <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="deleteSubtaskInEditor('${subtaskID}')">
+                    <img class="trash-width" src="../img/delete.svg" alt="delete">
                 </div>
                 <span class="mini-separator">|</span>
-                <div class="subtask-buttons d-flex align-items-center justify-content-center">
-                    <img src="../img/check_blue_addTask.svg" alt="check" onclick="updateInputValueInEditor('${subtaskID}','input-${subtaskID}')">
+                <div class="subtask-buttons d-flex align-items-center justify-content-center" onclick="updateInputValueInEditor('${subtaskID}','input-${subtaskID}')">
+                    <img src="../img/check_blue_addTask.svg" alt="check" class="check-responsive">
                 </div>
             </div>
         </div>
@@ -295,7 +295,7 @@ function showInputEditorInEditor(subtaskID, input) {
 
 function showUpdatedInputValueInEditor(newValue, subtask) {
     return /*html*/ `
-    <div class="added_subtask d-flex justify-content-between align-items-center rounded-3">
+    <div class="added-subtask-editor d-flex justify-content-between align-items-center rounded-3">
         <li>${newValue}</li>
         <div class="hidden">
             <img class="trash-width" src="../img/delete.svg" alt="delete" onclick="deleteSubtaskInEditor('${subtask}')">

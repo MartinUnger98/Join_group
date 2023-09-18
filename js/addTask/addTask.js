@@ -411,10 +411,11 @@ function renderUser() {
         const user = allContacts[i];
         let username = user.name;
         const initials = getInitials(username);
+        const bgUser = user.bgColor;
         content.innerHTML += /*html*/ `
             <div id="user-selection-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3"> <!-- Klick-Event hinzufügen -->
                 <div class="d-flex align-items-center contact-selection-box ">
-                    <div id="contact-${i}" class="initials">
+                    <div id="contact-${i}" class="initials" style="background-color: ${bgUser}">
                         <span>${initials}</span>
                     </div>
                     <label class="label-contact" for="user-${i}">${username}</label>
@@ -422,7 +423,6 @@ function renderUser() {
                 <input type="checkbox" id="user-${i}" onclick="toggleCheckbox(${i})">
             </div>
         `;
-        changeBgColor(i, `contact-${i}`);
     }
 }
 
@@ -442,16 +442,6 @@ function toggleCheckbox(id) {
     }
 }
 
-function changeBgColor(i, id){
-    if (i > bgColors.length) {
-        const randomDecimal = Math.random();
-        const randomInteger = Math.floor(randomDecimal * 8);
-        newBgColorPosition = randomInteger;
-        document.getElementById(id).style.backgroundColor = bgColors[newBgColorPosition];
-    }
-    document.getElementById(id).style.backgroundColor = bgColors[i];
-}
-
 function moveSelectedContacts() {
     let dropdown = document.getElementById('contacts');
     let category = document.getElementById('content');
@@ -466,10 +456,11 @@ function moveSelectedContacts() {
         if (selection.classList.contains('checked') && checkbox.checked) {
             const user = allContacts[i];
             let username = user.name;
+            const bgUser = user.bgColor;
             const initials = getInitials(username);
             let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${i}`)).backgroundColor;
             selectedContactsDiv.innerHTML += /*html*/ `
-                <div class="initials-selected" id="selected_contact-${i}" style="background-color: ${contactBgColor}">${initials}</div>
+                <div class="initials-selected" id="selected_contact-${i}" style="background-color: ${bgUser}">${initials}</div>
             `;
             contactsAdded = true;
             category.classList.add('category-top');

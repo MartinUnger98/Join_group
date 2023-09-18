@@ -101,7 +101,7 @@ function renderSubtasksInEditor(id, i) {
         let content = document.getElementById(`subtask-content-${id}`);
         content.innerHTML = '';
         subtasks.forEach((sub, j) => {
-            content.innerHTML += showExistingSubtasksInEditor(sub, j);
+            content.innerHTML += showExistingSubtasksInEditor(sub, id, j);
         });
     }
 }
@@ -197,10 +197,11 @@ function renderUserInEditor(id) {
         const user = allContacts[i];
         let username = user.name;
         const initials = getInitials(username);
+        const bgUser = user.bgColor;
         content.innerHTML += /*html*/ `
-            <div id="user-selection-${id}-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3"> <!-- Klick-Event hinzufügen -->
+            <div id="user-selection-${id}-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3 fs-responsive"> <!-- Klick-Event hinzufügen -->
                 <div class="d-flex align-items-center contact-selection-box ">
-                    <div id="contact-${id}-${i}" class="initials">
+                    <div id="contact-${id}-${i}" class="initials" style="background-color: ${bgUser}">
                         <span>${initials}</span>
                     </div>
                     <label class="label-contact-editor" for="user-${id}-${i}">${username}</label>
@@ -208,7 +209,6 @@ function renderUserInEditor(id) {
                 <input type="checkbox" id="user-${id}-${i}" onclick="toggleCheckboxInEditor(${id}, ${i})">
             </div>
         `;
-        changeBgColor(i, `contact-${id}-${i}`);
     }
 }
 
@@ -233,9 +233,9 @@ function moveSelectedContactsInEditor(id) {
             const user = allContacts[i];
             let username = user.name;
             const initials = getInitials(username);
-            let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${id}-${i}`)).backgroundColor;
+            const bgUser = user.bgColor;
             selectedContactsDiv.innerHTML += /*html*/ `
-                <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${contactBgColor}">${initials}</div>
+                <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${bgUser}">${initials}</div>
             `;
         }
     }

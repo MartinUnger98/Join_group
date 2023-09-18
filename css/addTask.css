@@ -530,6 +530,9 @@ h1 {
         width: 11px;
         height: 10px;
     }
+    .button-responsive {
+        width: 11px;
+    }
     .check-responsive {
         width: 11px;
     }
