@@ -34,13 +34,16 @@ async function loadData() {
 function pushUsersToContacts() {
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
-        let newContact = {
-            email: user['email'],
-            name: user['name'],
-            number: '',
-            bgColor: ''
+        const isUserInContacts = allContacts.some(contact => contact.email === user.email);
+        if (!isUserInContacts) {
+            let newContact = {
+                email: user.email,
+                name: user.name,
+                number: '',
+                bgColor: ''
+            };
+            allContacts.push(newContact);
         }
-        allContacts.push(newContact);
     }
 }
 
