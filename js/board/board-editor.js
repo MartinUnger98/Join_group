@@ -206,10 +206,11 @@ function renderUserInEditor(id) {
                     </div>
                     <label class="label-contact-editor" for="user-${id}-${i}">${username}</label>
                 </div>
-                <input type="checkbox" id="user-${id}-${i}" onclick="toggleCheckboxInEditor(${id}, ${i})">
+                <input type="checkbox" id="user-editor${id}-${i}" onclick="toggleCheckboxInEditor(${id}, ${i})">
             </div>
         `;
     }
+    
 }
 
 function toggleCheckboxInEditor(id, i) {
@@ -269,3 +270,23 @@ function updateEditorWithSelected(id, i) {
         }
     }
 }
+
+function renderSelectedContactsInEditor(id, i) {
+    let content = document.getElementById(`selected_contacts_editor-${id}`);
+    const task = tasks[i];
+    let contact = task.contacts;
+    let bgContact= task.contactsBg;
+    if (contact) {
+        for (let j = 0; j < contact.length; j++) {
+            const selectedContact = contact[j];
+            const initials = getInitials(selectedContact);
+            const selectedContactsBg = bgContact[j];
+            content.innerHTML += /*html*/ `
+                <div class="initials-selected" style="background-color: ${selectedContactsBg}">${initials}</div>
+            `;
+        }
+    }
+}
+
+
+
