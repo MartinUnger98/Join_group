@@ -89,7 +89,7 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
                 <div class="d-flex align-items-center fs-20 column-gap-4 fs-responsive">
                     <span>Priority:</span>
                     <div class="d-flex align-items-center column-gap-2">
-                        <span class="mb-12">${priority}</span>
+                        <span id="p-${id}" class="mb-12">${priority}</span>
                         <img src="../${prioImg}" alt="priority">
                     </div> 
                 </div>

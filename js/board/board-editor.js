@@ -249,3 +249,23 @@ function switchBorderandDropdownOfContacts(id) {
     border.classList.remove('border-color');
     dropDown.classList.remove('switch');
 }
+
+function updateEditorWithSelected(id, i) {
+    const task = tasks[i]
+    let priority = task.priority;
+    let urgent = document.getElementById(`urgent-${id}`);
+    let medium = document.getElementById(`medium-${id}`);
+    let low = document.getElementById(`low-${id}`);
+    let urgentImg = document.getElementById(`urgent-img-${id}`);
+    let mediumImg = document.getElementById(`medium-img-${id}`);
+    let lowImg = document.getElementById(`low-img-${id}`);
+    if (priority) {
+        if (priority === 'Urgent') {
+            switchUrgent(urgent, urgentImg);
+        } else if (priority === 'Medium') {
+            switchMedium(medium, mediumImg);
+        } else if (priority === 'Low') {
+            switchLow(low, lowImg);
+        }
+    }
+}

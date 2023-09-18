@@ -458,7 +458,6 @@ function moveSelectedContacts() {
             let username = user.name;
             const bgUser = user.bgColor;
             const initials = getInitials(username);
-            let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${i}`)).backgroundColor;
             selectedContactsDiv.innerHTML += /*html*/ `
                 <div class="initials-selected" id="selected_contact-${i}" style="background-color: ${bgUser}">${initials}</div>
             `;
