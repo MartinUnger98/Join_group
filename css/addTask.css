@@ -1,13 +1,12 @@
 body {
     background-color: #F6F7F8 !important;
     font-family: 'Inter', sans-serif !important;
-    padding-right: 52px;
 }
 .addTask-section {
     margin-top: 206px;
     margin-left: 328px;
     margin-bottom: 52px;
-    max-width: 992px;
+    max-width: 895px;
 }
 h1 {
     font-size: 61px !important;
@@ -228,10 +227,7 @@ h1 {
     width: 14px;
     height: 14px;
 }
-.add:hover {
-    background-color: #D9D9D9;
-    border-radius: 20px;
-}
+
 #subtask-content {
     padding: 0;
 }
@@ -371,6 +367,9 @@ h1 {
     cursor: pointer;
     margin-left: -13px;
 }
+.category-top {
+
+}
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -390,7 +389,7 @@ h1 {
     width: 16px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1240px) {
     h1 {
         text-align: center;
         margin-right: 110px;
@@ -415,7 +414,16 @@ h1 {
         margin: 0;
     }
     .category-content {
-        top: 1040px;
+        top: 1068px;
+    }
+    .form-buttons {
+        margin-right: 36px;
+    }
+    .category-top {
+        top: 1109px;
+    }
+    .mb-responsive {
+        margin-bottom: 25px;
     }
 }
 @media (max-width: 800px) {
@@ -434,7 +442,7 @@ h1 {
         margin-bottom: 100px;
     }
     .category-content {
-        top: 980px;
+        top: 1008px;
     }
     .assign-content {
         top: 637px;
@@ -444,13 +452,114 @@ h1 {
     }
     .form-buttons {
         width: 390px;
+        margin-right: 0;
     }
     .task-creation-container {
-        overflow-y: scroll;
-        max-height: 500px;
         margin-bottom: 50px;
     }
     .task-creation-container::-webkit-scrollbar {
         display: none;
+    }
+    .category-top {
+        top: 1048px;
     }     
+}
+@media (max-width: 420px) {
+    .task-content-box-left {
+        width: 320px;
+    }
+    .select-btn {
+        width: 320px;
+    }
+    .task-content-box-right {
+        width: 320px;
+    }
+    .priority-boxes {
+        width: 95px;
+        gap: 5px;
+        font-size: 16px !important;
+    }
+    .priority-boxes img {
+        width: 16px;
+    }
+    #urgent-img {
+        width: 16px;
+    }
+    .fs-responsive {
+        font-size: 16px;
+    }
+    .category-content {
+        width: 320px;
+        top: 931px;
+        height: 109px;
+    }
+    .assign-content {
+        top: 591px;
+        width: 320px;
+        height: 258px;
+    }
+    h1 {
+        margin-right: 100px !important;
+        font-size: 47px !important;
+    }
+    .fs-20 {
+        font-size: 16px;
+    }
+    #input::placeholder {
+        font-size: 16px;
+    }
+    #textarea::placeholder {
+        font-size: 16px;
+    }
+    #subtask::placeholder {
+        font-size: 16px;
+    }
+    .form-buttons {
+        width: 320px;
+        height: 50px;
+    }
+    .add {
+        height: 10px;
+        width: 10px;
+    }
+    .subtask-buttons {
+        height: 20px;
+        width: 20px;
+    }
+    .clear-responsive {
+        width: 11px;
+        height: 10px;
+    }
+    .button-responsive {
+        width: 11px;
+    }
+    .check-responsive {
+        width: 11px;
+    }
+    .added_subtask img {
+        width: 14px;
+        height: 14px;
+    }
+    .added_subtask img:hover {
+        width: 15px;
+        height: 15px;
+    }
+    .trash-width {
+        width: 11px;
+        height: 18px;
+        margin-left: 1px;
+    }
+    .create-button {
+        font-size: 16px;
+    }
+    .category-top {
+        top: 970px;
+    }
+    .new-contact-btn {
+        font-size: 17px;
+    }
+    .person_add-responsive {
+        width: 27px;
+    }
+    
 }

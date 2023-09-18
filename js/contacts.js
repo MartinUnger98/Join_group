@@ -84,19 +84,20 @@ async function addContact() {
     const contact = {
         name: nameInput,
         email: emailInput,
-        number: numberInput
+        number: numberInput,
+        bgColor: ''
     };
     allContacts.push(contact);
     await saveNewContact();
     findNewPosition(nameInput);
 }
 
-async function saveNewContact(){
+async function saveNewContact() {
     try {
         const allContactsAsString = JSON.stringify(allContacts);
         await setItem('allContacts', allContactsAsString); // Auf das Ergebnis warten
-        closeEditorCtc();
         loadContacts();
+        closeEditorCtc();
     } catch (error) {
         console.error('Fehler beim Speichern des Kontakts:', error);
     }
@@ -111,9 +112,8 @@ function getInitials(name) {
 }
 
 
-async function initContacts(){
+async function initContacts() {
     await init();
-    pushUsersToContacts();
     loadContacts();
 }
 
@@ -123,6 +123,7 @@ function loadContacts() {
     allContactsContainer.innerHTML = '';
     initialLetter = [];
     sortByFirstName(allContacts);
+    setBgColor();
     for (let i = 0; i < allContacts.length; i++) {
         const contact = allContacts[i];
         const initials = getInitials(contact['name']);
@@ -132,19 +133,24 @@ function loadContacts() {
             allContactsContainer.innerHTML += contactHead(initials);
         }
         allContactsContainer.innerHTML += contactLayout(initials, contact, i);
-        changeBgColor(i, `initialLogo${i}`);
+        document.getElementById(`initialLogo${i}`).style.backgroundColor = allContacts[i]['bgColor'];
     }
 }
 
 
-function changeBgColor(i, id){
-    if (i > bgColors.length) {
-        const randomDecimal = Math.random();
-        const randomInteger = Math.floor(randomDecimal * 8);
-        newBgColorPosition = randomInteger;
-        document.getElementById(id).style.backgroundColor = bgColors[newBgColorPosition];
+function setBgColor() {
+    for (let i = 0; i < allContacts.length; i++) {
+        if (i > bgColors.length) {
+            const randomDecimal = Math.random();
+            const randomInteger = Math.floor(randomDecimal * 8);
+            newBgColorPosition = randomInteger;
+            iconColor = bgColors[newBgColorPosition];
+        }
+        else {
+            iconColor = bgColors[i];
+        }
+        allContacts[i]['bgColor'] = iconColor;
     }
-    document.getElementById(id).style.backgroundColor = bgColors[i];
 }
 
 
@@ -183,13 +189,13 @@ function showContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
     if (contactDetailContainer.style.left === '') {
         changeDetails(i, contactDetailContainer);
-        changeBgColor(i, 'initialsDetailView');
+        document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
     }
     else {
         contactDetailContainer.style.left = '100vw';
         setTimeout(function () {
             changeDetails(i, contactDetailContainer);
-            changeBgColor(i, 'initialsDetailView');
+            document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
         }, 225);
     }
 }
@@ -248,7 +254,7 @@ function editContact(i) {
     document.getElementById('name').value = allContacts[i]['name'];
     document.getElementById('email').value = allContacts[i]['email'];
     document.getElementById('phone').value = allContacts[i]['number'];
-    changeBgColor(i, 'initialDiv');
+    document.getElementById('initialDiv').style.backgroundColor = allContacts[i]['bgColor'];
 }
 
 function showEditor(i) {
@@ -276,7 +282,7 @@ function showEditor(i) {
                     placeholder="Phone"><img src="../img/call.png">
             </div>
             <div class="cnlAndCreateBtns">
-                <button class="cancelBtnContact" onclick="closeEditorCtc()">Cancel<svg class="cnlSvgCtc"
+                <button class="cancelBtnContact" onclick="deleteContact(${i})">Delete<svg class="cnlSvgCtc"
                         width="13" height="14" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z"
@@ -302,7 +308,7 @@ async function saveContact(i) {
     allContacts.splice(i, 1, contact);
     closeEditorCtc();
     loadContacts();
-    await saveNewContact();  
+    await saveNewContact();
     findNewPosition(nameInput);
 }
 

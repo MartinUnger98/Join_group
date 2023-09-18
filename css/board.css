@@ -41,6 +41,9 @@ h1 {
 .board-direction {
     flex-direction: column;
 }
+.button-responsive {
+    display: flex;
+}
 .plus-button {
     border: 2px solid #2A3647;
     height: 24px;
@@ -105,7 +108,7 @@ h1 {
     right: 55vh;
     box-shadow: 0px 0px 4px 0px #00000029;
     background-color: white;
-    padding: 48px 40px 48px 40px;
+    padding: 48px 40px;
     transform: translateX(6000px);
     transition: all ease-in 200ms;
 }
@@ -169,6 +172,9 @@ h1 {
     padding: 8px 16px;
     border: 1px solid #A8A8A8;
 }
+.search-container:focus-within {
+    border-color: #29ABE2; 
+}
 .search-input {
     outline: none;
     border: 0;
@@ -193,6 +199,10 @@ h1 {
 .add-box {
     height: 32px;
     width: 32px;
+}
+.add-box img {
+    height: 18px;
+    width: 18px;
 }
 .add {
     height: 18px;
@@ -447,10 +457,7 @@ h1 {
     width: 14px;
     height: 14px;
 }
-.add:hover {
-    background-color: #D9D9D9;
-    border-radius: 20px;
-}
+
 .subtask-content {
     padding: 0;
 }
@@ -608,6 +615,7 @@ h1 {
 .assign-content-editor {
     display: none;
     height: 240px;
+    margin-top: 2px;
 }
 .assign-content-editor.active {
     display: block;
@@ -684,6 +692,9 @@ h1 {
 .border-color {
     border-color: #29ABE2;
 }
+.hidden-button {
+    display: none;
+}
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -711,7 +722,7 @@ h1 {
         display: flex;
         flex: 1;
         overflow-x: scroll;
-        max-width: 1279px;
+        min-width: 1279px;
     }
     .scroll-container::-webkit-scrollbar {
         display: none;
@@ -719,8 +730,8 @@ h1 {
     .board-direction {   
         flex-direction: row; 
         flex: 1;
-        gap: 32px;
-        min-height: 272px;
+        gap: 80px;
+        min-height: 260px;
         padding: 10px;
     }
     .board-direction:hover {
@@ -746,6 +757,24 @@ h1 {
         padding-right: 20px;
         justify-content: flex-end;
     }
+    .width-column {
+        width: auto;
+        padding-right: 26px;
+    }
+    .testcard {
+        min-width: 235px;
+    }
+    .detailed-task {
+        right: 20vw;
+    }
+    .button-responsive {
+        display: none;
+    }
+    .hidden-button {
+        display: flex;
+    }
+
+   
 }
 @media (max-width: 800px) {
     .taskboard {
@@ -760,6 +789,9 @@ h1 {
     .new-headline {
         margin-bottom: 32px;
     }
+    .detailed-task {
+        right: 8vw;
+    }
 }
 @media (max-width: 600px){
     .search-container {
@@ -769,5 +801,103 @@ h1 {
     }
     .search-input {
         flex: 1;
+    }
+    .detailed-task {
+        right: 1vw;
+    }
+}
+@media (max-width: 550px) {
+    .detailed-task {
+        width: 328px;
+        right: 10vw;
+        padding: 40px 20px;
+    }
+    .fs-61 {
+        font-size: 47px;
+    }
+    .detailed-priority {
+        font-size: 18px;
+        padding: 4px 18px;
+    }
+    .fs-responsive {
+        font-size: 16px;
+    }
+    .subtask::placeholder {
+        font-size: 16px;
+    }
+    .subtask {
+        width: 175px;
+    }
+    .priority-boxes {
+        width: 74px;
+    }
+    .priority-boxes img {
+        width: 11px;
+    }
+    .prio-fontsize-responsive {
+        font-size: 12px;
+    }
+    .subtask-buttons {
+        height: 20px;
+        width: 20px;
+    }
+    .select-editor img {
+        width: 10px;
+    }
+    .assign-content-editor {
+        height: 230px;
+    }
+    .person_add-responsive {
+        width: 27px;
+    }
+    .add {
+        height: 10px;
+        width: 10px;
+        margin-left: 1px;
+    }
+    .check-responsive {
+        width: 13px;
+    }
+    .button-responsive {
+        width: 11px;
+    }
+    .edit-input {
+        width: 166px;
+    }
+    .added-subtask-editor img {
+        width: 14px;
+        height: 14px;
+    }
+    .added-subtask-editor img:hover {
+        width: 15px;
+        height: 15px;
+    }
+    .trash-width {
+        width: 12px;
+        height: 18px;
+        margin-left: 1px;
+    }
+    .ok-button {
+        font-size: 16px;
+    }
+    .ok-button img {
+        width: 13px
+    }
+}
+@media (max-width: 420px) {
+    .detailed-task {
+        right: 5vw;
+    }
+    h1 {
+        font-size: 47px !important;
+        margin-bottom: 0 !important;
+    }
+}
+@media (max-width: 380px) {
+    .new-headline-search {
+        padding-right: 15px;
+    }
+    .detailed-task {
+        right: 2vw;
     }
 }

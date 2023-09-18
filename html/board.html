@@ -43,12 +43,12 @@
             </div>
             <div class="new-headline-search d-flex align-items-center column-gap-4">
                 <div class="d-flex align-items-center search-container bg-white rounded-3">
-                    <input class="search-input" type="text" placeholder="Find task">
+                    <input id="searchInput" class="search-input" type="text" placeholder="Find task" oninput="searchTask()">
                     <div class="d-flex justify-content-between align-items-center column-gap-4">
                         <div class="search-separator"></div>
                         <div class="d-flex justify-content-center align-items-center search-box">
                             <div class="add-box d-flex align-items-center justify-content-center">
-                                <img class="add" src="../img/search_board.svg" alt="search">
+                                <img src="../img/search_board.svg" alt="search">
                             </div>
                         </div>
                     </div>
@@ -63,13 +63,21 @@
         <section class="taskboard d-flex justify-content-between">
 
             <div class="d-flex flex-column">
-                <div class="d-flex justify-content-between width-column">
+                <div class="d-flex column-headline justify-content-between width-column">
                     <span class="column-title fw-bold fs-20">To do</span>
-                    <div class="plus-button rounded-3 d-flex justify-content-center align-items-center" onclick="showHiddenAddTask()">
+                    <div>
+                      <a href="../html/addTask.html" class="hidden-button plus-button rounded-3 justify-content-center align-items-center">
                         <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                             <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                         </svg> 
+                      </a>
+                      <div class="button-responsive plus-button rounded-3 justify-content-center align-items-center" onclick="showHiddenAddTask()">
+                          <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                          </svg> 
+                      </div>
                     </div>
                 </div>
                 <div class="scroll-container" id="scrollContainer1">
@@ -80,11 +88,19 @@
             <div class="d-flex flex-column">
                 <div class="d-flex justify-content-between width-column">
                     <span class="column-title fw-bold fs-20">In progress</span>
-                    <div class="plus-button rounded-3 d-flex justify-content-center align-items-center" onclick="showHiddenAddTask()">
+                    <div>
+                      <a href="../html/addTask.html" class="hidden-button plus-button rounded-3 justify-content-center align-items-center">
                         <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                             <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                         </svg> 
+                      </a>
+                      <div class="button-responsive plus-button rounded-3 justify-content-center align-items-center" onclick="showHiddenAddTask()">
+                          <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                          </svg> 
+                      </div>
                     </div>
                 </div>
                 <div class="scroll-container" id="scrollContainer2">
@@ -95,11 +111,19 @@
             <div class="d-flex flex-column">
                 <div class="d-flex justify-content-between width-column">
                     <span class="column-title fw-bold fs-20">Await feedback</span>
-                    <div class="plus-button rounded-3 d-flex justify-content-center align-items-center" onclick="showHiddenAddTask()">
+                    <div>
+                      <a href="../html/addTask.html" class="hidden-button plus-button rounded-3 justify-content-center align-items-center">
                         <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                             <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                         </svg> 
+                      </a>
+                      <div class="button-responsive plus-button rounded-3 justify-content-center align-items-center" onclick="showHiddenAddTask()">
+                          <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                          </svg> 
+                      </div>
                     </div>
                 </div>
                 <div class="scroll-container" id="scrollContainer3">
@@ -110,11 +134,19 @@
             <div class="d-flex flex-column">
                 <div class="d-flex justify-content-between width-column">
                     <span class="column-title fw-bold fs-20">Done</span>
-                    <div class="plus-button rounded-3 d-flex justify-content-center align-items-center" onclick="showHiddenAddTask()">
+                    <div>
+                      <a href="../html/addTask.html" class="hidden-button plus-button rounded-3 justify-content-center align-items-center">
                         <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                             <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                         </svg> 
+                      </a>
+                      <div class="button-responsive plus-button rounded-3 justify-content-center align-items-center" onclick="showHiddenAddTask()">
+                          <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                          </svg> 
+                      </div>
                     </div>
                 </div>
                 <div class="scroll-container" id="scrollContainer4">
@@ -140,7 +172,7 @@
                 <div class="d-flex flex-column">   
                   <label for="textarea" class="input-headlines fs-20">Description</label>
                   <textarea class=" textarea fs-20 rounded-3" required id="textarea" name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
-                </div>  
+                </div> 
                 <div class="d-flex flex-column">
                   <span class="input-headlines fs-20">Assigned to</span>
                    <div class="select-btn rounded-3 d-flex align-items-center justify-content-between bg-white" onclick="toggleDropdown('contact')" id="contact_dropdown">

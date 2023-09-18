@@ -58,7 +58,7 @@ function renderTasks(status) {
         let contact = task.contacts;
         let position = idToPosition(tasks, id);
         content.innerHTML += showAddedTasks(title, category, description, priority, amountOfSubtasks, id, contact);
-        determineCategoryColor(category, `cardPrio-${id}`); 
+        determineCategoryColor(category, `cardPrio-${id}`);
         renderDetailedTask(position, id);
         renderSelectedContacts(task, contact, id);
     }
@@ -74,10 +74,10 @@ function openDetailedTask(id) {
 function idToPosition(arr, id) {
     let position;
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].id === id) {
-        position = i;
-        break;
-      }
+        if (arr[i].id === id) {
+            position = i;
+            break;
+        }
     }
     return position;
 }
@@ -93,7 +93,7 @@ function determineCategoryColor(category, id) {
         label.classList.add('technical-task')
     } else if (category === 'User Story') {
         label.classList.add('user-story');
-    } 
+    }
 }
 
 function renderSelectedContacts(task, contact, id) {
@@ -128,10 +128,10 @@ function renderDetailedTask(i, id) {
     let prioImg = task.prio;
     let date = formatDate(task.date);
     let subtask = task.subtask;
-    content.innerHTML += showDetailedTask(title, category, description, priority,prioImg, date, i, subtask, id, contact);
-    renderSubtasks(subtask, i, id); 
+    content.innerHTML += showDetailedTask(title, category, description, priority, prioImg, date, i, subtask, id, contact);
+    renderSubtasks(subtask, i, id);
     updateCheckedSubtasksCount(i, id);
-    determineCategoryColor(category, `prio-detail-${i}`); 
+    determineCategoryColor(category, `prio-detail-${i}`);
     renderSelectedContactsInDetailedTask(task, contact, id);
 }
 
@@ -217,7 +217,7 @@ function updateProgressbar(id) {
     const checkedSubtasksSpan = document.getElementById(`checked_subtasks-${id}`);
     const allSubtasksSpan = document.getElementById(`allSubtasks-${id}`);
     const progressBar = document.getElementById(`progress-${id}`);
-    
+
     if (checkedSubtasksSpan && allSubtasksSpan && progressBar) {
         let checkedSubtask = checkedSubtasksSpan.innerText;
         let allSubtasks = allSubtasksSpan.innerText;
@@ -260,7 +260,7 @@ function hideBackground() {
 function hideTasksOfBoard() {
     let task = document.getElementById('detailedTask');
     let boardAddTask = document.getElementById('board-addTask');
-    
+
     if (task.classList.contains('show-task')) {
         task.classList.remove('show-task');
         hideDetailedTask();
@@ -318,6 +318,7 @@ function startDragging(id) {
 
 function stopDragging(id) {
     stopRotateTask(id);
+    searchTask();
 }
 
 function getCurrentdragObjektStatus(id) {
@@ -328,7 +329,7 @@ function getCurrentdragObjektStatus(id) {
 
 function showEmptyTasks(currentDragObjektStatus) {
     statusTasks.forEach(sTask => {
-        if(currentDragObjektStatus !== sTask) {
+        if (currentDragObjektStatus !== sTask) {
             document.getElementById("emptyTask" + sTask).classList.remove("d-none");
         }
     });
@@ -373,12 +374,12 @@ function openDetailedCardEditor(title, description, date, id, i) {
     renderUserInEditor(id);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     enableHorizontalScroll('scrollContainer1');
     enableHorizontalScroll('scrollContainer2');
     enableHorizontalScroll('scrollContainer3');
     enableHorizontalScroll('scrollContainer4');
-   
+
 });
 
 function enableHorizontalScroll(containerId) {
@@ -419,4 +420,26 @@ function enableHorizontalScroll(containerId) {
 }
 
 
+function searchTask() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
 
+    if (input.length !=0) {
+        for (let i = 0; i < tasks.length; i++) {
+            const taskTitle = tasks[i]['title'].toLowerCase();
+            const id = tasks[i].id;
+            const taskContainer = document.getElementById(`task-${id}`);
+            if (!taskTitle.startsWith(input)) {
+                if (taskContainer != null) {
+                    taskContainer.classList.remove('d-flex');
+                    taskContainer.style.display = 'none';
+                }
+            }
+            else{
+                taskContainer.classList.add('d-flex');
+            }
+        }
+    }
+    else{
+        allMightyRender();
+    }
+}
