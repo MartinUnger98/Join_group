@@ -5,6 +5,7 @@ let categories = ['Technical Task', 'User Story'];
 let subtaskcounter = 0;
 let bgColors = ['#FF7A00', '#462F8A', '#FFBB2B', '#FC71FF', '#6E52FF', '#1FD7C1', '#9327FF', '#FF4646',];
 let loggedInUser;
+let popup = "";
 
 
 async function init() {
@@ -70,4 +71,52 @@ function showLoggedInUser() {
     let box = document.getElementById('loggedInUser');
     let initials = getInitials(loggedInUser);
     box.innerHTML = initials;
+}
+
+/**
+ * creates a popup message
+ * 
+ */
+function showSuccessMessage() {
+    let successDivContainer = document.createElement('div');
+    successDivContainer.id = 'popup';
+    let successDiv = document.createElement('div');
+    successDiv.textContent = popup;
+    successDiv.classList.add('btnDark');
+    successDiv.classList.add('widthFit');
+    successDiv.classList.add('popupAnimation');
+    successDivContainer.appendChild(successDiv);
+    document.body.appendChild(successDivContainer);
+    setTimeoutPopup(successDivContainer);
+}
+
+
+/**
+ * delete the popup and continues to the next page
+ *  
+ * @param {object} successDivContainer 
+ */
+function setTimeoutPopup(successDivContainer) {
+    setTimeout(() => {
+        successDivContainer.remove();
+        pathAfterPopup();
+    }, 1000);
+}
+
+function pathAfterPopup() {
+    switch (popup) {
+        case "An Email has been sent to you":
+            resetPasswordView();
+            break;
+        case "You reset your password" || "You Signed Up successfully":
+            backToLogin();
+            break;
+        case "Task added to Board":
+            if (window.location.pathname !== '/html/board.html') {
+                window.location.href = '/html/board.html';
+            } else {
+                loadBoard();
+            }
+            break;
+    }
 }
