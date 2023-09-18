@@ -185,3 +185,114 @@
     height: 60px;
     width: 60px;
 }
+
+@media (max-width: 1080px) {  
+    .taskSummary {
+        height: 120px;
+        width: 120px;
+    }    
+    .bigNumber {
+        font-size: 38px;
+    }    
+    .spanSummary {       
+        font-size: 16px;
+    }
+    .greetingName {      
+        font-size: 40px;
+    }
+    .spanDate{
+        font-size: 20px;
+    }
+}
+@media (max-width: 920px) {
+    .headlineSummary{
+        font-size: 40px;
+    }
+    .taskSummary {
+        height: 96px;
+        width: 96px;
+    }
+    .morningContainer{
+        margin-left: 30px;
+    }
+
+    .toDOAndDone{
+        height: 125px;
+    }
+    .bigNumber {
+        font-size: 25px;
+    } 
+    .spanSummary {       
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .morningContainer {
+        position: absolute;
+        left: calc(50vw - 95px);
+        top: 50vh;
+        animation: fadeOut 1s ease-in-out 1s forwards;
+    }
+
+    .headlineSummary, .summaryTaskContent{
+       opacity: 0;
+       animation: fadeIn 1s ease-in-out 1s forwards;
+    }
+     .headlineSummary{
+        flex-direction: column;
+    }
+    .summaryTaskContent {
+        display: flex;
+        flex-direction: column-reverse;
+        margin-right: 15px;
+    }
+    .taskOrder{
+        margin-top: 32px;
+    }
+
+    .summaryPage{
+        margin-left: 24px;
+        margin-top: 115px;
+    }
+    .taskSummary {
+        height: 120px;
+        width: 120px;
+    }    
+    .bigNumber {
+        font-size: 38px;
+    }    
+    .spanSummary {       
+        font-size: 16px;
+    }
+    .greetingName {      
+        font-size: 40px;
+    }
+    .spanDate{
+        font-size: 20px;
+    }
+    .toDOAndDone{
+        height: 150px;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
