@@ -367,9 +367,6 @@ h1 {
     cursor: pointer;
     margin-left: -13px;
 }
-.category-top {
-
-}
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -561,5 +558,53 @@ h1 {
     .person_add-responsive {
         width: 27px;
     }
-    
 }
+
+/* --------POPUP------- */
+
+:root {
+    --heightPopup: 55px;
+}
+
+.btnDark {
+    color: white;
+    background-color: #2a3647;
+    font-weight: 700;
+    font-size: 21px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+  }
+  .widthFit {
+    width: fit-content;
+    height: var(--heightPopup) ;
+  }
+
+  .popupAnimation {
+    position: fixed;
+    animation-name: popup;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    pointer-events: none;
+  }
+
+  #popup {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.5);
+    z-index: 10;
+  }
+
+  @keyframes popup {
+    0% {
+      bottom: 0;
+    }  
+    100% {
+      bottom: calc(50vh - (var(--heightPopup) / 2));
+    }
+  }
