@@ -29,13 +29,17 @@ body {
     gap: 15px;
 }
 
-.menu-sections {
+.menu-sections, .menu-sectionsNoHover{
     display: flex;
     align-items: center;
     width: 232px;
     height: 46px;
     padding: 8px 53px 8px 53px;
     gap: 20px;
+}
+
+.menu-sectionsNoHover {
+    background-color: #091931;
 }
 
 .menu-sections:hover {
@@ -129,7 +133,7 @@ body {
         justify-content: space-between;
         padding: 0 20px;
     }
-    .menu-sections {
+    .menu-sections, .menu-sectionsNoHover {
         border-radius: 10px;
         justify-content: center;
         flex-direction: column;
@@ -152,7 +156,7 @@ body {
     .menu {
         height: 70px;
     }
-    .menu-sections {
+    .menu-sections, .menu-sectionsNoHover {
         height: 66px;
         width: 70px;
     }

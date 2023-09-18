@@ -20,6 +20,14 @@ async function init() {
     }
 }
 
+function setCurrentViewInMenu() {
+    let currentView = window.location.pathname;
+    let lastSlashIndex = currentView.lastIndexOf('/');
+    let dotIndex = currentView.lastIndexOf('.');
+    let id = currentView.substring(lastSlashIndex + 1, dotIndex);
+    document.getElementById("menu-" + id).classList.remove('menu-sections');
+    document.getElementById("menu-" + id).classList.add('menu-sectionsNoHover');
+}
 
 async function loadData() {
     try {
@@ -56,7 +64,6 @@ async function includeHTML() {
         const element = includeElements[i];
         file = element.getAttribute("w3-include-html"); // Diese Zeile liest den Wert des Attributs "w3-include-html" aus -> "include/header.html"
         let response = await fetch(file); // Hier wird der Wert geladen. fetch = laden; await = damit die Funktion mit dem Ausführen wartet, damit alles geladen ist. Wichtig: Funktion muss asynchron sein, siehe bei "function...."
-
         if (response.ok) {
             element.innerHTML = await response.text(); // Hier wird der Text aus dem Wert herausgezogen.
         } else {
@@ -64,7 +71,10 @@ async function includeHTML() {
         }
     }
     showLoggedInUser();
-
+    if (window.location.pathname !== '/html/legalNotice.html' && window.location.pathname !== '/html/privatPolicy.html') {
+        setCurrentViewInMenu();
+    }
+    
 }
 
 function showLoggedInUser() {
