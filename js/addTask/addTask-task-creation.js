@@ -27,11 +27,8 @@ async function addTask(status) {
     };
     tasks.push(task);
     await saveTasks();
-    if (window.location.pathname !== '/html/board.html') {
-        window.location.href = '/html/board.html';
-    } else {
-        loadBoard();
-    }
+    popup = "Task added to Board";
+    showSuccessMessage();
 }
 
 

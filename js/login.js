@@ -1,4 +1,3 @@
-let popup = "";
 let userPasswordChange = "";
 
 /**
@@ -265,37 +264,6 @@ async function checkPassword(userPassword, logInPassword, userName) {
         emptyCustomValidity(logInPasswordInput);
     }
     
-}
-
-
-/**
- * creates a popup message
- * 
- */
-function showSuccessMessage() {
-    let successDivContainer = document.createElement('div');
-    successDivContainer.id = 'popup';
-    let successDiv = document.createElement('div');
-    successDiv.textContent = popup;
-    successDiv.classList.add('btnDark');
-    successDiv.classList.add('widthFit');
-    successDiv.classList.add('popupAnimation');
-    successDivContainer.appendChild(successDiv);
-    document.body.appendChild(successDivContainer);
-    setTimeoutPopup(successDivContainer);
-}
-
-
-/**
- * delete the popup and continues to the next page
- *  
- * @param {object} successDivContainer 
- */
-function setTimeoutPopup(successDivContainer) {
-    setTimeout(() => {
-        successDivContainer.remove();
-        popup === "An Email has been sent to you" ? resetPasswordView() : backToLogin();        
-    }, 1000);
 }
 
 
