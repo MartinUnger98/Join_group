@@ -92,12 +92,12 @@ async function addContact() {
     findNewPosition(nameInput);
 }
 
-async function saveNewContact(){
+async function saveNewContact() {
     try {
         const allContactsAsString = JSON.stringify(allContacts);
         await setItem('allContacts', allContactsAsString); // Auf das Ergebnis warten
-        closeEditorCtc();
         loadContacts();
+        closeEditorCtc();
     } catch (error) {
         console.error('Fehler beim Speichern des Kontakts:', error);
     }
@@ -112,7 +112,7 @@ function getInitials(name) {
 }
 
 
-async function initContacts(){
+async function initContacts() {
     await init();
     pushUsersToContacts();
     loadContacts();
@@ -124,6 +124,7 @@ function loadContacts() {
     allContactsContainer.innerHTML = '';
     initialLetter = [];
     sortByFirstName(allContacts);
+    setBgColor();
     for (let i = 0; i < allContacts.length; i++) {
         const contact = allContacts[i];
         const initials = getInitials(contact['name']);
@@ -133,20 +134,24 @@ function loadContacts() {
             allContactsContainer.innerHTML += contactHead(initials);
         }
         allContactsContainer.innerHTML += contactLayout(initials, contact, i);
-        changeBgColor(i, `initialLogo${i}`);
+        document.getElementById(`initialLogo${i}`).style.backgroundColor = allContacts[i]['bgColor'];
     }
 }
 
 
-function changeBgColor(i, id){
-    if (i > bgColors.length) {
-        const randomDecimal = Math.random();
-        const randomInteger = Math.floor(randomDecimal * 8);
-        newBgColorPosition = randomInteger;
-        iconColor = bgColors[newBgColorPosition];
+function setBgColor() {
+    for (let i = 0; i < allContacts.length; i++) {
+        if (i > bgColors.length) {
+            const randomDecimal = Math.random();
+            const randomInteger = Math.floor(randomDecimal * 8);
+            newBgColorPosition = randomInteger;
+            iconColor = bgColors[newBgColorPosition];
+        }
+        else {
+            iconColor = bgColors[i];
+        }
+        allContacts[i]['bgColor'] = iconColor;
     }
-    iconColor = bgColors[i];
-    allContacts[i]['bgColor'].push(iconColor);
 }
 
 
@@ -185,13 +190,13 @@ function showContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
     if (contactDetailContainer.style.left === '') {
         changeDetails(i, contactDetailContainer);
-        changeBgColor(i, 'initialsDetailView');
+        document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
     }
     else {
         contactDetailContainer.style.left = '100vw';
         setTimeout(function () {
             changeDetails(i, contactDetailContainer);
-            changeBgColor(i, 'initialsDetailView');
+            document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
         }, 225);
     }
 }
@@ -250,7 +255,7 @@ function editContact(i) {
     document.getElementById('name').value = allContacts[i]['name'];
     document.getElementById('email').value = allContacts[i]['email'];
     document.getElementById('phone').value = allContacts[i]['number'];
-    changeBgColor(i, 'initialDiv');
+    document.getElementById('initialDiv').style.backgroundColor = allContacts[i]['bgColor'];
 }
 
 function showEditor(i) {
@@ -304,7 +309,7 @@ async function saveContact(i) {
     allContacts.splice(i, 1, contact);
     closeEditorCtc();
     loadContacts();
-    await saveNewContact();  
+    await saveNewContact();
     findNewPosition(nameInput);
 }
 
