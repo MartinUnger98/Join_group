@@ -10,6 +10,7 @@ let loggedInUser;
 async function init() {
     await includeHTML();
     await loadData();
+    await pushUsersToContacts();
     if (window.location.pathname === '/html/board.html' || window.location.pathname === '/html/addTask.html') {
         loadAddTask();
     }
