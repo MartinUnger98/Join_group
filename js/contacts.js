@@ -84,7 +84,8 @@ async function addContact() {
     const contact = {
         name: nameInput,
         email: emailInput,
-        number: numberInput
+        number: numberInput,
+        bgColor: ''
     };
     allContacts.push(contact);
     await saveNewContact();
@@ -142,9 +143,10 @@ function changeBgColor(i, id){
         const randomDecimal = Math.random();
         const randomInteger = Math.floor(randomDecimal * 8);
         newBgColorPosition = randomInteger;
-        document.getElementById(id).style.backgroundColor = bgColors[newBgColorPosition];
+        iconColor = bgColors[newBgColorPosition];
     }
-    document.getElementById(id).style.backgroundColor = bgColors[i];
+    iconColor = bgColors[i];
+    allContacts[i]['bgColor'].push(iconColor);
 }
 
 
@@ -276,7 +278,7 @@ function showEditor(i) {
                     placeholder="Phone"><img src="../img/call.png">
             </div>
             <div class="cnlAndCreateBtns">
-                <button class="cancelBtnContact" onclick="closeEditorCtc()">Cancel<svg class="cnlSvgCtc"
+                <button class="cancelBtnContact" onclick="deleteContact(${i})">Delete<svg class="cnlSvgCtc"
                         width="13" height="14" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z"
