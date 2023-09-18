@@ -373,6 +373,7 @@ function openDetailedCardEditor(title, description, date, id, i) {
     renderSubtasksInEditor(id, i);
     renderUserInEditor(id);
     updateEditorWithSelected(id, i);
+    renderSelectedContactsInEditor(id, i);
 }
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -7,10 +7,10 @@ body {
     font-size: 20px;
 }
 .headline {
+    margin-right: 20px;
     margin-top: 206px;
     margin-left: 280px;
     margin-bottom: 52px;
-
 }
 h1 {
     font-size: 61px !important;
@@ -33,9 +33,10 @@ h1 {
     box-shadow: 0px 4px 4px 0px #00000040;
 }
 .taskboard {
+    margin-right: 20px;
     margin-left: 280px;
     height: 702px;
-    gap: 26px;
+    gap: 20px;
     
 }
 .board-direction {
