@@ -434,6 +434,24 @@
 }
 
 
+@media (max-width: 1230px) {
+  .contactsContainer{
+    width: 100%;
+  }
+  .contactDetailContainer, .contactDetailView{
+    position: absolute;
+    left: calc(50vw - (532px / 2))
+  }
+}
+
+@media (max-width: 800px) {
+  .contactPage {
+    margin-left: 24px;
+  }
+  .addContactBtn{
+    width: 300px;
+  }
+}
 
 
 
@@ -444,18 +462,3 @@
 
 
 
-
-
-/**
-.bsp{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    width: 40px;
-    border-radius: 100%;
-    background-color: aqua;
-    color: white;
-    font-size: 32px;
-    border: 1px solid white;
-}*/
