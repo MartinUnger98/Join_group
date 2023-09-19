@@ -13,7 +13,6 @@ function allMightyRender() {
     renderTasks('inProgress');
     renderTasks('awaitFeedback');
     renderTasks('taskDone');
-    checkColumns();
 }
 
 function checkColumns() {
@@ -43,7 +42,7 @@ function checkColumns() {
  * This function creates the no-task-div
  */
 function loadNoTask(column, message) {
-    column.innerHTML = '';
+    /* column.innerHTML = ''; */
     column.innerHTML += /*html*/ `
         <div class="no-task-container d-flex justify-content-center align-items-center rounded-3">
             <span class="no-task-color">${message}</span>
@@ -74,6 +73,7 @@ function renderTasks(status) {
         renderDetailedTask(position, id);
         renderSelectedContacts(task, contact, id);
     }
+    checkColumns();
     content.innerHTML += addEmptytask('emptyTask' + status);
 }
 

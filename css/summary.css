@@ -16,6 +16,7 @@
 .summaryPage {
     margin-left: 320px;
     margin-top: 240px;
+    margin-bottom: 100px;
 }
 
 .summaryBody {
@@ -34,6 +35,7 @@
 
 .allSummaryContent {
     display: flex;
+    justify-content: center;
     margin-top: 64px;
 }
 
@@ -186,6 +188,25 @@
     width: 60px;
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 @media (max-width: 1080px) {  
     .taskSummary {
         height: 120px;
@@ -226,7 +247,6 @@
         font-size: 14px;
     }
 }
-
 
 @media (max-width: 800px) {
     .morningContainer {
@@ -277,22 +297,26 @@
     }
 }
 
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
+@media (max-width: 450px) {
+    .iconBottom, .urgentImg {
+        width: 40px;
+        height: 40px;
     }
-    100% {
-        opacity: 0;
-        display: none;
+    .toDOAndDone {
+        width: 140px;
+        height: 120px;
+    }
+    .taskSummary {
+        width: 90px;
+        height: 95px;
+    }
+    .bigNumber {
+        font-size: 25px;
+    } 
+    .spanSummary {       
+        font-size: 14px;
+    }
+    .allSummaryContent {
+        margin-top: 0px;
     }
 }
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
