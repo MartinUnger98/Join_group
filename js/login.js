@@ -158,9 +158,10 @@ function emptyCustomValidity(input) {
  * 
  */
 async function register() {
-    users.push(setUserInfo());
+    let user = setUserInfo();
+    users.push(user);
     await setItem('users', JSON.stringify(users));
-    pushUsersToContacts();
+    pushUsersToContacts(user);
 }
 
 
@@ -176,7 +177,8 @@ function setUserInfo() {
     let userInfo = {
         name: username,
         email: usermail,
-        password: userpassword
+        password: userpassword,
+        bgColor: setColor(),
     };
     return userInfo;
 }

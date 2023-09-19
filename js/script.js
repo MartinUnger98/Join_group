@@ -10,7 +10,6 @@ let popup = "";
 async function init() {
     await includeHTML();
     await loadData();
-    await pushUsersToContacts();
     if (window.location.pathname === '/html/board.html' || window.location.pathname === '/html/addTask.html') {
         loadAddTask();
     }
@@ -40,22 +39,15 @@ async function loadData() {
 
 // Funktion, um eine zufällige Hintergrundfarbe aus bgColors auszuwählen
 
-function pushUsersToContacts() {
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        const isUserInContacts = allContacts.some(contact => contact.email === user.email);
-        if (!isUserInContacts) {
-            let bgColorContact = setColor();
-            let newContact = {
-                email: user.email,
-                name: user.name,
-                number: '',
-                bgColor: bgColorContact // Setzt die zufällige Hintergrundfarbe für den neuen Kontakt
-            };
-            allContacts.push(newContact);
-        }
+async function pushUsersToContacts(user) {
+    let isUserInContacts = allContacts.some(contact => contact.email === user.email);
+    if (!isUserInContacts) {
+        allContacts.push(user);
+        const allContactsAsString = JSON.stringify(allContacts);
+        await setItem('allContacts', allContactsAsString);
     }
 }
+
 
 function setColor() {
     const randomIndex = Math.floor(Math.random() * bgColors.length);

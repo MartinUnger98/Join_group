@@ -29,4 +29,15 @@ function clearUsers() {
         });
 }
 
+function clearContacts() {
+    allContacts = [];
+    setItem('allContacts', JSON.stringify(allContacts))
+        .then(() => {
+            console.log('Contacts data cleared successfully.');
+        })
+        .catch(error => {
+            console.error('Error clearing users data:', error);
+        });
+}
+
 

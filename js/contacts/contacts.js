@@ -1,5 +1,11 @@
 let initialLetter = [];
 
+
+async function initContacts() {
+    await init();
+    loadContacts();
+}
+
 function sortByFirstName(allContacts) {
     return allContacts.sort(function (a, b) {
         const firstNameA = a.name.split(' ')[0];
@@ -35,7 +41,7 @@ async function addContact() {
         name: nameInput,
         email: emailInput,
         number: numberInput,
-        bgColor: ''
+        bgColor: setColor()
     };
     allContacts.push(contact);
     await saveNewContact();
@@ -59,12 +65,6 @@ function getInitials(name) {
     const firstNameInitial = nameParts[0][0];
     const lastNameInitial = nameParts.length > 1 ? nameParts[1][0] : '';
     return `${firstNameInitial}${lastNameInitial}`;
-}
-
-
-async function initContacts() {
-    await init();
-    loadContacts();
 }
 
 
