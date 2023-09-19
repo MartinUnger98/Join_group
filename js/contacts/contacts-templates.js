@@ -98,7 +98,9 @@ function detailView(i) {
             <h3 class="h3DetailView">Email</h3>
             <a class="emailLinkWithHover emailLink" id="emailDetail" href="mailto:${allContacts[i]['email']}">${allContacts[i]['email']}</a>
             <h3 class="h3DetailView">Phone</h3>
-            <span id="phoneDetail">${allContacts[i]['number']}</span>
+            ${allContacts[i]['number'] !== undefined ? /*html*/  ` 
+                <span id="phoneDetail">${allContacts[i]['number']}</span>
+            `: '' }
             <div class="settings-editor">
                 <img src="../img/more_vert.svg" alt="">
             </div>

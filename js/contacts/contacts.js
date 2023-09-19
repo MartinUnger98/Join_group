@@ -99,6 +99,7 @@ function checkInitialLetter(firstInitial) {
 
 function showContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
+   
     if (contactDetailContainer.style.left === '') {
         changeDetails(i, contactDetailContainer);
         document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
@@ -108,7 +109,6 @@ function showContact(i) {
         setTimeout(function () {
             changeDetails(i, contactDetailContainer);
             document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
-            showDetails();
         }, 225);
     }
     
@@ -131,6 +131,7 @@ function changeDetails(i, contactDetailContainer) {
     contactDetailContainer.innerHTML = '';
     contactDetailContainer.innerHTML += detailView(i);
     contactDetailContainer.style.left = '764px';
+    showDetails();
 }
 
 
