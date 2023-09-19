@@ -19,7 +19,6 @@ function showNewContactEditor() {
                         fill="white" />
                 </g>
             </svg>
-
         </div>
     </div>
     <div class="ctcEditorRightSecond">
@@ -42,8 +41,10 @@ function showNewContactEditor() {
                             stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
-                <button type="submit" class="createBtnContact">Create contact<img class="checkCreateCtc"
-                        src="../img/check.png"></button>
+                <button type="submit" class="createBtnContact">
+                    <span>Create contact</span>
+                    <img class="checkCreateCtc"src="../img/check.png">
+                </button>
         </form>
     </div>`
 }
@@ -101,9 +102,6 @@ function detailView(i) {
             ${allContacts[i]['number'] !== undefined ? /*html*/  ` 
                 <span id="phoneDetail">${allContacts[i]['number']}</span>
             `: '' }
-            <div class="settings-editor">
-                <img src="../img/more_vert.svg" alt="">
-            </div>
         </div>
     `
 }
