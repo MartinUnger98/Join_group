@@ -15,25 +15,21 @@ function allMightyRender() {
     renderTasks('taskDone');
 }
 
-function checkColumns() {
+function checkColumns(array, status) {
     let toDo = document.getElementById('toDo');
     let inProgress = document.getElementById('inProgress');
     let awaitFeedback = document.getElementById('awaitFeedback');
     let done = document.getElementById('taskDone');
-    let taskStatusToDo = tasks.filter(t => t['status'] === 'toDo');
-    let taskStatusInProgress = tasks.filter(t => t['status'] === 'inProgress');
-    let taskStatusAwait = tasks.filter(t => t['status'] === 'awaitFeedback');
-    let taskStatusDone = tasks.filter(t => t['status'] === 'taskDone');
-    if (taskStatusToDo.length === 0) {
+    if (array.length === 0 && status === "toDo") {
         loadNoTask(toDo, "No tasks to do");
     }
-    if (taskStatusInProgress.length === 0) {
+    if (array.length === 0 && status === "inProgress") {
         loadNoTask(inProgress, "No tasks in progress");
     }
-    if (taskStatusAwait.length === 0) {
+    if (array.length === 0 && status === "awaitFeedback") {
         loadNoTask(awaitFeedback, "No tasks await feedback");
     }
-    if (taskStatusDone.length === 0) {
+    if (array.length === 0 && status === "taskDone") {
         loadNoTask(done, "No tasks are done");
     }
 }
@@ -73,7 +69,7 @@ function renderTasks(status) {
         renderDetailedTask(position, id);
         renderSelectedContacts(task, contact, id);
     }
-    checkColumns();
+    checkColumns(taskStatus, status);
     content.innerHTML += addEmptytask('emptyTask' + status);
 }
 
