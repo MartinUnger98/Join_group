@@ -411,42 +411,44 @@ function highlightPriorityBoxes(priority, urgent, urgentImg, medium, mediumImg, 
         }
     }
 }
+
 /**
- * This function shows the selected contacts of the detailedCard in editor
+ * This function compares the added contacts of each task with the selection of the contacts dropdown in editor
  * @param {*} id - id of editor
  * @param {*} i - index of task
  */
-
 function updateEditorWithMatchingContacts(id, i) {
     const taskContacts = tasks[i].contacts; // Kontakte aus der Aufgabe
     if (!taskContacts) {
         return; // Keine Aufgabenkontakte vorhanden, nichts zu überprüfen
     }
-
     for (let j = 0; j < allContacts.length; j++) {
         const user = allContacts[j];
         const username = user.name;
-
-        // Überprüfe, ob der Kontakt in den Aufgabenkontakten vorhanden ist
         if (taskContacts.includes(username)) {
-            const initials = getInitials(username);
-            const bgUser = user.bgColor;
-
-            // Füge die Klasse hinzu und aktiviere die Checkbox
-            const selection = document.getElementById(`user-selection-${id}-${j}`);
-            const checkbox = document.getElementById(`user-editor${id}-${j}`);
-
-            if (!selection.classList.contains('checked-editor')) {
-                selection.classList.add('checked-editor');
-            }
-            
-            checkbox.checked = true;
-
-            // Führe die showSelectedContactsInEditor-Funktion aus
-            showExistingContactsInEditor(id, j, initials, bgUser);
+            handleMatchingContact(id, j, username, user);
         }
     }
 }
+/**
+ * This function updates the added contacts of each task with the selection of the contacts dropdown in editor
+ * @param {*} id - id of editor
+ * @param {*} j - index of allContacts
+ * @param {*} username - name of contacts in 
+ * @param {*} user 
+ */
+function handleMatchingContact(id, j, username, user) {
+    const initials = getInitials(username);
+    const bgUser = user.bgColor;
+    const selection = document.getElementById(`user-selection-${id}-${j}`);
+    const checkbox = document.getElementById(`user-editor${id}-${j}`);
+    if (!selection.classList.contains('checked-editor')) {
+        selection.classList.add('checked-editor');
+    }
+    checkbox.checked = true;
+    showExistingContactsInEditor(id, j, initials, bgUser);
+}
+
 function showExistingContactsInEditor(id, i, initials, bgUser) {
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     let selection = document.getElementById(`user-selection-${id}-${i}`);

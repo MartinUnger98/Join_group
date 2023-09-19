@@ -7,8 +7,6 @@ let bgColors = ['#FF7A00', '#462F8A', '#FFBB2B', '#FC71FF', '#6E52FF', '#1FD7C1'
 let loggedInUser;
 let popup = "";
 
-
-
 async function init() {
     await includeHTML();
     await loadData();
@@ -127,7 +125,8 @@ function pathAfterPopup() {
         case "An Email has been sent to you":
             resetPasswordView();
             break;
-        case "You reset your password" || "You Signed Up successfully":
+        case "You reset your password": 
+        case "You Signed Up successfully":
             backToLogin();
             break;
         case "Task added to Board":
