@@ -40,22 +40,30 @@ async function loadData() {
     }
 }
 
+// Funktion, um eine zufällige Hintergrundfarbe aus bgColors auszuwählen
 
 function pushUsersToContacts() {
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
         const isUserInContacts = allContacts.some(contact => contact.email === user.email);
         if (!isUserInContacts) {
+            let bgColorContact = setColor();
             let newContact = {
                 email: user.email,
                 name: user.name,
                 number: '',
-                bgColor: ''
+                bgColor: bgColorContact // Setzt die zufällige Hintergrundfarbe für den neuen Kontakt
             };
             allContacts.push(newContact);
         }
     }
 }
+
+function setColor() {
+    const randomIndex = Math.floor(Math.random() * bgColors.length);
+    return bgColors[randomIndex];
+}
+
 
 
 async function includeHTML() {

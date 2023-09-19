@@ -123,36 +123,19 @@ function loadContacts() {
     allContactsContainer.innerHTML = '';
     initialLetter = [];
     sortByFirstName(allContacts);
-    setBgColor();
     for (let i = 0; i < allContacts.length; i++) {
         const contact = allContacts[i];
         const initials = getInitials(contact['name']);
         const firstInitial = initials[0][0];
+        const bgColor = contact.bgColor;
         checkInitialLetter(firstInitial);
         if (initialLetter[i] != 'blank') {
             allContactsContainer.innerHTML += contactHead(initials);
         }
         allContactsContainer.innerHTML += contactLayout(initials, contact, i);
-        document.getElementById(`initialLogo${i}`).style.backgroundColor = allContacts[i]['bgColor'];
+        document.getElementById(`initialLogo${i}`).style.backgroundColor = bgColor;
     }
 }
-
-
-function setBgColor() {
-    for (let i = 0; i < allContacts.length; i++) {
-        if (i > bgColors.length) {
-            const randomDecimal = Math.random();
-            const randomInteger = Math.floor(randomDecimal * 8);
-            newBgColorPosition = randomInteger;
-            iconColor = bgColors[newBgColorPosition];
-        }
-        else {
-            iconColor = bgColors[i];
-        }
-        allContacts[i]['bgColor'] = iconColor;
-    }
-}
-
 
 function checkInitialLetter(firstInitial) {
     if (!initialLetter.includes(firstInitial)) {
