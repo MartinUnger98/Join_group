@@ -64,7 +64,7 @@
 .taskSummary:hover {
     background-color: #2A3647;
     color: #FFFFFF;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .summaryTaskContent {
@@ -108,7 +108,7 @@
 .urgentAndDate:hover {
     background-color: #2A3647;
     color: #FFFFFF;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .greetingName {
@@ -180,7 +180,7 @@
 .toDOAndDone:hover{
     background-color: #2A3647;
     color: #FFFFFF;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .iconBottom{
@@ -227,7 +227,7 @@
 }
 @media (max-width: 920px) {
     .headlineSummary{
-        font-size: 40px;
+        font-size: 47px;
     }
     .taskSummary {
         height: 96px;
@@ -262,6 +262,7 @@
     }
      .headlineSummary{
         flex-direction: column;
+        gap: 4px;
     }
     .summaryTaskContent {
         display: flex;
@@ -318,5 +319,11 @@
     }
     .allSummaryContent {
         margin-top: 0px;
+    }
+    .urgentCount {
+        padding-left: 4px;
+    }
+    .explanationOrder {
+        margin-left: 12px;
     }
 }
