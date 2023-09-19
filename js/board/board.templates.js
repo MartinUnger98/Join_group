@@ -305,3 +305,17 @@ function showUpdatedInputValueInEditor(newValue, subtask) {
     </div>
 `;
 }
+
+function showAllContactsinEditor(id, i, initials, bgUser, username) {
+    return  /*html*/ `
+        <div id="user-selection-${id}-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3 fs-responsive"> <!-- Klick-Event hinzufügen -->
+            <div class="d-flex align-items-center contact-selection-box ">
+                <div id="contact-${id}-${i}" class="initials" style="background-color: ${bgUser}">
+                    <span>${initials}</span>
+                </div>
+                <label class="label-contact-editor" for="user-editor${id}-${i}">${username}</label>
+            </div>
+            <input type="checkbox" id="user-editor${id}-${i}" onclick="toggleCheckboxInEditor(${id}, ${i})">
+        </div>
+    `;
+}
