@@ -1,5 +1,5 @@
 /**
- * This function gets creates the array task by getting all specific values.
+ * This function pushes all specific values inside of the array tasks
  */
 async function addTask(status) {
     let title = document.getElementById('input').value;
@@ -31,7 +31,10 @@ async function addTask(status) {
     showSuccessMessage();
 }
 
-
+/**
+ * This function creates a clearly id for each task
+ * @returns - id
+ */
 function creatId() {
     let id;
     if(tasks.length === 0) {
@@ -43,7 +46,11 @@ function creatId() {
     return id;
 }
 
-
+/**
+ * This function checks the highest id of a tasks. 
+ * Important for giving the very first task a clearly id
+ * @returns 
+ */
 function getHighestId() {
     let highestId = -1;
     for (let i = 0; i < tasks.length; i++) {
@@ -53,7 +60,6 @@ function getHighestId() {
     }
     return highestId;
 }
-
 
 /**
  * This function gets the selected category
@@ -116,6 +122,10 @@ function getPriority() {
     return priority;
 }
 
+/**
+ * This function gets all selected contacts
+ * @returns - array with selected contacts
+ */
 function getContacts() {
     let selectedContacts = [];
     let checkedContact = document.querySelectorAll('.contact-selection.checked');
@@ -127,7 +137,10 @@ function getContacts() {
     return selectedContacts;
 }
 
-
+/**
+ * This function gets the background-color of the selected contact
+ * @returns - array with background-colors
+ */
 function getBgofContact() {
     let bgColorsOfContacts = [];
     let checkedContact = document.querySelectorAll('.contact-selection.checked');
@@ -150,7 +163,4 @@ async function saveTasks() {
     let tasksAsString = JSON.stringify(tasks);
     await setItem('task', tasksAsString);
 }
-/**
- * This function loads all elements of the array "tasks"
- */
 

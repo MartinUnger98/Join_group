@@ -1,6 +1,5 @@
-let selectedContacts = [];
 /**
- * This functions loads the category options at the beginning
+ * This functions loads the category options at the beginning and render all Contacts inside of the contact dropdown
  */
 function loadAddTask() {
     addCategory();
@@ -31,7 +30,6 @@ function togglePriority(priority) {
  * @param {*} low - ID of low-priority 
  * @param {*} lowImg - ID of low-image 
  */
-
 function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (priority === 'urgent') {
         toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg);   
@@ -156,7 +154,6 @@ function switchLowBack(low, lowImg) {
  * This function sets the vars of the two dropdowns.
  * @param {*} dropDown - specific value for the dropdown; referred to function showDrowns
  */
-
 function toggleDropdown(dropDown) {
     let category = document.getElementById('content');
     let assign = document.getElementById('contacts');
@@ -247,12 +244,21 @@ function updateName(selectedLi) {
     switchBorderandDropdown();
 }
 
+/**
+ * This functions switches the dropdownicon and removes the border-color for the category dropdown.
+ * Used when one category got selected
+ */
 function switchBorderandDropdown() {
     let border = document.getElementById('select');
     let dropDown = document.getElementById('drop_2')
     border.classList.remove('border-color');
     dropDown.classList.remove('switch');
 }
+
+/**
+ * This functions switches the dropdownicon and removes the border-color for the contacts dropdown.
+ * Used when one category got selected
+ */
 function switchBorderandDropdownOfContacts() {
     let border = document.getElementById('contact_dropdown');
     let dropDown = document.getElementById('drop_1')
@@ -307,7 +313,6 @@ function removeBorderColor() {
  * This function creates the added subtask
  * showAddedSubtasks -> addTask-templates.js
  */
-
 function addSubtask() {
     let content = document.getElementById('subtask-content');
     let input = document.getElementById('subtask').value;
@@ -355,6 +360,9 @@ function deleteSubtask(subtaskID) {
     }
 }
 
+/**
+ * This function is used for the clear-button and clears all input of addTask
+ */
 function allMightyClear() {
     document.getElementById('input').value = '';
     document.getElementById('textarea').value = '';
@@ -366,6 +374,9 @@ function allMightyClear() {
     clearContacts();
 }
 
+/**
+ * This function restores the priorty buttons
+ */
 function clearPriorityButtons() {
     let urgent = document.getElementById('urgent');
     let medium = document.getElementById('medium');
@@ -373,7 +384,19 @@ function clearPriorityButtons() {
     let urgentImg = document.getElementById('urgent-img');
     let mediumImg = document.getElementById('medium-img');
     let lowImg = document.getElementById('low-img');
+    switchPriorityButtonsToNormal(urgent, medium, low, urgentImg, mediumImg, lowImg);
+}
 
+/**
+ * This function switches every single priority-button back to normal, in case they were seleceted
+ * @param {*} urgent - id of priority-box urgent
+ * @param {*} medium - id of priority-box medium
+ * @param {*} low - id of priority-box low
+ * @param {*} urgentImg - id of img urgent
+ * @param {*} mediumImg - id of img medium
+ * @param {*} lowImg - id of img loe
+ */
+function switchPriorityButtonsToNormal(urgent, medium, low, urgentImg, mediumImg, lowImg) {
     if (urgent.classList.contains('bg-urgent')) {
         switchUrgentBack(urgent, urgentImg);
     }
@@ -385,6 +408,9 @@ function clearPriorityButtons() {
     }
 }
 
+/**
+ * The function clears the category dropdown
+ */
 function clearCategory() {
     let select = document.getElementById('select');
     let content = document.getElementById('content');
@@ -393,6 +419,9 @@ function clearCategory() {
     addCategory('');
 }
 
+/**
+ * This function clears the contact dropdown 
+ */
 function clearContacts() {
     let contacts = document.querySelectorAll('.checked');
     contacts.forEach(contact => {
@@ -403,7 +432,9 @@ function clearContacts() {
     moveSelectedContacts();
 }
 
-
+/**
+ * This function loads all existing contacts inside of the contact dropdown
+ */
 function renderUser() {
     let content = document.getElementById('contact_content');
     content.innerHTML = '';
@@ -412,20 +443,15 @@ function renderUser() {
         let username = user.name;
         const initials = getInitials(username);
         const bgUser = user.bgColor;
-        content.innerHTML += /*html*/ `
-            <div id="user-selection-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3"> <!-- Klick-Event hinzufügen -->
-                <div class="d-flex align-items-center contact-selection-box ">
-                    <div id="contact-${i}" class="initials" style="background-color: ${bgUser}">
-                        <span>${initials}</span>
-                    </div>
-                    <label class="label-contact" for="user-${i}">${username}</label>
-                </div>
-                <input type="checkbox" id="user-${i}" onclick="toggleCheckbox(${i})">
-            </div>
-        `;
+        content.innerHTML += showRenderedContacts(initials, bgUser, i, username);
     }
 }
 
+/**
+ * This function creates the initials of each Contact
+ * @param {*} name - name of contact from tasks
+ * @returns - initial of firstname and initial of lastname (if existing)
+ */
 function getInitials(name) {
     const nameParts = name.split(' ');
     const firstNameInitial = nameParts[0][0];
@@ -433,6 +459,10 @@ function getInitials(name) {
     return `${firstNameInitial}${lastNameInitial}`;
 }
 
+/**
+ * This function gets the selected contact highlighted
+ * @param {*} id - number of each contact-div
+ */
 function toggleCheckbox(id) {
     let selection = document.getElementById(`user-selection-${id}`);
     if (!selection.classList.contains('checked')) {
@@ -442,34 +472,73 @@ function toggleCheckbox(id) {
     }
 }
 
+/**
+ * This function moves the selected contacts into the selctedContacts-div.
+ * All selected contacts will be shown by their initials
+ */
 function moveSelectedContacts() {
     let dropdown = document.getElementById('contacts');
     let category = document.getElementById('content');
     let selectedContactsDiv = document.getElementById('selected_contacts');
-    selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
-    let contactsAdded = false; // Diese Variable wird verwendet, um zu überprüfen, ob Kontakte hinzugefügt wurden
-    
+    selectedContactsDiv.innerHTML = '';
+    let contactsAdded = false;
     for (let i = 0; i < allContacts.length; i++) {
-        let selection = document.getElementById(`user-selection-${i}`);
-        let checkbox = document.getElementById(`user-${i}`);
-
-        if (selection.classList.contains('checked') && checkbox.checked) {
+        if (isContactSelected(i)) {
             const user = allContacts[i];
-            let username = user.name;
-            const bgUser = user.bgColor;
-            const initials = getInitials(username);
-            selectedContactsDiv.innerHTML += /*html*/ `
-                <div class="initials-selected" id="selected_contact-${i}" style="background-color: ${bgUser}">${initials}</div>
-            `;
+            addSelectedContact(selectedContactsDiv, user, i);
             contactsAdded = true;
             category.classList.add('category-top');
         }
     }
-   
+    updateCategoryVisibility(contactsAdded, category);
+    closeDropdownAndSwitchBorder(dropdown);
+}
+
+/**
+ * This function sets a condition
+ * @param {*} index 
+ * @returns - if classlist 'checked' is added and checkbox is checked
+ */
+function isContactSelected(index) {
+    let selection = document.getElementById(`user-selection-${index}`);
+    let checkbox = document.getElementById(`user-${index}`);
+    return selection.classList.contains('checked') && checkbox.checked;
+}
+
+/**
+ * This function creates the icon (initials) of the selected contact and adds it to the div underneath
+ * @param {*} selectedContactsDiv - div for selected contacts
+ * @param {*} user - array of all Contacts
+ * @param {*} index - index of each contact
+ */
+function addSelectedContact(selectedContactsDiv, user, index) {
+    const bgUser = user.bgColor;
+    const initials = getInitials(user.name);
+    selectedContactsDiv.innerHTML += /*html*/ `
+        <div class="initials-selected" id="selected_contact-${index}" style="background-color: ${bgUser}">${initials}</div>
+    `;
+}
+
+/**
+ * This function removes the class 'category-top' if no contact is added.
+ * Used for position absolute of category dropdown (Only used for responsive)
+ * @param {*} contactsAdded - status of added contact
+ * @param {*} category - dropdown id of category
+ */
+function updateCategoryVisibility(contactsAdded, category) {
     if (!contactsAdded) {
         category.classList.remove('category-top');
     }
+}
+
+/**
+ * This function closes the dropdown of contact und switches border-color and the dropdown icon
+ * @param {*} dropdown - id of contact dropdown
+ */
+function closeDropdownAndSwitchBorder(dropdown) {
     dropdown.classList.remove('active');
     switchBorderandDropdownOfContacts();
 }
+
+
 

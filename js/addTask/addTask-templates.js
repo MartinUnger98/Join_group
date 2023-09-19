@@ -1,4 +1,26 @@
 /**
+ * This function creates the contact selections inside of the dropdown
+ * @param {*} initials - initials of contact
+ * @param {*} bgUser - backgroundcolor of contact
+ * @param {*} i - index of contact
+ * @param {*} username - name of contact
+ * @returns - selection div
+ */
+function showRenderedContacts(initials, bgUser, i, username) {
+    return /*html*/ `
+    <div id="user-selection-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3"> <!-- Klick-Event hinzufügen -->
+        <div class="d-flex align-items-center contact-selection-box ">
+            <div id="contact-${i}" class="initials" style="background-color: ${bgUser}">
+                <span>${initials}</span>
+            </div>
+            <label class="label-contact" for="user-${i}">${username}</label>
+        </div>
+        <input type="checkbox" id="user-${i}" onclick="toggleCheckbox(${i})">
+    </div>
+`;
+}
+
+/**
  * This function creates a new subtask-input-field
  */
 function showNewSubtask() {
@@ -65,7 +87,6 @@ function showInputEditor(subtaskID, input) {
  * @param {*} subtask - ID of edited subtask
  * @returns 
  */
-
 function showUpdatedInputValue(newValue, subtask) {
     return /*html*/ `
     <div class="added_subtask d-flex justify-content-between align-items-center rounded-3">

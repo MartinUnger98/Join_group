@@ -5,7 +5,7 @@ let statusTasks = ["toDo", "inProgress", "awaitFeedback", "taskDone"];
  * This function is the render-function for board.html
  */
 function loadBoard() {
-    renderToDoColumn();
+    allMightyRender();
 }
 
 function allMightyRender() {
@@ -13,28 +13,40 @@ function allMightyRender() {
     renderTasks('inProgress');
     renderTasks('awaitFeedback');
     renderTasks('taskDone');
+    checkColumns();
 }
 
-/**
- * This function renders either no-task-div or - in case there are saved tasks - all existing tasks
- */
-function renderToDoColumn() {
-    if (tasks.length < 1) {
-        loadNoTask();
-    } else {
-        allMightyRender();
+function checkColumns() {
+    let toDo = document.getElementById('toDo');
+    let inProgress = document.getElementById('inProgress');
+    let awaitFeedback = document.getElementById('awaitFeedback');
+    let done = document.getElementById('taskDone');
+    let taskStatusToDo = tasks.filter(t => t['status'] === 'toDo');
+    let taskStatusInProgress = tasks.filter(t => t['status'] === 'inProgress');
+    let taskStatusAwait = tasks.filter(t => t['status'] === 'awaitFeedback');
+    let taskStatusDone = tasks.filter(t => t['status'] === 'taskDone');
+    if (taskStatusToDo.length === 0) {
+        loadNoTask(toDo, "No tasks to do");
+    }
+    if (taskStatusInProgress.length === 0) {
+        loadNoTask(inProgress, "No tasks in progress");
+    }
+    if (taskStatusAwait.length === 0) {
+        loadNoTask(awaitFeedback, "No tasks await feedback");
+    }
+    if (taskStatusDone.length === 0) {
+        loadNoTask(done, "No tasks are done");
     }
 }
 
 /**
  * This function creates the no-task-div
  */
-function loadNoTask() {
-    let toDo = document.getElementById('toDo');
-    toDo.innerHTML = '';
-    toDo.innerHTML += /*html*/ `
+function loadNoTask(column, message) {
+    column.innerHTML = '';
+    column.innerHTML += /*html*/ `
         <div class="no-task-container d-flex justify-content-center align-items-center rounded-3">
-            <span class="no-task-color">No tasks to do</span>
+            <span class="no-task-color">${message}</span>
         </div>
     `;
 }
@@ -303,7 +315,6 @@ function scrollToTop() {
  * @param {*} i - specific number of detailed task (task) - used as id
  */
 function deleteNote(i) {
-    debugger;
     hideDetailedTask();
     tasks.splice(i, 1);
     saveTasks();

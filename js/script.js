@@ -8,6 +8,7 @@ let loggedInUser;
 let popup = "";
 
 
+
 async function init() {
     await includeHTML();
     await loadData();

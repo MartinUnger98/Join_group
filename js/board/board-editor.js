@@ -204,7 +204,7 @@ function renderUserInEditor(id) {
                     <div id="contact-${id}-${i}" class="initials" style="background-color: ${bgUser}">
                         <span>${initials}</span>
                     </div>
-                    <label class="label-contact-editor" for="user-${id}-${i}">${username}</label>
+                    <label class="label-contact-editor" for="user-editor${id}-${i}">${username}</label>
                 </div>
                 <input type="checkbox" id="user-editor${id}-${i}" onclick="toggleCheckboxInEditor(${id}, ${i})">
             </div>
@@ -223,12 +223,13 @@ function toggleCheckboxInEditor(id, i) {
 }
 
 function moveSelectedContactsInEditor(id) {
+    debugger;
     let dropdown = document.getElementById(`contacts-${id}`);
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
     for (let i = 0; i < allContacts.length; i++) {
         let selection = document.getElementById(`user-selection-${id}-${i}`);
-        let checkbox = document.getElementById(`user-${id}-${i}`);
+        let checkbox = document.getElementById(`user-editor${id}-${i}`);
         
         if (selection.classList.contains('checked-editor') && checkbox.checked) {
             const user = allContacts[i];
