@@ -68,7 +68,7 @@ function contactLayout(initials, contact, i) {
 }
 
 function detailView(i) {
-    return `
+    return /*html*/` 
     <div class="detailViewHead">
                     <div id="initialsDetailView" class="initalsDetailView"><span id="initalsDetail">${getInitials(allContacts[i]['name'])}</span></div>
                     <div>
@@ -92,7 +92,9 @@ function detailView(i) {
                 <h3 class="h3DetailView">Email</h3>
                 <a class="emailLinkWithHover emailLink" id="emailDetail" href="mailto:${allContacts[i]['email']}">${allContacts[i]['email']}</a>
                 <h3 class="h3DetailView">Phone</h3>
-                <span id="phoneDetail">${allContacts[i]['number']}</span>`
+                <span id="phoneDetail">${allContacts[i]['number']}</span>
+                <div></div>
+    </div>`
 }
 
 function showEditor(i) {
