@@ -307,14 +307,14 @@ h1 {
     color: white;
 }
 .checked:hover {
-    background: #091931;
+    background: #091931 !important;
 }
 .checked-editor {
     background: #2A3647;
     color: white;
 }
 .checked-editor:hover {
-    background: #091931;
+    background: #091931 !important;
 }
 .label-contact {
     cursor: pointer;

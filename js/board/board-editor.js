@@ -420,5 +420,45 @@ function renderSelectedContactsInEditor(id, i) {
     }
 }
 
+function updateEditorWithMatchingContacts(id, i, selectedContactsDiv) {
+    const taskContacts = tasks[i].contacts; // Kontakte aus der Aufgabe
+    if (!taskContacts) {
+        return; // Keine Aufgabenkontakte vorhanden, nichts zu überprüfen
+    }
+
+    for (let j = 0; j < allContacts.length; j++) {
+        const user = allContacts[j];
+        const username = user.name;
+
+        // Überprüfe, ob der Kontakt in den Aufgabenkontakten vorhanden ist
+        if (taskContacts.includes(username)) {
+            const initials = getInitials(username);
+            const bgUser = user.bgColor;
+
+            // Füge die Klasse hinzu und aktiviere die Checkbox
+            const selection = document.getElementById(`user-selection-${id}-${j}`);
+            const checkbox = document.getElementById(`user-editor${id}-${j}`);
+
+            if (!selection.classList.contains('checked-editor')) {
+                selection.classList.add('checked-editor');
+            }
+            
+            checkbox.checked = true;
+
+            // Führe die showSelectedContactsInEditor-Funktion aus
+            showSelectedContactsInEditor(selectedContactsDiv, id, j, initials, bgUser);
+        }
+    }
+}
+
+function showSelectedContactsInEditor(selectedContactsDiv, id, i, initials, bgUser) {
+    let selection = document.getElementById(`user-selection-${id}-${i}`);
+    let checkbox = document.getElementById(`user-editor${id}-${i}`);  
+    if (selection.classList.contains('checked-editor') && checkbox.checked) {
+        selectedContactsDiv.innerHTML += /*html*/ `
+            <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${bgUser}">${initials}</div>
+        `;
+    }
+}
 
 
