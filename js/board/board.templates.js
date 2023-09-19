@@ -11,7 +11,7 @@
  */
 function showAddedTasks(title, category, description, priority, amountOfSubtasks, id, contact) {
         return /*html*/ `
-        <div id="task-${id}" class="testcard width-column bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" draggable ="true" ondragstart="startDragging(${id})" ondragend="stopDragging(${id})" onclick="openDetailedTask(${id})">
+        <div id="task-${id}" class="testcard width-column bg-white d-flex flex-column justify-content-center rounded-5" draggable ="true" ondragstart="startDragging(${id})" ondragend="stopDragging(${id})" onclick="openDetailedTask(${id})">
             ${category !== "" ? /*html*/ `
                 <div id="cardPrio-${id}" class="card-priority rounded-3 text-white align-self-start">
                     <span>${category}</span>
@@ -47,6 +47,12 @@ function showAddedTasks(title, category, description, priority, amountOfSubtasks
         </div>
     `;
 }
+
+/**
+ * This function creats for the drag&drop a visible task
+ * @param {*} id - id of emptyTask
+ * @returns  - div 
+ */
 
 function addEmptytask(id) {
     return /*html*/ `
