@@ -39,7 +39,6 @@
   align-items: center;
   background-color: white;
   width: 500px;
-  height: calc(100vh - 96px);
   overflow-y: auto;
 }
 
@@ -274,6 +273,7 @@
 .allContacts {
   width: 350px;
   margin-top: 88px;
+  margin-bottom: 80px;
 }
 
 .initials {
@@ -463,6 +463,9 @@
     opacity: 0;
     z-index: -1;
   }
+  header {
+    z-index: 1;
+  }
 
   .addContact {
     flex-direction: column;
@@ -496,6 +499,22 @@
     margin-top: 10px;
     margin-left: 32px;
   }
+  .allContacts {
+    margin-bottom: 100px;
+  }
+  .addContactBtn {
+    width: 56px;
+    border-radius: 30px;
+    margin-top: 0;
+    bottom: 100px;
+    right: 30px;
+  }
+  .marginLeft {
+    margin-left: 7px;
+  }
+  .addContactBtn-hidden {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -517,12 +536,26 @@
   .detailViewHead{
     margin-top: 15px;
   }
+  .detailViewButton {
+    display: none;
+  }
 }
 
 @media (max-width: 500px) {
-  .detailViewHead{
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+  .initalsDetailView {
+    margin-right: 40px;
+  }
+
+}
+
+@media (max-width: 420px) {
+  .initalsDetailView {
+    height: 60px;
+    width: 60px;
+    font-size: 24px;
+    margin-right: 24px;
+  }
+  .headDetailView {
+    margin-bottom: 0 !important;
   }
 }
