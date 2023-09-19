@@ -11,7 +11,7 @@
  */
 function showAddedTasks(title, category, description, priority, amountOfSubtasks, id, contact) {
         return /*html*/ `
-        <div id="task-${id}" class="testcard width-column bg-white d-flex flex-column justify-content-center rounded-5 row-gap-4" draggable ="true" ondragstart="startDragging(${id})" ondragend="stopDragging(${id})" onclick="openDetailedTask(${id})">
+        <div id="task-${id}" class="testcard width-column bg-white d-flex flex-column justify-content-center rounded-5" draggable ="true" ondragstart="startDragging(${id})" ondragend="stopDragging(${id})" onclick="openDetailedTask(${id})">
             ${category !== "" ? /*html*/ `
                 <div id="cardPrio-${id}" class="card-priority rounded-3 text-white align-self-start">
                     <span>${category}</span>
@@ -47,6 +47,12 @@ function showAddedTasks(title, category, description, priority, amountOfSubtasks
         </div>
     `;
 }
+
+/**
+ * This function creats for the drag&drop a visible task
+ * @param {*} id - id of emptyTask
+ * @returns  - div 
+ */
 
 function addEmptytask(id) {
     return /*html*/ `
@@ -304,4 +310,18 @@ function showUpdatedInputValueInEditor(newValue, subtask) {
         </div>
     </div>
 `;
+}
+
+function showAllContactsinEditor(id, i, initials, bgUser, username) {
+    return  /*html*/ `
+        <div id="user-selection-${id}-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3 fs-responsive"> <!-- Klick-Event hinzufügen -->
+            <div class="d-flex align-items-center contact-selection-box ">
+                <div id="contact-${id}-${i}" class="initials" style="background-color: ${bgUser}">
+                    <span>${initials}</span>
+                </div>
+                <label class="label-contact-editor" for="user-editor${id}-${i}">${username}</label>
+            </div>
+            <input type="checkbox" id="user-editor${id}-${i}" onclick="toggleCheckboxInEditor(${id}, ${i})">
+        </div>
+    `;
 }

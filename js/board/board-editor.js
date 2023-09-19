@@ -1,6 +1,7 @@
 /**
- *  This function creates vars for elements and and executes the toggle-function
- * @param {*} priority - contains ID of the respective priority box
+ * This function toggles the priority-boxes inside of the editor
+ * @param {*} priority - 'priority-name'
+ * @param {*} id - id of editor
  */
 function togglePriorityEditor(priority, id) {
     let urgent = document.getElementById(`urgent-${id}`);
@@ -13,8 +14,8 @@ function togglePriorityEditor(priority, id) {
 }
 
 /**
- * This function sets the vars of the two dropdowns.
- * @param {*} dropDown - specific value for the dropdown; referred to function showDrowns
+ * This function determines the contact dropdown
+ * @param {*} id - id of editor
  */
 function toggleEditorDropdown(id) {
     let assign = document.getElementById(`contacts-${id}`);
@@ -22,17 +23,30 @@ function toggleEditorDropdown(id) {
     showDropdownInEditor(assign, borderContact, id);
 }
 
+/**
+ * This functions toggles the contact dropdown in editor
+ * @param {*} assign - id of contact dropdown in editor
+ * @param {*} borderContact - id of contact div
+ * @param {*} id - id of editor
+ */
 function showDropdownInEditor(assign, borderContact, id) {
     toggleStatusAndBorderOfContact(assign, borderContact);
     switchDropDownArrowInEditor(id);
 }
 
+/**
+ * This function switches the dropdown icon of the contact dropdown back, when a contact was selected
+ * @param {*} id 
+ */
 function switchDropDownArrowInEditor(id) {
     let imgContact = document.getElementById(`drop_1-${id}`);
     imgContact.classList.toggle('switch');
 }
 
-
+/**
+ * This function determines the new subtaskbuttons
+ * @param {*} id - id of editor
+ */
 function openNewSubtaskInEditor(id) {
     let newField = document.getElementById(`new-subtask-field-${id}`);
     newField.innerHTML = '';
@@ -41,11 +55,19 @@ function openNewSubtaskInEditor(id) {
     addBorderColorInEditor(id);
 }
 
+/**
+ * This function adds a border-color to the subtask container in editor
+ * @param {*} id - id of editor
+ */
 function addBorderColorInEditor(id) {
     let borderColor = document.getElementById(`subtask-creator-${id}`);
     borderColor.classList.add('border-color');
 }
 
+/**
+ * This function restores the subtask div
+ * @param {*} id - id of editor
+ */
 function restoreOldSubtaskInEditor(id) {
     let oldSubtask = document.getElementById(`new-subtask-field-${id}`);
     oldSubtask.innerHTML = '';
@@ -58,11 +80,19 @@ function restoreOldSubtaskInEditor(id) {
     removeBorderColorInEditor(id);
 }
 
+/**
+ * This function removes the border color from the subtask container in editor, when a subtask was added
+ * @param {*} id - id of editor
+ */
 function removeBorderColorInEditor(id) {
     let borderColor = document.getElementById(`subtask-creator-${id}`);
     borderColor.classList.remove('border-color');
 }
 
+/**
+ * This function determines the added subtasks by giving it a specific id
+ * @param {*} id - id of editor
+ */
 function addSubtaskInEditor(id) {
     let content = document.getElementById(`subtask-content-${id}`);
     let input = document.getElementById(`subtask-${id}`).value;
@@ -75,12 +105,22 @@ function addSubtaskInEditor(id) {
     restoreOldSubtaskInEditor(id);
 }
 
+/**
+ * This function determines the added subtask
+ * @param {*} subtaskID - id of added subtask
+ * @param {*} input - value of subtask-container-input
+ */
 function openInputForEditInEditor(subtaskID, input) {
     let content = document.getElementById(`${subtaskID}`);
     content.innerHTML = '';
     content.innerHTML += showInputEditorInEditor(subtaskID, input);
 }
 
+/**
+ * This determines the updated added subtask
+ * @param {*} subtaskID - id of added subtask
+ * @param {*} inputID - value of added subtask
+ */
 function updateInputValueInEditor(subtaskID, inputID) {
     const content = document.getElementById(`${subtaskID}`);
     const newValue = document.getElementById(`${inputID}`).value;
@@ -88,6 +128,10 @@ function updateInputValueInEditor(subtaskID, inputID) {
     content.innerHTML += showUpdatedInputValueInEditor(newValue, subtaskID);
 }
 
+/**
+ * This function deletes the added subtask
+ * @param {*} subtaskID - id of added subtask
+ */
 function deleteSubtaskInEditor(subtaskID) {
     let subtaskElement = document.getElementById(subtaskID);
     if (subtaskElement) {
@@ -95,6 +139,12 @@ function deleteSubtaskInEditor(subtaskID) {
     }
 }
 
+/**
+ * This function renders the subtasks of the array tasks in editor
+ * Used to show existing subtask
+ * @param {*} id - id of editor
+ * @param {*} i - index of task
+ */
 function renderSubtasksInEditor(id, i) {
     let subtasks = tasks[i].subtask;
     if (subtasks) {
@@ -106,6 +156,11 @@ function renderSubtasksInEditor(id, i) {
     }
 }
 
+/**
+ * This function saves the editor by updating the specific task array
+ * @param {*} id - id of editor
+ * @param {*} i -index of array
+ */
 function savedEditedTask(id, i) {
     const newTask = tasks[i];
     let input = document.getElementById(`input-editor-${id}`).value;
@@ -116,6 +171,24 @@ function savedEditedTask(id, i) {
     let contacts = getContactsFromEditor();
     let subtasks = getSubtasksFromEditor();
     let bgContacts = getBgofContactFromEditor(id);
+    pushEditedTask(newTask, input, textarea, date, priorityImg, priority, contacts, subtasks, bgContacts);
+    hideDetailedTask();
+    allMightyRender();
+}
+
+/**
+ * This function pushes all gathered infos of the editor inside of the array tasks
+ * @param {*} newTask - array tasks
+ * @param {*} input - tasks input
+ * @param {*} textarea - tasks textarea
+ * @param {*} date - tasks date
+ * @param {*} priorityImg - tasks priority image
+ * @param {*} priority - tasks priority
+ * @param {*} contacts - tasks contact
+ * @param {*} subtasks - tasks subtasks
+ * @param {*} bgContacts - tasks backgrouncolors of contacts
+ */
+function pushEditedTask(newTask, input, textarea, date, priorityImg, priority, contacts, subtasks, bgContacts) {
     newTask.title = input;
     newTask.description = textarea;
     newTask.date = date;
@@ -124,10 +197,13 @@ function savedEditedTask(id, i) {
     newTask.contacts = contacts;
     newTask.contactsBg = bgContacts;
     newTask.subtask = subtasks;
-    hideDetailedTask();
-    allMightyRender();
 }
 
+/**
+ * This function gets the selected priority-img in editor
+ * @param {*} id - id of editor
+ * @returns - priority-img
+ */
 function getPrioImageFromEditor(id) {
     let urgent = document.getElementById(`urgent-${id}`);
     let medium = document.getElementById(`medium-${id}`);
@@ -143,6 +219,11 @@ function getPrioImageFromEditor(id) {
     return img;
 }
 
+/**
+ * This function gets the selected priority in editor
+ * @param {*} - id of editor
+ * @returns - priority
+ */
 function getPriorityFromEditor(id) {
     let urgent = document.getElementById(`urgent-${id}`);
     let medium = document.getElementById(`medium-${id}`);
@@ -158,6 +239,10 @@ function getPriorityFromEditor(id) {
     return priority;
 }
 
+/**
+ * This function gets the selected contact in editor
+ * @returns array of selected contacts
+ */
 function getContactsFromEditor() {
     let selectedContactsFromEditor = [];
     let checkedContact = document.querySelectorAll('.contact-selection.checked-editor');
@@ -169,6 +254,11 @@ function getContactsFromEditor() {
     return selectedContactsFromEditor;
 }
 
+/**
+ * This function gets the background-color of each selected contact
+ * @param {*} id - id of editor
+ * @returns array with background-colors
+ */
 function getBgofContactFromEditor(id) {
     let bgColorsOfContactsFromEditor = [];
     let checkedContact = document.querySelectorAll('.contact-selection.checked-editor');
@@ -181,6 +271,10 @@ function getBgofContactFromEditor(id) {
     return bgColorsOfContactsFromEditor;
 }
 
+/**
+ * This function gets all added subtasks
+ * @returns array with subtask
+ */
 function getSubtasksFromEditor() {
     let subtaskElements = document.querySelectorAll('.added-subtask-editor');
     let subtasks = [];
@@ -190,6 +284,10 @@ function getSubtasksFromEditor() {
     return subtasks;
 }
 
+/**
+ * This function renders all users within the contact dropdown in editor
+ * @param {*} id - id of editor
+ */
 function renderUserInEditor(id) {
     let content = document.getElementById(`contact_content-editor${id}`);
     content.innerHTML = '';
@@ -198,21 +296,15 @@ function renderUserInEditor(id) {
         let username = user.name;
         const initials = getInitials(username);
         const bgUser = user.bgColor;
-        content.innerHTML += /*html*/ `
-            <div id="user-selection-${id}-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3 fs-responsive"> <!-- Klick-Event hinzufügen -->
-                <div class="d-flex align-items-center contact-selection-box ">
-                    <div id="contact-${id}-${i}" class="initials" style="background-color: ${bgUser}">
-                        <span>${initials}</span>
-                    </div>
-                    <label class="label-contact-editor" for="user-editor${id}-${i}">${username}</label>
-                </div>
-                <input type="checkbox" id="user-editor${id}-${i}" onclick="toggleCheckboxInEditor(${id}, ${i})">
-            </div>
-        `;
+        content.innerHTML += showAllContactsinEditor(id, i, initials, bgUser, username);
     }
-    
 }
 
+/**
+ * This function toggles the the selected contacts in editor
+ * @param {*} id - id of editor
+ * @param {*} i - index of tasks (used as id for contact selection)
+ */
 function toggleCheckboxInEditor(id, i) {
     let selection = document.getElementById(`user-selection-${id}-${i}`);
     if (!selection.classList.contains('checked-editor')) {
@@ -222,29 +314,45 @@ function toggleCheckboxInEditor(id, i) {
     }
 }
 
+/**
+ * This function moves the selected contacts into the div underneath
+ * @param {*} id - id of editor
+ */
 function moveSelectedContactsInEditor(id) {
-    debugger;
     let dropdown = document.getElementById(`contacts-${id}`);
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
     for (let i = 0; i < allContacts.length; i++) {
-        let selection = document.getElementById(`user-selection-${id}-${i}`);
-        let checkbox = document.getElementById(`user-editor${id}-${i}`);
-        
-        if (selection.classList.contains('checked-editor') && checkbox.checked) {
-            const user = allContacts[i];
-            let username = user.name;
-            const initials = getInitials(username);
-            const bgUser = user.bgColor;
-            selectedContactsDiv.innerHTML += /*html*/ `
-                <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${bgUser}">${initials}</div>
-            `;
-        }
+        showSelectedContactsInEditor(selectedContactsDiv, id, i);
     }
     dropdown.classList.remove('active');
     switchBorderandDropdownOfContacts(id);
 }
 
+/**
+ * This function shows the selected contacts inside of the div 
+ * @param {*} selectedContactsDiv - div of added contacts
+ * @param {*} id - id of editor
+ * @param {*} i - index of allContacts
+ */
+function showSelectedContactsInEditor(selectedContactsDiv, id, i) {
+    let selection = document.getElementById(`user-selection-${id}-${i}`);
+    let checkbox = document.getElementById(`user-editor${id}-${i}`);  
+    if (selection.classList.contains('checked-editor') && checkbox.checked) {
+        const user = allContacts[i];
+        let username = user.name;
+        const initials = getInitials(username);
+        const bgUser = user.bgColor;
+        selectedContactsDiv.innerHTML += /*html*/ `
+            <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${bgUser}">${initials}</div>
+        `;
+    }
+}
+
+/**
+ * This function switches the border-color back and closes the dropdown, if contacts were added
+ * @param {*} id - id of editor
+ */
 function switchBorderandDropdownOfContacts(id) {
     let border = document.getElementById(`contact_dropdown-${id}`);
     let dropDown = document.getElementById(`drop_1-${id}`);
@@ -252,6 +360,11 @@ function switchBorderandDropdownOfContacts(id) {
     dropDown.classList.remove('switch');
 }
 
+/**
+ * This function determines the priorities and priority-imgages of in editor
+ * @param {*} id - id of editor
+ * @param {*} i - index of tasks
+ */
 function updateEditorWithSelected(id, i) {
     const task = tasks[i]
     let priority = task.priority;
@@ -261,6 +374,20 @@ function updateEditorWithSelected(id, i) {
     let urgentImg = document.getElementById(`urgent-img-${id}`);
     let mediumImg = document.getElementById(`medium-img-${id}`);
     let lowImg = document.getElementById(`low-img-${id}`);
+    highlightPriorityBoxes(priority, urgent, urgentImg, medium, mediumImg, low, lowImg);
+}
+
+/**
+ * This function highlights the priority-box in editor, which has the same priority as in the array tasks 
+ * @param {*} priority - priority in task
+ * @param {*} urgent - id of urgent-box in editor
+ * @param {*} urgentImg - id of urgent-img in editor
+ * @param {*} medium - id of medium in editor
+ * @param {*} mediumImg - id of medium-img in editor
+ * @param {*} low - id of low-box in editor
+ * @param {*} lowImg -id of low-img in editor
+ */
+function highlightPriorityBoxes(priority, urgent, urgentImg, medium, mediumImg, low, lowImg) {
     if (priority) {
         if (priority === 'Urgent') {
             switchUrgent(urgent, urgentImg);
@@ -271,7 +398,11 @@ function updateEditorWithSelected(id, i) {
         }
     }
 }
-
+/**
+ * This function shows the selected contacts of the detailedCard in editor
+ * @param {*} id - id of editor
+ * @param {*} i - index of task
+ */
 function renderSelectedContactsInEditor(id, i) {
     let content = document.getElementById(`selected_contacts_editor-${id}`);
     const task = tasks[i];
