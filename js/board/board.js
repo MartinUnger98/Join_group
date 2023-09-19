@@ -371,18 +371,6 @@ function showHiddenAddTask() {
     scrollToTop();
 }
 
-function openDetailedCardEditor(title, description, date, id, i) {
-    let editor = document.getElementById('detailedTask');
-    let dateEditor = date.split('/');
-    let formattedDate = `${dateEditor[2]}-${dateEditor[1]}-${dateEditor[0]}`;
-    editor.innerHTML = '';
-    editor.innerHTML += showDetailedCardEditor(title, description, formattedDate, id, i);
-    renderSubtasksInEditor(id, i);
-    renderUserInEditor(id);
-    updateEditorWithSelected(id, i);
-    renderSelectedContactsInEditor(id, i);
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     enableHorizontalScroll('scrollContainer1');
     enableHorizontalScroll('scrollContainer2');

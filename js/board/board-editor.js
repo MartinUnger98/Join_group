@@ -1,3 +1,15 @@
+function openDetailedCardEditor(title, description, date, id, i) {
+    let editor = document.getElementById('detailedTask');
+    let dateEditor = date.split('/');
+    let formattedDate = `${dateEditor[2]}-${dateEditor[1]}-${dateEditor[0]}`;
+    editor.innerHTML = '';
+    editor.innerHTML += showDetailedCardEditor(title, description, formattedDate, id, i);
+    renderSubtasksInEditor(id, i);
+    renderUserInEditor(id);
+    updateEditorWithSelected(id, i);
+    updateEditorWithMatchingContacts(id, i,);
+}
+
 /**
  * This function toggles the priority-boxes inside of the editor
  * @param {*} priority - 'priority-name'
@@ -319,6 +331,7 @@ function toggleCheckboxInEditor(id, i) {
  * @param {*} id - id of editor
  */
 function moveSelectedContactsInEditor(id) {
+    debugger;
     let dropdown = document.getElementById(`contacts-${id}`);
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
@@ -403,24 +416,8 @@ function highlightPriorityBoxes(priority, urgent, urgentImg, medium, mediumImg, 
  * @param {*} id - id of editor
  * @param {*} i - index of task
  */
-function renderSelectedContactsInEditor(id, i) {
-    let content = document.getElementById(`selected_contacts_editor-${id}`);
-    const task = tasks[i];
-    let contact = task.contacts;
-    let bgContact= task.contactsBg;
-    if (contact) {
-        for (let j = 0; j < contact.length; j++) {
-            const selectedContact = contact[j];
-            const initials = getInitials(selectedContact);
-            const selectedContactsBg = bgContact[j];
-            content.innerHTML += /*html*/ `
-                <div class="initials-selected" style="background-color: ${selectedContactsBg}">${initials}</div>
-            `;
-        }
-    }
-}
 
-function updateEditorWithMatchingContacts(id, i, selectedContactsDiv) {
+function updateEditorWithMatchingContacts(id, i) {
     const taskContacts = tasks[i].contacts; // Kontakte aus der Aufgabe
     if (!taskContacts) {
         return; // Keine Aufgabenkontakte vorhanden, nichts zu überprüfen
@@ -446,12 +443,12 @@ function updateEditorWithMatchingContacts(id, i, selectedContactsDiv) {
             checkbox.checked = true;
 
             // Führe die showSelectedContactsInEditor-Funktion aus
-            showSelectedContactsInEditor(selectedContactsDiv, id, j, initials, bgUser);
+            showExistingContactsInEditor(id, j, initials, bgUser);
         }
     }
 }
-
-function showSelectedContactsInEditor(selectedContactsDiv, id, i, initials, bgUser) {
+function showExistingContactsInEditor(id, i, initials, bgUser) {
+    let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     let selection = document.getElementById(`user-selection-${id}-${i}`);
     let checkbox = document.getElementById(`user-editor${id}-${i}`);  
     if (selection.classList.contains('checked-editor') && checkbox.checked) {
@@ -460,5 +457,4 @@ function showSelectedContactsInEditor(selectedContactsDiv, id, i, initials, bgUs
         `;
     }
 }
-
 
