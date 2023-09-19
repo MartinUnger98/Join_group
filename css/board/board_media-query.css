@@ -6,7 +6,6 @@
         display: flex;
         flex: 1;
         overflow-x: scroll;
-        min-width: 1279px;
     }
     .scroll-container::-webkit-scrollbar {
         display: none;

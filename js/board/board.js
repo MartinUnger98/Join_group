@@ -8,6 +8,9 @@ function loadBoard() {
     allMightyRender();
 }
 
+/**
+ * This function renders every task in each column
+ */
 function allMightyRender() {
     renderTasks('toDo');
     renderTasks('inProgress');
@@ -15,6 +18,37 @@ function allMightyRender() {
     renderTasks('taskDone');
 }
 
+/**
+ * This function creates tasks inside of each column
+ */
+function renderTasks(status) {
+    let taskStatus = tasks.filter(t => t['status'] == status);
+    let content = document.getElementById(status);
+    content.innerHTML = '';
+    for (let i = 0; i < taskStatus.length; i++) {
+        const task = taskStatus[i];
+        let title = task.title;
+        let category = task.category;
+        let description = task.description;
+        let priority = task.prio;
+        let subtasks = task.subtask;
+        let amountOfSubtasks = subtasks.length;
+        let id = task.id;
+        let contact = task.contacts;
+        let position = idToPosition(tasks, id);
+        content.innerHTML += showAddedTasks(title, category, description, priority, amountOfSubtasks, id, contact);
+        determineCategoryColor(category, `cardPrio-${id}`);
+        renderDetailedTask(position, id);
+        renderSelectedContacts(task, contact, id);
+    }
+    checkColumns(taskStatus, status);
+    content.innerHTML += addEmptytask('emptyTask' + status);
+}
+/**
+ * This function checks, if a task exists in one of the columns
+ * @param {*} array - taskstatus
+ * @param {*} status - one of the columns
+ */
 function checkColumns(array, status) {
     let toDo = document.getElementById('toDo');
     let inProgress = document.getElementById('inProgress');
@@ -47,38 +81,21 @@ function loadNoTask(column, message) {
 }
 
 /**
- * This function creates tasks inside of the toDo-column
+ * This function opens the specific detailed task
+ * @param {*} id - id of task
  */
-function renderTasks(status) {
-    let taskStatus = tasks.filter(t => t['status'] == status);
-    let content = document.getElementById(status);
-    content.innerHTML = '';
-    for (let i = 0; i < taskStatus.length; i++) {
-        const task = taskStatus[i];
-        let title = task.title;
-        let category = task.category;
-        let description = task.description;
-        let priority = task.prio;
-        let subtasks = task.subtask;
-        let amountOfSubtasks = subtasks.length;
-        let id = task.id;
-        let contact = task.contacts;
-        let position = idToPosition(tasks, id);
-        content.innerHTML += showAddedTasks(title, category, description, priority, amountOfSubtasks, id, contact);
-        determineCategoryColor(category, `cardPrio-${id}`);
-        renderDetailedTask(position, id);
-        renderSelectedContacts(task, contact, id);
-    }
-    checkColumns(taskStatus, status);
-    content.innerHTML += addEmptytask('emptyTask' + status);
-}
-
 function openDetailedTask(id) {
     let position = idToPosition(tasks, id);
     renderDetailedTask(position, id);
     pushDetailedTaskToMiddle();
 }
 
+/**
+ * This function gets the position of a task
+ * @param {*} arr 
+ * @param {*} id 
+ * @returns 
+ */
 function idToPosition(arr, id) {
     let position;
     for (let i = 0; i < arr.length; i++) {
@@ -104,6 +121,12 @@ function determineCategoryColor(category, id) {
     }
 }
 
+/**
+ * This function renders the contacts of task
+ * @param {*} task - array task[i]
+ * @param {*} contact - array tasks[i].contact
+ * @param {*} id - id of tasks
+ */
 function renderSelectedContacts(task, contact, id) {
     let content = document.getElementById(`selected-contacts-box-${id}`);
     let bgColor = task.contactsBg;
@@ -143,13 +166,32 @@ function renderDetailedTask(i, id) {
     renderSelectedContactsInDetailedTask(task, contact, id);
 }
 
+/**
+ * This function renders all contacts of task in the detailed card
+ * @param {*} task - array task[i]
+ * @param {*} contact - array tasks[i].contact
+ * @param {*} id - id of tasks
+ */
 function renderSelectedContactsInDetailedTask(task, contact, id) {
     let content = document.getElementById(`contacts-detailed-${id}`);
     let bgColor = task.contactsBg;
     if (contact) {
         content.innerHTML = '';
         for (let i = 0; i < contact.length; i++) {
-            const selectedContact = contact[i];
+            showSelectedContactsInDetailedTask(contact, bgColor, i, content);
+        }
+    }
+}
+
+/**
+ * This function creates the selected contacts in the detailed task
+ * @param {*} contact - tasks.contacts
+ * @param {*} bgColor - task.contactsBg
+ * @param {*} i - index of contact-array
+ * @param {*} content - div `contacts-detailed-${id}`
+ */
+function showSelectedContactsInDetailedTask(contact, bgColor, i, content) {
+    const selectedContact = contact[i];
             const initials = getInitials(selectedContact);
             const selectedContactsBg = bgColor[i];
             content.innerHTML += /*html*/ `
@@ -158,8 +200,6 @@ function renderSelectedContactsInDetailedTask(task, contact, id) {
                     <span>${selectedContact}</span>
                 </div>
             `;
-        }
-    }
 }
 
 /**
@@ -184,26 +224,37 @@ function renderSubtasks(subtask, i, id) {
     let subtaskContent = document.getElementById(`subtasks-${i}`);
     if (subtaskContent) {
         subtaskContent.innerHTML = '';
-
         if (subtask && subtask.length > 0) {
             for (let j = 0; j < subtask.length; j++) {
                 const subtaskItem = subtask[j];
                 const subtaskStatus = tasks[i].subtaskStatus[j];
                 subtaskContent.innerHTML += showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus);
             }
-
-            // Füge Event-Listener zu den Checkboxen hinzu
-            const checkboxes = document.querySelectorAll(`#subtasks-${i} input[type="checkbox"]`);
-            checkboxes.forEach((checkbox, j) => {
-                checkbox.addEventListener('change', () => {
-                    tasks[i].subtaskStatus[j] = checkbox.checked;
-                    updateCheckedSubtasksCount(i, id); // Rufe die Funktion auf, um die Anzahl zu aktualisieren
-                });
-            });
+            addChangeListenersToCheckboxes(i, id);
         }
     }
 }
 
+/**
+ * This functions updates the checkboxes
+ * @param {*} i - index of task
+ * @param {*} id - id of task
+ */
+function addChangeListenersToCheckboxes(i, id) {
+    const checkboxes = document.querySelectorAll(`#subtasks-${i} input[type="checkbox"]`);
+    checkboxes.forEach((checkbox, j) => {
+        checkbox.addEventListener('change', () => {
+            tasks[i].subtaskStatus[j] = checkbox.checked;
+            updateCheckedSubtasksCount(i, id);
+        });
+    });
+}
+
+/**
+ * This function checks if a checkbox is checked
+ * @param {*} i - index of task
+ * @param {*} id - id of task
+ */
 function updateCheckedSubtasksCount(i, id) {
     const checkboxes = document.querySelectorAll(`#subtasks-${i} input[type="checkbox"]`);
     checkedCount = 0;
@@ -212,7 +263,6 @@ function updateCheckedSubtasksCount(i, id) {
             checkedCount++;
         }
     });
-    // Aktualisiere den Wert des <span>-Elements mit der ID "checked_subtasks"
     const checkedSubtasksSpan = document.getElementById(`checked_subtasks-${id}`);
     if (checkedSubtasksSpan) {
         checkedSubtasksSpan.textContent = checkedCount.toString();
@@ -221,11 +271,14 @@ function updateCheckedSubtasksCount(i, id) {
     saveTasks();
 }
 
+/**
+ * This function updates the progressbar of a task
+ * @param {*} id - id of task
+ */
 function updateProgressbar(id) {
     const checkedSubtasksSpan = document.getElementById(`checked_subtasks-${id}`);
     const allSubtasksSpan = document.getElementById(`allSubtasks-${id}`);
     const progressBar = document.getElementById(`progress-${id}`);
-
     if (checkedSubtasksSpan && allSubtasksSpan && progressBar) {
         let checkedSubtask = checkedSubtasksSpan.innerText;
         let allSubtasks = allSubtasksSpan.innerText;
@@ -264,11 +317,9 @@ function hideBackground() {
 /**
  * This function pushes the detailed Task back to the left
  */
-
 function hideTasksOfBoard() {
     let task = document.getElementById('detailedTask');
     let boardAddTask = document.getElementById('board-addTask');
-
     if (task.classList.contains('show-task')) {
         task.classList.remove('show-task');
         hideDetailedTask();
@@ -277,12 +328,20 @@ function hideTasksOfBoard() {
         hideAddTask();
     }
 }
+
+/**
+ * This function pushes the addTask-card to the right
+ */
 function hideAddTask() {
     let boardAddTask = document.getElementById('board-addTask');
     boardAddTask.classList.remove('show-task');
     hideBackground();
     allMightyClear();
 }
+
+/**
+ * This function pushes the detailed task card to the right
+ */
 function hideDetailedTask() {
     let task = document.getElementById('detailedTask');
     task.classList.remove('show-task');
@@ -306,6 +365,7 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+
 /**
  * This function deletes the specifif task from the toDo-column und updates the local Storage
  * @param {*} i - specific number of detailed task (task) - used as id
@@ -317,23 +377,39 @@ function deleteNote(i) {
     loadBoard();
 }
 
+/**
+ * This function starts the dragging-function a task
+ * @param {*} id - id of task
+ */
 function startDragging(id) {
     currentDraggedElement = id;
     rotateTask(id);
     getCurrentdragObjektStatus(id);
 }
 
+/**
+ * This function stops the dragging-function of a task
+ * @param {*} id - id of task
+ */
 function stopDragging(id) {
     stopRotateTask(id);
     searchTask();
 }
 
+/**
+ * This function gets the dragging position of a task
+ * @param {*} id - id of task
+ */
 function getCurrentdragObjektStatus(id) {
     let position = idToPosition(tasks, id);
     let currentDragObjektStatus = tasks[position]['status'];
     showEmptyTasks(currentDragObjektStatus);
 }
 
+/**
+ * This function shows the hidden tasks while dragging
+ * @param {*} currentDragObjektStatus - task position status
+ */
 function showEmptyTasks(currentDragObjektStatus) {
     statusTasks.forEach(sTask => {
         if (currentDragObjektStatus !== sTask) {
@@ -342,10 +418,18 @@ function showEmptyTasks(currentDragObjektStatus) {
     });
 }
 
+/**
+ * This function rotates a task while dragging
+ * @param {*} id - id of task
+ */
 function rotateTask(id) {
     document.getElementById("task-" + id).classList.add("rotateTask");
 }
 
+/**
+ * This function stops the rotation of a task
+ * @param {*} id - id of task
+ */
 function stopRotateTask(id) {
     document.getElementById("task-" + id).classList.remove("rotateTask");
     statusTasks.forEach(sTask => {
@@ -353,10 +437,18 @@ function stopRotateTask(id) {
     });
 }
 
+/**
+ * This function allows the dragging
+ * @param {*} event 
+ */
 function allowDrop(event) {
     event.preventDefault();
 }
 
+/**
+ * This function sets the move position of a dragged task
+ * @param {*} status - status of task
+ */
 function moveTo(status) {
     let position = idToPosition(tasks, currentDraggedElement);
     tasks[position]['status'] = status;
@@ -364,6 +456,9 @@ function moveTo(status) {
     saveTasks();
 }
 
+/**
+ * This function pushes the addTask-card to the left
+ */
 function showHiddenAddTask() {
     let boardAddTask = document.getElementById('board-addTask');
     boardAddTask.classList.add('show-task');
@@ -379,13 +474,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+/**
+ * This function allows the horizontal scroll of tasks. 
+ * Used for responsive
+ * @param {*} containerId - id of columns
+ * @returns 
+ */
 function enableHorizontalScroll(containerId) {
     const scrollContainer = document.getElementById(containerId);
     if (!scrollContainer) {
         console.error(`Element with ID '${containerId}' not found.`);
         return;
     }
-
     let isDragging = false;
     let startX;
     let scrollLeft;
@@ -410,33 +510,59 @@ function enableHorizontalScroll(containerId) {
     scrollContainer.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         const x = e.pageX - scrollContainer.offsetLeft;
-        const scrollSpeed = 1; // Ändern Sie die Geschwindigkeit nach Ihren Wünschen
+        const scrollSpeed = 1;
         const walk = (x - startX) * scrollSpeed;
         scrollContainer.scrollLeft = scrollLeft - walk;
     });
 }
 
-
+/**
+ * This function searches the specific task
+ */
 function searchTask() {
-    let input = document.getElementById('searchInput').value.toLowerCase();
-
-    if (input.length !=0) {
-        for (let i = 0; i < tasks.length; i++) {
-            const taskTitle = tasks[i]['title'].toLowerCase();
-            const id = tasks[i].id;
-            const taskContainer = document.getElementById(`task-${id}`);
-            if (!taskTitle.startsWith(input)) {
-                if (taskContainer != null) {
-                    taskContainer.classList.remove('d-flex');
-                    taskContainer.style.display = 'none';
-                }
-            }
-            else{
-                taskContainer.classList.add('d-flex');
-            }
-        }
-    }
-    else{
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    if (input.length !== 0) {
+        filterTasksByTitle(input);
+    } else {
         allMightyRender();
     }
 }
+
+/**
+ * This function filters the task titles
+ * @param {*} input - id of input
+ */
+function filterTasksByTitle(input) {
+    for (let i = 0; i < tasks.length; i++) {
+        const taskTitle = tasks[i]['title'].toLowerCase();
+        const id = tasks[i].id;
+        const taskContainer = document.getElementById(`task-${id}`);
+        if (!taskTitle.startsWith(input)) {
+            hideTask(taskContainer);
+        } else {
+            showTask(taskContainer);
+        }
+    }
+}
+
+/**
+ * This function hides all task, which are not matching
+ * @param {*} taskContainer - id of task
+ */
+function hideTask(taskContainer) {
+    if (taskContainer !== null) {
+        taskContainer.classList.remove('d-flex');
+        taskContainer.style.display = 'none';
+    }
+}
+
+/**
+ * This function show the matching tasks
+ * @param {*} taskContainer - id of task
+ */
+function showTask(taskContainer) {
+    if (taskContainer !== null) {
+        taskContainer.classList.add('d-flex');
+    }
+}
+

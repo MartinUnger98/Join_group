@@ -435,7 +435,7 @@ function updateEditorWithMatchingContacts(id, i) {
  * @param {*} id - id of editor
  * @param {*} j - index of allContacts
  * @param {*} username - name of contacts in 
- * @param {*} user 
+ * @param {*} user - array allContacts
  */
 function handleMatchingContact(id, j, username, user) {
     const initials = getInitials(username);
@@ -448,7 +448,13 @@ function handleMatchingContact(id, j, username, user) {
     checkbox.checked = true;
     showExistingContactsInEditor(id, j, initials, bgUser);
 }
-
+/**
+ * This function renders the existing contacts within the selected-contacts-div
+ * @param {*} id - id of editor
+ * @param {*} i - index of allContacts
+ * @param {*} initials - initials of contact
+ * @param {*} bgUser - background-color of contact
+ */
 function showExistingContactsInEditor(id, i, initials, bgUser) {
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     let selection = document.getElementById(`user-selection-${id}-${i}`);
