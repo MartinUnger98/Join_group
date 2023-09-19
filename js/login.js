@@ -160,6 +160,7 @@ function emptyCustomValidity(input) {
 async function register() {
     users.push(setUserInfo());
     await setItem('users', JSON.stringify(users));
+    pushUsersToContacts();
 }
 
 

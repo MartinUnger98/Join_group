@@ -18,7 +18,8 @@
     <script src="../js/script.js"></script>
     <script src="../js/miniBackend.js"></script>
     <script src="../js/header.js"></script>
-    <script src="../js/contacts.js"></script>
+    <script src="../js/contacts/contacts.js"></script>
+    <script src="../js/contacts/contacts-templates.js"></script>
 </head>
 
 <body class="contactBody" onload="initContacts()">
@@ -31,8 +32,8 @@
     </div>
     </div>
     <div class="contactPage">
-        <div class="contactsContainer">
-            <button class="addContactBtn" onclick="showContactEditor()">
+        <div id="contactsContainer" class="contactsContainer">
+            <button id="addContactBtn" class="addContactBtn" onclick="showContactEditor()">
                 <span>Add new contact</span>
                 <svg class="marginLeft" width="40" height="40" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_83884_6021" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="33" height="33">
@@ -45,13 +46,17 @@
             </button>
             <div id="allContacts" class="allContacts"></div>
         </div>
-        <div class="contactDetailContainer">
+        <div id="contactDetailContainer" class="contactDetailContainer opacity0">
             <div class="headlineContactContainer">
                 <h1 class="headlineContact">Contacts</h1>
                 <div class="borderContact"></div>
                 <h2 class="headlineContact2">Better with a team</h2>
             </div>
+            <div class="backImg" onclick="showContacts()">
+                <img src="../img/Vector.svg" alt="">
+            </div> 
             <div id="contactDetailView" class="contactDetailView"></div>
+           
         </div>
 
 

@@ -108,8 +108,22 @@ function showContact(i) {
         setTimeout(function () {
             changeDetails(i, contactDetailContainer);
             document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
+            showDetails();
         }, 225);
     }
+    
+}
+
+function showDetails() {
+    document.getElementById("contactsContainer").classList.add("opacity0");
+    document.getElementById("contactDetailContainer").classList.remove("opacity0"); 
+    document.getElementById("addContactBtn").disabled = true;
+}
+
+function showContacts() {
+    document.getElementById("contactsContainer").classList.remove("opacity0");
+    document.getElementById("contactDetailContainer").classList.add("opacity0");
+    document.getElementById("addContactBtn").disabled = false; 
 }
 
 
