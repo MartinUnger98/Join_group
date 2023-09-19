@@ -254,7 +254,7 @@ function showHiddenBackground() {
 }
 
 /**
- * This function hides the dark backgroung by adding d-none
+ * This function hides the dark background by adding d-none
  */
 function hideBackground() {
     let bg = document.getElementById('bg');
