@@ -123,7 +123,7 @@ function pathAfterPopup() {
             break;
         case "Task added to Board":
             if (window.location.pathname !== '/html/board.html') {
-                window.location.href = '/html/board.html';
+                window.location.href = 'board.html';
             } else {
                 loadBoard();
             }
