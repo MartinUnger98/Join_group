@@ -70,7 +70,7 @@ async function includeHTML() {
         }
     }
     showLoggedInUser();
-    if (window.location.pathname !== '/html/legalNotice.html' && window.location.pathname !== '/html/privatPolicy.html') {
+    if (window.location.pathname !== '/html/legalNotice.html' && window.location.pathname !== '/html/privatPolicy.html' && window.location.pathname !== '/html/help.html') {
         setCurrentViewInMenu();
     }
     
