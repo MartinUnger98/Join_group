@@ -133,9 +133,3 @@ header {
         padding: 20px 40px;
     }
 }
-@media (max-width: 468px) {
-    .bounding-box-help {
-        display: none;
-    }
-}
-

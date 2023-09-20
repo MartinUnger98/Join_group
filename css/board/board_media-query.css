@@ -20,6 +20,9 @@
     .board-direction:hover {
         background-color: #eaeaea;
     }
+    .no-task-container {
+        width: 180px;
+    }
 }
 @media (max-width: 1000px) {
     .addTask-button {
