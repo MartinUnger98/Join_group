@@ -517,7 +517,6 @@
   .contactDetailContainer {
     position: absolute;
     margin-left: calc((100vw - 232px) / 2);
-    padding-bottom: 70px;
     height: 100%;
   }
   .opacity0 {
@@ -561,7 +560,6 @@
     top: 357px;
     left: 250px;
   }
-  
   .placeholderContact {
     margin-left: 0;
     margin-right: 0;
@@ -623,6 +621,7 @@
     margin-top: 10px;
     margin-left: 32px;
     width: 100%;
+    height: 105%;
   }
   .allContacts {
     margin-bottom: 100px;
