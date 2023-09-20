@@ -31,11 +31,11 @@
 
 .headlineSummar2 {
     font-size: 24px;
+    margin-block-end: 0px;
 }
 
 .allSummaryContent {
     display: flex;
-    justify-content: center;
     margin-top: 64px;
 }
 
@@ -113,7 +113,7 @@
 
 .greetingName {
     color: #29ABE2;
-    font-size: 64px;
+    font-size: 35px;
     font-weight: bold;
 }
 
@@ -206,6 +206,18 @@
         opacity: 1;
     }
 }
+@media (max-width: 1200px) {  
+    .taskSummary {
+        height: 120px;
+        width: 120px;
+    }
+    .bigNumber {
+        font-size: 38px;
+    } 
+    .spanSummary {       
+        font-size: 17px;
+    }
+}
 
 @media (max-width: 1080px) {  
     .taskSummary {
@@ -218,37 +230,9 @@
     .spanSummary {       
         font-size: 16px;
     }
-    .greetingName {      
-        font-size: 40px;
-    }
     .spanDate{
         font-size: 20px;
     }
-}
-@media (max-width: 920px) {
-    .headlineSummary{
-        font-size: 47px;
-    }
-    .taskSummary {
-        height: 96px;
-        width: 96px;
-    }
-    .morningContainer{
-        margin-left: 30px;
-    }
-
-    .toDOAndDone{
-        height: 125px;
-    }
-    .bigNumber {
-        font-size: 25px;
-    } 
-    .spanSummary {       
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 800px) {
     .morningContainer {
         position: absolute;
         left: calc(50vw - 95px);
@@ -259,6 +243,29 @@
     .headlineSummary, .summaryTaskContent{
        opacity: 0;
        animation: fadeIn 1s ease-in-out 1s forwards;
+    }
+    
+}
+@media (max-width: 920px) {
+    .headlineSummary{
+        font-size: 47px;
+    }
+    .morningContainer{
+        margin-left: 30px;
+    }
+    .summaryPage {
+        margin-right: 20px;
+    }
+
+    .toDOAndDone{
+        height: 125px;
+    }
+  
+}
+
+@media (max-width: 800px) {
+    .allSummaryContent{
+        justify-content: center;
     }
      .headlineSummary{
         flex-direction: column;
@@ -286,9 +293,6 @@
     }    
     .spanSummary {       
         font-size: 16px;
-    }
-    .greetingName {      
-        font-size: 40px;
     }
     .spanDate{
         font-size: 20px;
