@@ -157,6 +157,7 @@ function editContact(i) {
     document.getElementById('email').value = checkUndefined(allContacts[i]['email']);
     document.getElementById('phone').value = checkUndefined(allContacts[i]['number']);
     document.getElementById('initialDiv').style.backgroundColor = allContacts[i]['bgColor'];
+    scrollToTop();
 }
 
 function checkUndefined(value) {
