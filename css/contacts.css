@@ -503,6 +503,7 @@
   .contactDetailContainer {
     position: absolute;
     margin-left: calc((100vw - 232px) / 2);
+    height: 170%;
   }
   .opacity0 {
     opacity: 0;
