@@ -506,7 +506,7 @@
     height: 170%;
   }
   .opacity0 {
-    opacity: 0;
+    display: none;
     z-index: -1;
   }
   header {
