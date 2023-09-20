@@ -134,6 +134,13 @@
   width: 80px;
   background-color: #29ABE2;
 }
+.underline-contacts-responsive {
+  height: 3px;
+  width: 72px;
+  background-color: #29ABE2;
+  display: none;
+  margin-top: 12px;
+}
 
 .ctcEditorRightFirst {
   display: flex;
@@ -337,7 +344,7 @@
 .detailViewHead {
   display: flex;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 72px;
 }
 
 .initalsDetailView {
@@ -530,6 +537,7 @@
   }
   .ctcEditorRightFirstResponsive {
     top: 357px;
+    left: 250px;
   }
   
   .placeholderContact {
@@ -555,10 +563,7 @@
   .closeBtn:hover {
     background-color: #29ABE2;
   }
-  .initalsDetailView {
-    margin-left: 0;
-    margin-right: 0;
-  }
+ 
   .newInitialSize {
     height: 160px;
     width: 160px;
@@ -572,8 +577,22 @@
 }
 
 @media (max-width: 800px) {
+  .headlineContactContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 32px;
+  }
+  .headlineContact {
+    font-size: 56px;
+  }
+  .borderContact {
+   display: none;
+  }
   .contactPage {
     margin-left: 0px;
+  }
+  .underline-contacts-responsive {
+    display: block;
   }
   .addContactBtn{
     width: 300px;
@@ -612,32 +631,12 @@
   }
   .ctcEditorRightFirstResponsive {
     top: 357px;
+    left: 186px;
   }
 }
 
 
 @media (max-width: 600px) {
-  .headlineContactContainer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .headlineContact {
-    font-size: 47px;
-  }
-  .borderContact {
-   display: none;
-  }
-  .initalsDetailView {
-    height: 80px;
-    width: 80px;
-    font-size: 35px;
-  }
-  .detailViewHead{
-    margin-top: 15px;
-  }
-  .detailViewButton {
-    display: none;
-  }
   .editor-mobile {
     display: flex;
   }
@@ -694,6 +693,7 @@
   }
   .ctcEditorRightFirstResponsive {
     top: 357px;
+    left: 125px;
   }
 }
 
@@ -750,15 +750,24 @@
   .underline-edit-responsive {
     width: 69px;
   }
+  .initalsDetailView {
+    height: 100px;
+    width: 100px;
+    font-size: 35px;
+  }
+  .newInitialSize {
+    height: 130px;
+    width: 130px;
+    font-size: 35px;
+    margin-left: 0;
+  }
   
 }
 
 @media (max-width: 420px) {
   .initalsDetailView {
-    height: 60px;
-    width: 60px;
-    font-size: 24px;
     margin-right: 24px;
+    margin-left: 0;
   }
   .headDetailView {
     margin-bottom: 0 !important;
@@ -767,10 +776,6 @@
     height: 11px;
     margin-left: 7px;
   }
-  .newInitialSize {
-    height: 130px;
-    width: 130px;
-    font-size: 35px;
-  }
+ 
 }
 
