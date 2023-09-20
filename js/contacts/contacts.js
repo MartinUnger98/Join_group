@@ -169,7 +169,7 @@ async function saveContact(i) {
     closeEditorCtc();
     loadContacts();
     await saveNewContact();
-    findNewPosition(nameInput);
+    findNewPosition(allContacts[i].name);
 }
 
 
