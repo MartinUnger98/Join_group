@@ -163,15 +163,9 @@ function checkUndefined(value) {
 
 
 async function saveContact(i) {
-    const nameInput = document.getElementById("name").value;
-    const emailInput = document.getElementById("email").value;
-    const numberInput = document.getElementById("phone").value;
-    const contact = {
-        name: nameInput,
-        email: emailInput,
-        number: numberInput
-    };
-    allContacts.splice(i, 1, contact);
+    allContacts[i].name = document.getElementById("name").value;
+    allContacts[i].email = document.getElementById("email").value;
+    allContacts[i].number = document.getElementById("phone").value;
     closeEditorCtc();
     loadContacts();
     await saveNewContact();
