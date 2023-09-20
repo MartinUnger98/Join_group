@@ -73,7 +73,7 @@ function contactLayout(initials, contact, i) {
 function detailView(i) {
     return /*html*/` 
         <div class="detailViewHead">
-            <div id="initialsDetailView" class="initalsDetailView">
+            <div id="initialsDetailView" class="initalsDetailView initalsDetailView-contact">
                 <span id="initalsDetail">${getInitials(allContacts[i]['name'])}</span></div>
                 <div>
                     <h2 id="headDetail" class="headDetailView">${allContacts[i]['name']}</h2>

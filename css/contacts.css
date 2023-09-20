@@ -67,6 +67,9 @@
   background-color: #29ABE2;
   box-shadow: 0px 4px 4px 0px #00000040;
 }
+.initalsDetailView-contact {
+  margin-right: 52px;
+}
 
 .contactOverlay {
   top: 0;
@@ -463,6 +466,9 @@
 }
 .editor-mobile-shown {
   transform: translateX(0);
+}
+.initalsDetailView-contact {
+  margin-right: 32px;
 }
 ::-webkit-scrollbar {
   width: 10px;
