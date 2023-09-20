@@ -150,11 +150,16 @@ function editContact(i) {
     overlay.style.opacity = '0.7';
     overlay.style.zIndex = '997';
     editor.style.right = '0px';
-    document.getElementById('name').value = allContacts[i]['name'];
-    document.getElementById('email').value = allContacts[i]['email'];
-    document.getElementById('phone').value = allContacts[i]['number'];
+    document.getElementById('name').value = checkUndefined(allContacts[i]['name']);
+    document.getElementById('email').value = checkUndefined(allContacts[i]['email']);
+    document.getElementById('phone').value = checkUndefined(allContacts[i]['number']);
     document.getElementById('initialDiv').style.backgroundColor = allContacts[i]['bgColor'];
 }
+
+function checkUndefined(value) {
+    return value !== undefined ? value : '';
+}
+
 
 
 async function saveContact(i) {
