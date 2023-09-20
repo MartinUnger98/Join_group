@@ -32,8 +32,8 @@ function showNewContactEditor() {
                     placeholder="Name"><img src="../img/person.png"></div>
             <div class="inputCtcContainer"><input class="inputCtc" required id="email" type="email"
                     placeholder="Email"><img src="../img/mail.png"></div>
-            <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel" pattern="[+][0-9]{2} [0-9]{3} [0-9]{7}"
-                    placeholder="Phone F: +12 123 4567896"><img src="../img/call.png">
+            <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel" pattern="[+]?[0-9]{2} [0-9]{7,10}"
+                    placeholder="Phone F: 01/+49 1234567"><img src="../img/call.png">
             </div>
             <div class="cnlAndCreateBtns">
                 <button class="cancelBtnContact cancelBtnContactResponsive" onclick="closeEditorCtc()">Cancel<svg class="cnlSvgCtc"
@@ -131,8 +131,8 @@ function showEditor(i) {
                     placeholder="Name"><img src="../img/person.png"></div>
             <div class="inputCtcContainer"><input class="inputCtc" required id="email" type="email"
                     placeholder="Email"><img src="../img/mail.png"></div>
-            <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel" pattern="[+][0-9]{2} [0-9]{3} [0-9]{7}"
-                    placeholder="Phone F: +12 123 4567896"><img src="../img/call.png">
+            <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel" pattern="[+]?[0-9]{2} [0-9]{7,10}"
+                    placeholder="Phone F: 01/+49 1234567"><img src="../img/call.png">
             </div>
             <div class="cnlAndCreateBtns ">
                 <button class="cancelBtnContact edit-button-responsive" onclick="deleteContact(${i})">Delete<svg class="cnlSvgCtc"
