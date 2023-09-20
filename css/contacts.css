@@ -487,9 +487,20 @@
   background-color: white;
 }
 
+.left764px {
+  left: 764px !important;
+}
+
+.left100vw {
+  left: 100vw !important;
+}
 
 
 @media (max-width: 1230px) {
+  .left764px {
+    left: 0px !important;
+  } 
+
   .contactsContainer{
     position: absolute;
     width: 100%;
@@ -498,12 +509,13 @@
     margin-left: 20px;
   }
   .contactDetailView {
-    position: static;
+    left: 0px;
   }
   .contactDetailContainer {
     position: absolute;
     margin-left: calc((100vw - 232px) / 2);
-    padding-bottom: 70px
+    padding-bottom: 70px;
+    height: 100%;
   }
   .opacity0 {
     display: none;

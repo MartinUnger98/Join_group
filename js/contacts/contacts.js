@@ -128,7 +128,8 @@ function showContacts() {
 function changeDetails(i, contactDetailContainer) {
     contactDetailContainer.innerHTML = '';
     contactDetailContainer.innerHTML += detailView(i);
-    contactDetailContainer.style.left = '764px';
+    contactDetailContainer.classList.add("left764px");
+    contactDetailContainer.classList.remove("left100vw");
     showDetails();
 }
 
@@ -136,7 +137,8 @@ function changeDetails(i, contactDetailContainer) {
 async function deleteContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
     allContacts.splice(i, 1);
-    contactDetailContainer.style.left = '100vw';
+    contactDetailContainer.classList.remove("left764px");
+    contactDetailContainer.classList.add("left100vw");
     await saveNewContact();
 }
 
