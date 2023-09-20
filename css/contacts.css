@@ -506,20 +506,43 @@
     flex-direction: column;
     padding: 20px;
     width: fit-content;
+    top: 50px;
   }
 
   .addContactLeft {
     border-top-right-radius: 32px;
     border-bottom-left-radius: 0px;
     width: 100%;
+    padding: 170px 35px 170px 35px;
   }
 
   .addContactRight {
     border-top-right-radius: 0px;
     border-bottom-left-radius: 32px;
+    padding: 80px 48px 48px 48px;
   }
   .joinLogoAddContact {
     display: none;
+  }
+  .ctcEditorRightFirst {
+    position: absolute;
+    top: 388px;
+    left: 192px;
+  }
+  
+  .placeholderContact {
+    margin-left: 0;
+    margin-right: 0;
+    width: 160px;
+    height: 160px;
+    border: 2px solid white;
+  }
+  .createBtnContact {
+    margin-right: 0;
+  }
+  .headlineContactEditor {
+    font-weight: bold;
+    font-size: 55px;
   }
 }
 
@@ -558,7 +581,6 @@
   }
 
 }
-
 @media (max-width: 600px) {
   .headlineContactContainer {
     flex-direction: column;
@@ -587,6 +609,42 @@
   .settings-editor {
     display: flex;
   }
+  .inputCtcContainer {
+    width: 300px;
+  }
+  .createBtnContact {
+    margin-right: 0;
+  }
+  .ctcEditorRightFirst {
+    left: 160px;
+    top: 388px;
+  }
+  .cancelBtnContact {
+    display: none;
+  }
+  .cnlAndCreateBtns {
+    justify-content: center;
+    margin-top: 32px;
+  }
+  .placeholderContact {
+    width: 130px;
+    height: 130px;
+  }
+  .addContactRight {
+      padding: 60px 48px 32px 48px;
+  }
+  .underline {
+    height: 2px;
+    width: 66px;
+  }
+  .headlineContactEditor3 {
+    font-size: 15px;
+    font-weight: 300 !important;
+  }
+  .headlineContactEditor {
+    font-size: 45px;
+  }
+  
 }
 
 @media (max-width: 500px) {
@@ -594,6 +652,45 @@
     margin-right: 40px;
   }
 
+}
+@media (max-width: 450px) {
+  .checkCreateCtc {
+    height: 11px;
+    margin-left: 7px;
+  }
+  .createBtnContact {
+    font-size: 16px;
+  }
+  .addContactLeft {
+    padding: 120px 35px 120px 35px;
+  }
+  .addContactRight {
+    padding: 60px 15px 20px 15px;
+  }
+  .ctcEditorRightFirst {
+    top: 260px;
+    left: 103px;
+  }
+  .addContact {
+    padding: 10px;
+  }
+  .inputCtcContainer {
+    width: 280px;
+    margin-top: 20px;
+  }
+  .cnlAndCreateBtns {
+    margin-top: 25px;
+  }
+  .headlineContactEditor {
+    font-size: 36px;
+  }
+  .headlineContactEditor3 {
+    font-size: 13px;
+  }
+  .underline {
+    width: 57px;
+  }
+  
 }
 
 @media (max-width: 420px) {
@@ -606,4 +703,9 @@
   .headDetailView {
     margin-bottom: 0 !important;
   }
+  .checkCreateCtc {
+    height: 11px;
+    margin-left: 7px;
+  }
 }
+
