@@ -508,12 +508,14 @@
     width: fit-content;
     top: 50px;
   }
-
   .addContactLeft {
     border-top-right-radius: 32px;
     border-bottom-left-radius: 0px;
     width: 100%;
     padding: 170px 35px 170px 35px;
+  }
+  .addContactLeftResponsive {
+      padding: 170px 300px 170px 35px;
   }
 
   .addContactRight {
@@ -528,6 +530,10 @@
     position: absolute;
     top: 388px;
     left: 192px;
+  }
+  .ctcEditorRightFirstResponsive {
+    top: 357px;
+    left: 272px;
   }
   
   .placeholderContact {
@@ -552,6 +558,17 @@
   }
   .closeBtn:hover {
     background-color: #29ABE2;
+  }
+  .initalsDetailView {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .newInitialSize {
+    height: 160px;
+    width: 160px;
+  }
+  .cnlAndCreateBtns {
+    justify-content: center;
   }
 }
 
@@ -588,8 +605,16 @@
     top: 28px;
     right: 60px;
   }
-
+  .addContactLeftResponsive {
+    padding: 170px 180px 170px 35px;
+  }
+  .ctcEditorRightFirstResponsive {
+    top: 357px;
+    left: 215px;
+  }
 }
+
+
 @media (max-width: 600px) {
   .headlineContactContainer {
     flex-direction: column;
@@ -628,7 +653,7 @@
     left: 160px;
     top: 388px;
   }
-  .cancelBtnContact {
+  .cancelBtnContactResponsive {
     display: none;
   }
   .cnlAndCreateBtns {
@@ -653,7 +678,19 @@
   .headlineContactEditor {
     font-size: 45px;
   }
-  
+  .newInitialSize {
+    height: 130px;
+    width: 130px;
+  }
+  .addContactLeftResponsive {
+    padding: 170px 35px 170px 35px;
+  }
+  .ctcEditorRightFirst {
+    top: 357px;
+  }
+  .edit-button-responsive {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 500px) {

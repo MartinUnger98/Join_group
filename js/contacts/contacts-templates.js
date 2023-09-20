@@ -36,7 +36,7 @@ function showNewContactEditor() {
                     placeholder="Phone"><img src="../img/call.png">
             </div>
             <div class="cnlAndCreateBtns">
-                <button class="cancelBtnContact" onclick="closeEditorCtc()">Cancel<svg class="cnlSvgCtc"
+                <button class="cancelBtnContact cancelBtnContactResponsive" onclick="closeEditorCtc()">Cancel<svg class="cnlSvgCtc"
                         width="13" height="14" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z"
@@ -109,14 +109,14 @@ function detailView(i) {
 }
 
 function showEditor(i) {
-    return `<div class="addContactLeft">
+    return /*html*/ `<div class="addContactLeft addContactLeftResponsive">
     <img class="joinLogoAddContact" src="../img/Join logo white.svg">
         <h2 class="headlineContactEditor">Edit contact</h2>
     <div class="underline"></div>
 </div>
 <div class="addContactRight">
-    <div class="ctcEditorRightFirst">
-        <div id="initialDiv" class="initalsDetailView">
+    <div class="ctcEditorRightFirst ctcEditorRightFirstResponsive">
+        <div id="initialDiv" class="initalsDetailView newInitialSize ">
         ${getInitials(allContacts[i]['name'])}
         </div>
     </div>
@@ -132,16 +132,17 @@ function showEditor(i) {
             <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel"
                     placeholder="Phone"><img src="../img/call.png">
             </div>
-            <div class="cnlAndCreateBtns">
-                <button class="cancelBtnContact" onclick="deleteContact(${i})">Delete<svg class="cnlSvgCtc"
+            <div class="cnlAndCreateBtns ">
+                <button class="cancelBtnContact edit-button-responsive" onclick="deleteContact(${i})">Delete<svg class="cnlSvgCtc"
                         width="13" height="14" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z"
                             stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
-                <button type="submit" class="createBtnContact">Save<img class="checkCreateCtc"
-                        src="../img/check.png"></button>
+                <button type="submit" class="createBtnContact edit-button-responsive ">Save
+                    <img class="checkCreateCtc"src="../img/check.png">
+                </button>
         </form>
     </div>`
 }
