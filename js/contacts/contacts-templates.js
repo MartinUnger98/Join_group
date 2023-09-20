@@ -112,7 +112,7 @@ function showEditor(i) {
     return /*html*/ `<div class="addContactLeft addContactLeftResponsive">
     <img class="joinLogoAddContact" src="../img/Join logo white.svg">
         <h2 class="headlineContactEditor">Edit contact</h2>
-    <div class="underline"></div>
+    <div class="underline underline-edit-responsive"></div>
 </div>
 <div class="addContactRight">
     <div class="ctcEditorRightFirst ctcEditorRightFirstResponsive">
@@ -122,7 +122,9 @@ function showEditor(i) {
     </div>
     <div class="ctcEditorRightSecond">
         <div class="closeBtn" onclick="closeEditorCtc()">
-            <img src="../img/closeEditor.png">
+            <svg width="13" height="14" viewBox="0 0 13 14"  xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </div>
         <form onsubmit="saveContact(${i}); return false">
             <div class="inputCtcContainer"><input class="inputCtc" required id="name" type="text"
