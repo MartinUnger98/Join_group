@@ -97,6 +97,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    z-index: 1;
 }
 .submenu-container {
     display: flex;
