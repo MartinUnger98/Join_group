@@ -22,11 +22,11 @@ const monthsInEnglish = [
 
 
 function changeIcon(path){
-    if (path === '../img/pencilWhite.png') {
+    if (path === '../img/pencil-white-summary.svg') {
         let img = document.getElementById('toDoImg');
         img.src = path;
     }
-    else if (path === '../img/checkWhite.png') {
+    else if (path === '../img/check_white_summary.svg') {
         let img = document.getElementById('doneImg');
         img.src = path;
     }
@@ -34,11 +34,11 @@ function changeIcon(path){
 
 
 function changeIconBack(path){
-    if (path === '../img/pencilIcon.png') {
+    if (path === '../img/pencil-blue-summary.svg') {
         let img = document.getElementById('toDoImg');
         img.src = path;
     }
-    else if (path === '../img/checkIcon.png') {
+    else if (path === '../img/check-blue-summary.svg') {
         let img = document.getElementById('doneImg');
         img.src = path;
     }

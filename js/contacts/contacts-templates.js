@@ -29,11 +29,11 @@ function showNewContactEditor() {
         </div>
         <form onsubmit="addContact(); return false">
             <div class="inputCtcContainer"><input class="inputCtc" required id="name" type="text"
-                    placeholder="Name"><img src="../img/person.png"></div>
+                    placeholder="Name"><img src="../img/person-contact.svg"></div>
             <div class="inputCtcContainer"><input class="inputCtc" required id="email" type="email"
-                    placeholder="Email"><img src="../img/mail.png"></div>
+                    placeholder="Email"><img src="../img/mail-contact.svg"></div>
             <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel" pattern="[+]?[0-9]{2} [0-9]{6,11}"
-                    placeholder="phone: 01/+49 1234567"><img src="../img/call.png">
+                    placeholder="phone: 01/+49 1234567"><img src="../img/call.svg">
             </div>
             <div class="cnlAndCreateBtns">
                 <button class="cancelBtnContact cancelBtnContactResponsive" onclick="closeEditorCtc()">Cancel<svg class="cnlSvgCtc"
@@ -45,7 +45,7 @@ function showNewContactEditor() {
                 </button>
                 <button type="submit" class="createBtnContact">
                     <span>Create contact</span>
-                    <img class="checkCreateCtc"src="../img/check.png">
+                    <img class="checkCreateCtc"src="../img/check_addTask.svg">
                 </button>
         </form>
     </div>`
@@ -128,11 +128,11 @@ function showEditor(i) {
         </div>
         <form onsubmit="saveContact(${i}); return false">
             <div class="inputCtcContainer"><input class="inputCtc" required id="name" type="text"
-                    placeholder="Name"><img src="../img/person.png"></div>
+                    placeholder="Name"><img src="../img/person-contact.svg"></div>
             <div class="inputCtcContainer"><input class="inputCtc" required id="email" type="email"
-                    placeholder="Email"><img src="../img/mail.png"></div>
+                    placeholder="Email"><img src="../img/mail-contact.svg"></div>
             <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel" pattern="[+]?[0-9]{2} [0-9]{6,11}"
-                    placeholder="phone: 01/+49 1234567"><img src="../img/call.png">
+                    placeholder="phone: 01/+49 1234567"><img src="../img/call.svg">
             </div>
             <div class="cnlAndCreateBtns ">
                 <button class="cancelBtnContact edit-button-responsive" onclick="deleteContact(${i})">Delete<svg class="cnlSvgCtc"
@@ -143,7 +143,7 @@ function showEditor(i) {
                     </svg>
                 </button>
                 <button type="submit" class="createBtnContact edit-button-responsive ">Save
-                    <img class="checkCreateCtc"src="../img/check.png">
+                    <img class="checkCreateCtc"src="../img/check_addTask.svg">
                 </button>
         </form>
     </div>`
