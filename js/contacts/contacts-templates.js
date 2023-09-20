@@ -109,7 +109,7 @@ function detailView(i) {
 }
 
 function showEditor(i) {
-    return /*html*/ `<div class="addContactLeft addContactLeftResponsive">
+    return /*html*/ `<div class="addContactLeft">
     <img class="joinLogoAddContact" src="../img/Join logo white.svg">
         <h2 class="headlineContactEditor">Edit contact</h2>
     <div class="underline underline-edit-responsive"></div>

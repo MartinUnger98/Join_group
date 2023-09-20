@@ -604,12 +604,14 @@
     top: 28px;
     right: 60px;
   }
-  .addContactLeftResponsive {
+  .addContactLeft {
     padding: 170px 180px 170px 35px;
+  }
+  .ctcEditorRightFirst {
+    left: 215px;
   }
   .ctcEditorRightFirstResponsive {
     top: 357px;
-    left: 215px;
   }
 }
 
@@ -681,17 +683,17 @@
     height: 130px;
     width: 130px;
   }
-  .addContactLeftResponsive {
+  .addContactLeft {
     padding: 170px 35px 170px 35px;
-  }
-  .ctcEditorRightFirst {
-    top: 357px;
   }
   .edit-button-responsive {
     font-size: 16px;
   }
   .underline-edit-responsive {
     width: 85px;
+  }
+  .ctcEditorRightFirstResponsive {
+    top: 357px;
   }
 }
 
