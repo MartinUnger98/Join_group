@@ -544,6 +544,15 @@
     font-weight: bold;
     font-size: 55px;
   }
+  .closeBtn svg path {
+    stroke: white;
+  }
+  .closeBtn svg {
+    margin-left: 1px;
+  }
+  .closeBtn:hover {
+    background-color: #29ABE2;
+  }
 }
 
 @media (max-width: 800px) {
