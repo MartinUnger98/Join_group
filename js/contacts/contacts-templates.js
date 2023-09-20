@@ -30,7 +30,7 @@ function showNewContactEditor() {
                     placeholder="Name"><img src="../img/person.png"></div>
             <div class="inputCtcContainer"><input class="inputCtc" required id="email" type="email"
                     placeholder="Email"><img src="../img/mail.png"></div>
-            <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="number"
+            <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel"
                     placeholder="Phone"><img src="../img/call.png">
             </div>
             <div class="cnlAndCreateBtns">
@@ -127,7 +127,7 @@ function showEditor(i) {
                     placeholder="Name"><img src="../img/person.png"></div>
             <div class="inputCtcContainer"><input class="inputCtc" required id="email" type="email"
                     placeholder="Email"><img src="../img/mail.png"></div>
-            <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="number"
+            <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel"
                     placeholder="Phone"><img src="../img/call.png">
             </div>
             <div class="cnlAndCreateBtns">
