@@ -594,6 +594,11 @@
   .underline-edit-responsive {
     width: 104px;
   }
+  .backImg {
+    display: block;
+    margin-left: 4px;
+    position: static;
+  }
 }
 
 @media (max-width: 800px) {
@@ -639,9 +644,7 @@
   .addContactBtn-hidden {
     display: none;
   }
-  .backImg {
-    display: block;
-  }
+  
   .addContactLeft {
     padding: 170px 180px 170px 35px;
   }
@@ -651,6 +654,10 @@
   .ctcEditorRightFirstResponsive {
     top: 357px;
     left: 186px;
+  }
+  .backImg {
+    position: absolute;
+    margin-left: 0px;
   }
 }
 
