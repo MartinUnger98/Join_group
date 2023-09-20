@@ -426,7 +426,10 @@
 }
 
 .backImg {
-  margin-left: 8px;
+  display: none;
+  position: absolute;
+  top: 28px;
+  right: 60px;
 }
 
 .backImg img:hover {
@@ -638,9 +641,7 @@
     display: none;
   }
   .backImg {
-    position: absolute;
-    top: 28px;
-    right: 60px;
+    display: block;
   }
   .addContactLeft {
     padding: 170px 180px 170px 35px;
