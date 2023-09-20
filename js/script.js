@@ -10,10 +10,10 @@ let popup = "";
 async function init() {
     await includeHTML();
     await loadData();
-    if (window.location.pathname === '/html/board.html' || window.location.pathname === '/html/addTask.html') {
+    if (window.location.pathname === 'Join/html/board.html' || window.location.pathname === 'Join/html/addTask.html') {
         loadAddTask();
     }
-    if (window.location.pathname === '/html/board.html') {
+    if (window.location.pathname === 'Join/html/board.html') {
         loadBoard();
     }
 }
@@ -70,7 +70,7 @@ async function includeHTML() {
         }
     }
     showLoggedInUser();
-    if (window.location.pathname !== '/html/legalNotice.html' && window.location.pathname !== '/html/privatPolicy.html' && window.location.pathname !== '/html/help.html') {
+    if (window.location.pathname !== 'Join/html/legalNotice.html' && window.location.pathname !== 'Join/html/privatPolicy.html' && window.location.pathname !== 'Join/html/help.html') {
         setCurrentViewInMenu();
     }
     
@@ -122,7 +122,7 @@ function pathAfterPopup() {
             backToLogin();
             break;
         case "Task added to Board":
-            if (window.location.pathname !== '/html/board.html') {
+            if (window.location.pathname !== 'Join/html/board.html') {
                 window.location.href = 'board.html';
             } else {
                 loadBoard();
