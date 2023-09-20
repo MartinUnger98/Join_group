@@ -21,6 +21,7 @@ function showContactEditor() {
     overlay.style.opacity = '0.7';
     overlay.style.zIndex = '997';
     editor.style.right = '0px';
+    scrollToTop();
 }
 
 
@@ -103,6 +104,7 @@ function showContact(i) {
     if (contactDetailContainer.style.left === '') {
         changeDetails(i, contactDetailContainer);
         document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
+        scrollToTop();
     }
     else {
         contactDetailContainer.style.left = '100vw';
@@ -110,6 +112,7 @@ function showContact(i) {
             changeDetails(i, contactDetailContainer);
             document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
         }, 225);
+        scrollToTop();
     }
     
 }
@@ -181,6 +184,10 @@ function findNewPosition(nameInput) {
     }
 }
 
+
+function scrollToTop() {
+    document.documentElement.scrollTop = 0;
+}
 
 
 
