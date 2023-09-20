@@ -331,7 +331,6 @@ function toggleCheckboxInEditor(id, i) {
  * @param {*} id - id of editor
  */
 function moveSelectedContactsInEditor(id) {
-    debugger;
     let dropdown = document.getElementById(`contacts-${id}`);
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst

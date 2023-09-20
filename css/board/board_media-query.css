@@ -23,6 +23,9 @@
     .no-task-container {
         width: 180px;
     }
+    .testcard {
+        justify-content: space-between;
+    }
 }
 @media (max-width: 1000px) {
     .addTask-button {
@@ -51,9 +54,6 @@
         min-width: 235px;
         max-width: 240px;
     }
-    .detailed-task {
-        right: 20vw;
-    }
     .button-responsive {
         display: none;
     }
@@ -76,9 +76,6 @@
     .new-headline {
         margin-bottom: 32px;
     }
-    .detailed-task {
-        right: 8vw;
-    }
 }
 @media (max-width: 600px){
     .search-container {
@@ -89,14 +86,10 @@
     .search-input {
         flex: 1;
     }
-    .detailed-task {
-        right: 1vw;
-    }
 }
 @media (max-width: 550px) {
     .detailed-task {
         width: 328px;
-        right: 10vw;
         padding: 40px 20px;
     }
     .fs-61 {
@@ -172,9 +165,6 @@
     }
 }
 @media (max-width: 420px) {
-    .detailed-task {
-        right: 5vw;
-    }
     h1 {
         font-size: 47px !important;
         margin-bottom: 0 !important;
@@ -183,8 +173,5 @@
 @media (max-width: 380px) {
     .new-headline-search {
         padding-right: 15px;
-    }
-    .detailed-task {
-        right: 2vw;
     }
 }

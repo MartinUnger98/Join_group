@@ -132,7 +132,10 @@
 .addTask-section {
     z-index: 3;
     top: 80px;
-    left: 25vh;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     position: absolute;
     width: 992px;
     background-color: white;

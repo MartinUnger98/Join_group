@@ -274,7 +274,6 @@
     .summaryTaskContent {
         display: flex;
         flex-direction: column-reverse;
-        margin-right: 15px;
     }
     .taskOrder{
         margin-top: 32px;
