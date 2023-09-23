@@ -185,7 +185,6 @@ function showDropdowns(dropDown, category, assign, borderContact, borderCategory
  * This function toggles the visibility of the dropdown-content of contacts (active)
  * and the border-color of the contact-div
  */
-
 function toggleStatusAndBorderOfContact(assign, borderContact) {
     assign.classList.toggle('active');
     borderContact.classList.toggle('border-color');
@@ -467,6 +466,7 @@ function toggleCheckbox(id) {
     let selection = document.getElementById(`user-selection-${id}`);
     if (!selection.classList.contains('checked')) {
         selection.classList.add('checked');
+        moveSelectedContacts();
     } else {
         selection.classList.remove('checked');
     }
@@ -538,6 +538,14 @@ function updateCategoryVisibility(contactsAdded, category) {
 function closeDropdownAndSwitchBorder(dropdown) {
     dropdown.classList.remove('active');
     switchBorderandDropdownOfContacts();
+}
+
+/**
+ * This function makes sure that the detailed Task is still clickable
+ * @param {*} event 
+ */
+function doNotClose(event) {
+    event.stopPropagation();
 }
 
 

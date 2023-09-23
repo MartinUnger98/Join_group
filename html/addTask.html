@@ -54,7 +54,7 @@
                 <img src="../img/arrow_drop_down.svg" alt="arrow_drop_down" id="drop_1">
               </div>
             </div>
-            <div class="assign-content rounded-3 bg-white position-absolute" id="contacts">
+            <div class="assign-content rounded-3 bg-white position-absolute" id="contacts" onclick="doNotClose(event)">
               <div id="contact_content" class="contacts-box d-flex flex-column position-relative"></div>
               <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3 position-relative" onclick="moveSelectedContacts()">
                 <span class="text-white fw-semibold">Add new contact</span>
@@ -71,7 +71,7 @@
 
           <div class="d-flex flex-column">
             <label for="date" class="input-headlines fs-20">Due date</label>
-            <input required class="fs-20 rounded-3 bg-white" id="date" type="date">
+            <input required class="fs-20 rounded-3 bg-white" id="date" type="date" min="2023-09-23">
           </div>
           <div class="d-flex flex-column">
             <span class="input-headlines fs-20">Prio</span>
