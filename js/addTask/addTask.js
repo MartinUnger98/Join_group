@@ -1,3 +1,12 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Holen Sie sich eine Referenz zum Date-Input-Feld
+    const dateInput = document.getElementById('date');
+    // Holen Sie sich das aktuelle Datum im Format "YYYY-MM-DD"
+    const currentDate = new Date().toISOString().split('T')[0];
+    // Setzen Sie das min-Attribut auf das aktuelle Datum
+    dateInput.setAttribute('min', currentDate);
+  });
+  
 /**
  * This functions loads the category options at the beginning and render all Contacts inside of the contact dropdown
  */
@@ -5,6 +14,7 @@ function loadAddTask() {
     addCategory();
     renderUser();
 }
+
 
 /**
  *  This function creates vars for elements and and executes the toggle-function
@@ -32,11 +42,11 @@ function togglePriority(priority) {
  */
 function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (priority === 'urgent') {
-        toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg);   
+        toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg);
     }
     if (priority === 'medium') {
         toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg);
-    } 
+    }
     if (priority === 'low') {
         toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg);
     }
@@ -108,7 +118,7 @@ function switchUrgent(urgent, urgentImg) {
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority back
  */
-function switchUrgentBack(urgent,urgentImg) {
+function switchUrgentBack(urgent, urgentImg) {
     urgent.classList.remove('bg-urgent');
     urgent.classList.add('bg-white');
     urgentImg.src = '../img/urgent_red.svg';
@@ -171,14 +181,14 @@ function toggleDropdown(dropDown) {
  */
 
 function showDropdowns(dropDown, category, assign, borderContact, borderCategory) {
-    if(dropDown == 'contact') {
+    if (dropDown == 'contact') {
         toggleStatusAndBorderOfContact(assign, borderContact);
         switchDropDownArrow(dropDown);
     }
     if (dropDown == 'category') {
-        toggleStatusAndBorderOfCategory(category,borderCategory);
+        toggleStatusAndBorderOfCategory(category, borderCategory);
         switchDropDownArrow(dropDown);
-    }  
+    }
 }
 
 /**
@@ -194,7 +204,7 @@ function toggleStatusAndBorderOfContact(assign, borderContact) {
  * This function toggles the visibility of the dropdown-content of category (active)
  * and the border-color of the category-div
  */
-function toggleStatusAndBorderOfCategory(category,borderCategory) {
+function toggleStatusAndBorderOfCategory(category, borderCategory) {
     category.classList.toggle('active');
     borderCategory.classList.toggle('border-color');
 }
