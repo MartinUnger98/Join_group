@@ -863,6 +863,10 @@
     width: 69px;
   }
 
+  .backImg{
+    right: 0;
+  }
+
   .initalsDetailView {
     height: 80px;
     width: 80px;
