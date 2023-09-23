@@ -140,9 +140,23 @@ function changeDetails(i, contactDetailContainer) {
 async function deleteContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
     allContacts.splice(i, 1);
-    contactDetailContainer.classList.remove("left764px");
-    contactDetailContainer.classList.add("left100vw");
     await saveNewContact();
+    contactDetailContainer.classList.remove("left764px");
+    contactDetailContainer.classList.add("left100vw");   
+}
+
+
+async function deleteEditorContact(i) {
+    let contactDetailContainer = document.getElementById('contactDetailView');
+    let overlay = document.getElementById('contactOverlay');
+    let editor = document.getElementById('addContact');
+    overlay.style.opacity = '0';
+    overlay.style.zIndex = '-5';
+    editor.style.right = '-6000px';
+    allContacts.splice(i, 1);
+    await saveNewContact();
+    contactDetailContainer.classList.remove("left764px");
+    contactDetailContainer.classList.add("left100vw");   
 }
 
 
