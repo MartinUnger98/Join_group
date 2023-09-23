@@ -137,10 +137,10 @@ function showContacts() {
 function changeDetails(i, contactDetailContainer) {
     contactDetailContainer.innerHTML = '';
     contactDetailContainer.innerHTML += detailView(i);
-    setTimeout(function(){
-        contactDetailContainer.classList.remove('d-none');
-    }, 200);
-    contactDetailContainer.classList.add("left764px");
+    contactDetailContainer.classList.remove('d-none');
+    setTimeout(function () {
+        contactDetailContainer.classList.add("left764px");
+    }, 400);
     contactDetailContainer.classList.remove("left100vw");
     showDetails();
 }

@@ -423,8 +423,10 @@
 }
 
 .contactDetailView {
+  position: absolute;
   left: 100vw;
   transition: all 125ms;
+  min-width: 400px;
 }
 
 .backImg {
@@ -643,6 +645,10 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 32px;
+  }
+
+  .contactDetailView{
+    position: unset;
   }
 
   .headlineContact {
