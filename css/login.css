@@ -192,6 +192,7 @@ footer a:hover {
 .btnDark:disabled, .btnDark:disabled:hover  {
   background-color: gray;
   color: black;
+  cursor: not-allowed;
 }
 
 .btnDark:hover {
