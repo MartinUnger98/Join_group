@@ -157,11 +157,11 @@
             </div>
         </section>
 
-        <section id="detailedTask" class="detailed-task position-absolute rounded-5" onclick="doNotClose(event)"></section>
+        <section id="detailedTask" class="detailed-task position-absolute rounded-5 d-none" onclick="doNotClose(event)"></section>
 
         <section id="bg" class="dimmed-bg position-fixed d-none" onclick="hideTasksOfBoard()"></section>
       
-        <form id="board-addTask" class="addTask-section rounded-5" onsubmit="addTask('toDo'); hideAddTask();return false" onclick="doNotClose(event) ">
+        <form id="board-addTask" class="addTask-section rounded-5 d-none" onsubmit="addTask('toDo'); hideAddTask();return false" onclick="doNotClose(event) ">
             <h1 class="h1-addTask">Add Task</h1>
             <div class="task-creation-container d-flex">
       

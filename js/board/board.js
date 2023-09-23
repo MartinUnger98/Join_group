@@ -293,7 +293,10 @@ function updateProgressbar(id) {
  */
 function pushDetailedTaskToMiddle() {
     let task = document.getElementById('detailedTask');
-    task.classList.add('show-task');
+    task.classList.remove('d-none');
+    setTimeout(function () {
+        task.classList.add('show-task');
+    }, 50); 
     showHiddenBackground();
     scrollToTop();
 }
@@ -335,6 +338,9 @@ function hideTasksOfBoard() {
 function hideAddTask() {
     let boardAddTask = document.getElementById('board-addTask');
     boardAddTask.classList.remove('show-task');
+    setTimeout(function () {
+        boardAddTask.classList.add('d-none');
+    }, 200); 
     hideBackground();
     allMightyClear();
 }
@@ -345,6 +351,9 @@ function hideAddTask() {
 function hideDetailedTask() {
     let task = document.getElementById('detailedTask');
     task.classList.remove('show-task');
+    setTimeout(function () {
+        task.classList.add('d-none');
+    }, 200); 
     hideBackground();
 }
 
@@ -461,7 +470,10 @@ function moveTo(status) {
  */
 function showHiddenAddTask() {
     let boardAddTask = document.getElementById('board-addTask');
-    boardAddTask.classList.add('show-task');
+    boardAddTask.classList.remove('d-none');
+    setTimeout(function () {
+        boardAddTask.classList.add('show-task');
+    }, 50); 
     showHiddenBackground();
     scrollToTop();
 }
