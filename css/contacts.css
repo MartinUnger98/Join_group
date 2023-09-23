@@ -801,7 +801,7 @@
   }
 
   .contactDetailContainer {
-    width: 326px;
+    width: 295px;
   }
 
   .headDetailView{
@@ -861,6 +861,10 @@
 
   .underline-edit-responsive {
     width: 69px;
+  }
+
+  .backImg{
+    right: 0;
   }
 
   .initalsDetailView {
