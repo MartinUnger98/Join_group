@@ -17,10 +17,13 @@ function sortByFirstName(allContacts) {
 function showContactEditor() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
+    editor.classList.remove('d-none');
     editor.innerHTML = showNewContactEditor();
     overlay.style.opacity = '0.7';
     overlay.style.zIndex = '997';
-    editor.style.right = '0px';
+    setTimeout(function () {
+        editor.style.right = '0px';
+    }, 100);
     scrollToTop();
 }
 
@@ -30,7 +33,10 @@ function closeEditorCtc() {
     let editor = document.getElementById('addContact');
     overlay.style.opacity = '0';
     overlay.style.zIndex = '-5';
-    editor.style.right = '-6000px';
+    editor.style.right = '-4000px';
+    setTimeout(function () {
+        editor.classList.add('d-none');
+    }, 100);
 }
 
 
@@ -100,7 +106,7 @@ function checkInitialLetter(firstInitial) {
 
 function showContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
-   
+
     if (contactDetailContainer.style.left === '') {
         changeDetails(i, contactDetailContainer);
         document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
@@ -114,23 +120,26 @@ function showContact(i) {
         }, 225);
         scrollToTop();
     }
-    
+
 }
 
 function showDetails() {
     document.getElementById("contactsContainer").classList.add("opacity0");
-    document.getElementById("contactDetailContainer").classList.remove("opacity0"); 
+    document.getElementById("contactDetailContainer").classList.remove("opacity0");
 }
 
 function showContacts() {
     document.getElementById("contactsContainer").classList.remove("opacity0");
-    document.getElementById("contactDetailContainer").classList.add("opacity0"); 
+    document.getElementById("contactDetailContainer").classList.add("opacity0");
 }
 
 
 function changeDetails(i, contactDetailContainer) {
     contactDetailContainer.innerHTML = '';
     contactDetailContainer.innerHTML += detailView(i);
+    setTimeout(function(){
+        contactDetailContainer.classList.remove('d-none');
+    }, 200);
     contactDetailContainer.classList.add("left764px");
     contactDetailContainer.classList.remove("left100vw");
     showDetails();
@@ -142,7 +151,7 @@ async function deleteContact(i) {
     allContacts.splice(i, 1);
     await saveNewContact();
     contactDetailContainer.classList.remove("left764px");
-    contactDetailContainer.classList.add("left100vw");   
+    contactDetailContainer.classList.add("left100vw");
 }
 
 
@@ -156,7 +165,7 @@ async function deleteEditorContact(i) {
     allContacts.splice(i, 1);
     await saveNewContact();
     contactDetailContainer.classList.remove("left764px");
-    contactDetailContainer.classList.add("left100vw");   
+    contactDetailContainer.classList.add("left100vw");
 }
 
 
@@ -166,7 +175,10 @@ function editContact(i) {
     editor.innerHTML = showEditor(i);
     overlay.style.opacity = '0.7';
     overlay.style.zIndex = '997';
-    editor.style.right = '0px';
+    editor.classList.remove('d-none');
+    setTimeout(function () {
+        editor.style.right = '0px';
+    }, 100);
     document.getElementById('name').value = checkUndefined(allContacts[i]['name']);
     document.getElementById('email').value = checkUndefined(allContacts[i]['email']);
     document.getElementById('phone').value = checkUndefined(allContacts[i]['number']);
