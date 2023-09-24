@@ -1,11 +1,19 @@
 let initialLetter = [];
 
-
+/**
+ * loads all contacts and shows them in the board.
+ * 
+ * 
+ */
 async function initContacts() {
     await init();
     loadContacts();
 }
-
+/**
+ * sorts the array alphabetially
+ * @param {object} allContacts 
+ * @returns the array with all contacts sorted alphabetiacally 
+ */
 function sortByFirstName(allContacts) {
     return allContacts.sort(function (a, b) {
         const firstNameA = a.name.split(' ')[0];
@@ -13,7 +21,9 @@ function sortByFirstName(allContacts) {
         return firstNameA.localeCompare(firstNameB);
     });
 }
-
+/**
+ * reveals the contact editor that flies in from the right
+ */
 function showContactEditor() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
@@ -27,7 +37,9 @@ function showContactEditor() {
     scrollToTop();
 }
 
-
+/**
+ * hides the contact editor back to the right and gives him display none due to responsive reasons
+ */
 function closeEditorCtc() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
@@ -39,7 +51,9 @@ function closeEditorCtc() {
     }, 100);
 }
 
-
+/**
+ * gets the inputs from the contact editor and creates a new object that is then pushed into the JSON array
+ */
 async function addContact() {
     const nameInput = document.getElementById("name").value;
     const emailInput = document.getElementById("email").value;
@@ -54,7 +68,9 @@ async function addContact() {
     await saveNewContact();
     findNewPosition(nameInput);
 }
-
+/**
+ * all contacts are saved to the server and the editor is closed
+ */
 async function saveNewContact() {
     try {
         const allContactsAsString = JSON.stringify(allContacts);
@@ -66,7 +82,11 @@ async function saveNewContact() {
     }
 }
 
-
+/**
+ * findes the initals of the name
+ * @param {string} name 
+ * @returns the first letter of the first name and the second name are being returned
+ */
 function getInitials(name) {
     const nameParts = name.split(' ');
     const firstNameInitial = nameParts[0][0];
@@ -74,7 +94,9 @@ function getInitials(name) {
     return `${firstNameInitial}${lastNameInitial}`;
 }
 
-
+/**
+ * loads all contacts into the board and shows an individual logo with the initals of the contact
+ */
 function loadContacts() {
     let allContactsContainer = document.getElementById('allContacts');
     allContactsContainer.innerHTML = '';
@@ -94,6 +116,11 @@ function loadContacts() {
     }
 }
 
+
+/**
+ * it checks if the first initial does allready exist, if not it gets pushed
+ * @param {string} firstInitial - inital letter of the name
+ */
 function checkInitialLetter(firstInitial) {
     if (!initialLetter.includes(firstInitial)) {
         initialLetter.push(firstInitial);
@@ -103,7 +130,10 @@ function checkInitialLetter(firstInitial) {
     }
 }
 
-
+/**
+ * shows additional information in a separate container to the right that can be found in the allContacts array
+ * @param {integer} i - chosen contact
+ */
 function showContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
 
@@ -123,17 +153,28 @@ function showContact(i) {
 
 }
 
+/**
+ * shows the changed contact directly
+ */
 function showDetails() {
     document.getElementById("contactsContainer").classList.add("opacity0");
     document.getElementById("contactDetailContainer").classList.remove("opacity0");
 }
 
+
+/**
+ * shows the contact board again
+ */
 function showContacts() {
     document.getElementById("contactsContainer").classList.remove("opacity0");
     document.getElementById("contactDetailContainer").classList.add("opacity0");
 }
 
-
+/**
+ * changes the details in the detail container to the details of the chosen 
+ * @param {integer} i - chosen contact 
+ * @param {HTMLElement} contactDetailContainer - the container that shows the additional information 
+ */
 function changeDetails(i, contactDetailContainer) {
     contactDetailContainer.innerHTML = '';
     contactDetailContainer.innerHTML += detailView(i);
@@ -148,20 +189,6 @@ function changeDetails(i, contactDetailContainer) {
 
 async function deleteContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
-    allContacts.splice(i, 1);
-    await saveNewContact();
-    contactDetailContainer.classList.remove("left764px");
-    contactDetailContainer.classList.add("left100vw");
-}
-
-
-async function deleteEditorContact(i) {
-    let contactDetailContainer = document.getElementById('contactDetailView');
-    let overlay = document.getElementById('contactOverlay');
-    let editor = document.getElementById('addContact');
-    overlay.style.opacity = '0';
-    overlay.style.zIndex = '-5';
-    editor.style.right = '-6000px';
     allContacts.splice(i, 1);
     await saveNewContact();
     contactDetailContainer.classList.remove("left764px");
@@ -191,7 +218,10 @@ function checkUndefined(value) {
 }
 
 
-
+/**
+ * gets the information that has been put into the inputfields of a specific contact and saves the changes
+ * @param {integer} i - chosen contact
+ */
 async function saveContact(i) {
     allContacts[i].name = document.getElementById("name").value;
     allContacts[i].email = document.getElementById("email").value;
@@ -211,7 +241,9 @@ function findNewPosition(nameInput) {
     }
 }
 
-
+/**
+ * scrolls to the top of the window
+ */
 function scrollToTop() {
     document.documentElement.scrollTop = 0;
 }
