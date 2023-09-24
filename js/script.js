@@ -6,6 +6,10 @@ let subtaskcounter = 0;
 let bgColors = ['#FF7A00', '#462F8A', '#FFBB2B', '#FC71FF', '#6E52FF', '#1FD7C1', '#9327FF', '#FF4646',];
 let loggedInUser;
 let popup = "";
+let idForEditmode;
+let indexForEditmode;
+let editModeOnOrOff = false;
+
 
 async function init() {
     await includeHTML();

@@ -1,13 +1,20 @@
 function openDetailedCardEditor(title, description, date, id, i) {
+    editModeOnOrOff = true;
     let editor = document.getElementById('detailedTask');
     let dateEditor = date.split('/');
     let formattedDate = `${dateEditor[2]}-${dateEditor[1]}-${dateEditor[0]}`;
     editor.innerHTML = '';
     editor.innerHTML += showDetailedCardEditor(title, description, formattedDate, id, i);
     renderSubtasksInEditor(id, i);
-    renderUserInEditor(id);
+    renderUserInEditor(id, i);
     updateEditorWithSelectedPriorityBox(id, i);
-    updateEditorWithMatchingContacts(id, i,);
+    updateEditorWithMatchingContacts(id, i,);    
+    setIDForEditAndindex(id, i);
+}
+
+function setIDForEditAndindex(id, i){
+    idForEditmode = id;
+    indexForEditmode =  i;
 }
 
 /**
@@ -174,6 +181,7 @@ function renderSubtasksInEditor(id, i) {
  * @param {*} i -index of array
  */
 function savedEditedTask(id, i) {
+    editModeOnOrOff = false;
     const newTask = tasks[i];
     let input = document.getElementById(`input-editor-${id}`).value;
     let textarea = document.getElementById(`textarea-editor-${id}`).value;
@@ -300,16 +308,19 @@ function getSubtasksFromEditor() {
  * This function renders all users within the contact dropdown in editor
  * @param {*} id - id of editor
  */
-function renderUserInEditor(id) {
+function renderUserInEditor(id, i) {
     let content = document.getElementById(`contact_content-editor${id}`);
     content.innerHTML = '';
+    sortByFirstName();
     for (let i = 0; i < allContacts.length; i++) {
         const user = allContacts[i];
         let username = user.name;
         const initials = getInitials(username);
         const bgUser = user.bgColor;
         content.innerHTML += showAllContactsinEditor(id, i, initials, bgUser, username);
-    }
+    };
+    updateEditorWithSelectedPriorityBox(id, i);
+    updateEditorWithMatchingContacts(id, i,);  
 }
 
 /**
@@ -477,8 +488,7 @@ function showExistingContactsInEditor(id, i, initials, bgUser) {
  * @param {*} id - id of detailed task
  * @param {*} i - index of tasks
  */
-function addNewContactsInEditor(id, i) {
+function addNewContactsInEditor() {
     showContactEditor();
-    renderDetailedTask(i, id);
 }
 
