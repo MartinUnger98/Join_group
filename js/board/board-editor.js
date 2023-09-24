@@ -5,7 +5,7 @@ function openDetailedCardEditor(title, description, date, id, i) {
     editor.innerHTML = '';
     editor.innerHTML += showDetailedCardEditor(title, description, formattedDate, id, i);
     renderSubtasksInEditor(id, i);
-    renderUserInEditor(id);
+    
     updateEditorWithSelected(id, i);
     updateEditorWithMatchingContacts(id, i,);
 }
@@ -44,6 +44,7 @@ function toggleEditorDropdown(id) {
 function showDropdownInEditor(assign, borderContact, id) {
     toggleStatusAndBorderOfContact(assign, borderContact);
     switchDropDownArrowInEditor(id);
+    renderUserInEditor(id);
 }
 
 /**
@@ -321,8 +322,10 @@ function toggleCheckboxInEditor(id, i) {
     let selection = document.getElementById(`user-selection-${id}-${i}`);
     if (!selection.classList.contains('checked-editor')) {
         selection.classList.add('checked-editor');
+        moveSelectedContactsInEditor(id)
     } else {
         selection.classList.remove('checked-editor');
+        moveSelectedContactsInEditor(id);
     }
 }
 
@@ -331,14 +334,20 @@ function toggleCheckboxInEditor(id, i) {
  * @param {*} id - id of editor
  */
 function moveSelectedContactsInEditor(id) {
-    let dropdown = document.getElementById(`contacts-${id}`);
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
-    selectedContactsDiv.innerHTML = ''; // Leeren Sie das Ziel-Div zuerst
+    selectedContactsDiv.innerHTML = ''; 
+    let contactsAdded = false;
     for (let i = 0; i < allContacts.length; i++) {
+        if (isContactSelectedInEditor(id, i))
         showSelectedContactsInEditor(selectedContactsDiv, id, i);
+        contactsAdded= true;
     }
-    dropdown.classList.remove('active');
-    switchBorderandDropdownOfContacts(id);
+}
+
+function isContactSelectedInEditor(id, i) {
+    let selection = document.getElementById(`user-selection-${id}-${i}`);
+    let checkbox = document.getElementById(`user-editor${id}-${i}`);  
+    return selection.classList.contains('checked-editor') && checkbox.checked;
 }
 
 /**
@@ -348,17 +357,13 @@ function moveSelectedContactsInEditor(id) {
  * @param {*} i - index of allContacts
  */
 function showSelectedContactsInEditor(selectedContactsDiv, id, i) {
-    let selection = document.getElementById(`user-selection-${id}-${i}`);
-    let checkbox = document.getElementById(`user-editor${id}-${i}`);  
-    if (selection.classList.contains('checked-editor') && checkbox.checked) {
-        const user = allContacts[i];
-        let username = user.name;
-        const initials = getInitials(username);
-        const bgUser = user.bgColor;
-        selectedContactsDiv.innerHTML += /*html*/ `
-            <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${bgUser}">${initials}</div>
-        `;
-    }
+    const user = allContacts[i];
+    let username = user.name;
+    const initials = getInitials(username);
+    const bgUser = user.bgColor;
+    selectedContactsDiv.innerHTML += /*html*/ `
+        <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${bgUser}">${initials}</div>
+    `;
 }
 
 /**
@@ -463,5 +468,10 @@ function showExistingContactsInEditor(id, i, initials, bgUser) {
             <div class="initials-selected" id="selected_contact-${id}-${i}" style="background-color: ${bgUser}">${initials}</div>
         `;
     }
+}
+
+function addNewContactsInEditor(id) {
+    showContactEditor();
+    toggleEditorDropdown(id);
 }
 
