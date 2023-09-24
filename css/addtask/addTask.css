@@ -367,6 +367,11 @@ h1 {
     cursor: pointer;
     margin-left: -13px;
 }
+/* ------------------------ add new contact - card--------------------- */
+.add-new-contact-position {
+  top: 55px;
+}
+
 
 ::-webkit-scrollbar {
     width: 10px;

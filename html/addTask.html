@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/addtask/addTask.css">
     <link rel="stylesheet" href="../css/addtask/addTask-mediaquery.css">
+    <link rel="stylesheet" href="../css/contacts.css">
     <link rel="icon" href="../img/join_logo.svg">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -32,7 +33,7 @@
     <div w3-include-html="templates/header.html"></div>
     <div w3-include-html="templates/menu.html"></div>
 
-    <form class="addTask-section" onsubmit="addTask('toDo');return false">
+    <form class="addTask-section" onsubmit="addTask('toDo');return false" onclick="">
       <h1>Add Task</h1>
       <div class="task-creation-container d-flex">
 
@@ -49,14 +50,14 @@
           <div class="d-flex flex-column">
            <span class="input-headlines fs-20">Assigned to</span>
             <div class="select-btn rounded-3 d-flex align-items-center justify-content-between bg-white" onclick="toggleDropdown('contact')" id="contact_dropdown">
-              <span class="fs-20">Select contacts to assign</span>
+              <span class="fs-20 dropdown-headline">Select contacts to assign</span>
               <div class="subtask-buttons d-flex align-items-center justify-content-center">
                 <img src="../img/arrow_drop_down.svg" alt="arrow_drop_down" id="drop_1">
               </div>
             </div>
-            <div class="assign-content rounded-3 bg-white position-absolute" id="contacts" onclick="doNotClose(event)">
+            <div class="assign-content rounded-3 bg-white position-absolute" id="contacts">
               <div id="contact_content" class="contacts-box d-flex flex-column position-relative"></div>
-              <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3 position-relative" onclick="moveSelectedContacts()">
+              <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3 position-relative" onclick="showContactEditor()">
                 <span class="text-white fw-semibold">Add new contact</span>
                 <img src="../img/person_add.svg" alt="" class="person_add-responsive">
               </div>
@@ -93,8 +94,8 @@
 
           <div class="d-flex flex-column">
             <span class="input-headlines fs-20">Categories</span>
-            <div class="select-btn rounded-3 d-flex align-items-center justify-content-between bg-white" id="select" onclick="toggleDropdown('category')">
-              <span class="fs-20">Select Task Category</span>
+            <div class="select-category select-btn rounded-3 d-flex align-items-center justify-content-between bg-white" id="select" onclick="toggleDropdown('category')">
+              <span class="fs-20 dropdown-headline">Select Task Category</span>
               <div class="subtask-buttons d-flex align-items-center justify-content-center">
                 <img src="../img/arrow_drop_down.svg" alt="arrow_drop_down" id="drop_2">
               </div>
@@ -134,8 +135,8 @@
           <img src="../img/check_addTask.svg" alt="" class="check-responsive">
         </button>
       </div>
-
     </form>
-    
+    <div id="contactOverlay" class="contactOverlay" onclick="closeEditorCtc()"></div>
+    <section id="addContact" class="addContact add-new-contact-position d-none"></section>
 </body>
 </html>

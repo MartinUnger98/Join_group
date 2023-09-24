@@ -447,6 +447,7 @@ function clearContacts() {
 function renderUser() {
     let content = document.getElementById('contact_content');
     content.innerHTML = '';
+    sortByFirstName();
     for (let i = 0; i < allContacts.length; i++) {
         const user = allContacts[i];
         let username = user.name;
@@ -454,6 +455,7 @@ function renderUser() {
         const bgUser = user.bgColor;
         content.innerHTML += showRenderedContacts(initials, bgUser, i, username);
     }
+    
 }
 
 /**
@@ -479,6 +481,7 @@ function toggleCheckbox(id) {
         moveSelectedContacts();
     } else {
         selection.classList.remove('checked');
+        moveSelectedContacts();
     }
 }
 
@@ -487,7 +490,6 @@ function toggleCheckbox(id) {
  * All selected contacts will be shown by their initials
  */
 function moveSelectedContacts() {
-    let dropdown = document.getElementById('contacts');
     let category = document.getElementById('content');
     let selectedContactsDiv = document.getElementById('selected_contacts');
     selectedContactsDiv.innerHTML = '';
@@ -501,7 +503,6 @@ function moveSelectedContacts() {
         }
     }
     updateCategoryVisibility(contactsAdded, category);
-    closeDropdownAndSwitchBorder(dropdown);
 }
 
 /**
@@ -541,14 +542,6 @@ function updateCategoryVisibility(contactsAdded, category) {
     }
 }
 
-/**
- * This function closes the dropdown of contact und switches border-color and the dropdown icon
- * @param {*} dropdown - id of contact dropdown
- */
-function closeDropdownAndSwitchBorder(dropdown) {
-    dropdown.classList.remove('active');
-    switchBorderandDropdownOfContacts();
-}
 
 /**
  * This function makes sure that the detailed Task is still clickable
@@ -558,5 +551,67 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
+//------------------------------add new Contact-----------------------------------
+function showContactEditor() {
+    let overlay = document.getElementById('contactOverlay');
+    let editor = document.getElementById('addContact');
+    editor.classList.remove('d-none');
+    editor.innerHTML = showNewContactEditor();
+    overlay.style.opacity = '0.7';
+    overlay.style.zIndex = '997';
+    setTimeout(function () {
+        editor.style.right = '0px';
+    }, 100);
+    scrollToTop();
+}
+
+function closeEditorCtc() {
+    let overlay = document.getElementById('contactOverlay');
+    let editor = document.getElementById('addContact');
+    overlay.style.opacity = '0';
+    overlay.style.zIndex = '-5';
+    editor.style.right = '-4000px';
+    setTimeout(function () {
+        editor.classList.add('d-none');
+    }, 100);
+}
+
+async function addContact() {
+    const nameInput = document.getElementById("name").value;
+    const emailInput = document.getElementById("email").value;
+    const numberInput = document.getElementById("phone").value;
+    const contact = {
+        name: nameInput,
+        email: emailInput,
+        number: numberInput,
+        bgColor: setColor()
+    };
+    allContacts.push(contact);
+    await saveNewContact();
+}
+
+async function saveNewContact() {
+    try {
+        const allContactsAsString = JSON.stringify(allContacts);
+        await setItem('allContacts', allContactsAsString); // Auf das Ergebnis warten
+        renderUser();
+        closeEditorCtc();
+    } catch (error) {
+        console.error('Fehler beim Speichern des Kontakts:', error);
+    }
+}
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+function sortByFirstName() {
+    return allContacts.sort(function (a, b) {
+        const firstNameA = a.name.split(' ')[0];
+        const firstNameB = b.name.split(' ')[0];
+        return firstNameA.localeCompare(firstNameB);
+    });
+}
 
 
