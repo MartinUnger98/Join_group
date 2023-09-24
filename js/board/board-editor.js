@@ -5,8 +5,8 @@ function openDetailedCardEditor(title, description, date, id, i) {
     editor.innerHTML = '';
     editor.innerHTML += showDetailedCardEditor(title, description, formattedDate, id, i);
     renderSubtasksInEditor(id, i);
-    
-    updateEditorWithSelected(id, i);
+    renderUserInEditor(id);
+    updateEditorWithSelectedPriorityBox(id, i);
     updateEditorWithMatchingContacts(id, i,);
 }
 
@@ -44,7 +44,6 @@ function toggleEditorDropdown(id) {
 function showDropdownInEditor(assign, borderContact, id) {
     toggleStatusAndBorderOfContact(assign, borderContact);
     switchDropDownArrowInEditor(id);
-    renderUserInEditor(id);
 }
 
 /**
@@ -336,14 +335,17 @@ function toggleCheckboxInEditor(id, i) {
 function moveSelectedContactsInEditor(id) {
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     selectedContactsDiv.innerHTML = ''; 
-    let contactsAdded = false;
     for (let i = 0; i < allContacts.length; i++) {
         if (isContactSelectedInEditor(id, i))
         showSelectedContactsInEditor(selectedContactsDiv, id, i);
-        contactsAdded= true;
     }
 }
-
+/**
+ * This function generates the condition for the function moveSelectedContactsInEditor()
+ * @param {*} id - id of detailed task editor
+ * @param {*} i - index of tasks
+ * @returns - condition
+ */
 function isContactSelectedInEditor(id, i) {
     let selection = document.getElementById(`user-selection-${id}-${i}`);
     let checkbox = document.getElementById(`user-editor${id}-${i}`);  
@@ -382,7 +384,7 @@ function switchBorderandDropdownOfContacts(id) {
  * @param {*} id - id of editor
  * @param {*} i - index of tasks
  */
-function updateEditorWithSelected(id, i) {
+function updateEditorWithSelectedPriorityBox(id, i) {
     const task = tasks[i]
     let priority = task.priority;
     let urgent = document.getElementById(`urgent-${id}`);
@@ -470,8 +472,13 @@ function showExistingContactsInEditor(id, i, initials, bgUser) {
     }
 }
 
-function addNewContactsInEditor(id) {
+/**
+ * This function opens the add new contact card (-->addTask.js) and toggles the editor dropdown
+ * @param {*} id - id of detailed task
+ * @param {*} i - index of tasks
+ */
+function addNewContactsInEditor(id, i) {
     showContactEditor();
-    toggleEditorDropdown(id);
+    renderDetailedTask(i, id);
 }
 

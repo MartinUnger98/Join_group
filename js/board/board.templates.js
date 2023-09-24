@@ -203,7 +203,7 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
                         </div>
                         <div class="assign-content-editor rounded-3 bg-white" id="contacts-${id}">
                             <div id="contact_content-editor${id}" class="contacts-box-editor d-flex flex-column"></div>
-                            <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3" onclick="addNewContactsInEditor(${id})">
+                            <div class="new-contact-btn rounded-3 d-flex justify-content-center align-items-center gap-3" onclick="addNewContactsInEditor(${id}, ${i})">
                                 <span class="text-white fw-semibold fs-responsive">Add new contact</span>
                                 <img src="../img/person_add.svg" alt="" class="person_add-responsive">
                             </div>
