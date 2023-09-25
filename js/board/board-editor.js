@@ -1,13 +1,20 @@
 function openDetailedCardEditor(title, description, date, id, i) {
+    editModeOnOrOff = true;
     let editor = document.getElementById('detailedTask');
     let dateEditor = date.split('/');
     let formattedDate = `${dateEditor[2]}-${dateEditor[1]}-${dateEditor[0]}`;
     editor.innerHTML = '';
     editor.innerHTML += showDetailedCardEditor(title, description, formattedDate, id, i);
     renderSubtasksInEditor(id, i);
-    
-    updateEditorWithSelected(id, i);
-    updateEditorWithMatchingContacts(id, i,);
+    renderUserInEditor(id, i);
+    updateEditorWithSelectedPriorityBox(id, i);
+    updateEditorWithMatchingContacts(id, i,);    
+    setIDForEditAndindex(id, i);
+}
+
+function setIDForEditAndindex(id, i){
+    idForEditmode = id;
+    indexForEditmode =  i;
 }
 
 /**
@@ -44,7 +51,6 @@ function toggleEditorDropdown(id) {
 function showDropdownInEditor(assign, borderContact, id) {
     toggleStatusAndBorderOfContact(assign, borderContact);
     switchDropDownArrowInEditor(id);
-    renderUserInEditor(id);
 }
 
 /**
@@ -175,6 +181,7 @@ function renderSubtasksInEditor(id, i) {
  * @param {*} i -index of array
  */
 function savedEditedTask(id, i) {
+    editModeOnOrOff = false;
     const newTask = tasks[i];
     let input = document.getElementById(`input-editor-${id}`).value;
     let textarea = document.getElementById(`textarea-editor-${id}`).value;
@@ -301,16 +308,19 @@ function getSubtasksFromEditor() {
  * This function renders all users within the contact dropdown in editor
  * @param {*} id - id of editor
  */
-function renderUserInEditor(id) {
+function renderUserInEditor(id, i) {
     let content = document.getElementById(`contact_content-editor${id}`);
     content.innerHTML = '';
+    sortByFirstName();
     for (let i = 0; i < allContacts.length; i++) {
         const user = allContacts[i];
         let username = user.name;
         const initials = getInitials(username);
         const bgUser = user.bgColor;
         content.innerHTML += showAllContactsinEditor(id, i, initials, bgUser, username);
-    }
+    };
+    updateEditorWithSelectedPriorityBox(id, i);
+    updateEditorWithMatchingContacts(id, i,);  
 }
 
 /**
@@ -336,14 +346,17 @@ function toggleCheckboxInEditor(id, i) {
 function moveSelectedContactsInEditor(id) {
     let selectedContactsDiv = document.getElementById(`selected_contacts_editor-${id}`);
     selectedContactsDiv.innerHTML = ''; 
-    let contactsAdded = false;
     for (let i = 0; i < allContacts.length; i++) {
         if (isContactSelectedInEditor(id, i))
         showSelectedContactsInEditor(selectedContactsDiv, id, i);
-        contactsAdded= true;
     }
 }
-
+/**
+ * This function generates the condition for the function moveSelectedContactsInEditor()
+ * @param {*} id - id of detailed task editor
+ * @param {*} i - index of tasks
+ * @returns - condition
+ */
 function isContactSelectedInEditor(id, i) {
     let selection = document.getElementById(`user-selection-${id}-${i}`);
     let checkbox = document.getElementById(`user-editor${id}-${i}`);  
@@ -382,7 +395,7 @@ function switchBorderandDropdownOfContacts(id) {
  * @param {*} id - id of editor
  * @param {*} i - index of tasks
  */
-function updateEditorWithSelected(id, i) {
+function updateEditorWithSelectedPriorityBox(id, i) {
     const task = tasks[i]
     let priority = task.priority;
     let urgent = document.getElementById(`urgent-${id}`);
@@ -470,8 +483,12 @@ function showExistingContactsInEditor(id, i, initials, bgUser) {
     }
 }
 
-function addNewContactsInEditor(id) {
+/**
+ * This function opens the add new contact card (-->addTask.js) and toggles the editor dropdown
+ * @param {*} id - id of detailed task
+ * @param {*} i - index of tasks
+ */
+function addNewContactsInEditor() {
     showContactEditor();
-    toggleEditorDropdown(id);
 }
 

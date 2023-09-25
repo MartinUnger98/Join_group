@@ -594,6 +594,13 @@ async function saveNewContact() {
     try {
         const allContactsAsString = JSON.stringify(allContacts);
         await setItem('allContacts', allContactsAsString); // Auf das Ergebnis warten
+
+        if (!editModeOnOrOff) {
+            renderUser();
+        }
+        else{
+            renderUserInEditor(idForEditmode, indexForEditmode);
+        }
         renderUser();
         closeEditorCtc();
     } catch (error) {
