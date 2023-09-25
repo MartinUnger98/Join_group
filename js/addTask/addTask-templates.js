@@ -8,14 +8,14 @@
  */
 function showRenderedContacts(initials, bgUser, i, username) {
     return /*html*/ `
-    <div id="user-selection-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3"> <!-- Klick-Event hinzufügen -->
-        <div class="d-flex align-items-center contact-selection-box ">
-            <div id="contact-${i}" class="initials" style="background-color: ${bgUser}">
+    <div id="user-selection-${i}" class="contact-selection notHide d-flex justify-content-between fs-20 rounded-3"> <!-- Klick-Event hinzufügen -->
+        <div class="d-flex notHide align-items-center contact-selection-box ">
+            <div id="contact-${i}" class="initials notHide" style="background-color: ${bgUser}">
                 <span>${initials}</span>
             </div>
-            <label class="label-contact" for="user-${i}">${username}</label>
+            <label class="label-contact notHide" for="user-${i}">${username}</label>
         </div>
-        <input type="checkbox" id="user-${i}" onclick="toggleCheckbox(${i})">
+        <input class="notHide" type="checkbox" id="user-${i}" onclick="toggleCheckbox(${i})">
     </div>
 `;
 }

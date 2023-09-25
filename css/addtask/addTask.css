@@ -367,6 +367,9 @@ h1 {
     cursor: pointer;
     margin-left: -13px;
 }
+.show {
+    display: block;
+}
 /* ------------------------ add new contact - card--------------------- */
 .add-new-contact-position {
   top: 55px;

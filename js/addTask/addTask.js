@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Holen Sie sich eine Referenz zum Date-Input-Feld
     const dateInput = document.getElementById('date');
     // Holen Sie sich das aktuelle Datum im Format "YYYY-MM-DD"
     const currentDate = new Date().toISOString().split('T')[0];
     // Setzen Sie das min-Attribut auf das aktuelle Datum
     dateInput.setAttribute('min', currentDate);
-  });
-  
+});
+
 /**
  * This functions loads the category options at the beginning and render all Contacts inside of the contact dropdown
  */
@@ -455,7 +455,7 @@ function renderUser() {
         const bgUser = user.bgColor;
         content.innerHTML += showRenderedContacts(initials, bgUser, i, username);
     }
-    
+
 }
 
 /**
@@ -614,4 +614,40 @@ function sortByFirstName() {
     });
 }
 
+
+window.onclick = function (event) {
+    if (event.target.matches('.dropBtnContacts')) {
+        toggleDropdown('contact');
+    }
+    else if (!event.target.matches('.notHide')) {
+        styleContactDropdownBack();
+    }
+    if (event.target.matches('.selectDropdownBtn')) {
+        toggleDropdown('category');
+        document.getElementById('select').style.borderColor = '#29ABE2';
+    }
+    else if (!event.target.matches('.notHide')) {
+        styleSelectDropdownBack();
+    }
+}
+
+
+function styleContactDropdownBack() {
+    let dropdowns = document.getElementById("contacts");
+    let dropdownBtn = document.getElementById('contact_dropdown');
+    let dropArrow1 = document.getElementById('drop_1');
+    dropArrow1.classList.remove('switch');
+    dropdownBtn.classList.remove('border-color');
+    dropdowns.classList.remove("active");
+}
+
+
+function styleSelectDropdownBack() {
+    var dropdowns = document.getElementById("content");
+    let dropdownBtn = document.getElementById('select');
+    let dropArrow1 = document.getElementById('drop_2');
+    dropArrow1.classList.remove('switch');
+    dropdownBtn.style.borderColor = '#D1D1D1';
+    dropdowns.classList.remove("active");
+}
 
