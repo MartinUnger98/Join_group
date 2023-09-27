@@ -162,6 +162,27 @@ h1 {
     height: 24px;
 }
 
+/* -----------von Martin---------- */
+
+.taskUp {
+    rotate: 90deg;
+    z-index: 5;
+}
+
+.taskDown {
+    rotate: 270deg;
+    z-index: 5;
+}
+
+.taskUp:hover, .taskDown:hover{
+    scale: 1.3;
+}
+
+.upDownBox {
+    margin-left: 2px;
+    display: none;
+}
+
 /* dark bg for detailed Task */
 
 .dimmed-bg {

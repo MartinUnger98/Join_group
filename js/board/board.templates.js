@@ -13,9 +13,20 @@ function showAddedTasks(title, category, description, priority, amountOfSubtasks
         return /*html*/ `
         <div id="task-${id}" class="testcard width-column bg-white d-flex flex-column rounded-5" draggable ="true" ondragstart="startDragging(${id})" ondragend="stopDragging(${id})" onclick="openDetailedTask(${id})">
             ${category !== "" ? /*html*/ `
-                <div id="cardPrio-${id}" class="card-priority rounded-3 text-white align-self-start">
-                    <span>${category}</span>
+                <div class="d-flex justify-content-between">
+                    <div id="cardPrio-${id}" class="card-priority rounded-3 text-white align-self-start">
+                        <span>${category}</span>
+                    </div>
+                    <div class="upDownBox">
+                    ${tasks[idToPosition(tasks, id)].status !== "taskDone" ? /*html*/ `
+                        <img src="../img/Vector.svg" alt="" class="taskDown" onclick="getTaskBelow(${id}); doNotClose(event);">
+                        `: ''}
+                    ${tasks[idToPosition(tasks, id)].status !== "toDo" ? /*html*/ `
+                        <img src="../img/Vector.svg" alt="" class="taskUp" onclick="getTaskAbove(${id}); doNotClose(event);">
+                    `: ''}
+                    </div>
                 </div>
+                
             `: ''}
             <div class="d-flex flex-column row-gap-1">
                 <span class="fw-bold detail-color title">${title}</span>

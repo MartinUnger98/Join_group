@@ -578,3 +578,17 @@ function showTask(taskContainer) {
     }
 }
 
+function getTaskBelow(id){
+    currentDraggedElement = id;
+    let currentStatus = tasks[idToPosition(tasks, id)].status;
+    let status = statusTasks[statusTasks.indexOf(currentStatus) + 1];
+    moveTo(status);
+}
+
+ function getTaskAbove(id) {
+    currentDraggedElement = id;
+    let currentStatus = tasks[idToPosition(tasks, id)].status;
+    let status = statusTasks[statusTasks.indexOf(currentStatus) - 1];
+    moveTo(status);
+ }
+

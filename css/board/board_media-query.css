@@ -76,6 +76,9 @@
     .new-headline {
         margin-bottom: 32px;
     }
+    .upDownBox {
+        display: block;
+    }
 }
 @media (max-width: 600px){
     .search-container {
@@ -163,6 +166,7 @@
     .ok-button img {
         width: 13px
     }
+    
 }
 @media (max-width: 420px) {
     h1 {
