@@ -280,6 +280,7 @@ function getContactsFromEditor() {
  * @returns array with background-colors
  */
 function getBgofContactFromEditor(id) {
+    debugger;
     let bgColorsOfContactsFromEditor = [];
     let checkedContact = document.querySelectorAll('.contact-selection.checked-editor');
     checkedContact.forEach(contact => {
@@ -319,8 +320,6 @@ function renderUserInEditor(id, i) {
         const bgUser = user.bgColor;
         content.innerHTML += showAllContactsinEditor(id, i, initials, bgUser, username);
     };
-    updateEditorWithSelectedPriorityBox(id, i);
-    updateEditorWithMatchingContacts(id, i,);  
 }
 
 /**
