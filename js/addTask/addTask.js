@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     dateInput.setAttribute('min', currentDate);
 });
 
+
 /**
  * This functions loads the category options at the beginning and render all Contacts inside of the contact dropdown
  */
@@ -18,7 +19,7 @@ function loadAddTask() {
 
 /**
  *  This function creates vars for elements and and executes the toggle-function
- * @param {*} priority - contains ID of the respective priority box
+ * @param {string} priority - contains ID of the respective priority box
  */
 function togglePriority(priority) {
     let urgent = document.getElementById('urgent');
@@ -30,15 +31,16 @@ function togglePriority(priority) {
     toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg);
 }
 
+
 /**
  * This function starts the toggle for the specififc priority
- * @param {*} priority - refers to togglePriority
- * @param {*} urgent - ID of urgent-priority
- * @param {*} medium - ID of medium-priority 
- * @param {*} urgentImg - ID of urgent-image
- * @param {*} mediumImg - ID of medium-image 
- * @param {*} low - ID of low-priority 
- * @param {*} lowImg - ID of low-image 
+ * @param {string} priority - refers to togglePriority
+ * @param {string} urgent - ID of urgent-priority
+ * @param {string} medium - ID of medium-priority 
+ * @param {string} urgentImg - ID of urgent-image
+ * @param {string} mediumImg - ID of medium-image 
+ * @param {string} low - ID of low-priority 
+ * @param {string} lowImg - ID of low-image 
  */
 function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (priority === 'urgent') {
@@ -51,6 +53,7 @@ function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
         toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg);
     }
 }
+
 
 /**
  * This function toggles the urgent-priority and switch the other priorities back, 
@@ -70,6 +73,7 @@ function toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
+
 /**
  * This function toggles the medium-priority and switch the other priorities back, 
  * if they have been already selected.
@@ -87,6 +91,7 @@ function toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg) {
         switchLowBack(low, lowImg);
     }
 }
+
 
 /**
  * This function toggles the low-priority and switch the other priorities back, 
@@ -106,6 +111,7 @@ function toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
+
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority
  */
@@ -114,6 +120,7 @@ function switchUrgent(urgent, urgentImg) {
     urgent.classList.add('bg-urgent');
     urgentImg.src = '../img/urgent_white.svg';
 }
+
 
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority back
@@ -124,6 +131,7 @@ function switchUrgentBack(urgent, urgentImg) {
     urgentImg.src = '../img/urgent_red.svg';
 }
 
+
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority
  */
@@ -132,6 +140,7 @@ function switchMedium(medium, mediumImg) {
     medium.classList.add('bg-medium');
     mediumImg.src = '../img/medium_white.svg';
 }
+
 
 /**
  * This function switches the backgroundcolors and the img of the medium-priority back
@@ -142,6 +151,7 @@ function switchMediumBack(medium, mediumImg) {
     mediumImg.src = '../img/medium_yellow.svg';
 }
 
+
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority
  */
@@ -150,6 +160,7 @@ function switchLow(low, lowImg) {
     low.classList.add('bg-low');
     lowImg.src = '../img/low_white.svg';
 }
+
 
 /**
  * This function switches the backgroundcolors and the img of the low-priority back
@@ -160,9 +171,10 @@ function switchLowBack(low, lowImg) {
     lowImg.src = '../img/low_green.svg';
 }
 
+
 /**
  * This function sets the vars of the two dropdowns.
- * @param {*} dropDown - specific value for the dropdown; referred to function showDrowns
+ * @param {string} dropDown - specific value for the dropdown; referred to function showDrowns
  */
 function toggleDropdown(dropDown) {
     let category = document.getElementById('content');
@@ -172,12 +184,13 @@ function toggleDropdown(dropDown) {
     showDropdowns(dropDown, category, assign, borderContact, borderCategory);
 }
 
+
 /**
  * This function execute the toggle for the specific 
- * @param {*} category - ID of dropdown content of category
- * @param {*} assign - ID of dropdown content of contacts
- * @param {*} borderContact - ID of contact-div; used to switch border-color
- * @param {*} borderCategory - ID of category - div; used to switch border-color
+ * @param {string} category - ID of dropdown content of category
+ * @param {string} assign - ID of dropdown content of contacts
+ * @param {string} borderContact - ID of contact-div; used to switch border-color
+ * @param {string} borderCategory - ID of category - div; used to switch border-color
  */
 
 function showDropdowns(dropDown, category, assign, borderContact, borderCategory) {
@@ -191,6 +204,7 @@ function showDropdowns(dropDown, category, assign, borderContact, borderCategory
     }
 }
 
+
 /**
  * This function toggles the visibility of the dropdown-content of contacts (active)
  * and the border-color of the contact-div
@@ -200,6 +214,7 @@ function toggleStatusAndBorderOfContact(assign, borderContact) {
     borderContact.classList.toggle('border-color');
 }
 
+
 /**
  * This function toggles the visibility of the dropdown-content of category (active)
  * and the border-color of the category-div
@@ -208,6 +223,7 @@ function toggleStatusAndBorderOfCategory(category, borderCategory) {
     category.classList.toggle('active');
     borderCategory.classList.toggle('border-color');
 }
+
 
 /**
  * This function scales the arrow-image the specific dropDown
@@ -224,9 +240,10 @@ function switchDropDownArrow(dropDown) {
     }
 }
 
+
 /**
  * This function loads the categories of the categories-array
- * @param {*} selectedCategory - selected "li"-text of the specific category; referred to updateName();
+ * @param {string} selectedCategory - selected "li"-text of the specific category; referred to updateName();
  */
 function addCategory(selectedCategory) {
     let option = document.getElementById('options');
@@ -240,9 +257,10 @@ function addCategory(selectedCategory) {
     }
 }
 
+
 /**
  * This function gets the innerText of the li-item and removes the 'active'-class
- * @param {*} selectedLi - "li" of specific category;
+ * @param {string} selectedLi - "li" of specific category;
  */
 function updateName(selectedLi) {
     let select = document.getElementById('select');
@@ -252,6 +270,7 @@ function updateName(selectedLi) {
     addCategory(selectedLi.innerText);
     switchBorderandDropdown();
 }
+
 
 /**
  * This functions switches the dropdownicon and removes the border-color for the category dropdown.
@@ -264,6 +283,7 @@ function switchBorderandDropdown() {
     dropDown.classList.remove('switch');
 }
 
+
 /**
  * This functions switches the dropdownicon and removes the border-color for the contacts dropdown.
  * Used when one category got selected
@@ -274,6 +294,7 @@ function switchBorderandDropdownOfContacts() {
     border.classList.remove('border-color');
     dropDown.classList.remove('switch');
 }
+
 
 /**
  * This function creates a new subtask-input-field
@@ -287,6 +308,7 @@ function openNewSubtask() {
     addBorderColor();
 }
 
+
 /**
  * This functions adds a new border-color to the subtask-div
  */
@@ -294,6 +316,7 @@ function addBorderColor() {
     let borderColor = document.getElementById('subtask-creator');
     borderColor.classList.add('border-color');
 }
+
 
 /**
  * This function restores the previous subtask-input-field
@@ -310,6 +333,7 @@ function restoreOldSubtask() {
     removeBorderColor();
 }
 
+
 /**
  * This function removes the border-color of the subtask-div
  */
@@ -317,6 +341,7 @@ function removeBorderColor() {
     let borderColor = document.getElementById('subtask-creator');
     borderColor.classList.remove('border-color');
 }
+
 
 /**
  * This function creates the added subtask
@@ -334,10 +359,11 @@ function addSubtask() {
     restoreOldSubtask();
 }
 
+
 /**
  * This function creates an edit-section for the specific subtask
- * @param {*} subtaskID - ID of specific added subtask
- * @param {*} input - value of old subtask
+ * @param {string} subtaskID - ID of specific added subtask
+ * @param {string} input - value of old subtask
  * showInputEditor() -> addTask-templates.js
  */
 function openInputForEdit(subtaskID, input) {
@@ -346,10 +372,11 @@ function openInputForEdit(subtaskID, input) {
     content.innerHTML += showInputEditor(subtaskID, input);
 }
 
+
 /**
  * This function updates the new input value.
- * @param {*} subtaskID - ID of new subtask-div 
- * @param {*} inputID - ID of new input
+ * @param {string} subtaskID - ID of new subtask-div 
+ * @param {string} inputID - ID of new input
  */
 function updateInputValue(subtaskID, inputID) {
     const content = document.getElementById(`${subtaskID}`);
@@ -358,9 +385,10 @@ function updateInputValue(subtaskID, inputID) {
     content.innerHTML += showUpdatedInputValue(newValue, subtaskID);
 }
 
+
 /**
  * This functions deletes the added subtask permanently
- * @param {*} subtaskID 
+ * @param {string} subtaskID 
  */
 function deleteSubtask(subtaskID) {
     let subtaskElement = document.getElementById(subtaskID);
@@ -368,6 +396,7 @@ function deleteSubtask(subtaskID) {
         subtaskElement.remove();
     }
 }
+
 
 /**
  * This function is used for the clear-button and clears all input of addTask
@@ -383,6 +412,7 @@ function allMightyClear() {
     clearContacts();
 }
 
+
 /**
  * This function restores the priorty buttons
  */
@@ -396,14 +426,15 @@ function clearPriorityButtons() {
     switchPriorityButtonsToNormal(urgent, medium, low, urgentImg, mediumImg, lowImg);
 }
 
+
 /**
  * This function switches every single priority-button back to normal, in case they were seleceted
- * @param {*} urgent - id of priority-box urgent
- * @param {*} medium - id of priority-box medium
- * @param {*} low - id of priority-box low
- * @param {*} urgentImg - id of img urgent
- * @param {*} mediumImg - id of img medium
- * @param {*} lowImg - id of img loe
+ * @param {string} urgent - id of priority-box urgent
+ * @param {string} medium - id of priority-box medium
+ * @param {string} low - id of priority-box low
+ * @param {string} urgentImg - id of img urgent
+ * @param {string} mediumImg - id of img medium
+ * @param {string} lowImg - id of img loe
  */
 function switchPriorityButtonsToNormal(urgent, medium, low, urgentImg, mediumImg, lowImg) {
     if (urgent.classList.contains('bg-urgent')) {
@@ -416,6 +447,7 @@ function switchPriorityButtonsToNormal(urgent, medium, low, urgentImg, mediumImg
         switchLowBack(low, lowImg);
     }
 }
+
 
 /**
  * The function clears the category dropdown
@@ -441,6 +473,7 @@ function clearContacts() {
     moveSelectedContacts();
 }
 
+
 /**
  * This function loads all existing contacts inside of the contact dropdown
  */
@@ -458,9 +491,10 @@ function renderUser() {
 
 }
 
+
 /**
  * This function creates the initials of each Contact
- * @param {*} name - name of contact from tasks
+ * @param {string} name - name of contact from tasks
  * @returns - initial of firstname and initial of lastname (if existing)
  */
 function getInitials(name) {
@@ -470,9 +504,10 @@ function getInitials(name) {
     return `${firstNameInitial}${lastNameInitial}`;
 }
 
+
 /**
  * This function gets the selected contact highlighted
- * @param {*} id - number of each contact-div
+ * @param {number} id - number of each contact-div
  */
 function toggleCheckbox(id) {
     let selection = document.getElementById(`user-selection-${id}`);
@@ -484,6 +519,7 @@ function toggleCheckbox(id) {
         moveSelectedContacts();
     }
 }
+
 
 /**
  * This function moves the selected contacts into the selctedContacts-div.
@@ -505,9 +541,10 @@ function moveSelectedContacts() {
     updateCategoryVisibility(contactsAdded, category);
 }
 
+
 /**
  * This function sets a condition
- * @param {*} index 
+ * @param {number} index 
  * @returns - if classlist 'checked' is added and checkbox is checked
  */
 function isContactSelected(index) {
@@ -516,11 +553,12 @@ function isContactSelected(index) {
     return selection.classList.contains('checked') && checkbox.checked;
 }
 
+
 /**
  * This function creates the icon (initials) of the selected contact and adds it to the div underneath
- * @param {*} selectedContactsDiv - div for selected contacts
- * @param {*} user - array of all Contacts
- * @param {*} index - index of each contact
+ * @param {string} selectedContactsDiv - div for selected contacts
+ * @param {string} user - array of all Contacts
+ * @param {number} index - index of each contact
  */
 function addSelectedContact(selectedContactsDiv, user, index) {
     const bgUser = user.bgColor;
@@ -530,11 +568,12 @@ function addSelectedContact(selectedContactsDiv, user, index) {
     `;
 }
 
+
 /**
  * This function removes the class 'category-top' if no contact is added.
  * Used for position absolute of category dropdown (Only used for responsive)
- * @param {*} contactsAdded - status of added contact
- * @param {*} category - dropdown id of category
+ * @param {string} contactsAdded - status of added contact
+ * @param {string} category - dropdown id of category
  */
 function updateCategoryVisibility(contactsAdded, category) {
     if (!contactsAdded) {
@@ -545,13 +584,16 @@ function updateCategoryVisibility(contactsAdded, category) {
 
 /**
  * This function makes sure that the detailed Task is still clickable
- * @param {*} event 
+ * @param {symbol} event 
  */
 function doNotClose(event) {
     event.stopPropagation();
 }
 
 //------------------------------add new Contact-----------------------------------
+/**
+ * This function opens the editor for adding a new contact
+ */
 function showContactEditor() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
@@ -565,6 +607,10 @@ function showContactEditor() {
     scrollToTop();
 }
 
+
+/**
+ * This function closes the "Add new Contact"-editor
+ */
 function closeEditorCtc() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
@@ -576,6 +622,10 @@ function closeEditorCtc() {
     }, 100);
 }
 
+
+/**
+ * This function adds a new contact
+ */
 async function addContact() {
     const nameInput = document.getElementById("name").value;
     const emailInput = document.getElementById("email").value;
@@ -590,6 +640,10 @@ async function addContact() {
     await saveNewContact();
 }
 
+
+/**
+ * This function saves a nw contact
+ */
 async function saveNewContact() {
     try {
         const allContactsAsString = JSON.stringify(allContacts);
@@ -607,12 +661,23 @@ async function saveNewContact() {
         console.error('Fehler beim Speichern des Kontakts:', error);
     }
 }
+
+
+/**
+ * This function scrolls to the top, whenever the "Add new contact"-editor is shown
+ */
 function scrollToTop() {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
 }
+
+
+/**
+ * This function sorts the all contacts
+ * @returns 
+ */
 function sortByFirstName() {
     return allContacts.sort(function (a, b) {
         const firstNameA = a.name.split(' ')[0];
@@ -622,6 +687,10 @@ function sortByFirstName() {
 }
 
 
+/**
+ * This function allows to close one of the dropdowns, when you click outside of the dropdwon
+ * @param {symbol} event 
+ */
 window.onclick = function (event) {
     if (event.target.matches('.dropBtnContacts')) {
         toggleDropdown('contact');
@@ -638,7 +707,9 @@ window.onclick = function (event) {
     }
 }
 
-
+/**
+ * This function switches the dropdown of contacts back (closing)
+ */
 function styleContactDropdownBack() {
     let dropdowns = document.getElementById("contacts");
     let dropdownBtn = document.getElementById('contact_dropdown');
@@ -649,6 +720,9 @@ function styleContactDropdownBack() {
 }
 
 
+/**
+ * This function switches the dropdown of category back (closing)
+ */
 function styleSelectDropdownBack() {
     var dropdowns = document.getElementById("content");
     let dropdownBtn = document.getElementById('select');

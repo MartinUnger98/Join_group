@@ -1,9 +1,9 @@
 /**
  * This function creates the contact selections inside of the dropdown
- * @param {*} initials - initials of contact
- * @param {*} bgUser - backgroundcolor of contact
- * @param {*} i - index of contact
- * @param {*} username - name of contact
+ * @param {string} initials - initials of contact
+ * @param {string} bgUser - backgroundcolor of contact
+ * @param {number} i - index of contact
+ * @param {string} username - name of contact
  * @returns - selection div
  */
 function showRenderedContacts(initials, bgUser, i, username) {
@@ -39,8 +39,8 @@ function showNewSubtask() {
 
 /**
  * This function creates new added subtasks
- * @param {*} subtaskID - ID of specific added subtask
- * @param {*} input - value of added subtask
+ * @param {string} subtaskID - ID of specific added subtask
+ * @param {string} input - value of added subtask
  * @returns 
  */
 function showAddedSubtasks(subtaskID, input) {
@@ -60,9 +60,8 @@ function showAddedSubtasks(subtaskID, input) {
 
 /**
  * This function creates editor for the specific added subtask
- * @param {*} subtaskID -ID of specific added subtask 
- * @param {*} input - value of added subtask
- * @returns 
+ * @param {string} subtaskID -ID of specific added subtask 
+ * @param {string} input - value of added subtask
  */
 function showInputEditor(subtaskID, input) {
     return /*html*/ `
@@ -83,9 +82,8 @@ function showInputEditor(subtaskID, input) {
 
 /**
  * This function creates the edited subtask
- * @param {*} newValue - value of editor-input
- * @param {*} subtask - ID of edited subtask
- * @returns 
+ * @param {string} newValue - value of editor-input
+ * @param {string} subtask - ID of edited subtask
  */
 function showUpdatedInputValue(newValue, subtask) {
     return /*html*/ `
@@ -102,6 +100,9 @@ function showUpdatedInputValue(newValue, subtask) {
 
 // ------------------------------- add new contact - card -------------------------------------------
 
+/**
+ * Template of subtask-editor
+ */
 function showNewContactEditor() {
     return /*html*/ `
         <div class="addContactLeft">

@@ -2,11 +2,11 @@
 
 /**
  * This function creates the specific task
- * @param {*} title - 'title' of tasks
- * @param {*} category - 'category' of tasks
- * @param {*} description - 'description' of tasks
- * @param {*} priority - 'priority-img' of tasks
- * @param {*} i - number of task
+ * @param {string} title - 'title' of tasks
+ * @param {string} category - 'category' of tasks
+ * @param {string} description - 'description' of tasks
+ * @param {string} priority - 'priority-img' of tasks
+ * @param {number} i - number of task
  * @returns - created task
  */
 function showAddedTasks(title, category, description, priority, amountOfSubtasks, id, contact) {
@@ -59,12 +59,12 @@ function showAddedTasks(title, category, description, priority, amountOfSubtasks
     `;
 }
 
+
 /**
  * This function creats for the drag&drop a visible task
- * @param {*} id - id of emptyTask
+ * @param {number} id - id of emptyTask
  * @returns  - div 
  */
-
 function addEmptytask(id) {
     return /*html*/ `
         <div id="${id}" class="rounded-5 emptyTask d-none"></div> 
@@ -75,14 +75,14 @@ function addEmptytask(id) {
 
 /**
  * This function creates the specific detailed task
- * @param {*} title - 'title' of tasks
- * @param {*} category - 'category' of tasks
- * @param {*} description - 'description' of tasks
- * @param {*} priority - 'priority' of tasks
- * @param {*} prioImg - 'priority-img' of tasks
- * @param {*} date - 'date' of tasks
- * @param {*} i - number of task (detailed task)
- * @param {*} subtask - subtask-array of task
+ * @param {string} title - 'title' of tasks
+ * @param {string} category - 'category' of tasks
+ * @param {string} description - 'description' of tasks
+ * @param {string} priority - 'priority' of tasks
+ * @param {string} prioImg - 'priority-img' of tasks
+ * @param {string} date - 'date' of tasks
+ * @param {number} i - number of task (detailed task)
+ * @param {string} subtask - subtask-array of task
  * @returns - created detailed task
  */
 function showDetailedTask(title, category, description, priority,prioImg, date, i, subtask, id, contact) {
@@ -146,12 +146,13 @@ function showDetailedTask(title, category, description, priority,prioImg, date, 
     `;
 }
 
+
 /**
  * This function creates all subtasks inside the array "subtask"
- * @param {*} subtaskItem - subtask-array 
- * @param {*} i - specific number of detailed task (task) -used as ID
- * @param {*} j - specific number of subtask
- * @param {*} subtaskStatus - 
+ * @param {string} subtaskItem - subtask-array 
+ * @param {number} i - specific number of detailed task (task) -used as ID
+ * @param {number} j - specific number of subtask
+ * @param {string} subtaskStatus - 
  * @returns created subtask
  */
 function showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus) {
@@ -163,8 +164,11 @@ function showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus) {
     `;
 }
 
-// ----------------------- board - editor of detailedTask ---------------------------
 
+// ----------------------- board - editor of detailedTask ---------------------------
+/**
+ * Template for the editor
+ */
 function showDetailedCardEditor(title, description, formattedDate, id, i) {
     return /*html*/ `
         <form id="detailedCardEditor-${id}" class="d-flex flex-column row-gap-4" onsubmit="savedEditedTask(${id}, ${i}); return false">
@@ -247,6 +251,10 @@ function showDetailedCardEditor(title, description, formattedDate, id, i) {
     `;
 }
 
+
+/**
+ * Template for the existing subtasks in editor
+ */
 function showExistingSubtasksInEditor(sub, id, j) {
     return /*html*/ `
         <div id="subtask-edit-${id}-${j}" class="added-subtask-container">
@@ -263,7 +271,10 @@ function showExistingSubtasksInEditor(sub, id, j) {
 }
 
 
-
+/**
+ * Template for new added subtasks in editor
+ * @param {number} id - id of task-card
+ */
 function showNewSubtaskInEditor(id) {
     return /*html*/ `
         <div class="d-flex align-items-center justify-content-between">
@@ -278,6 +289,12 @@ function showNewSubtaskInEditor(id) {
     `;
 }
 
+
+/**
+ * Template for added subtasks in editor
+ * @param {string} subtaskID - id of new added subtask
+ * @param {string} input - value of new added subtask
+ */
 function showAddedSubtasksInEditor(subtaskID, input) {
     return /*html*/ `
         <div id="${subtaskID}" class="added-subtask-container">
@@ -293,6 +310,12 @@ function showAddedSubtasksInEditor(subtaskID, input) {
     `;
 }
 
+
+/**
+ * Template for subtask editor in card editor
+ * @param {string} subtaskID - id of subtask
+ * @param {string} input - value of edited subtask
+ */
 function showInputEditorInEditor(subtaskID, input) {
     return /*html*/ `
         <div class="edit-box d-flex justify-content-between align-items-center bg-white" id="${subtaskID}">
@@ -310,6 +333,12 @@ function showInputEditorInEditor(subtaskID, input) {
     `;
 }
 
+
+/**
+ * Template for updated subtask in editor
+ * @param {string} newValue - new value of subtask
+ * @param {string} subtask - 
+ */
 function showUpdatedInputValueInEditor(newValue, subtask) {
     return /*html*/ `
     <div class="added-subtask-editor d-flex justify-content-between align-items-center rounded-3">
@@ -323,6 +352,15 @@ function showUpdatedInputValueInEditor(newValue, subtask) {
 `;
 }
 
+
+/**
+ * Template for chosen contacts in editor
+ * @param {number} id - ID of task-card
+ * @param {number} i - index of task-card
+ * @param {string} initials - initials of added contacts
+ * @param {string} bgUser - backgroundcolor of initials
+ * @param {string} username - name of contact
+ */
 function showAllContactsinEditor(id, i, initials, bgUser, username) {
     return  /*html*/ `
         <div id="user-selection-${id}-${i}" class="contact-selection d-flex justify-content-between fs-20 rounded-3 fs-responsive"> <!-- Klick-Event hinzufügen -->
