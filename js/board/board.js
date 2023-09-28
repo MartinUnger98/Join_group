@@ -8,6 +8,7 @@ function loadBoard() {
     allMightyRender();
 }
 
+
 /**
  * This function renders every task in each column
  */
@@ -17,6 +18,7 @@ function allMightyRender() {
     renderTasks('awaitFeedback');
     renderTasks('taskDone');
 }
+
 
 /**
  * This function creates tasks inside of each column
@@ -44,10 +46,12 @@ function renderTasks(status) {
     checkColumns(taskStatus, status);
     content.innerHTML += addEmptytask('emptyTask' + status);
 }
+
+
 /**
  * This function checks, if a task exists in one of the columns
- * @param {*} array - taskstatus
- * @param {*} status - one of the columns
+ * @param {array} array - taskstatus
+ * @param {string} status - one of the columns
  */
 function checkColumns(array, status) {
     let toDo = document.getElementById('toDo');
@@ -68,6 +72,7 @@ function checkColumns(array, status) {
     }
 }
 
+
 /**
  * This function creates the no-task-div
  */
@@ -80,9 +85,10 @@ function loadNoTask(column, message) {
     `;
 }
 
+
 /**
  * This function opens the specific detailed task
- * @param {*} id - id of task
+ * @param {number} id - id of task
  */
 function openDetailedTask(id) {
     let position = idToPosition(tasks, id);
@@ -90,10 +96,11 @@ function openDetailedTask(id) {
     pushDetailedTaskToMiddle();
 }
 
+
 /**
  * This function gets the position of a task
- * @param {*} arr 
- * @param {*} id 
+ * @param {array} arr 
+ * @param {number} id 
  * @returns 
  */
 function idToPosition(arr, id) {
@@ -106,6 +113,7 @@ function idToPosition(arr, id) {
     }
     return position;
 }
+
 
 /**
  * This function determine the backgroundcolor of the specific task
@@ -121,11 +129,12 @@ function determineCategoryColor(category, id) {
     }
 }
 
+
 /**
  * This function renders the contacts of task
- * @param {*} task - array task[i]
- * @param {*} contact - array tasks[i].contact
- * @param {*} id - id of tasks
+ * @param {string} task - array task[i]
+ * @param {string} contact - array tasks[i].contact
+ * @param {number} id - id of tasks
  */
 function renderSelectedContacts(task, contact, id) {
     let content = document.getElementById(`selected-contacts-box-${id}`);
@@ -143,9 +152,10 @@ function renderSelectedContacts(task, contact, id) {
     }
 }
 
+
 /**
  * This function renders the specifc detailed task for each rendered task
- * @param {*} i - speicfic number of detailed task (task) - used as id
+ * @param {number} i - speicfic number of detailed task (task) - used as id
  */
 function renderDetailedTask(i, id) {
     let content = document.getElementById('detailedTask');
@@ -166,11 +176,12 @@ function renderDetailedTask(i, id) {
     renderSelectedContactsInDetailedTask(task, contact, id);
 }
 
+
 /**
  * This function renders all contacts of task in the detailed card
- * @param {*} task - array task[i]
- * @param {*} contact - array tasks[i].contact
- * @param {*} id - id of tasks
+ * @param {string} task - array task[i]
+ * @param {string} contact - array tasks[i].contact
+ * @param {number} id - id of tasks
  */
 function renderSelectedContactsInDetailedTask(task, contact, id) {
     let content = document.getElementById(`contacts-detailed-${id}`);
@@ -183,12 +194,13 @@ function renderSelectedContactsInDetailedTask(task, contact, id) {
     }
 }
 
+
 /**
  * This function creates the selected contacts in the detailed task
- * @param {*} contact - tasks.contacts
- * @param {*} bgColor - task.contactsBg
- * @param {*} i - index of contact-array
- * @param {*} content - div `contacts-detailed-${id}`
+ * @param {string} contact - tasks.contacts
+ * @param {string} bgColor - task.contactsBg
+ * @param {number} i - index of contact-array
+ * @param {string} content - div `contacts-detailed-${id}`
  */
 function showSelectedContactsInDetailedTask(contact, bgColor, i, content) {
     const selectedContact = contact[i];
@@ -202,9 +214,10 @@ function showSelectedContactsInDetailedTask(contact, bgColor, i, content) {
             `;
 }
 
+
 /**
  * This function formates the date
- * @param {*} dateString - date-value from array-tasks
+ * @param {string} dateString - date-value from array-tasks
  * @returns - formatted date
  */
 function formatDate(dateString) {
@@ -214,6 +227,7 @@ function formatDate(dateString) {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
 }
+
 
 /**
  * This function renders all existing subtasks
@@ -235,10 +249,11 @@ function renderSubtasks(subtask, i, id) {
     }
 }
 
+
 /**
  * This functions updates the checkboxes
- * @param {*} i - index of task
- * @param {*} id - id of task
+ * @param {number} i - index of task
+ * @param {number} id - id of task
  */
 function addChangeListenersToCheckboxes(i, id) {
     const checkboxes = document.querySelectorAll(`#subtasks-${i} input[type="checkbox"]`);
@@ -250,10 +265,11 @@ function addChangeListenersToCheckboxes(i, id) {
     });
 }
 
+
 /**
  * This function checks if a checkbox is checked
- * @param {*} i - index of task
- * @param {*} id - id of task
+ * @param {number} i - index of task
+ * @param {number} id - id of task
  */
 function updateCheckedSubtasksCount(i, id) {
     const checkboxes = document.querySelectorAll(`#subtasks-${i} input[type="checkbox"]`);
@@ -271,9 +287,10 @@ function updateCheckedSubtasksCount(i, id) {
     saveTasks();
 }
 
+
 /**
  * This function updates the progressbar of a task
- * @param {*} id - id of task
+ * @param {number} id - id of task
  */
 function updateProgressbar(id) {
     const checkedSubtasksSpan = document.getElementById(`checked_subtasks-${id}`);
@@ -288,6 +305,7 @@ function updateProgressbar(id) {
     }
 }
 
+
 /**
  * This function pushes the detailed Task from right to the middle
  */
@@ -301,6 +319,7 @@ function pushDetailedTaskToMiddle() {
     scrollToTop();
 }
 
+
 /**
  * This function shows the dark bachground by removing d-none
  */
@@ -309,6 +328,7 @@ function showHiddenBackground() {
     bg.classList.remove('d-none');
 }
 
+
 /**
  * This function hides the dark background by adding d-none
  */
@@ -316,6 +336,7 @@ function hideBackground() {
     let bg = document.getElementById('bg');
     bg.classList.add('d-none');
 }
+
 
 /**
  * This function pushes the detailed Task back to the left
@@ -332,6 +353,7 @@ function hideTasksOfBoard() {
     }
 }
 
+
 /**
  * This function pushes the addTask-card to the right
  */
@@ -345,6 +367,7 @@ function hideAddTask() {
     allMightyClear();
 }
 
+
 /**
  * This function pushes the detailed task card to the right
  */
@@ -357,13 +380,15 @@ function hideDetailedTask() {
     hideBackground();
 }
 
+
 /**
  * This function makes sure that the detailed Task is still clickable
- * @param {*} event 
+ * @param {symbol} event 
  */
 function doNotClose(event) {
     event.stopPropagation();
 }
+
 
 /**
  * This function is used to scroll up to the top of each detailed task
@@ -375,9 +400,10 @@ function scrollToTop() {
     });
 }
 
+
 /**
  * This function deletes the specifif task from the toDo-column und updates the local Storage
- * @param {*} i - specific number of detailed task (task) - used as id
+ * @param {number} i - specific number of detailed task (task) - used as id
  */
 function deleteNote(i) {
     hideDetailedTask();
@@ -385,6 +411,7 @@ function deleteNote(i) {
     saveTasks();
     loadBoard();
 }
+
 
 /**
  * This function starts the dragging-function a task
@@ -396,18 +423,20 @@ function startDragging(id) {
     getCurrentdragObjektStatus(id);
 }
 
+
 /**
  * This function stops the dragging-function of a task
- * @param {*} id - id of task
+ * @param {number} id - id of task
  */
 function stopDragging(id) {
     stopRotateTask(id);
     searchTask();
 }
 
+
 /**
  * This function gets the dragging position of a task
- * @param {*} id - id of task
+ * @param {number} id - id of task
  */
 function getCurrentdragObjektStatus(id) {
     let position = idToPosition(tasks, id);
@@ -415,9 +444,10 @@ function getCurrentdragObjektStatus(id) {
     showEmptyTasks(currentDragObjektStatus);
 }
 
+
 /**
  * This function shows the hidden tasks while dragging
- * @param {*} currentDragObjektStatus - task position status
+ * @param {string} currentDragObjektStatus - task position status
  */
 function showEmptyTasks(currentDragObjektStatus) {
     statusTasks.forEach(sTask => {
@@ -427,17 +457,19 @@ function showEmptyTasks(currentDragObjektStatus) {
     });
 }
 
+
 /**
  * This function rotates a task while dragging
- * @param {*} id - id of task
+ * @param {number} id - id of task
  */
 function rotateTask(id) {
     document.getElementById("task-" + id).classList.add("rotateTask");
 }
 
+
 /**
  * This function stops the rotation of a task
- * @param {*} id - id of task
+ * @param {number} id - id of task
  */
 function stopRotateTask(id) {
     document.getElementById("task-" + id).classList.remove("rotateTask");
@@ -446,17 +478,19 @@ function stopRotateTask(id) {
     });
 }
 
+
 /**
  * This function allows the dragging
- * @param {*} event 
+ * @param {symbol} event 
  */
 function allowDrop(event) {
     event.preventDefault();
 }
 
+
 /**
  * This function sets the move position of a dragged task
- * @param {*} status - status of task
+ * @param {string} status - status of task
  */
 function moveTo(status) {
     let position = idToPosition(tasks, currentDraggedElement);
@@ -464,6 +498,7 @@ function moveTo(status) {
     allMightyRender();
     saveTasks();
 }
+
 
 /**
  * This function pushes the addTask-card to the left
@@ -478,6 +513,7 @@ function showHiddenAddTask() {
     scrollToTop();
 }
 
+
 document.addEventListener('DOMContentLoaded', function () {
     enableHorizontalScroll('scrollContainer1');
     enableHorizontalScroll('scrollContainer2');
@@ -486,10 +522,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+
 /**
  * This function allows the horizontal scroll of tasks. 
  * Used for responsive
- * @param {*} containerId - id of columns
+ * @param {string} containerId - id of columns
  * @returns 
  */
 function enableHorizontalScroll(containerId) {
@@ -528,6 +565,7 @@ function enableHorizontalScroll(containerId) {
     });
 }
 
+
 /**
  * This function searches the specific task
  */
@@ -540,9 +578,10 @@ function searchTask() {
     }
 }
 
+
 /**
  * This function filters the task titles
- * @param {*} input - id of input
+ * @param {string} input - id of input
  */
 function filterTasksByTitle(input) {
     for (let i = 0; i < tasks.length; i++) {
@@ -557,9 +596,10 @@ function filterTasksByTitle(input) {
     }
 }
 
+
 /**
  * This function hides all task, which are not matching
- * @param {*} taskContainer - id of task
+ * @param {string} taskContainer - id of task
  */
 function hideTask(taskContainer) {
     if (taskContainer !== null) {
@@ -568,9 +608,10 @@ function hideTask(taskContainer) {
     }
 }
 
+
 /**
  * This function show the matching tasks
- * @param {*} taskContainer - id of task
+ * @param {string} taskContainer - id of task
  */
 function showTask(taskContainer) {
     if (taskContainer !== null) {
@@ -578,6 +619,11 @@ function showTask(taskContainer) {
     }
 }
 
+
+/**
+ * This function moves a task to the next column below
+ * @param {number} id - id of task-card
+ */
 function getTaskBelow(id){
     currentDraggedElement = id;
     let currentStatus = tasks[idToPosition(tasks, id)].status;
@@ -585,6 +631,11 @@ function getTaskBelow(id){
     moveTo(status);
 }
 
+
+/**
+ * This function moves a task card to the next column above
+ * @param {*} id - id of task-card
+ */
  function getTaskAbove(id) {
     currentDraggedElement = id;
     let currentStatus = tasks[idToPosition(tasks, id)].status;
