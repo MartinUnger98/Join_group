@@ -154,7 +154,7 @@
 }
 
 .task-creation-container {
-    margin-bottom: 100px;
+    margin-bottom: 24px;
 }
 .task-content-box-left {
     width: 390px;
@@ -327,6 +327,13 @@
 }
 .mb-32 {
     margin-bottom: 32px;
+}
+.subtask-box {
+    height: 80px;
+    overflow-y: scroll;
+}
+.subtask-box::-webkit-scrollbar {
+    display: none;
 }
 .subtask-add {
     padding: 2px 16px;

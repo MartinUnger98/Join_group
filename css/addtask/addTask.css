@@ -15,7 +15,7 @@ h1 {
 }
 
 .task-creation-container {
-    margin-bottom: 100px;
+    margin-bottom: 24px;
 }
 .task-content-box-left {
     width: 390px;
@@ -196,6 +196,13 @@ h1 {
     padding: 2px 16px;
     border: 1px solid #D1D1D1;
     cursor: pointer;
+}
+.subtask-box {
+    height: 80px;
+    overflow-y: scroll;
+}
+.subtask-box::-webkit-scrollbar {
+    display: none;
 }
 #subtask {
     border: 0;
