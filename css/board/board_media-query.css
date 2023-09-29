@@ -177,5 +177,34 @@
 @media (max-width: 380px) {
     .new-headline-search {
         padding-right: 15px;
+        width: auto;
+    }
+    .search-input {
+        width: 100%;
+    }
+}
+@media (max-height: 905px) {
+    .addTask-responsive-height {
+        height: 600px;
+        overflow-y: scroll;
+    }
+    .addTask-responsive-height::-webkit-scrollbar {
+        display: none;
+    }
+    .addTask-section {
+        top: 70px;
+    }
+    .detailed-card-responsive-height {
+        height: 510px;
+        overflow-y: scroll;
+    }
+    .detailed-card-responsive-height::-webkit-scrollbar {
+        display: none;
+    }
+    .detailed-task {
+        height: 600px;
+    }
+    .detailed-card-editor-responsive-height {
+        height: 510px;
     }
 }

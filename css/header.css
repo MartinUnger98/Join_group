@@ -2,7 +2,7 @@ body {
     font-family: 'Inter', sans-serif !important;
 }
 header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;

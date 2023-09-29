@@ -313,7 +313,6 @@ function getContactsFromEditor() {
  * @returns array with background-colors
  */
 function getBgofContactFromEditor(id) {
-    debugger;
     let bgColorsOfContactsFromEditor = [];
     let checkedContact = document.querySelectorAll('.contact-selection.checked-editor');
     checkedContact.forEach(contact => {

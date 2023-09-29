@@ -87,7 +87,7 @@ function addEmptytask(id) {
  */
 function showDetailedTask(title, category, description, priority,prioImg, date, i, subtask, id, contact) {
     return /*html */ `
-        <div id="detailed-card-${id}" class="d-flex flex-column row-gap-4">
+        <div id="detailed-card-${id}" class="d-flex flex-column row-gap-4 detailed-card-responsive-height">
             <div class="d-flex justify-content-between align-items-center">
                 <div id="prio-detail-${i}" class="detailed-priority rounded-3 text-white">
                     <span>${category}</span>
@@ -171,7 +171,7 @@ function showSubtasksOfDetailedTask(subtaskItem, i, j, subtaskStatus) {
  */
 function showDetailedCardEditor(title, description, formattedDate, id, i) {
     return /*html*/ `
-        <form id="detailedCardEditor-${id}" class="d-flex flex-column row-gap-4" onsubmit="savedEditedTask(${id}, ${i}); return false">
+        <form id="detailedCardEditor-${id}" class="d-flex flex-column row-gap-4 detailed-card-editor-responsive-height" onsubmit="savedEditedTask(${id}, ${i}); return false">
             <div class="d-flex justify-content-end">
                 <div class="clear-button d-flex align-items-center justify-content-center rounded-5 ms-auto" onclick="hideDetailedTask()">
                     <img src="../img/clear.svg" alt="clear" class="clear-img">
