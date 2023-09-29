@@ -451,9 +451,6 @@
     display: none;
     z-index: -1;
   }
-  header {
-    z-index: 2;
-  }
   .headlineContact2 {
     margin-bottom: 0;
   }
