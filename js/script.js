@@ -11,6 +11,10 @@ let indexForEditmode;
 let editModeOnOrOff = false;
 
 
+/**
+ * 
+ * load all data, templates and specific information on specific views
+ */
 async function init() {
     await includeHTML();
     await loadData();
@@ -22,6 +26,11 @@ async function init() {
     }
 }
 
+
+/**
+ * 
+ * highlight the current view in the menu and removes the hover effect 
+ */
 function setCurrentViewInMenu() {
     let currentView = window.location.pathname;
     let lastSlashIndex = currentView.lastIndexOf('/');
@@ -31,6 +40,11 @@ function setCurrentViewInMenu() {
     document.getElementById("menu-" + id).classList.add('menu-sectionsNoHover');
 }
 
+
+/**
+ * 
+ * load all data from the storage 
+ */
 async function loadData() {
     try {
         users = JSON.parse(await getItem('users'));
@@ -41,8 +55,12 @@ async function loadData() {
     }
 }
 
-// Funktion, um eine zufällige Hintergrundfarbe aus bgColors auszuwählen
 
+/**
+ * 
+ * push the user to the allContacts object 
+ * @param {string} user 
+ */
 async function pushUsersToContacts(user) {
     let isUserInContacts = allContacts.some(contact => contact.email === user.email);
     if (!isUserInContacts) {
@@ -53,13 +71,20 @@ async function pushUsersToContacts(user) {
 }
 
 
+/**
+ * 
+ * @returns a random color from the array bgColors
+ */
 function setColor() {
     const randomIndex = Math.floor(Math.random() * bgColors.length);
     return bgColors[randomIndex];
 }
 
 
-
+/**
+ * 
+ * includes the header and the menu to the view
+ */
 async function includeHTML() {
     loggedInUser = await getItem('loggedInUser');
     let includeElements = document.querySelectorAll('[w3-include-html]'); // Alle ELemente mit Attribute '[w3-include.html]' holen.
@@ -80,11 +105,17 @@ async function includeHTML() {
     
 }
 
+
+/**
+ * 
+ * shows the initals of the current logged in user
+ */
 function showLoggedInUser() {
     let box = document.getElementById('loggedInUser');
     let initials = getInitials(loggedInUser);
     box.innerHTML = initials;
 }
+
 
 /**
  * creates a popup message
@@ -116,6 +147,11 @@ function setTimeoutPopup(successDivContainer) {
     }, 1000);
 }
 
+
+/**
+ * 
+ * switch for the path after the popup on the differnt views
+ */
 function pathAfterPopup() {
     switch (popup) {
         case "An Email has been sent to you":

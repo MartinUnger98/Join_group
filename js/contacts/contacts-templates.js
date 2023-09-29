@@ -1,3 +1,7 @@
+/**
+ * 
+ * @returns html code for add contact detail view
+ */
 function showNewContactEditor() {
     return /*html*/ `<div class="addContactLeft">
     <img class="joinLogoAddContact" src="../img/Join logo white.svg">
@@ -51,6 +55,12 @@ function showNewContactEditor() {
     </div>`
 }
 
+
+/**
+ * 
+ * @param {string} initials of the contact
+ * @returns the initials for the colorful circle
+ */
 function contactHead(initials) {
     return `
     <div class="categoryHead">${initials[0][0]}</div>
@@ -58,6 +68,14 @@ function contactHead(initials) {
     `
 }
 
+
+/**
+ * 
+ * @param {string} initials 
+ * @param {string} contact 
+ * @param {number} i 
+ * @returns html code for every contact in the left list
+ */
 function contactLayout(initials, contact, i) {
     return `
     <button id="contact${i}" onclick="showContact(${i})" class="contactLayout">
@@ -70,6 +88,12 @@ function contactLayout(initials, contact, i) {
     `;
 }
 
+
+/**
+ * 
+ * @param {number} i 
+ * @returns html code for the detailed view of the selected contact from the right side bar
+ */
 function detailView(i) {
     return /*html*/` 
         <div class="detailViewHead">
@@ -108,6 +132,12 @@ function detailView(i) {
     `
 }
 
+
+/**
+ * 
+ * @param {number} i 
+ * @returns the html code for the contact editor
+ */
 function showEditor(i) {
     return /*html*/ `<div class="addContactLeft">
     <img class="joinLogoAddContact" src="../img/Join logo white.svg">
@@ -148,4 +178,3 @@ function showEditor(i) {
         </form>
     </div>`
 }
-
