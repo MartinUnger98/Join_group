@@ -37,7 +37,6 @@
 }
 .contactDetailContainer {
   margin: 100px 0 0 32px;
-  overflow: auto;
   height: calc(100vh - 196px);
 }
 .addContactBtn {
@@ -698,7 +697,7 @@
     width: 69px;
   }
   .backImg{
-    right: 0;
+    right: 32px;
   }
   .initalsDetailView {
     height: 80px;
