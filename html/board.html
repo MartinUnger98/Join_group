@@ -29,9 +29,13 @@
     <script src="../js/board/board.templates.js"></script>
     <script src="../js/addTask/addTask-templates.js"></script>
     <script src="../js/addTask/addTask-task-creation.js"></script>
+    <script src="../js/addTask/addTask-addContact.js"></script>
     <script src="../js/board/board-editor.js"></script>
+    <script src="../js/board/board-editor2.js"></script>
     <script src="../js/addTask/addTask.js"></script>
+    <script src="../js/addTask/addTask2.js"></script>
     <script src="../js/board/board.js"></script>
+    <script src="../js/board/board2.js"></script>
 </head>
     <body onload="init()">
         <div w3-include-html="templates/header.html"></div>
@@ -162,7 +166,7 @@
 
         <section id="bg" class="dimmed-bg position-fixed d-none" onclick="hideTasksOfBoard()"></section>
       
-        <form id="board-addTask" class="addTask-section rounded-5 d-none" onsubmit="addTask('toDo'); hideAddTask();return false" onclick="doNotClose(event) ">
+        <form id="board-addTask" class="addTask-section rounded-5 d-none addTask-responsive-height" onsubmit="addTask('toDo'); hideAddTask();return false" onclick="doNotClose(event) ">
             <h1 class="h1-addTask">Add Task</h1>
             <div class="task-creation-container d-flex">
       
@@ -243,7 +247,7 @@
                       </div>
                     </div>
                   </div>
-                  <div>
+                  <div class="subtask-box">
                     <ul id="subtask-content" class="subtask-content"></ul>
                   </div>
                 </div>

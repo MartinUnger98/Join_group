@@ -31,6 +31,7 @@ async function addTask(status) {
     showSuccessMessage();
 }
 
+
 /**
  * This function creates a clearly id for each task
  * @returns - id
@@ -46,10 +47,11 @@ function creatId() {
     return id;
 }
 
+
 /**
  * This function checks the highest id of a tasks. 
  * Important for giving the very first task a clearly id
- * @returns 
+ * @returns - highest ID
  */
 function getHighestId() {
     let highestId = -1;
@@ -60,6 +62,7 @@ function getHighestId() {
     }
     return highestId;
 }
+
 
 /**
  * This function gets the selected category
@@ -84,6 +87,7 @@ function getSubtasks() {
     return subtasks;
 }
 
+
 /**
  * This function gets the selected priority-img
  * @returns img of selected priority
@@ -103,9 +107,10 @@ function getPrioImage() {
     return img;
 }
 
+
 /**
  * This function gets the specific priority.innerText
- * @returns 
+ * @returns - priority
  */
 function getPriority() {
     let urgent = document.getElementById('urgent');
@@ -122,6 +127,7 @@ function getPriority() {
     return priority;
 }
 
+
 /**
  * This function gets all selected contacts
  * @returns - array with selected contacts
@@ -136,6 +142,7 @@ function getContacts() {
     });
     return selectedContacts;
 }
+
 
 /**
  * This function gets the background-color of the selected contact
@@ -154,6 +161,7 @@ function getBgofContact() {
     });
     return bgColorsOfContacts;
 }
+
 
 /**
  * This function pushes all elements of the array "tasks"

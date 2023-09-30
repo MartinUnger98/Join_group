@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     dateInput.setAttribute('min', currentDate);
 });
 
+
 /**
  * This functions loads the category options at the beginning and render all Contacts inside of the contact dropdown
  */
@@ -18,7 +19,7 @@ function loadAddTask() {
 
 /**
  *  This function creates vars for elements and and executes the toggle-function
- * @param {*} priority - contains ID of the respective priority box
+ * @param {string} priority - contains ID of the respective priority box
  */
 function togglePriority(priority) {
     let urgent = document.getElementById('urgent');
@@ -30,15 +31,16 @@ function togglePriority(priority) {
     toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg);
 }
 
+
 /**
  * This function starts the toggle for the specififc priority
- * @param {*} priority - refers to togglePriority
- * @param {*} urgent - ID of urgent-priority
- * @param {*} medium - ID of medium-priority 
- * @param {*} urgentImg - ID of urgent-image
- * @param {*} mediumImg - ID of medium-image 
- * @param {*} low - ID of low-priority 
- * @param {*} lowImg - ID of low-image 
+ * @param {string} priority - refers to togglePriority
+ * @param {string} urgent - ID of urgent-priority
+ * @param {string} medium - ID of medium-priority 
+ * @param {string} urgentImg - ID of urgent-image
+ * @param {string} mediumImg - ID of medium-image 
+ * @param {string} low - ID of low-priority 
+ * @param {string} lowImg - ID of low-image 
  */
 function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
     if (priority === 'urgent') {
@@ -51,6 +53,7 @@ function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
         toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg);
     }
 }
+
 
 /**
  * This function toggles the urgent-priority and switch the other priorities back, 
@@ -70,6 +73,7 @@ function toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
+
 /**
  * This function toggles the medium-priority and switch the other priorities back, 
  * if they have been already selected.
@@ -87,6 +91,7 @@ function toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg) {
         switchLowBack(low, lowImg);
     }
 }
+
 
 /**
  * This function toggles the low-priority and switch the other priorities back, 
@@ -106,6 +111,7 @@ function toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg) {
     }
 }
 
+
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority
  */
@@ -114,6 +120,7 @@ function switchUrgent(urgent, urgentImg) {
     urgent.classList.add('bg-urgent');
     urgentImg.src = '../img/urgent_white.svg';
 }
+
 
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority back
@@ -124,6 +131,7 @@ function switchUrgentBack(urgent, urgentImg) {
     urgentImg.src = '../img/urgent_red.svg';
 }
 
+
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority
  */
@@ -132,6 +140,7 @@ function switchMedium(medium, mediumImg) {
     medium.classList.add('bg-medium');
     mediumImg.src = '../img/medium_white.svg';
 }
+
 
 /**
  * This function switches the backgroundcolors and the img of the medium-priority back
@@ -142,6 +151,7 @@ function switchMediumBack(medium, mediumImg) {
     mediumImg.src = '../img/medium_yellow.svg';
 }
 
+
 /**
  * This function switches the backgroundcolors and the img of the urgent-priority
  */
@@ -150,6 +160,7 @@ function switchLow(low, lowImg) {
     low.classList.add('bg-low');
     lowImg.src = '../img/low_white.svg';
 }
+
 
 /**
  * This function switches the backgroundcolors and the img of the low-priority back
@@ -160,9 +171,10 @@ function switchLowBack(low, lowImg) {
     lowImg.src = '../img/low_green.svg';
 }
 
+
 /**
  * This function sets the vars of the two dropdowns.
- * @param {*} dropDown - specific value for the dropdown; referred to function showDrowns
+ * @param {string} dropDown - specific value for the dropdown; referred to function showDrowns
  */
 function toggleDropdown(dropDown) {
     let category = document.getElementById('content');
@@ -172,12 +184,13 @@ function toggleDropdown(dropDown) {
     showDropdowns(dropDown, category, assign, borderContact, borderCategory);
 }
 
+
 /**
  * This function execute the toggle for the specific 
- * @param {*} category - ID of dropdown content of category
- * @param {*} assign - ID of dropdown content of contacts
- * @param {*} borderContact - ID of contact-div; used to switch border-color
- * @param {*} borderCategory - ID of category - div; used to switch border-color
+ * @param {string} category - ID of dropdown content of category
+ * @param {string} assign - ID of dropdown content of contacts
+ * @param {string} borderContact - ID of contact-div; used to switch border-color
+ * @param {string} borderCategory - ID of category - div; used to switch border-color
  */
 
 function showDropdowns(dropDown, category, assign, borderContact, borderCategory) {
@@ -191,6 +204,7 @@ function showDropdowns(dropDown, category, assign, borderContact, borderCategory
     }
 }
 
+
 /**
  * This function toggles the visibility of the dropdown-content of contacts (active)
  * and the border-color of the contact-div
@@ -200,6 +214,7 @@ function toggleStatusAndBorderOfContact(assign, borderContact) {
     borderContact.classList.toggle('border-color');
 }
 
+
 /**
  * This function toggles the visibility of the dropdown-content of category (active)
  * and the border-color of the category-div
@@ -208,6 +223,7 @@ function toggleStatusAndBorderOfCategory(category, borderCategory) {
     category.classList.toggle('active');
     borderCategory.classList.toggle('border-color');
 }
+
 
 /**
  * This function scales the arrow-image the specific dropDown
@@ -224,9 +240,10 @@ function switchDropDownArrow(dropDown) {
     }
 }
 
+
 /**
  * This function loads the categories of the categories-array
- * @param {*} selectedCategory - selected "li"-text of the specific category; referred to updateName();
+ * @param {string} selectedCategory - selected "li"-text of the specific category; referred to updateName();
  */
 function addCategory(selectedCategory) {
     let option = document.getElementById('options');
@@ -240,9 +257,10 @@ function addCategory(selectedCategory) {
     }
 }
 
+
 /**
  * This function gets the innerText of the li-item and removes the 'active'-class
- * @param {*} selectedLi - "li" of specific category;
+ * @param {string} selectedLi - "li" of specific category;
  */
 function updateName(selectedLi) {
     let select = document.getElementById('select');
@@ -252,6 +270,7 @@ function updateName(selectedLi) {
     addCategory(selectedLi.innerText);
     switchBorderandDropdown();
 }
+
 
 /**
  * This functions switches the dropdownicon and removes the border-color for the category dropdown.
@@ -264,6 +283,7 @@ function switchBorderandDropdown() {
     dropDown.classList.remove('switch');
 }
 
+
 /**
  * This functions switches the dropdownicon and removes the border-color for the contacts dropdown.
  * Used when one category got selected
@@ -274,6 +294,7 @@ function switchBorderandDropdownOfContacts() {
     border.classList.remove('border-color');
     dropDown.classList.remove('switch');
 }
+
 
 /**
  * This function creates a new subtask-input-field
@@ -287,6 +308,7 @@ function openNewSubtask() {
     addBorderColor();
 }
 
+
 /**
  * This functions adds a new border-color to the subtask-div
  */
@@ -294,6 +316,7 @@ function addBorderColor() {
     let borderColor = document.getElementById('subtask-creator');
     borderColor.classList.add('border-color');
 }
+
 
 /**
  * This function restores the previous subtask-input-field
@@ -310,6 +333,7 @@ function restoreOldSubtask() {
     removeBorderColor();
 }
 
+
 /**
  * This function removes the border-color of the subtask-div
  */
@@ -317,6 +341,7 @@ function removeBorderColor() {
     let borderColor = document.getElementById('subtask-creator');
     borderColor.classList.remove('border-color');
 }
+
 
 /**
  * This function creates the added subtask
@@ -334,10 +359,11 @@ function addSubtask() {
     restoreOldSubtask();
 }
 
+
 /**
  * This function creates an edit-section for the specific subtask
- * @param {*} subtaskID - ID of specific added subtask
- * @param {*} input - value of old subtask
+ * @param {string} subtaskID - ID of specific added subtask
+ * @param {string} input - value of old subtask
  * showInputEditor() -> addTask-templates.js
  */
 function openInputForEdit(subtaskID, input) {
@@ -346,315 +372,16 @@ function openInputForEdit(subtaskID, input) {
     content.innerHTML += showInputEditor(subtaskID, input);
 }
 
+
 /**
  * This function updates the new input value.
- * @param {*} subtaskID - ID of new subtask-div 
- * @param {*} inputID - ID of new input
+ * @param {string} subtaskID - ID of new subtask-div 
+ * @param {string} inputID - ID of new input
  */
 function updateInputValue(subtaskID, inputID) {
     const content = document.getElementById(`${subtaskID}`);
     const newValue = document.getElementById(`${inputID}`).value;
     content.innerHTML = '';
     content.innerHTML += showUpdatedInputValue(newValue, subtaskID);
-}
-
-/**
- * This functions deletes the added subtask permanently
- * @param {*} subtaskID 
- */
-function deleteSubtask(subtaskID) {
-    let subtaskElement = document.getElementById(subtaskID);
-    if (subtaskElement) {
-        subtaskElement.remove();
-    }
-}
-
-/**
- * This function is used for the clear-button and clears all input of addTask
- */
-function allMightyClear() {
-    document.getElementById('input').value = '';
-    document.getElementById('textarea').value = '';
-    document.getElementById('date').value = '';
-    clearPriorityButtons();
-    clearCategory();
-    document.getElementById('subtask').value = '';
-    document.getElementById('subtask-content').innerHTML = '';
-    clearContacts();
-}
-
-/**
- * This function restores the priorty buttons
- */
-function clearPriorityButtons() {
-    let urgent = document.getElementById('urgent');
-    let medium = document.getElementById('medium');
-    let low = document.getElementById('low');
-    let urgentImg = document.getElementById('urgent-img');
-    let mediumImg = document.getElementById('medium-img');
-    let lowImg = document.getElementById('low-img');
-    switchPriorityButtonsToNormal(urgent, medium, low, urgentImg, mediumImg, lowImg);
-}
-
-/**
- * This function switches every single priority-button back to normal, in case they were seleceted
- * @param {*} urgent - id of priority-box urgent
- * @param {*} medium - id of priority-box medium
- * @param {*} low - id of priority-box low
- * @param {*} urgentImg - id of img urgent
- * @param {*} mediumImg - id of img medium
- * @param {*} lowImg - id of img loe
- */
-function switchPriorityButtonsToNormal(urgent, medium, low, urgentImg, mediumImg, lowImg) {
-    if (urgent.classList.contains('bg-urgent')) {
-        switchUrgentBack(urgent, urgentImg);
-    }
-    if (medium.classList.contains('bg-medium')) {
-        switchMediumBack(medium, mediumImg);
-    }
-    if (low.classList.contains('bg-low')) {
-        switchLowBack(low, lowImg);
-    }
-}
-
-/**
- * The function clears the category dropdown
- */
-function clearCategory() {
-    let select = document.getElementById('select');
-    let content = document.getElementById('content');
-    select.firstElementChild.innerText = "Select Task Category";
-    content.classList.remove('active');
-    addCategory('');
-}
-
-/**
- * This function clears the contact dropdown 
- */
-function clearContacts() {
-    let contacts = document.querySelectorAll('.checked');
-    contacts.forEach(contact => {
-        contact.classList.remove('checked');
-        let checkboxId = contact.querySelector('input[type="checkbox"]').id;
-        document.getElementById(checkboxId).checked = false;
-    });
-    moveSelectedContacts();
-}
-
-/**
- * This function loads all existing contacts inside of the contact dropdown
- */
-function renderUser() {
-    let content = document.getElementById('contact_content');
-    content.innerHTML = '';
-    sortByFirstName();
-    for (let i = 0; i < allContacts.length; i++) {
-        const user = allContacts[i];
-        let username = user.name;
-        const initials = getInitials(username);
-        const bgUser = user.bgColor;
-        content.innerHTML += showRenderedContacts(initials, bgUser, i, username);
-    }
-
-}
-
-/**
- * This function creates the initials of each Contact
- * @param {*} name - name of contact from tasks
- * @returns - initial of firstname and initial of lastname (if existing)
- */
-function getInitials(name) {
-    const nameParts = name.split(' ');
-    const firstNameInitial = nameParts[0][0];
-    const lastNameInitial = nameParts.length > 1 ? nameParts[1][0] : '';
-    return `${firstNameInitial}${lastNameInitial}`;
-}
-
-/**
- * This function gets the selected contact highlighted
- * @param {*} id - number of each contact-div
- */
-function toggleCheckbox(id) {
-    let selection = document.getElementById(`user-selection-${id}`);
-    if (!selection.classList.contains('checked')) {
-        selection.classList.add('checked');
-        moveSelectedContacts();
-    } else {
-        selection.classList.remove('checked');
-        moveSelectedContacts();
-    }
-}
-
-/**
- * This function moves the selected contacts into the selctedContacts-div.
- * All selected contacts will be shown by their initials
- */
-function moveSelectedContacts() {
-    let category = document.getElementById('content');
-    let selectedContactsDiv = document.getElementById('selected_contacts');
-    selectedContactsDiv.innerHTML = '';
-    let contactsAdded = false;
-    for (let i = 0; i < allContacts.length; i++) {
-        if (isContactSelected(i)) {
-            const user = allContacts[i];
-            addSelectedContact(selectedContactsDiv, user, i);
-            contactsAdded = true;
-            category.classList.add('category-top');
-        }
-    }
-    updateCategoryVisibility(contactsAdded, category);
-}
-
-/**
- * This function sets a condition
- * @param {*} index 
- * @returns - if classlist 'checked' is added and checkbox is checked
- */
-function isContactSelected(index) {
-    let selection = document.getElementById(`user-selection-${index}`);
-    let checkbox = document.getElementById(`user-${index}`);
-    return selection.classList.contains('checked') && checkbox.checked;
-}
-
-/**
- * This function creates the icon (initials) of the selected contact and adds it to the div underneath
- * @param {*} selectedContactsDiv - div for selected contacts
- * @param {*} user - array of all Contacts
- * @param {*} index - index of each contact
- */
-function addSelectedContact(selectedContactsDiv, user, index) {
-    const bgUser = user.bgColor;
-    const initials = getInitials(user.name);
-    selectedContactsDiv.innerHTML += /*html*/ `
-        <div class="initials-selected" id="selected_contact-${index}" style="background-color: ${bgUser}">${initials}</div>
-    `;
-}
-
-/**
- * This function removes the class 'category-top' if no contact is added.
- * Used for position absolute of category dropdown (Only used for responsive)
- * @param {*} contactsAdded - status of added contact
- * @param {*} category - dropdown id of category
- */
-function updateCategoryVisibility(contactsAdded, category) {
-    if (!contactsAdded) {
-        category.classList.remove('category-top');
-    }
-}
-
-
-/**
- * This function makes sure that the detailed Task is still clickable
- * @param {*} event 
- */
-function doNotClose(event) {
-    event.stopPropagation();
-}
-
-//------------------------------add new Contact-----------------------------------
-function showContactEditor() {
-    let overlay = document.getElementById('contactOverlay');
-    let editor = document.getElementById('addContact');
-    editor.classList.remove('d-none');
-    editor.innerHTML = showNewContactEditor();
-    overlay.style.opacity = '0.7';
-    overlay.style.zIndex = '997';
-    setTimeout(function () {
-        editor.style.right = '0px';
-    }, 100);
-    scrollToTop();
-}
-
-function closeEditorCtc() {
-    let overlay = document.getElementById('contactOverlay');
-    let editor = document.getElementById('addContact');
-    overlay.style.opacity = '0';
-    overlay.style.zIndex = '-5';
-    editor.style.right = '-4000px';
-    setTimeout(function () {
-        editor.classList.add('d-none');
-    }, 100);
-}
-
-async function addContact() {
-    const nameInput = document.getElementById("name").value;
-    const emailInput = document.getElementById("email").value;
-    const numberInput = document.getElementById("phone").value;
-    const contact = {
-        name: nameInput,
-        email: emailInput,
-        number: numberInput,
-        bgColor: setColor()
-    };
-    allContacts.push(contact);
-    await saveNewContact();
-}
-
-async function saveNewContact() {
-    try {
-        const allContactsAsString = JSON.stringify(allContacts);
-        await setItem('allContacts', allContactsAsString); // Auf das Ergebnis warten
-
-        if (!editModeOnOrOff) {
-            renderUser();
-        }
-        else{
-            renderUserInEditor(idForEditmode, indexForEditmode);
-        }
-        renderUser();
-        closeEditorCtc();
-    } catch (error) {
-        console.error('Fehler beim Speichern des Kontakts:', error);
-    }
-}
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-function sortByFirstName() {
-    return allContacts.sort(function (a, b) {
-        const firstNameA = a.name.split(' ')[0];
-        const firstNameB = b.name.split(' ')[0];
-        return firstNameA.localeCompare(firstNameB);
-    });
-}
-
-
-window.onclick = function (event) {
-    if (event.target.matches('.dropBtnContacts')) {
-        toggleDropdown('contact');
-    }
-    else if (!event.target.matches('.notHide')) {
-        styleContactDropdownBack();
-    }
-    if (event.target.matches('.selectDropdownBtn')) {
-        toggleDropdown('category');
-        document.getElementById('select').style.borderColor = '#29ABE2';
-    }
-    else if (!event.target.matches('.notHide')) {
-        styleSelectDropdownBack();
-    }
-}
-
-
-function styleContactDropdownBack() {
-    let dropdowns = document.getElementById("contacts");
-    let dropdownBtn = document.getElementById('contact_dropdown');
-    let dropArrow1 = document.getElementById('drop_1');
-    dropArrow1.classList.remove('switch');
-    dropdownBtn.classList.remove('border-color');
-    dropdowns.classList.remove("active");
-}
-
-
-function styleSelectDropdownBack() {
-    var dropdowns = document.getElementById("content");
-    let dropdownBtn = document.getElementById('select');
-    let dropArrow1 = document.getElementById('drop_2');
-    dropArrow1.classList.remove('switch');
-    dropdownBtn.style.borderColor = '#D1D1D1';
-    dropdowns.classList.remove("active");
 }
 
