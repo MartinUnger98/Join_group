@@ -36,7 +36,7 @@
   overflow-y: auto;
 }
 .contactDetailContainer {
-  margin: 100px 0 0 32px;
+  margin: 48px 0 0 32px;
   height: calc(100vh - 196px);
 }
 .addContactBtn {
@@ -292,7 +292,7 @@
 .detailViewHead {
   display: flex;
   align-items: center;
-  margin-top: 72px;
+  margin-top: 16px;
 }
 .initalsDetailView {
   display: flex;
@@ -720,5 +720,12 @@
   .checkCreateCtc {
     height: 11px;
     margin-left: 7px;
+  }
+  .backImg {
+    top: 46px;
+    right: 120px;
+  }
+  .headlineContact {
+    font-size: 44px;
   }
 }
