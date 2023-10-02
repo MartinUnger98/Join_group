@@ -98,8 +98,8 @@ async function saveNewContact() {
  */
 function getInitials(name) {
     const nameParts = name.split(' ');
-    const firstNameInitial = nameParts[0][0];
-    const lastNameInitial = nameParts.length > 1 ? nameParts[1][0] : '';
+    const firstNameInitial = nameParts[0][0].toUpperCase();
+    const lastNameInitial = (nameParts.length > 1 ? nameParts[1][0] : '').toUpperCase();
     return `${firstNameInitial}${lastNameInitial}`;
 }
 
@@ -114,8 +114,8 @@ function loadContacts() {
     sortByFirstName(allContacts);
     for (let i = 0; i < allContacts.length; i++) {
         const contact = allContacts[i];
-        const initials = getInitials(contact['name']);
-        const firstInitial = initials[0][0];
+        const initials = getInitials(contact['name']).toUpperCase();
+        const firstInitial = initials[0][0].toUpperCase();
         const bgColor = contact.bgColor;
         checkInitialLetter(firstInitial);
         if (initialLetter[i] != 'blank') {
@@ -211,6 +211,7 @@ async function deleteContact(i) {
     await saveNewContact();
     contactDetailContainer.classList.remove("left764px");
     contactDetailContainer.classList.add("left100vw");
+    closeAskToDelete();
 }
 
 
@@ -283,6 +284,27 @@ function scrollToTop() {
     document.documentElement.scrollTop = 0;
 }
 
+
+function askToDelete(){
+    let askContainer = document.getElementById('askToDelete');
+    let askOverlay = document.getElementById('askCloseOverlay');
+    askOverlay.style.zIndex = '101';
+    askOverlay.style.opacity = '0.5';
+    askContainer.style.zIndex = '102';
+    askContainer.style.opacity = '1';
+    
+}
+
+
+function closeAskToDelete(){
+    let askContainer = document.getElementById('askToDelete');
+    let askOverlay = document.getElementById('askCloseOverlay');
+    askOverlay.style.zIndex = '-6';
+    askOverlay.style.opacity = '0';
+    askContainer.style.zIndex = '-6';
+    askContainer.style.opacity = '0';
+    
+}
 
 
 

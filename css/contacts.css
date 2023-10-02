@@ -202,6 +202,17 @@
   padding: 16px;
   cursor: pointer;
 }
+.askBtnDelete{
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #2A3647;
+  height: 32px;
+  width: 80px;
+}
+.askBtnDelete:hover{
+  border-color: #29ABE2;
+  color: #29ABE2;
+}
 .cnlSvgCtc {
   margin-left: 16px;
 }
@@ -429,6 +440,34 @@
   top: 50px;
   right: 16px;
 }
+#askToDelete{
+  background-color: #2A3647;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 128px;
+  padding: 16px;
+  border-radius: 16px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: -6;
+  opacity: 0;
+  transition: all 225ms ease-in-out;
+}
+.marginBotom32{
+  margin-bottom: 32px;
+}
+.yesNoOrder{
+  width: 100%;
+  justify-content: space-around;
+}
 @media (max-width: 1230px) {
   .left764px {
     left: 0px !important;
@@ -647,6 +686,10 @@
   }
 }
 @media (max-width: 450px) {
+  #askToDelete{
+    width: 300px;
+    right: auto;
+  }
   .checkCreateCtc {
     height: 11px;
     margin-left: 7px;
