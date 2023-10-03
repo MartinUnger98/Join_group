@@ -212,6 +212,7 @@ async function deleteContact(i) {
     contactDetailContainer.classList.remove("left764px");
     contactDetailContainer.classList.add("left100vw");
     closeAskToDelete();
+    showContacts();
 }
 
 

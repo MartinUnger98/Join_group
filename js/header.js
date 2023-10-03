@@ -9,6 +9,7 @@ function toggleSubmenu() {
         showSubMenu(subMenu);
         switchCursor(cursor);
         changeBg(profileBackground);
+        scrollToTop();
     } else {
         hideSubMenu(subMenu);
         switchCursorBack(cursor);
