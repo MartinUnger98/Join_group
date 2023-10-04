@@ -27,8 +27,6 @@
     flex-direction: column;
     padding: 20px;
     width: fit-content;
-    top: 50px;
-    height: auto;
   }
   .addContactLeft {
     border-top-right-radius: 32px;
@@ -47,7 +45,7 @@
   }
   .ctcEditorRightFirst {
     position: absolute;
-    top: 388px;
+    top: 367px;
     left: calc(50% - 80px);
   }
   .ctcEditorRightFirstResponsive {
@@ -164,7 +162,7 @@
   }
   .ctcEditorRightFirst {
     left: calc(50% - 65px);
-    top: 388px;
+    
   }
   .cancelBtnContactResponsive {
     display: none;
@@ -314,7 +312,6 @@
 
 @media (max-height: 905px) {
   .addNewContactWrapper {
-    position: relative;
     height: 700px;
     overflow-y: auto;
     border-radius: 32px;

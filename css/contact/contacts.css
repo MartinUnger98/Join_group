@@ -70,12 +70,11 @@
   opacity: 0;
   transition: all 225ms ease-in-out;
 }
+
 .addNewContactWrapper {
   position: relative;
-  height: 600px;
-  overflow-y: auto;
-  border-radius: 32px;
 }
+
 .addNewContactWrapper::-webkit-scrollbar {
   display: none;
 }
@@ -88,10 +87,10 @@
   right: -6000px;
   margin: 0 auto 0 auto;
   width: 1200px;
-  height: 600px;
-  border-radius: 32px;
   justify-content: center;
   transition: all 325ms ease-in-out;
+  top: 10vh;
+  height: 90vh;
 }
 .addContactLeft {
   background-color: #2A3647;
@@ -101,12 +100,15 @@
   color: white;
   padding: 48px;
   border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
 }
 .addContactRight {
   background-color: white;
   width: 100%;
   padding: 48px;
   display: flex;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
 }
 .joinLogoAddContact {
   width: 55px;
