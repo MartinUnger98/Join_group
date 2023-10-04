@@ -28,6 +28,7 @@
     padding: 20px;
     width: fit-content;
     top: 50px;
+    height: auto;
   }
   .addContactLeft {
     border-top-right-radius: 32px;
@@ -38,6 +39,7 @@
   .addContactRight {
     border-top-right-radius: 0px;
     border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
     padding: 80px 48px 48px 48px;
   }
   .joinLogoAddContact {
@@ -307,5 +309,14 @@
 @media (max-width: 350px) {
   #askToDelete {
     width: 265px;
+  }
+}
+
+@media (max-height: 905px) {
+  .addNewContactWrapper {
+    position: relative;
+    height: 700px;
+    overflow-y: auto;
+    border-radius: 32px;
   }
 }
