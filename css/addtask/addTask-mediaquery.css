@@ -43,6 +43,7 @@
     }
     h1 {
         text-align: left !important;
+        margin-right: 0;
     }
     .addTask-section {
         display: flex;
@@ -77,16 +78,16 @@
 }
 @media (max-width: 420px) {
     .task-content-box-left {
-        width: 320px;
+        width: 300px;
     }
     .select-btn {
-        width: 320px;
+        width: 300px;
     }
     .task-content-box-right {
-        width: 320px;
+        width: 300px;
     }
     .priority-boxes {
-        width: 95px;
+        width: 88px;
         gap: 5px;
         font-size: 16px !important;
     }
@@ -100,17 +101,16 @@
         font-size: 16px;
     }
     .category-content {
-        width: 320px;
+        width: 300px;
         top: 931px;
         height: 109px;
     }
     .assign-content {
         top: 591px;
-        width: 320px;
+        width: 300px;
         height: 258px;
     }
     h1 {
-        margin-right: 100px !important;
         font-size: 47px !important;
     }
     .fs-20 {
@@ -126,7 +126,7 @@
         font-size: 16px;
     }
     .form-buttons {
-        width: 320px;
+        width: 300px;
         height: 50px;
     }
     .add {

@@ -173,6 +173,13 @@
         font-size: 47px !important;
         margin-bottom: 0 !important;
     }
+    .detailed-task {
+        width: 300px;
+    }
+    .editor-content {
+        padding: 0;
+    }
+    
 }
 @media (max-width: 380px) {
     .new-headline-search {
@@ -182,6 +189,7 @@
     .search-input {
         width: 100%;
     }
+    
 }
 @media (max-height: 905px) {
     .addTask-responsive-height {

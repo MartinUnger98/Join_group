@@ -103,7 +103,7 @@ h1 {
     max-width: 264px;
 }
 .detailed-task {
-    z-index: 4;
+    z-index: 101;
     width: 525px;
     top: 10vh;
     right: 0;
@@ -190,7 +190,7 @@ h1 {
 /* dark bg for detailed Task */
 
 .dimmed-bg {
-    z-index: 3;
+    z-index: 100;
     background-color: rgba(0, 0, 0, 0.3);
     top: 0;
     left: 0;

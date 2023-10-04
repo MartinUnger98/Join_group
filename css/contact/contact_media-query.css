@@ -228,13 +228,13 @@
     font-size: 16px;
   }
   .addContactLeft {
-    padding: 120px 35px 120px 35px;
+    padding: 100px 35px 87px 35px;
   }
   .addContactRight {
-    padding: 60px 15px 20px 15px;
+    padding: 60px 10px 20px 10px;
   }
   .ctcEditorRightFirst {
-    top: 260px;
+    top: 200px;
   }
   .addContact {
     padding: 10px;
@@ -282,6 +282,9 @@
     font-size: 35px;
     margin-left: 0;
   }
+  .addContact {
+    padding: 0px;
+  }
 }
 @media (max-width: 420px) {
   .headDetailView {
@@ -298,13 +301,15 @@
   .headlineContact {
     font-size: 44px;
   }
+ 
 }
 
 @media (max-width: 350px) {
-  .addContact {
-    padding: 0px;
-  }
   #askToDelete {
     width: 265px;
   }
+}
+
+@media (max-height: 905px) {
+  
 }
