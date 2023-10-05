@@ -22,7 +22,7 @@ function showContactEditor() {
 function closeEditorCtc() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
-    document.body.classList.add('no-scroll');
+    document.body.classList.remove('no-scroll');
     overlay.style.opacity = '0';
     overlay.style.zIndex = '-5';
     editor.style.right = '-4000px';

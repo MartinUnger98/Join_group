@@ -89,7 +89,7 @@ function doNotClose(event) {
  */
 function scrollToTop() {
     window.scrollTo({
-        top: 50,
+        top: 0,
         behavior: 'smooth'
     });
 }
