@@ -172,6 +172,11 @@
     .person_add-responsive {
         width: 27px;
     }
+    .initials-selected {
+        height: 35px;
+        width: 35px;
+        font-size: 14px;
+    }
 }
 
 /* --------POPUP------- */

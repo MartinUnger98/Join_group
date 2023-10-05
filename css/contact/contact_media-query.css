@@ -49,7 +49,7 @@
     left: calc(50% - 80px);
   }
   .ctcEditorRightFirstResponsive {
-    top: 357px;
+    top: 333px;
     left: calc(50% - 112px);
   }
   .placeholderContact {
@@ -66,15 +66,7 @@
     font-weight: bold;
     font-size: 55px;
   }
-  .closeBtn svg path {
-    stroke: white;
-  }
-  .closeBtn svg {
-    margin-left: 1px;
-  }
-  .closeBtn:hover {
-    background-color: #29ABE2;
-  }
+  
   .newInitialSize {
     height: 160px;
     width: 160px;
@@ -138,10 +130,7 @@
   .addContactLeft {
     padding: 170px 180px 170px 35px;
   }
-  .ctcEditorRightFirstResponsive {
-    top: 357px;
-    left: calc(50% - 112px);
-  }
+
   .backImg {
     position: absolute;
     margin-left: 0px;
@@ -203,7 +192,6 @@
     width: 85px;
   }
   .ctcEditorRightFirstResponsive {
-    top: 357px;
     left: calc(50% - 97px);
   }
 }
@@ -256,7 +244,7 @@
     width: 57px;
   }
   .ctcEditorRightFirstResponsive {
-    top: 235px;
+    top: 171px;
     left: calc(50% - 63px);
   }
   .cnlSvgCtc {

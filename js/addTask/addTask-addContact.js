@@ -6,6 +6,7 @@ function showContactEditor() {
     let editor = document.getElementById('addContact');
     editor.classList.remove('d-none');
     editor.innerHTML = showNewContactEditor();
+    document.body.classList.add('no-scroll');
     overlay.style.opacity = '0.7';
     overlay.style.zIndex = '997';
     setTimeout(function () {
@@ -21,6 +22,7 @@ function showContactEditor() {
 function closeEditorCtc() {
     let overlay = document.getElementById('contactOverlay');
     let editor = document.getElementById('addContact');
+    document.body.classList.add('no-scroll');
     overlay.style.opacity = '0';
     overlay.style.zIndex = '-5';
     editor.style.right = '-4000px';

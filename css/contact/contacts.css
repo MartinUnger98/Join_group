@@ -109,6 +109,7 @@
   display: flex;
   border-bottom-left-radius: 32px;
   border-bottom-right-radius: 32px;
+  
 }
 .joinLogoAddContact {
   width: 55px;
@@ -476,4 +477,13 @@
 .yesNoOrder{
   width: 100%;
   justify-content: space-around;
+}
+.closeBtn svg path {
+  stroke: white;
+}
+.closeBtn svg {
+  margin-left: 1px;
+}
+.closeBtn:hover {
+  background-color: #29ABE2;
 }
