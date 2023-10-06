@@ -374,12 +374,11 @@
   position: absolute;
   left: 100vw;
   transition: all 125ms;
-  min-width: 400px;
 }
 .backImg {
   display: none;
   position: absolute;
-  top: 28px;
+  top: 46px;
   right: 60px;
 }
 .backImg img:hover {
