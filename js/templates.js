@@ -74,6 +74,7 @@ function forgotPasswordTemplate() {
     `;
 }
 
+
 /**
  * html code for reset password view
  * 

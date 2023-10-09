@@ -82,18 +82,18 @@ function setColor() {
 
 
 /**
+ * Includes the header and the menu to the view
  * 
- * includes the header and the menu to the view
  */
 async function includeHTML() {
     loggedInUser = await getItem('loggedInUser');
-    let includeElements = document.querySelectorAll('[w3-include-html]'); // Alle ELemente mit Attribute '[w3-include.html]' holen.
-    for (let i = 0; i < includeElements.length; i++) { // Durch Alle Elemente durchiterieren. In dem Fall nur ein Element (<div>).
+    let includeElements = document.querySelectorAll('[w3-include-html]'); 
+    for (let i = 0; i < includeElements.length; i++) { 
         const element = includeElements[i];
-        file = element.getAttribute("w3-include-html"); // Diese Zeile liest den Wert des Attributs "w3-include-html" aus -> "include/header.html"
-        let response = await fetch(file); // Hier wird der Wert geladen. fetch = laden; await = damit die Funktion mit dem Ausführen wartet, damit alles geladen ist. Wichtig: Funktion muss asynchron sein, siehe bei "function...."
+        file = element.getAttribute("w3-include-html");
+        let response = await fetch(file); 
         if (response.ok) {
-            element.innerHTML = await response.text(); // Hier wird der Text aus dem Wert herausgezogen.
+            element.innerHTML = await response.text(); 
         } else {
             element.innerHTML = 'Page not found';
         }

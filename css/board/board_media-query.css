@@ -13,7 +13,7 @@
     .board-direction {   
         flex-direction: row; 
         flex: 1;
-        gap: 80px;
+        gap: 48px;
         min-height: 260px;
         padding: 10px;
     }

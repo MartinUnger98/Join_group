@@ -311,7 +311,7 @@
         height: 120px;
     }
     .taskSummary {
-        width: 80px;
+        width: 100px;
         height: 98px;
     }
     .bigNumber {
@@ -328,5 +328,13 @@
     }
     .explanationOrder {
         margin-left: 12px;
+    }
+    .toDOANdDoneContainer {
+        justify-content: space-around;
+    }
+}
+@media (max-width: 370px) {
+    .taskSummary {
+        width: 88px;
     }
 }

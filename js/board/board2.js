@@ -280,16 +280,16 @@ function searchTask() {
 function filterTasksByTitle(input) {
     for (let i = 0; i < tasks.length; i++) {
         const taskTitle = tasks[i]['title'].toLowerCase();
+        const taskDescription = tasks[i]['description'].toLowerCase();
         const id = tasks[i].id;
         const taskContainer = document.getElementById(`task-${id}`);
-        if (!taskTitle.startsWith(input)) {
+        if (!taskTitle.includes(input.toLowerCase()) && !taskDescription.includes(input.toLowerCase())) {
             hideTask(taskContainer);
         } else {
             showTask(taskContainer);
         }
     }
 }
-
 
 /**
  * This function hides all task, which are not matching

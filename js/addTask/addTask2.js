@@ -1,4 +1,3 @@
-
 /**
  * This functions deletes the added subtask permanently
  * @param {string} subtaskID 
@@ -72,6 +71,7 @@ function clearCategory() {
     content.classList.remove('active');
     addCategory('');
 }
+
 
 /**
  * This function clears the contact dropdown 

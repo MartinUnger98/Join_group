@@ -20,6 +20,7 @@ function showRenderedContacts(initials, bgUser, i, username) {
 `;
 }
 
+
 /**
  * This function creates a new subtask-input-field
  */
@@ -36,6 +37,7 @@ function showNewSubtask() {
         </div>  
     `;
 }
+
 
 /**
  * This function creates new added subtasks
@@ -58,6 +60,7 @@ function showAddedSubtasks(subtaskID, input) {
     `;
 }
 
+
 /**
  * This function creates editor for the specific added subtask
  * @param {string} subtaskID -ID of specific added subtask 
@@ -79,6 +82,7 @@ function showInputEditor(subtaskID, input) {
         </div>
     `;
 }
+
 
 /**
  * This function creates the edited subtask

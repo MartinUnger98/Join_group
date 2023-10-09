@@ -286,6 +286,9 @@ function scrollToTop() {
 }
 
 
+/**
+ * This function shows the delete question for contacts
+ */
 function askToDelete(){
     let askContainer = document.getElementById('askToDelete');
     let askOverlay = document.getElementById('askCloseOverlay');
@@ -297,6 +300,9 @@ function askToDelete(){
 }
 
 
+/**
+ * This function hides the delete question for contacts
+ */
 function closeAskToDelete(){
     let askContainer = document.getElementById('askToDelete');
     let askOverlay = document.getElementById('askCloseOverlay');

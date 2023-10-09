@@ -116,6 +116,7 @@ window.onclick = function (event) {
     }
 }
 
+
 /**
  * This function switches the dropdown of contacts back (closing)
  */
@@ -140,6 +141,7 @@ function styleSelectDropdownBack() {
     dropdownBtn.style.borderColor = '#D1D1D1';
     dropdowns.classList.remove("active");
 }
+
 
 /**
  * This function makes sure that the detailed Task is still clickable
