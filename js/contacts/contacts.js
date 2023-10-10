@@ -310,8 +310,8 @@ function closeAskToDelete(){
     askOverlay.style.opacity = '0';
     askContainer.style.zIndex = '-6';
     askContainer.style.opacity = '0';
-    
 }
+
 
 
 
