@@ -286,6 +286,9 @@ function checkRememberBtn(userInput, rememberMe) {
     if (rememberMe === "../img/checkButtenChecked.svg") {
         setUserToLocalStorage(userInput);
     }
+    else {
+        clearLocalStorageUser();
+    }
 }
 
 
