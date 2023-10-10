@@ -9,9 +9,12 @@ async function loggedIn(user) {
     if(user === 'Guest'){
         loggedInUser = await setItem('loggedInUser', user);
         window.location.href = "summary.html";
+        clearLocalStorageUser();
     }
     else{
+       
         checkUserExist('logIn');
+       
     }
 }
 
@@ -258,6 +261,9 @@ function checkEmailExistence(usermail) {
 async function checkPassword(userPassword, logInPassword, userName) {
     if (userPassword === logInPassword) {
         loggedInUser = await setItem('loggedInUser', userName);
+        let userInput = document.getElementById('logInEmail').value;
+        let rememberMe = document.getElementById('checkLogIn').getAttribute('src');
+        checkRememberBtn(userInput, rememberMe);
         window.location.href = "summary.html"
     }
     else {
@@ -267,6 +273,19 @@ async function checkPassword(userPassword, logInPassword, userName) {
         emptyCustomValidity(logInPasswordInput);
     }
     
+}
+
+
+/**
+ * checks if the "Remember Me" button is checked
+ * 
+ * @param {Object} userInput 
+ * @param {Object} rememberMe 
+ */
+function checkRememberBtn(userInput, rememberMe) {
+    if (rememberMe === "../img/checkButtenChecked.svg") {
+        setUserToLocalStorage(userInput);
+    }
 }
 
 

@@ -170,3 +170,13 @@ function pathAfterPopup() {
             break;
     }
 }
+
+
+/**
+ * set the value of the remembered user into the email address input field
+ * 
+ */
+function setRememberedUser() {
+    let userInput = document.getElementById('logInEmail');
+    userInput.value = getUserFromLocalStorage();   
+}

@@ -61,3 +61,32 @@ function clearContacts() {
             console.error('Error clearing users data:', error);
         });
 }
+
+
+/**
+ * sets the user mail to the local storage 
+ * 
+ * @param {string} userMail 
+ */
+function setUserToLocalStorage(userMail) {
+    localStorage.setItem('lastUser', userMail);
+}
+
+
+/**
+ * 
+ * @returns the user mail from the local storage
+ */
+function getUserFromLocalStorage() {
+    let userMail = localStorage.getItem('lastUser');
+    return userMail;
+}
+
+
+/**
+ * clears the current user mail from the local stroage 
+ * 
+ */
+function clearLocalStorageUser() {
+    localStorage.setItem('lastUser', '');
+}

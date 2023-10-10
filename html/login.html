@@ -24,7 +24,7 @@
       crossorigin="anonymous">
     </script>
   </head>
-  <body onload="loadData()">
+  <body onload="loadData(); setRememberedUser()">
     <header>
       <img onclick="backToLogin()" class="logo cursorPointer positionAbsolute" id="animatedImage" src="../img/join_logo.svg" alt="Bild"/>  
     </header>
@@ -48,7 +48,7 @@
           <div class="rememberForgot m-32 d-flex justify-content-evenly">
             <div class="d-flex gap-3">
               <div class="imgBox">
-                <img id="checkLogIn" onclick="changeCheckBox('checkLogIn')" class="cursorPointer" src="../img/Check button.svg" alt="">
+                <img id="checkLogIn" onclick="changeCheckBox('checkLogIn')" class="cursorPointer" src="../img/checkButtenChecked.svg" alt="">
               </div>            
               <span>Remember me</span>
             </div>          
