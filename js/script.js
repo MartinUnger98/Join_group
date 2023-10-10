@@ -180,3 +180,16 @@ function setRememberedUser() {
     let userInput = document.getElementById('logInEmail');
     userInput.value = getUserFromLocalStorage();   
 }
+
+
+function checkInput(event) {
+    let key = event.key || event.which;
+
+    // Erlaube nur Zahlen, das + Zeichen, Steuertasten (wie Backspace) und Navigationstasten
+    if (/[0-9+]/.test(key) || event.keyCode >= 37 && event.keyCode <= 40 || event.keyCode == 8 || event.keyCode == 46) {
+        return true;
+    } else {
+        event.preventDefault();
+        return false;
+    }
+}

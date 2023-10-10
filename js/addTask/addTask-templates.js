@@ -142,8 +142,8 @@ function showNewContactEditor() {
                         <div class="inputCtcContainer"><input class="inputCtc" required id="email" type="email"
                             placeholder="Email"><img src="../img/mail-contact.svg">
                         </div>
-                        <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel" pattern="[+]?[0-9]{2}[0-9]{6,11}"
-                            placeholder="+491234567"><img src="../img/call.svg">
+                        <div class="inputCtcContainer"><input class="inputCtc" required id="phone" type="tel" pattern="[+]?[0-9]{2}[0-9]{6,11}" placeholder="+491234567" onkeydown="return checkInput(event)">
+                            <img src="../img/call.svg">
                         </div>
                         <div class="cnlAndCreateBtns">
                             <button class="cancelBtnContact cancelBtnContactResponsive" onclick="closeEditorCtc()">Cancel
