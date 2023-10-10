@@ -86,6 +86,11 @@ h1 {
     gap: 16px;
     margin-bottom: 24px;
 }
+.warning-message {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
 .priority-boxes {
     gap: 8px;
     padding: 10px 16px;
@@ -121,20 +126,27 @@ h1 {
 .select-btn {
     padding: 12px 16px;
     border: 1px solid #D1D1D1;
-    margin-bottom: 32px;
     z-index: 1;
     width: 390px;
 }
+
 .select-btn img {
     padding: 4px 2px;
 }
 
 .category-content {
+    position: absolute;
     display: none;
     top: 558px;
     width: 390px;
     height: 120px;
     box-shadow: 0px 0px 14px 3px #0000000A;
+}
+.category-top-1-warning {
+    top: 585px;
+}
+.category-top-2-warning {
+    top: 613px;
 }
 .category-content.active {
     display: block;
@@ -155,6 +167,7 @@ h1 {
     margin-top: 13px;
 }
 .assign-content {
+    position: absolute;
     display: none;
     height: 270px;
     width: 390px;
@@ -191,6 +204,9 @@ h1 {
 }
 .mb-32 {
     margin-bottom: 32px;
+}
+#selected_contacts {
+    margin-top: 10px;
 }
 .subtask-add {
     padding: 2px 16px;
@@ -234,9 +250,11 @@ h1 {
     width: 14px;
     height: 14px;
 }
-
 #subtask-content {
     padding: 0;
+}
+.mt-32 {
+    margin-top: 32px;
 }
 .added-subtask-container {
     margin-top: 8px;

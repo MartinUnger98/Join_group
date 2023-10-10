@@ -344,6 +344,17 @@
     cursor: pointer;
     border: 0;
 }
+.warning-message {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+.category-top-1-warning {
+    top: 495px;
+}
+.category-top-2-warning {
+    top: 520px;
+}
 .create-button:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
@@ -393,7 +404,7 @@
     justify-content: center;
     align-items: center;
     background: rgba(0,0,0,0.5);
-    z-index: 10;
+    z-index: 102;
   }
   @keyframes popup {
     0% {

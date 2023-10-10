@@ -1,7 +1,7 @@
 /**
  * This function pushes all specific values inside of the array tasks
  */
-async function addTask(status) {
+function addTask(status) {
     let title = document.getElementById('input').value;
     let description = document.getElementById('textarea').value;
     let selectedCategory = getCategory();
@@ -11,6 +11,8 @@ async function addTask(status) {
     let subtasks = getSubtasks();
     let img = getPrioImage();
     let priority = getPriority();
+    let prioWarning = document.getElementById('prioWarning');
+    let categoryWarning = document.getElementById('categoryWarning');
     let task = {
         'title': title,
         'description': description,
@@ -21,14 +23,72 @@ async function addTask(status) {
         'priority': priority,
         'category': selectedCategory,
         'subtask': subtasks,
-        'subtaskStatus': Array(subtasks.length).fill(false), // Creates new Array "subtaskStatus" according to length of subtasks-Array and fills it with false;
+        'subtaskStatus': Array(subtasks.length).fill(false),
         'status': status,
         'id': creatId(),
     };
-    tasks.push(task);
-    await saveTasks();
-    popup = "Task added to Board";
-    showSuccessMessage();
+    pushAddedTask(selectedCategory, priority, task, categoryWarning, prioWarning);
+}
+
+
+/**
+ * This function creates a new task, if a priority and a category are selected
+ * @param {string} selectedCategory 
+ * @param {string} priority 
+ * @param {string} task 
+ * @param {string} categoryWarning 
+ * @param {string} prioWarning 
+ */
+async function pushAddedTask(selectedCategory, priority, task, categoryWarning, prioWarning) {
+    let category = document.getElementById('content');
+    showWarningMessages(selectedCategory, categoryWarning, prioWarning, priority); 
+    correctPositionsOfCategoryDropdown(selectedCategory, priority, category);
+    if (selectedCategory && priority) {
+        tasks.push(task);
+        await saveTasks();
+        popup = "Task added to Board";
+        showSuccessMessage();
+    }
+}
+
+
+/**
+ * This function shows the warning message, if a priority or/and a category aren't selected
+ * @param {*} selectedCategory 
+ * @param {*} categoryWarning 
+ * @param {*} prioWarning 
+ * @param {*} priority 
+ */
+function showWarningMessages(selectedCategory, categoryWarning, prioWarning, priority) {
+    if (!selectedCategory) {
+        categoryWarning.classList.remove('d-none');
+    } else {
+        categoryWarning.classList.add('d-none');
+    }
+    if (!priority) {
+        prioWarning.classList.remove('d-none');
+    } else {
+        prioWarning.classList.add('d-none');
+    }
+}
+
+
+/**
+ * This function corrects the "top" of the category dropdown
+ * @param {*} selectedCategory 
+ * @param {*} priority 
+ * @param {*} category 
+ */
+function correctPositionsOfCategoryDropdown(selectedCategory, priority, category) {
+    if (!selectedCategory || !priority) {
+        category.classList.add('category-top-1-warning');
+    }
+    if (!selectedCategory && !priority) {
+        category.classList.add('category-top-2-warning');
+        category.classList.remove('category-top-1-warning');
+    } else {
+        category.classList.remove('category-top-2-warning');
+    }
 }
 
 

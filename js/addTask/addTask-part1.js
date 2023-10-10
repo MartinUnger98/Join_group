@@ -278,7 +278,8 @@ function updateName(selectedLi) {
  */
 function switchBorderandDropdown() {
     let border = document.getElementById('select');
-    let dropDown = document.getElementById('drop_2')
+    let dropDown = document.getElementById('drop_2');
+    let subtaskDiv = document.getElementById('subtask-container');
     border.classList.remove('border-color');
     dropDown.classList.remove('switch');
 }

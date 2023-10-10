@@ -167,7 +167,7 @@
 
         <section id="bg" class="dimmed-bg position-fixed d-none" onclick="hideTasksOfBoard()"></section>
       
-        <form id="board-addTask" class="addTask-section rounded-5 d-none addTask-responsive-height" onsubmit="addTask('toDo'); hideAddTask();return false" onclick="doNotClose(event) ">
+        <form id="board-addTask" class="addTask-section rounded-5 d-none addTask-responsive-height" onsubmit="addTask('toDo');return false" onclick="doNotClose(event) ">
             <h1 class="h1-addTask">Add Task</h1>
             <div class="task-creation-container d-flex">
       
@@ -209,6 +209,7 @@
                 </div>
                 <div class="d-flex flex-column">
                   <span class="input-headlines fs-20">Prio</span>
+                  <div id="prioWarning" class="warning-message d-none">Please select a priority</div>
                   <div class="priority d-flex justify-content-between">
                     <div class="priority-boxes bg-white rounded-3 d-flex align-items-center justify-content-center" id="urgent" onclick="togglePriority('urgent')">
                       <span class="fs-20 priority-sublines">Urgent</span>
@@ -227,6 +228,7 @@
       
                 <div class="d-flex flex-column">
                   <span class="input-headlines fs-20">Categories</span>
+                  <div id="categoryWarning" class="warning-message d-none">Please select a category</div>
                   <div class="select-btn rounded-3 d-flex align-items-center justify-content-between bg-white" id="select" onclick="toggleDropdown('category')">
                     <span class="fs-20">Select Task Category</span>
                     <div class="subtask-buttons d-flex align-items-center justify-content-center">

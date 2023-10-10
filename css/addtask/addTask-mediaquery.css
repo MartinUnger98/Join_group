@@ -32,9 +32,19 @@
     .category-top {
         top: 1052px;
     }
+    .category-content {
+        position: static;
+        margin-top: -17px;
+    }
     .mb-responsive {
         margin-bottom: 25px;
     }
+  
+    .assign-content {
+        position: static;
+        margin-top: -17px;
+    }
+
 }
 
 @media (max-width: 800px) {
@@ -72,9 +82,6 @@
     .task-creation-container::-webkit-scrollbar {
         display: none;
     }
-    .category-top {
-        top: 1048px;
-    }     
 }
 @media (max-width: 420px) {
     .task-content-box-left {
@@ -102,7 +109,6 @@
     }
     .category-content {
         width: 300px;
-        top: 931px;
         height: 109px;
     }
     .assign-content {
