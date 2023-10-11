@@ -213,7 +213,7 @@ function checkLoginStatus(path) {
     let status = sessionStorage.getItem('loginStatus');
     if (!path.endsWith('/login.html') && !path.endsWith('/privatPolicy.html') && !path.endsWith('/legalNotice.html')) {
         if (!status) {
-            window.location.href = '/html/login.html';
+            window.location.href = 'login.html';
         }
     }
 }
@@ -233,6 +233,6 @@ function setLogInStatus() {
  * 
  */
 function logOut() {
-    window.location.href = '/html/login.html';
+    window.location.href = 'login.html';
     sessionStorage.setItem('loginStatus', false);
 }
