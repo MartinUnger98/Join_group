@@ -101,7 +101,8 @@ async function includeHTML() {
         }
     }
     showLoggedInUser();
-    if (window.location.pathname !== '/Join/html/legalNotice.html' && window.location.pathname !== '/Join/html/privatPolicy.html' && window.location.pathname !== '/Join/html/help.html') {
+    let path = window.location.pathname;
+    if (!path.endsWith('/legalNotice.html') && !path.endsWith('/privatPolicy.html') && !path.endsWith('/help.html')) {
         setCurrentViewInMenu();
     }
     
@@ -164,7 +165,8 @@ function pathAfterPopup() {
             backToLogin();
             break;
         case "Task added to Board":
-            if (window.location.pathname !== '/Join/html/board.html') {
+            let path = window.location.pathname;
+            if (!path.endsWith('/board.html')) {
                 window.location.href = 'board.html';
             } else {
                 loadBoard();
