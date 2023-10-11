@@ -169,7 +169,8 @@ function pathAfterPopup() {
             if (!path.endsWith('/board.html')) {
                 window.location.href = 'board.html';
             } else {
-                loadBoard();
+                renderTasks('toDo');
+                hideAddTask();
             }
             break;
     }
