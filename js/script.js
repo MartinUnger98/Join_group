@@ -211,7 +211,7 @@ function checkInput(event) {
  */
 function checkLoginStatus(path) {
     let status = sessionStorage.getItem('loginStatus');
-    if (!path.endsWith('/login.html')) {
+    if (!path.endsWith('/login.html') && !path.endsWith('/privatPolicy.html') && !path.endsWith('/legalNotice.html')) {
         if (!status) {
             window.location.href = '/html/login.html';
         }
