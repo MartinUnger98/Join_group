@@ -71,22 +71,8 @@
         <section class="taskboard d-flex justify-content-between">
 
             <div class="d-flex flex-column">
-                <div class="d-flex column-headline justify-content-between width-column">
+                <div class="d-flex column-headline width-column">
                     <span class="column-title fw-bold fs-20">To do</span>
-                    <div>
-                      <a href="../html/addTask.html" class="hidden-button plus-button rounded-3 justify-content-center align-items-center">
-                        <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                        </svg> 
-                      </a>
-                      <div class="button-responsive plus-button rounded-3 justify-content-center align-items-center" onclick="showHiddenAddTask()">
-                          <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                              <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                          </svg> 
-                      </div>
-                    </div>
                 </div>
                 <div class="scroll-container" id="scrollContainer1">
                   <div id="toDo" class="board-direction d-flex row-gap-4 pb-3" ondragover="allowDrop(event)" ondrop="moveTo('toDo')"></div>
@@ -94,22 +80,8 @@
             </div>
 
             <div class="d-flex flex-column">
-                <div class="d-flex justify-content-between width-column">
+                <div class="d-flex width-column">
                     <span class="column-title fw-bold fs-20">In progress</span>
-                    <div>
-                      <a href="../html/addTask.html" class="hidden-button plus-button rounded-3 justify-content-center align-items-center">
-                        <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                        </svg> 
-                      </a>
-                      <div class="button-responsive plus-button rounded-3 justify-content-center align-items-center" onclick="showHiddenAddTask()">
-                          <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                              <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                          </svg> 
-                      </div>
-                    </div>
                 </div>
                 <div class="scroll-container" id="scrollContainer2">
                   <div id="inProgress" class="board-direction d-flex row-gap-4 pb-3 flex-grow-1" ondragover="allowDrop(event)" ondrop="moveTo('inProgress')"></div>
@@ -119,20 +91,6 @@
             <div class="d-flex flex-column">
                 <div class="d-flex justify-content-between width-column">
                     <span class="column-title fw-bold fs-20">Await feedback</span>
-                    <div>
-                      <a href="../html/addTask.html" class="hidden-button plus-button rounded-3 justify-content-center align-items-center">
-                        <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                        </svg> 
-                      </a>
-                      <div class="button-responsive plus-button rounded-3 justify-content-center align-items-center" onclick="showHiddenAddTask()">
-                          <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                              <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                          </svg> 
-                      </div>
-                    </div>
                 </div>
                 <div class="scroll-container" id="scrollContainer3">
                   <div id="awaitFeedback" class="board-direction d-flex flex-grow-1 row-gap-4 pb-3" ondragover="allowDrop(event)" ondrop="moveTo('awaitFeedback')"></div>
@@ -140,22 +98,8 @@
             </div>
             
             <div class="d-flex flex-column">
-                <div class="d-flex justify-content-between width-column">
+                <div class="d-flex width-column">
                     <span class="column-title fw-bold fs-20">Done</span>
-                    <div>
-                      <a href="../html/addTask.html" class="hidden-button plus-button rounded-3 justify-content-center align-items-center">
-                        <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                        </svg> 
-                      </a>
-                      <div class="button-responsive plus-button rounded-3 justify-content-center align-items-center" onclick="showHiddenAddTask()">
-                          <svg class="svg-color" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                              <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                          </svg> 
-                      </div>
-                    </div>
                 </div>
                 <div class="scroll-container" id="scrollContainer4">
                   <div id="taskDone" class="board-direction d-flex flex-grow-1 row-gap-4 pb-3" ondragover="allowDrop(event)" ondrop="moveTo('taskDone')"></div>
