@@ -9,12 +9,11 @@ async function loggedIn(user) {
     if(user === 'Guest'){
         loggedInUser = await setItem('loggedInUser', user);
         window.location.href = "summary.html";
+        setLogInStatus();
         clearLocalStorageUser();
     }
     else{
-       
         checkUserExist('logIn');
-       
     }
 }
 
@@ -264,6 +263,7 @@ async function checkPassword(userPassword, logInPassword, userName) {
         let userInput = document.getElementById('logInEmail').value;
         let rememberMe = document.getElementById('checkLogIn').getAttribute('src');
         checkRememberBtn(userInput, rememberMe);
+        setLogInStatus();
         window.location.href = "summary.html"
     }
     else {

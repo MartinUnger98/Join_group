@@ -16,12 +16,14 @@ let editModeOnOrOff = false;
  * load all data, templates and specific information on specific views
  */
 async function init() {
+    let path = window.location.pathname;
+    checkLoginStatus(path);
     await includeHTML();
-    await loadData();
-    if (window.location.pathname === '/Join/html/board.html' || window.location.pathname === '/Join/html/addTask.html') {
+    await loadData();    
+    if (path.endsWith('/board.html') || path.endsWith('/addTask.html')) {
         loadAddTask();
     }
-    if (window.location.pathname === '/Join/html/board.html') {
+    if (path.endsWith('/board.html')) {
         loadBoard();
     }
 }
@@ -182,14 +184,52 @@ function setRememberedUser() {
 }
 
 
+/**
+ * check if any keys are pressed on the keyboard and prevent all input except for 0-9 and +
+ * 
+ * @param {event} event 
+ * @returns 
+ */
 function checkInput(event) {
     let key = event.key || event.which;
-
-    // Erlaube nur Zahlen, das + Zeichen, Steuertasten (wie Backspace) und Navigationstasten
     if (/[0-9+]/.test(key) || event.keyCode >= 37 && event.keyCode <= 40 || event.keyCode == 8 || event.keyCode == 46) {
         return true;
     } else {
         event.preventDefault();
         return false;
     }
+}
+
+
+/**
+ * checks the login status and switch to login if no one is logged in
+ * 
+ * @param {string} path 
+ */
+function checkLoginStatus(path) {
+    let status = sessionStorage.getItem('loginStatus');
+    if (!path.endsWith('/login.html')) {
+        if (!status) {
+            window.location.href = '/html/login.html';
+        }
+    }
+}
+
+
+/**
+ * sets login status to true
+ * 
+ */
+function setLogInStatus() {
+    sessionStorage.setItem('loginStatus', true);
+}
+
+
+/**
+ * go back to login in and sets login status to false
+ * 
+ */
+function logOut() {
+    window.location.href = '/html/login.html';
+    sessionStorage.setItem('loginStatus', false);
 }
