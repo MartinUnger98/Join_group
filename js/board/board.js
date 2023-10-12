@@ -21,12 +21,25 @@ function allMightyRender() {
 
 
 /**
- * This function creates tasks inside of each column
+ * This function creates tasks
+ * @param {string} status
  */
 function renderTasks(status) {
     let taskStatus = tasks.filter(t => t['status'] == status);
     let content = document.getElementById(status);
     content.innerHTML = '';
+    renderallTasks(taskStatus, content);
+    checkColumns(taskStatus, status);
+    content.innerHTML += addEmptytask('emptyTask' + status);
+}
+
+
+/**
+ * This function renders every task 
+ * @param {object} taskStatus 
+ * @param {HTMLElement} content 
+ */
+function renderallTasks(taskStatus, content) {
     for (let i = 0; i < taskStatus.length; i++) {
         const task = taskStatus[i];
         let title = task.title;
@@ -43,8 +56,6 @@ function renderTasks(status) {
         renderDetailedTask(position, id);
         renderSelectedContacts(task, contact, id);
     }
-    checkColumns(taskStatus, status);
-    content.innerHTML += addEmptytask('emptyTask' + status);
 }
 
 
@@ -143,24 +154,44 @@ function renderSelectedContacts(task, contact, id) {
     if (contact) {
         content.innerHTML = '';
         const selectedContacts = [];
-        for (let i = 0; i < Math.min(contact.length, 4); i++) {
-            const selectedContact = contact[i];
-            const initials = getInitials(selectedContact);
-            const selectedContactsBg = bgColor[i];
-            selectedContacts.push(/*html*/ `
-                <div class="initials-selected" style="background-color: ${selectedContactsBg}">${initials}</div>
-            `);
-        }
-        if (contact.length > 4) {
-            selectedContacts.push(/*html*/ `
-                <div class="initials-selected" style="background-color: lightgrey">+${counter}</div>
-            `);
-        }
+        renderAllSelectedContactsInitials(bgColor, contact, selectedContacts)
+        addContactsCounter(contact, selectedContacts, counter)
         content.innerHTML = selectedContacts.join('');
     }
 }
 
 
+/**
+ * This function renders all initials for each selected contact
+ * @param {object} bgColor 
+ * @param {object} contact 
+ * @param {object} selectedContacts 
+ */
+function renderAllSelectedContactsInitials(bgColor, contact, selectedContacts) {
+    for (let i = 0; i < Math.min(contact.length, 4); i++) {
+        const selectedContact = contact[i];
+        const initials = getInitials(selectedContact);
+        const selectedContactsBg = bgColor[i];
+        selectedContacts.push(/*html*/ `
+            <div class="initials-selected" style="background-color: ${selectedContactsBg}">${initials}</div>
+        `);
+    }
+}
+
+
+/**
+ * This function adds the contacts counter
+ * @param {object} contact 
+ * @param {object} selectedContacts 
+ * @param {number} counter 
+ */
+function addContactsCounter(contact, selectedContacts, counter) {
+    if (contact.length > 4) {
+        selectedContacts.push(/*html*/ `
+            <div class="initials-selected" style="background-color: lightgrey">+${counter}</div>
+        `);
+    }
+}
 
 
 /**

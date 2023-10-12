@@ -211,25 +211,20 @@ async function checkUserExistWhichView(emailExists, view, usermailInput, usermai
     if (emailExists && view === "signUp") {
         usermailInput.setCustomValidity("Email already exists!");
         usermailInput.reportValidity();
-    } 
-    else if(view === "signUp"){
+    } else if(view === "signUp"){
         popup = 'You Signed Up successfully';
         await register();
         showSuccessMessage();
-    }
-    else if(!emailExists && (view === "forgotPassword" || view === "logIn")){     
+    } else if(!emailExists && (view === "forgotPassword" || view === "logIn")){     
         usermailInput.setCustomValidity("Email doesn't exist");
         usermailInput.reportValidity();
-    }
-    else if(view === "forgotPassword"){
+    } else if(view === "forgotPassword"){
         popup = "An Email has been sent to you";
         userPasswordChange = usermail;
         showSuccessMessage();
-    }
-    else {
+    } else {
         checkEmailExistence(usermail);
     }
-    
 }
 
 
@@ -257,22 +252,39 @@ function checkEmailExistence(usermail) {
  * @param {string} userPassword - password form server to the inserted email
  * @param {string} logInPassword - password which was inserted
  */
-async function checkPassword(userPassword, logInPassword, userName) {
+function checkPassword(userPassword, logInPassword, userName) {
     if (userPassword === logInPassword) {
-        loggedInUser = await setItem('loggedInUser', userName);
-        let userInput = document.getElementById('logInEmail').value;
-        let rememberMe = document.getElementById('checkLogIn').getAttribute('src');
-        checkRememberBtn(userInput, rememberMe);
-        setLogInStatus();
-        window.location.href = "summary.html"
+        logInToSummary(userName);
     }
     else {
-        let logInPasswordInput = document.getElementById("logInPassword");
-        logInPasswordInput.setCustomValidity("Wrong password Ups! Try again.");
-        logInPasswordInput.reportValidity();
-        emptyCustomValidity(logInPasswordInput);
+        denyLogIn();
     }
-    
+}
+
+
+/**
+ * This function allows the log in
+ * @param {string} userName 
+ */
+async function logInToSummary(userName) {
+    loggedInUser = await setItem('loggedInUser', userName);
+    let userInput = document.getElementById('logInEmail').value;
+    let rememberMe = document.getElementById('checkLogIn').getAttribute('src');
+    checkRememberBtn(userInput, rememberMe);
+    setLogInStatus();
+    window.location.href = "summary.html"
+}
+
+
+/**
+ * This function denies the log in by setting custom validity
+ * 
+ */
+function denyLogIn() {
+    let logInPasswordInput = document.getElementById("logInPassword");
+    logInPasswordInput.setCustomValidity("Wrong password Ups! Try again.");
+    logInPasswordInput.reportValidity();
+    emptyCustomValidity(logInPasswordInput);
 }
 
 

@@ -13,21 +13,9 @@ function addTask(status) {
     let priority = getPriority();
     let prioWarning = document.getElementById('prioWarning');
     let categoryWarning = document.getElementById('categoryWarning');
-    let task = {
-        'title': title,
-        'description': description,
-        'contacts': contact,
-        'contactsBg': contactBg,
-        'date': date,
-        'prio': img,
-        'priority': priority,
-        'category': selectedCategory,
-        'subtask': subtasks,
-        'subtaskStatus': Array(subtasks.length).fill(false),
-        'status': status,
-        'id': creatId(),
-    };
-    pushAddedTask(selectedCategory, priority, task, categoryWarning, prioWarning);
+    let contactWarning = document.getElementById('contactWarning')
+    let task = { 'title': title, 'description': description, 'contacts': contact, 'contactsBg': contactBg, 'date': date, 'prio': img, 'priority': priority, 'category': selectedCategory, 'subtask': subtasks, 'subtaskStatus': Array(subtasks.length).fill(false), 'status': status, 'id': creatId() };
+    pushAddedTask(selectedCategory, priority, task, categoryWarning, prioWarning, contactWarning, contact);
 }
 
 
@@ -38,12 +26,17 @@ function addTask(status) {
  * @param {string} task 
  * @param {string} categoryWarning 
  * @param {string} prioWarning 
+ * @param {string} contactWarning 
  */
-async function pushAddedTask(selectedCategory, priority, task, categoryWarning, prioWarning) {
+async function pushAddedTask(selectedCategory, priority, task, categoryWarning, prioWarning, contactWarning, contact) {
     let category = document.getElementById('content');
-    showWarningMessages(selectedCategory, categoryWarning, prioWarning, priority); 
-    correctPositionsOfCategoryDropdown(selectedCategory, priority, category);
-    if (selectedCategory && priority) {
+    let contactDiv = document.getElementById('contacts');
+    showWarningMessageContact(contactWarning, contact); 
+    showWarningMessages(selectedCategory, categoryWarning);
+    showWarningMessages(priority, prioWarning);
+    addNewPositionOfCategory(selectedCategory, priority, category);
+    addNewPositionOfContacts(contactDiv, contact);
+    if (selectedCategory && priority && contact.length > 0) {
         tasks.push(task);
         await saveTasks();
         popup = "Task added to Board";
@@ -53,33 +46,39 @@ async function pushAddedTask(selectedCategory, priority, task, categoryWarning, 
 
 
 /**
- * This function shows the warning message, if a priority or/and a category aren't selected
- * @param {*} selectedCategory 
- * @param {*} categoryWarning 
- * @param {*} prioWarning 
- * @param {*} priority 
+ * This function shows the warning messages for priority and category
+ * @param {object} value 
+ * @param {object} element 
  */
-function showWarningMessages(selectedCategory, categoryWarning, prioWarning, priority) {
-    if (!selectedCategory) {
-        categoryWarning.classList.remove('d-none');
+function showWarningMessages(value, element) {
+    if (!value) {
+        element.classList.remove('d-none');
     } else {
-        categoryWarning.classList.add('d-none');
+        element.classList.add('d-none');
     }
-    if (!priority) {
-        prioWarning.classList.remove('d-none');
-    } else {
-        prioWarning.classList.add('d-none');
+}
+
+/**
+ * This function shows the warning message for contatcs
+ * @param {object} element 
+ * @param {object} value 
+ */
+function showWarningMessageContact(element, value) {
+    if (value.length === 0) {
+        element.classList.remove('d-none');
+    } else if (value.length > 0) {
+        element.classList.add('d-none');
     }
 }
 
 
 /**
- * This function corrects the "top" of the category dropdown
+ * This function corrects the position of the category dropdown, if one or two warning messages are shown
  * @param {*} selectedCategory 
  * @param {*} priority 
  * @param {*} category 
  */
-function correctPositionsOfCategoryDropdown(selectedCategory, priority, category) {
+function addNewPositionOfCategory(selectedCategory, priority, category) {
     if (!selectedCategory || !priority) {
         category.classList.add('category-top-1-warning');
     }
@@ -88,6 +87,20 @@ function correctPositionsOfCategoryDropdown(selectedCategory, priority, category
         category.classList.remove('category-top-1-warning');
     } else {
         category.classList.remove('category-top-2-warning');
+    }
+}
+
+
+/**
+ * This function corrects the position of the contacts-dropdown, if the warning message is shown
+ * @param {*} contactDiv 
+ * @param {*} contact 
+ */
+function addNewPositionOfContacts(contactDiv, contact) {
+    if (contact.length === 0) {
+        contactDiv.classList.add('contact-top');
+    } else if (contact.length > 0) {
+        contactDiv.classList.remove('contact-top');
     }
 }
 

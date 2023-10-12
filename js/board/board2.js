@@ -1,3 +1,7 @@
+let isDragging = false;
+let startX;
+let scrollLeft;
+
 /**
  * This function pushes the detailed Task from right to the middle
  */
@@ -206,8 +210,6 @@ function showHiddenAddTask() {
     showHiddenBackground();
     scrollToTop();
 }
-
-
 document.addEventListener('DOMContentLoaded', function () {
     enableHorizontalScroll('scrollContainer1');
     enableHorizontalScroll('scrollContainer2');
@@ -229,27 +231,60 @@ function enableHorizontalScroll(containerId) {
         console.error(`Element with ID '${containerId}' not found.`);
         return;
     }
-    let isDragging = false;
-    let startX;
-    let scrollLeft;
+    useMouseDown(scrollContainer);
+    useMouseLeave(scrollContainer);
+    useMouseUP(scrollContainer);
+    useMouseMove(scrollContainer);
+}
 
+
+/**
+ * Attaches a mousedown event listener to a scrollable container, enabling dragging behavior.
+ *
+ * @param {HTMLElement} scrollContainer - The scrollable container element.
+ */
+function useMouseDown(scrollContainer) {
     scrollContainer.addEventListener('mousedown', (e) => {
         isDragging = true;
         startX = e.pageX - scrollContainer.offsetLeft;
         scrollLeft = scrollContainer.scrollLeft;
         scrollContainer.style.cursor = 'grabbing';
     });
+}
 
+
+/**
+ * Attaches a mouseleave event listener to a scrollable container, enabling dragging behavior.
+ *
+ * @param {HTMLElement} scrollContainer - The scrollable container element.
+ */
+function useMouseLeave(scrollContainer) {
     scrollContainer.addEventListener('mouseleave', () => {
         isDragging = false;
         scrollContainer.style.cursor = 'grab';
     });
+}
 
+
+/**
+ * Attaches a mouseup event listener to a scrollable container, enabling dragging behavior.
+ *
+ * @param {HTMLElement} scrollContainer - The scrollable container element.
+ */
+function useMouseUP(scrollContainer) {
     scrollContainer.addEventListener('mouseup', () => {
         isDragging = false;
         scrollContainer.style.cursor = 'grab';
     });
+}
 
+
+/**
+ * Attaches a mousemove event listener to a scrollable container, enabling dragging behavior.
+ *
+ * @param {HTMLElement} scrollContainer - The scrollable container element.
+ */
+function useMouseMove(scrollContainer) {
     scrollContainer.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         const x = e.pageX - scrollContainer.offsetLeft;

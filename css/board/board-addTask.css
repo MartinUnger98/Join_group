@@ -166,6 +166,9 @@
 .assign-content.active {
     display: block;
 }
+.contact-top {
+    top: 569px;
+}
 .contacts-box {
     max-height: 175px; 
     overflow-y: auto; 

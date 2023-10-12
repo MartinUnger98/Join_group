@@ -112,6 +112,16 @@ function loadContacts() {
     allContactsContainer.innerHTML = '';
     initialLetter = [];
     sortByFirstName(allContacts);
+    renderAllContacts(allContactsContainer, initialLetter);
+}
+
+
+/**
+ * This function renders all contacts
+ * @param {HTMLElement} allContactsContainer 
+ * @param {object} initialLetter 
+ */
+function renderAllContacts(allContactsContainer, initialLetter) {
     for (let i = 0; i < allContacts.length; i++) {
         const contact = allContacts[i];
         const initials = getInitials(contact['name']).toUpperCase();
@@ -147,13 +157,11 @@ function checkInitialLetter(firstInitial) {
  */
 function showContact(i) {
     let contactDetailContainer = document.getElementById('contactDetailView');
-
     if (contactDetailContainer.style.left === '') {
         changeDetails(i, contactDetailContainer);
         document.getElementById('initialsDetailView').style.backgroundColor = allContacts[i]['bgColor'];
         scrollToTop();
-    }
-    else {
+    } else {
         contactDetailContainer.style.left = '100vw';
         setTimeout(function () {
             changeDetails(i, contactDetailContainer);
@@ -161,7 +169,6 @@ function showContact(i) {
         }, 225);
         scrollToTop();
     }
-
 }
 
 

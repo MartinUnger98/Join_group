@@ -54,20 +54,16 @@ async function addContact() {
  * This function saves a nw contact
  */
 async function saveNewContact() {
-    try {
-        const allContactsAsString = JSON.stringify(allContacts);
-        await setItem('allContacts', allContactsAsString);
-        if (!editModeOnOrOff) {
-            renderUser();
-        }
-        else{
-            renderUserInEditor(idForEditmode, indexForEditmode);
-        }
+    const allContactsAsString = JSON.stringify(allContacts);
+    await setItem('allContacts', allContactsAsString);
+    if (!editModeOnOrOff) {
         renderUser();
-        closeEditorCtc();
-    } catch (error) {
-        console.error('Fehler beim Speichern des Kontakts:', error);
     }
+    else {
+        renderUserInEditor(idForEditmode, indexForEditmode);
+    }
+    renderUser();
+    closeEditorCtc();
 }
 
 
