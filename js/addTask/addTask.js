@@ -18,157 +18,40 @@ function loadAddTask() {
 
 
 /**
- *  This function creates vars for elements and and executes the toggle-function
- * @param {string} priority - contains ID of the respective priority box
+ * Toggles the priority style for a given priority level.
+ *
+ * @param {string} priority - The priority level to toggle, e.g., "urgent", "medium", or "low".
  */
 function togglePriority(priority) {
-    let urgent = document.getElementById('urgent');
-    let medium = document.getElementById('medium');
-    let low = document.getElementById('low');
-    let urgentImg = document.getElementById('urgent-img');
-    let mediumImg = document.getElementById('medium-img');
-    let lowImg = document.getElementById('low-img');
-    toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg);
-}
-
-
-/**
- * This function starts the toggle for the specififc priority
- * @param {string} priority - refers to togglePriority
- * @param {string} urgent - ID of urgent-priority
- * @param {string} medium - ID of medium-priority 
- * @param {string} urgentImg - ID of urgent-image
- * @param {string} mediumImg - ID of medium-image 
- * @param {string} low - ID of low-priority 
- * @param {string} lowImg - ID of low-image 
- */
-function toggle(priority, urgent, medium, urgentImg, mediumImg, low, lowImg) {
-    if (priority === 'urgent') {
-        toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg);
-    }
-    if (priority === 'medium') {
-        toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg);
-    }
-    if (priority === 'low') {
-        toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg);
+    resetPriorities();
+    let selectedDiv = document.getElementById(priority);
+    if (selectedDiv) {
+      selectedDiv.classList.remove("bg-white");
+      selectedDiv.classList.add(`bg-${priority}`);
+      let img = selectedDiv.querySelector('img');
+      if (img) {
+        img.src = `../img/${priority}_white.svg`;
+      }
     }
 }
 
 
 /**
- * This function toggles the urgent-priority and switch the other priorities back, 
- * if they have been already selected.
+ * Resets the priority styles and images for all priority levels.
  */
-function toggleUrgent(urgent, medium, urgentImg, mediumImg, low, lowImg) {
-    if (urgent.classList.contains('bg-white')) {
-        switchUrgent(urgent, urgentImg);
-    } else {
-        switchUrgentBack(urgent, urgentImg);
-    }
-    if (medium.classList.contains('bg-medium')) {
-        switchMediumBack(medium, mediumImg);
-    }
-    if (low.classList.contains('bg-low')) {
-        switchLowBack(low, lowImg);
-    }
-}
-
-
-/**
- * This function toggles the medium-priority and switch the other priorities back, 
- * if they have been already selected.
- */
-function toggleMedium(urgent, medium, urgentImg, mediumImg, low, lowImg) {
-    if (medium.classList.contains('bg-white')) {
-        switchMedium(medium, mediumImg);
-    } else {
-        switchMediumBack(medium, mediumImg);
-    }
-    if (urgent.classList.contains('bg-urgent')) {
-        switchUrgentBack(urgent, urgentImg);
-    }
-    if (low.classList.contains('bg-low')) {
-        switchLowBack(low, lowImg);
-    }
-}
-
-
-/**
- * This function toggles the low-priority and switch the other priorities back, 
- * if they have been already selected.
- */
-function toggleLow(urgent, medium, urgentImg, mediumImg, low, lowImg) {
-    if (low.classList.contains('bg-white')) {
-        switchLow(low, lowImg);
-    } else {
-        switchLowBack(low, lowImg);
-    }
-    if (urgent.classList.contains('bg-urgent')) {
-        switchUrgentBack(urgent, urgentImg);
-    }
-    if (medium.classList.contains('bg-medium')) {
-        switchMediumBack(medium, mediumImg);
-    }
-}
-
-
-/**
- * This function switches the backgroundcolors and the img of the urgent-priority
- */
-function switchUrgent(urgent, urgentImg) {
-    urgent.classList.remove('bg-white');
-    urgent.classList.add('bg-urgent');
-    urgentImg.src = '../img/urgent_white.svg';
-}
-
-
-/**
- * This function switches the backgroundcolors and the img of the urgent-priority back
- */
-function switchUrgentBack(urgent, urgentImg) {
-    urgent.classList.remove('bg-urgent');
-    urgent.classList.add('bg-white');
-    urgentImg.src = '../img/urgent_red.svg';
-}
-
-
-/**
- * This function switches the backgroundcolors and the img of the urgent-priority
- */
-function switchMedium(medium, mediumImg) {
-    medium.classList.remove('bg-white');
-    medium.classList.add('bg-medium');
-    mediumImg.src = '../img/medium_white.svg';
-}
-
-
-/**
- * This function switches the backgroundcolors and the img of the medium-priority back
- */
-function switchMediumBack(medium, mediumImg) {
-    medium.classList.remove('bg-medium');
-    medium.classList.add('bg-white');
-    mediumImg.src = '../img/medium_yellow.svg';
-}
-
-
-/**
- * This function switches the backgroundcolors and the img of the urgent-priority
- */
-function switchLow(low, lowImg) {
-    low.classList.remove('bg-white');
-    low.classList.add('bg-low');
-    lowImg.src = '../img/low_white.svg';
-}
-
-
-/**
- * This function switches the backgroundcolors and the img of the low-priority back
- */
-function switchLowBack(low, lowImg) {
-    low.classList.remove('bg-low');
-    low.classList.add('bg-white');
-    lowImg.src = '../img/low_green.svg';
+function resetPriorities() {
+    const priorities = ["urgent", "medium", "low"];
+    priorities.forEach(priority => {
+        let div = document.getElementById(priority);
+        if (div) {
+        div.classList.remove(`bg-${priority}`);
+        div.classList.add("bg-white");
+        let img = div.querySelector('img');
+        if (img) {
+            img.src = `../img/${priority}_${priority === "urgent" ? "red" : priority === "medium" ? "yellow" : "green"}.svg`;
+        }
+        }
+    });
 }
 
 
