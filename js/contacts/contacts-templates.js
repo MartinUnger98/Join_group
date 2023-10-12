@@ -40,7 +40,7 @@ function showNewContactEditor() {
                             <img src="../img/mail-contact.svg">
                         </div>
                         <div class="inputCtcContainer">
-                            <input class="inputCtc" required id="phone" type="tel" pattern="[+]?[0-9]{2}[0-9]{6,11}" placeholder="+491234567" oninvalid="this.setCustomValidity('Please enter the following format: +4916754272')" onkeydown="return checkInput(event)">
+                            <input class="inputCtc" required id="phone" type="tel" pattern="[0-9]{2}[0-9]{6,11}" placeholder="e.g. 491234567" oninvalid="this.setCustomValidity('Please enter the following format: 4916754272')" onkeydown="return checkInput(event)">
                             <img src="../img/call.svg">
                         </div>
                         <div class="cnlAndCreateBtns">
@@ -133,7 +133,7 @@ function detailView(i) {
                     <a class="emailLinkWithHover emailLink" id="emailDetail" href="mailto:${allContacts[i]['email']}">${allContacts[i]['email']}</a>
                     <h3 class="h3DetailView">Phone</h3>
                     ${allContacts[i]['number'] !== undefined ? /*html*/  ` 
-                        <span id="phoneDetail">${allContacts[i]['number']}</span>
+                        <span id="phoneDetail">+${allContacts[i]['number']}</span>
                     `: ''}
                 </div>    
             </div>
@@ -183,7 +183,7 @@ function showEditor(i) {
                             <img src="../img/mail-contact.svg">
                         </div>
                         <div class="inputCtcContainer">
-                            <input class="inputCtc" required id="phone" type="tel" pattern="[+]?[0-9]{2}[0-9]{6,11}" placeholder="+491234567" oninvalid="this.setCustomValidity('Please enter the following format: +4916754272')" onkeydown="return checkInput(event)">
+                            <input class="inputCtc" required id="phone" type="tel" pattern="[0-9]{2}[0-9]{6,11}" placeholder="e.g. 491234567" oninvalid="this.setCustomValidity('Please enter the following format: 4916754272')" onkeydown="return checkInput(event)">
                             <img src="../img/call.svg">
                         </div>
                         <div class="cnlAndCreateBtns ">
