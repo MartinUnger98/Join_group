@@ -23,7 +23,6 @@ async function setItem(key, value) {
 async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {
-        // Verbesserter code
         if (res.data) { 
             return res.data.value;
         } throw `No users found. Please Sign Up or Guest Login".`;

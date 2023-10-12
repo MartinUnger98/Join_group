@@ -212,10 +212,8 @@ function getBgofContact() {
     let bgColorsOfContacts = [];
     let checkedContact = document.querySelectorAll('.contact-selection.checked');
     checkedContact.forEach(contact => {
-        let contactId = contact.id; // Die ID des ausgewählten Kontakt-Elements
-        let i = contactId.split('-')[2]; // Extrahieren der Indexnummer aus der ID
-
-        // Die Hintergrundfarbe von id="contact-${i}" abrufen und dem Array hinzufügen
+        let contactId = contact.id; 
+        let i = contactId.split('-')[2]; 
         let contactBgColor = window.getComputedStyle(document.getElementById(`contact-${i}`)).backgroundColor;
         bgColorsOfContacts.push(contactBgColor);
     });

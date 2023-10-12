@@ -137,9 +137,9 @@ function highlightPriorityBoxes(priority, urgent, urgentImg, medium, mediumImg, 
  * @param {number} i - index of task
  */
 function updateEditorWithMatchingContacts(id, i) {
-    const taskContacts = tasks[i].contacts; // Kontakte aus der Aufgabe
+    const taskContacts = tasks[i].contacts;
     if (!taskContacts) {
-        return; // Keine Aufgabenkontakte vorhanden, nichts zu überprüfen
+        return; 
     }
     for (let j = 0; j < allContacts.length; j++) {
         const user = allContacts[j];

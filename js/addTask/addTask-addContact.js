@@ -56,8 +56,7 @@ async function addContact() {
 async function saveNewContact() {
     try {
         const allContactsAsString = JSON.stringify(allContacts);
-        await setItem('allContacts', allContactsAsString); // Auf das Ergebnis warten
-
+        await setItem('allContacts', allContactsAsString);
         if (!editModeOnOrOff) {
             renderUser();
         }
