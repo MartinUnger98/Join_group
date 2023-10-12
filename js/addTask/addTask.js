@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Holen Sie sich eine Referenz zum Date-Input-Feld
     const dateInput = document.getElementById('date');
-    // Holen Sie sich das aktuelle Datum im Format "YYYY-MM-DD"
     const currentDate = new Date().toISOString().split('T')[0];
-    // Setzen Sie das min-Attribut auf das aktuelle Datum
     dateInput.setAttribute('min', currentDate);
 });
 
